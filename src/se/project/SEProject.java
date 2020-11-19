@@ -17,7 +17,7 @@ public class SEProject {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello Words");
+        System.out.println("Hello World");
     }
     
 }
