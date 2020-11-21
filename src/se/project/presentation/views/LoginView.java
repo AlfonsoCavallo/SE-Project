@@ -20,6 +20,17 @@ public class LoginView extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    public String getUsername()
+    {
+        return null; //To be implemented
+    }
+    
+    public String getPassword()
+    {
+        return null; //To be implemented
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

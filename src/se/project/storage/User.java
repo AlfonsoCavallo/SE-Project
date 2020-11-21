@@ -12,7 +12,7 @@ package se.project.storage;
  */
 public class User 
 {
-    enum Role
+    public enum Role
     {
         SYSTEM_ADMINISTRATOR,
         PLANNER
