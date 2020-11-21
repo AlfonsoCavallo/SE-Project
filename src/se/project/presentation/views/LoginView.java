@@ -26,7 +26,7 @@ public class LoginView extends javax.swing.JFrame
         return null; //To be implemented
     }
     
-    public String getPassword()
+    public char[] getPassword()
     {
         return null; //To be implemented
     }
