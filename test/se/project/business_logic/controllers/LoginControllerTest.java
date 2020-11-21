@@ -8,13 +8,14 @@ package se.project.business_logic.controllers;
 
 import javax.swing.JFrame;
 import junit.framework.TestCase;
-import static org.mockito.Mockito.*;
+import org.mockito.Mockito;
 import se.project.presentation.views.LoginView;
 
 /**
  *
  * @author Utente
  */
+
 public class LoginControllerTest extends TestCase
 {
     
@@ -43,9 +44,9 @@ public class LoginControllerTest extends TestCase
         System.out.println("login");
         
         // Mock for login view class
-        LoginView mock = mock(LoginView.class);
-        when(mock.getUsername()).thenReturn(null);
-        when(mock.getPassword()).thenReturn(null);
+        LoginView mock = Mockito.mock(LoginView.class);
+        Mockito.when(mock.getUsername()).thenReturn(null);
+        Mockito.when(mock.getPassword()).thenReturn(null);
         
         // Instance LoginController
         LoginController instance = new LoginController(mock);
