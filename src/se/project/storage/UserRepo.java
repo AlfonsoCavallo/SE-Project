@@ -13,10 +13,14 @@ package se.project.storage;
 public class UserRepo
 {
     private String DATABASE_SERVER_ADDRESS;
+    private String username;
+    private char[] password;
     
     public UserRepo(String username, char[] password)
     {
-        
+        //connection to db
+        this.username = username;
+        this.password = password;
     }
     
     public User queryCurrentUser()
@@ -24,5 +28,10 @@ public class UserRepo
         // Return a model of the current user
         return null;
     }
+    
+    public void closeConnection()
+    {
+        //close 
+    }        
     
 }

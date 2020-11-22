@@ -12,6 +12,10 @@ package se.project.storage;
  */
 public class User 
 {
+    private Role role;
+    private String username;
+    private char[] password; 
+    
     public enum Role
     {
         SYSTEM_ADMINISTRATOR,
@@ -20,23 +24,26 @@ public class User
     
     public User(Role role, String username, char[] password)
     {
+        this.role = role;
+        this.username = username;
+        this.password = password;
     }
     
     public Role getRole()
     {
         // Returns the role of the User
-        return null;
+        return role;
     }
     
     public String getUsername()
     {
         // Returns username
-        return null;
+        return username;
     }
     
     public char[] getPassword()
     {
         // Returns password
-        return null;
+        return password;
     }
 }
