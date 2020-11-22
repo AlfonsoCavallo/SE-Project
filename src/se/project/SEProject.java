@@ -19,9 +19,10 @@ public class SEProject {
         // TODO code application logic here
         System.out.println("Hello World");
         System.out.println("Hello Giorgio");
-        System.out.println("Hello Andrea");
-        System.out.println("Hello Giacomo");
-        System.out.println("Hello Andonio");
+        System.out.println("Hello AndreaDS24");
+        System.out.println("Giacomo");
+        System.out.println("MyBranch");
+        System.out.println("Hello Alfonso");
     }
     
 }
