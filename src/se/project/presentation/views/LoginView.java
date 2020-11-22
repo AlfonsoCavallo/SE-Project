@@ -6,6 +6,8 @@
 
 package se.project.presentation.views;
 
+import se.project.business_logic.controllers.LoginController;
+
 /**
  *
  * @author Utente
@@ -23,12 +25,12 @@ public class LoginView extends javax.swing.JFrame
     
     public String getUsername()
     {
-        return null; //To be implemented
+        return jUsernameTextField.getText();
     }
     
     public char[] getPassword()
     {
-        return null; //To be implemented
+        return jPasswordField.getPassword();
     }
     
 
@@ -142,6 +144,13 @@ public class LoginView extends javax.swing.JFrame
         jLoginLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLoginLabel.setText("Log in");
         jLoginLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLoginLabel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLoginLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -255,6 +264,12 @@ public class LoginView extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordFieldActionPerformed
+
+    private void jLoginLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLoginLabelMouseClicked
+    {//GEN-HEADEREND:event_jLoginLabelMouseClicked
+        LoginController loginController = new LoginController(this);
+        loginController.login();
+    }//GEN-LAST:event_jLoginLabelMouseClicked
 
     /**
      * @param args the command line arguments
