@@ -6,6 +6,9 @@
 
 package se.project.business_logic.controllers;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -36,16 +39,29 @@ public class LoginController
         String username = loginView.getUsername();
         char[] password = loginView.getPassword();
         
-        userRepo = new UserRepo(username, password);
-        User currentUser = userRepo.queryCurrentUser();
-        
+        userRepo = new UserRepo();
+        try
+        {
+            userRepo.connect(username, password);
+            User currentUser = userRepo.queryCurrentUser();
+            return openUserPage(currentUser.getRole());
+        } 
+        catch(ClassNotFoundException | SQLException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
+            return null;
+        }
+    }
+    
+    private JFrame openUserPage(User.Role role)
+    {
         // Opens the homepage for the current user
-        if(currentUser.getRole() == User.Role.SYSTEM_ADMINISTRATOR)
+        if(role == User.Role.SYSTEM_ADMINISTRATOR)
         {        
             loginView.dispose();
             return MainController.openSystemAdministratorHomePage();
         }
-        else if(currentUser.getRole() == User.Role.PLANNER)
+        else if(role == User.Role.PLANNER)
         {
             loginView.dispose();
             return MainController.openPlannerHomePage();
