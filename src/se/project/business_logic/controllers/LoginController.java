@@ -34,7 +34,7 @@ public class LoginController
         this.loginView = loginView;
     }
 
-    public JFrame login() 
+    public JFrame login()
     {
         String username = loginView.getUsername();
         char[] password = loginView.getPassword();
