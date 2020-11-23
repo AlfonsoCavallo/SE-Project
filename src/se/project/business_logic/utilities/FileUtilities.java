@@ -17,7 +17,8 @@ import java.util.Scanner;
 public class FileUtilities
 {
     public static String getStringFromFile(String path) throws FileNotFoundException, IOException
-    {// Get the String from the file
+    {
+        // Get the String from the file
         Scanner scanner;
         InputStream input = FileUtilities.class.getResourceAsStream(path);
 
