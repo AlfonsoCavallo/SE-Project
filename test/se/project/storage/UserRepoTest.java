@@ -6,6 +6,7 @@
 
 package se.project.storage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.junit.After;
@@ -14,6 +15,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static se.project.storage.User.Role.*;
 
 /**
  *
@@ -98,23 +100,23 @@ public class UserRepoTest
             // Tests query for an SA user
             UserRepo systemAdministratorRepo = new UserRepo();
             systemAdministratorRepo.connect("finneas", "finneas".toCharArray());
-            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.SYSTEM_ADMINISTRATOR, "finneas", null));
+            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(SYSTEM_ADMINISTRATOR, "finneas", null));
             systemAdministratorRepo.closeConnection();
             
             // Test query for a Planner user
             UserRepo plannerRepo = new UserRepo();
             plannerRepo.connect("jon", "jon".toCharArray());
-            assertEquals(plannerRepo.queryCurrentUser(), new User(User.Role.PLANNER, "jon", null));
+            assertEquals(plannerRepo.queryCurrentUser(), new User(PLANNER, "jon", null));
             plannerRepo.closeConnection();
         }
-        catch(ClassNotFoundException | SQLException ex2)
+        catch(ClassNotFoundException | SQLException | IOException ex)
         {
             fail();
         }
     }
     
     @Test(expected = Exception.class)
-    public void testQueryWithNoConnectionCurrentUser() throws SQLException
+    public void testQueryWithNoConnectionCurrentUser() throws SQLException, IOException
     {
         // Test for Repo not yet connected
         UserRepo instance = new UserRepo();
@@ -122,7 +124,7 @@ public class UserRepoTest
     }
     
     @Test(expected = Exception.class)
-    public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException
+    public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
     {
         // Test for Repo with closed connection
         UserRepo instance = new UserRepo();

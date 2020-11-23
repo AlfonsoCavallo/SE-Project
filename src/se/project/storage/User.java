@@ -21,8 +21,20 @@ public class User
     
     public enum Role
     {
-        SYSTEM_ADMINISTRATOR,
-        PLANNER
+        SYSTEM_ADMINISTRATOR ("SystemAdministrator"),
+        PLANNER ("Planner");
+        
+        private String role;
+        
+        Role(String role)
+        {
+            this.role = role;
+        }
+        
+        public String getValue()
+        {
+            return role;
+        }
     }
     
     public User(Role role, String username, char[] password)
