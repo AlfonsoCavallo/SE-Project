@@ -6,6 +6,9 @@
 
 package se.project.storage;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  *
  * @author Utente
@@ -46,4 +49,33 @@ public class User
         // Returns password
         return password;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.role != other.role)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.username, other.username))
+        {
+            return false;
+        }
+        if (!Arrays.equals(this.password, other.password))
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

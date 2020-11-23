@@ -31,6 +31,4 @@ public class MainController
         // Opens System Planner homepage
         return null;
     }
-    
-    
 }
