@@ -22,7 +22,7 @@ public class UserRepo
 {
     private Connection connection = null;
     
-    private String URL = "jdbc:postgres://localhost/gruppo8_se";
+    private String URL = "jdbc:postgresql://localhost/gruppo8_se";
     
     public UserRepo()
     {

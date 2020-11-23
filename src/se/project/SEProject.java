@@ -6,6 +6,13 @@
 
 package se.project;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import se.project.business_logic.controllers.MainController;
+import se.project.storage.UserRepo;
+
 /**
  *
  * @author Utente
@@ -17,12 +24,20 @@ public class SEProject {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello World");
-        System.out.println("Hello Giorgio");
-        System.out.println("Hello AndreaDS24");
-        System.out.println("Giacomo");
-        System.out.println("MyBranch");
-        System.out.println("Hello Alfonso");
+        
+        
+        UserRepo userRepo = new UserRepo();
+        try
+        {
+            Class.forName("org.postgresql.Driver");
+            DriverManager.getConnection("jdbc:postgresql://localhost:5432/gruppo8_se", "finneas", "finneas");
+        }catch (SQLException ex)
+        {
+            System.out.println(ex);
+        } catch (ClassNotFoundException ex)
+        {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

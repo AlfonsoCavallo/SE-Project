@@ -73,13 +73,13 @@ public class UserRepoTest
     }
     
     @Test
-    public void testConnectCorrectCredentials()
+    public void testConnectCorrectCredentials() 
     {
         // Test for correct user name and password
         UserRepo instance = new UserRepo();
         try
         {
-            assertEquals(instance.connect("finneas", "finneas".toCharArray()), Connection.class);
+            assertTrue(instance.connect("finneas", "finneas".toCharArray()) instanceof Connection);
             instance.closeConnection();
         }
         catch(ClassNotFoundException | SQLException ex)
@@ -98,13 +98,13 @@ public class UserRepoTest
             // Tests query for an SA user
             UserRepo systemAdministratorRepo = new UserRepo();
             systemAdministratorRepo.connect("finneas", "finneas".toCharArray());
-            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.SYSTEM_ADMINISTRATOR, "finneas", "finneas".toCharArray()));
+            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.SYSTEM_ADMINISTRATOR, "finneas", null));
             systemAdministratorRepo.closeConnection();
             
             // Test query for a Planner user
             UserRepo plannerRepo = new UserRepo();
-            systemAdministratorRepo.connect("finneas", "finneas".toCharArray());
-            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.PLANNER, "jon", "jon".toCharArray()));
+            plannerRepo.connect("jon", "jon".toCharArray());
+            assertEquals(plannerRepo.queryCurrentUser(), new User(User.Role.PLANNER, "jon", null));
             plannerRepo.closeConnection();
         }
         catch(ClassNotFoundException | SQLException ex2)
@@ -133,7 +133,7 @@ public class UserRepoTest
 
     // TESTS FOR CLOSE CONNECTION
     
-    @Test(expected = Exception.class)
+    @Test
     public void testCloseOnClosedConnection() throws ClassNotFoundException, SQLException
     {
         // tests CloseConnection on a connection already closed

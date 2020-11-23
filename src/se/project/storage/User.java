@@ -49,7 +49,7 @@ public class User
         // Returns password
         return password;
     }
-
+    
     @Override
     public boolean equals(Object obj)
     {
@@ -61,6 +61,7 @@ public class User
         {
             return false;
         }
+        
         final User other = (User) obj;
         if (this.role != other.role)
         {
@@ -76,6 +77,8 @@ public class User
         }
         return true;
     }
+
+    
     
     
 }

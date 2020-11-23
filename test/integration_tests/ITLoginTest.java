@@ -69,6 +69,7 @@ public class ITLoginTest
         // Test for Planner login
     }
     
+    /*
     @Test(expected = Exception.class)
     public void testLoginUnavailableCredentials()
     {
@@ -86,6 +87,7 @@ public class ITLoginTest
     {
         // Test for wrong username and correct password
     }
+    */
     
     
     
