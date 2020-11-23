@@ -50,7 +50,7 @@ public class UserRepoTest
     
     // TESTS FOR CONNECT
     
-    @Test(expected = Exception.class)
+    @Test(expected = SQLException.class)
     public void testConnectUnavailableCredentials() throws ClassNotFoundException, SQLException
     {
         // Test for Username and Password not available
@@ -58,7 +58,7 @@ public class UserRepoTest
         instance.connect("Unavailable User", "Unavailable Password".toCharArray());        
     }
     
-    @Test(expected = Exception.class)
+    @Test(expected = SQLException.class)
     public void testConnectWrongPassword() throws ClassNotFoundException, SQLException
     {
         // Test for Username and wrong password
@@ -66,7 +66,7 @@ public class UserRepoTest
         instance.connect("finneas", "wrong password".toCharArray());       
     }
     
-    @Test(expected = Exception.class)
+    @Test(expected = SQLException.class)
     public void testConnectWrongUsername() throws ClassNotFoundException, SQLException
     {
         // Test for password and wrong username
@@ -115,7 +115,7 @@ public class UserRepoTest
         }
     }
     
-    @Test(expected = Exception.class)
+    @Test(expected = NullPointerException.class)
     public void testQueryWithNoConnectionCurrentUser() throws SQLException, IOException
     {
         // Test for Repo not yet connected
@@ -123,7 +123,7 @@ public class UserRepoTest
         instance.queryCurrentUser();
     }
     
-    @Test(expected = Exception.class)
+    @Test(expected = SQLException.class)
     public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
     {
         // Test for Repo with closed connection
