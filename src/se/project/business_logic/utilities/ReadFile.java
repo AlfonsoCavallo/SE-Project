@@ -26,7 +26,8 @@ public class ReadFile
         BufferedReader bufferedReader;
         bufferedReader = new BufferedReader(fileReader);
         String string = null;
-        while(true){
+        while(true)
+        {
             String nextString = bufferedReader.readLine();
             if(nextString == null)
                 break;
