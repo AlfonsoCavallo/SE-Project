@@ -7,6 +7,7 @@
 package se.project.storage;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -48,7 +49,7 @@ public class UserRepoTest
     // TESTS FOR CONNECT
     
     @Test(expected = Exception.class)
-    public void testConnectUnavailableCredentials()
+    public void testConnectUnavailableCredentials() throws ClassNotFoundException, SQLException
     {
         // Test for Username and Password not available
         UserRepo instance = new UserRepo();
@@ -56,7 +57,7 @@ public class UserRepoTest
     }
     
     @Test(expected = Exception.class)
-    public void testConnectWrongPassword()
+    public void testConnectWrongPassword() throws ClassNotFoundException, SQLException
     {
         // Test for Username and wrong password
         UserRepo instance = new UserRepo();
@@ -64,7 +65,7 @@ public class UserRepoTest
     }
     
     @Test(expected = Exception.class)
-    public void testConnectWrongUsername()
+    public void testConnectWrongUsername() throws ClassNotFoundException, SQLException
     {
         // Test for password and wrong username
         UserRepo instance = new UserRepo();
@@ -76,28 +77,44 @@ public class UserRepoTest
     {
         // Test for correct user name and password
         UserRepo instance = new UserRepo();
-        assertEquals(instance.connect("finneas", "finneas".toCharArray()), Connection.class);
-        instance.closeConnection();
+        try
+        {
+            assertEquals(instance.connect("finneas", "finneas".toCharArray()), Connection.class);
+            instance.closeConnection();
+        }
+        catch(ClassNotFoundException | SQLException ex)
+        {
+            fail();
+        }
     }
 
     // TESTS FOR QUERY
 
     @Test
-    public void testQueryCurrentUser()
+    public void testQueryCurrentUser() 
     {
-        // Tests query for an SA user
-        UserRepo systemAdministratorRepo = new UserRepo("finneas", "finneas".toCharArray());
-        assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.SYSTEM_ADMINISTRATOR, "finneas", "finneas".toCharArray()));
-        systemAdministratorRepo.closeConnection();
-        
-        // Test query for a Planner user
-        UserRepo plannerRepo = new UserRepo("jon", "jon".toCharArray());
-        assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.PLANNER, "jon", "jon".toCharArray()));
-        plannerRepo.closeConnection();
+        try
+        {
+            // Tests query for an SA user
+            UserRepo systemAdministratorRepo = new UserRepo();
+            systemAdministratorRepo.connect("finneas", "finneas".toCharArray());
+            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.SYSTEM_ADMINISTRATOR, "finneas", "finneas".toCharArray()));
+            systemAdministratorRepo.closeConnection();
+            
+            // Test query for a Planner user
+            UserRepo plannerRepo = new UserRepo();
+            systemAdministratorRepo.connect("finneas", "finneas".toCharArray());
+            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(User.Role.PLANNER, "jon", "jon".toCharArray()));
+            plannerRepo.closeConnection();
+        }
+        catch(ClassNotFoundException | SQLException ex2)
+        {
+            fail();
+        }
     }
     
     @Test(expected = Exception.class)
-    public void testQueryWithNoConnectionCurrentUser()
+    public void testQueryWithNoConnectionCurrentUser() throws SQLException
     {
         // Test for Repo not yet connected
         UserRepo instance = new UserRepo();
@@ -105,7 +122,7 @@ public class UserRepoTest
     }
     
     @Test(expected = Exception.class)
-    public void testQueryWithClosedConnectionCurrentUser()
+    public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException
     {
         // Test for Repo with closed connection
         UserRepo instance = new UserRepo();
@@ -117,7 +134,7 @@ public class UserRepoTest
     // TESTS FOR CLOSE CONNECTION
     
     @Test(expected = Exception.class)
-    public void testCloseOnClosedConnection()
+    public void testCloseOnClosedConnection() throws ClassNotFoundException, SQLException
     {
         // tests CloseConnection on a connection already closed
         UserRepo instance = new UserRepo();
@@ -129,10 +146,17 @@ public class UserRepoTest
     @Test
     public void testCloseConnection()
     {
-        // test CloseConnection on a working connection
-        UserRepo instance = new UserRepo();
-        instance.connect("finneas", "finneas".toCharArray());
-        instance.closeConnection();
+        try
+        {
+            // test CloseConnection on a working connection
+            UserRepo instance = new UserRepo();
+            instance.connect("finneas", "finneas".toCharArray());
+            instance.closeConnection();
+        }
+        catch (ClassNotFoundException | SQLException ex)
+        {
+            fail();
+        }
     }
     
 }
