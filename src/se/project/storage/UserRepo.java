@@ -20,9 +20,7 @@ import se.project.storage.User.Role;
  * @author Utente
  */
 public class UserRepo extends AbstractRepo
-{
-
-    
+{    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
 
     public UserRepo()
@@ -47,6 +45,4 @@ public class UserRepo extends AbstractRepo
         User user = new User(role, username, null);
         return user;
     }
-
-
 }

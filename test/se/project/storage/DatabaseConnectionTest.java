@@ -22,6 +22,7 @@ import static se.project.storage.DatabaseConnection.*;
  *
  * @author Utente
  */
+
 public class DatabaseConnectionTest
 {
     
@@ -46,7 +47,14 @@ public class DatabaseConnectionTest
     
     @After
     public void tearDown()
-    {
+    {        
+        try
+        {
+            closeConnection();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DatabaseConnectionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -96,6 +104,7 @@ public class DatabaseConnectionTest
         // Test for correct user name and password
         connect("finneas", "finneas".toCharArray());
         connect("finneas", "finneas".toCharArray());
+        closeConnection();
     }   
     
 
