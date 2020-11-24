@@ -57,7 +57,7 @@ public class LoginView extends javax.swing.JFrame
         jLoginLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jExitLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -106,13 +106,6 @@ public class LoginView extends javax.swing.JFrame
                 jUsernameTextFieldFocusGained(evt);
             }
         });
-        jUsernameTextField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jUsernameTextFieldActionPerformed(evt);
-            }
-        });
         jPanel2.add(jUsernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 260, 30));
 
         jPasswordField.setBackground(new java.awt.Color(23, 23, 25));
@@ -126,13 +119,6 @@ public class LoginView extends javax.swing.JFrame
             public void focusGained(java.awt.event.FocusEvent evt)
             {
                 jPasswordFieldFocusGained(evt);
-            }
-        });
-        jPasswordField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jPasswordFieldActionPerformed(evt);
             }
         });
         jPanel2.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 260, 30));
@@ -190,16 +176,16 @@ public class LoginView extends javax.swing.JFrame
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 10));
 
-        jLabel6.setBackground(new java.awt.Color(60, 63, 65));
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter()
+        jExitLabel.setBackground(new java.awt.Color(60, 63, 65));
+        jExitLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jExitLabel.setForeground(new java.awt.Color(153, 153, 153));
+        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
+        jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jLabel6MouseClicked(evt);
+                jExitLabelMouseClicked(evt);
             }
         });
 
@@ -212,16 +198,14 @@ public class LoginView extends javax.swing.JFrame
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addContainerGap())
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jExitLabel))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jExitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -241,15 +225,10 @@ public class LoginView extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jUsernameTextFieldActionPerformed
-    {//GEN-HEADEREND:event_jUsernameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jUsernameTextFieldActionPerformed
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel6MouseClicked
-    {//GEN-HEADEREND:event_jLabel6MouseClicked
+    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
+    {//GEN-HEADEREND:event_jExitLabelMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_jExitLabelMouseClicked
 
     private void jUsernameTextFieldFocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jUsernameTextFieldFocusGained
     {//GEN-HEADEREND:event_jUsernameTextFieldFocusGained
@@ -260,11 +239,6 @@ public class LoginView extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jPasswordFieldFocusGained
         jPasswordField.setText("");
     }//GEN-LAST:event_jPasswordFieldFocusGained
-
-    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jPasswordFieldActionPerformed
-    {//GEN-HEADEREND:event_jPasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldActionPerformed
 
     private void jLoginLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLoginLabelMouseClicked
     {//GEN-HEADEREND:event_jLoginLabelMouseClicked
@@ -311,11 +285,11 @@ public class LoginView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLoginLabel;
     private javax.swing.JPanel jPanel1;

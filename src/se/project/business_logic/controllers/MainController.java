@@ -8,6 +8,7 @@ package se.project.business_logic.controllers;
 import java.sql.Connection;
 import javax.swing.JFrame;
 import se.project.presentation.views.LoginView;
+import se.project.presentation.views.SAHomepageView;
 
 /**
  *
@@ -23,8 +24,8 @@ public class MainController
     
     public static JFrame openSystemAdministratorHomePage(Connection connection)
     {
-        // Opens System Administrator homepage
-        return null;
+        SAHomepageView saHomepageView = new SAHomepageView();
+        return saHomepageView;
     }
     
     public static JFrame openPlannerHomePage(Connection connection)
