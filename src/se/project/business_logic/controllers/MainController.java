@@ -18,8 +18,14 @@ public class MainController
 {
     public static void main(String args[])
     {
-        LoginView loginView = new LoginView();
+        LoginView loginView = openLoginPage();
         LoginController loginController = new LoginController(loginView);
+    }
+    
+    public static LoginView openLoginPage()
+    {
+        LoginView loginView = new LoginView();
+        return loginView;
     }
     
     public static JFrame openSystemAdministratorHomePage(Connection connection)

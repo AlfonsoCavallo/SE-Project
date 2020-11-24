@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.business_logic.controllers.SAHomepageController.*;
 import static se.project.storage.DatabaseConnection.getConnection;
+import static se.project.business_logic.controllers.MainController.openLoginPage;
 
 /**
  *
@@ -267,8 +268,7 @@ public class SAHomepageView extends javax.swing.JFrame
             Logger.getLogger(SAHomepageView.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
-        LoginView loginView = new LoginView();
-        loginView.setVisible(true);
+        openLoginPage();
     }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
 
     private void jUserInfoPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jUserInfoPanelMouseClicked
