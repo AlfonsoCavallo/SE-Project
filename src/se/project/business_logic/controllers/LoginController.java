@@ -25,7 +25,6 @@ import static se.project.storage.DatabaseConnection.*;
  */
 public class LoginController
 {
-    private MainController mainController;
     private final LoginView loginView;
     private UserRepo userRepo;
     
@@ -34,7 +33,6 @@ public class LoginController
     
     public LoginController(LoginView loginView)
     {
-        this.mainController = mainController;
         this.loginView = loginView;
     }
 

@@ -8,6 +8,8 @@ package se.project.storage;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,6 +22,7 @@ import static se.project.storage.DatabaseConnection.*;
  *
  * @author Utente
  */
+
 public class DatabaseConnectionTest
 {
     
@@ -44,7 +47,14 @@ public class DatabaseConnectionTest
     
     @After
     public void tearDown()
-    {
+    {        
+        try
+        {
+            closeConnection();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(DatabaseConnectionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,6 +104,7 @@ public class DatabaseConnectionTest
         // Test for correct user name and password
         connect("finneas", "finneas".toCharArray());
         connect("finneas", "finneas".toCharArray());
+        closeConnection();
     }   
     
 

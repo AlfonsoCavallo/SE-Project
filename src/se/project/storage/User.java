@@ -21,8 +21,8 @@ public class User
     
     public enum Role
     {
-        SYSTEM_ADMINISTRATOR ("SystemAdministrator"),
-        PLANNER ("Planner");
+        SYSTEM_ADMINISTRATOR ("system_administrator"),
+        PLANNER ("planner");
         
         private String role;
         
