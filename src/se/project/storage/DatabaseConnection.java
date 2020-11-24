@@ -33,7 +33,7 @@ public class DatabaseConnection
         {
             throw new SQLException(ALREADY_CONNECTED_MESSAGE);
         }
-        //Open the connection to PostreSQL Database
+        // Open the connection to PostreSQL Database
         Class.forName("org.postgresql.Driver");
         connection = DriverManager.getConnection(DATABASE_URL, username, String.valueOf(password));
         return connection;
@@ -41,7 +41,7 @@ public class DatabaseConnection
     
     static public void closeConnection() throws SQLException
     {
-        //Close the singleton connection to the database
+        // Close the singleton connection to the database
         if(connection != null)
         {
             connection.close();
