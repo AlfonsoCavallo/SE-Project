@@ -20,6 +20,7 @@ import static se.project.storage.DatabaseConnection.*;
  *
  * @author Utente
  */
+
 public class DatabaseConnectionTest
 {
     
