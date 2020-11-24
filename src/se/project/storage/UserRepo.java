@@ -27,12 +27,6 @@ public class UserRepo extends AbstractRepo
 
     public UserRepo()
     {
-        super();
-    }
-    
-    public UserRepo(Connection connection)
-    {
-        super(connection);
     }
 
     public User queryCurrentUser() throws SQLException, IOException

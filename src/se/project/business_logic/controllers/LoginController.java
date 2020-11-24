@@ -17,6 +17,7 @@ import se.project.presentation.views.LoginView;
 import se.project.storage.User;
 import se.project.storage.UserRepo;
 import static se.project.storage.User.Role.*;
+import static se.project.storage.DatabaseConnection.*;
 
 /**
  *
@@ -45,7 +46,7 @@ public class LoginController
         userRepo = new UserRepo();
         try
         {
-            userRepo.connect(username, password);
+            connect(username, password);
             User currentUser = userRepo.queryCurrentUser();
             return openUserPage(currentUser.getRole());
         } 
@@ -73,10 +74,10 @@ public class LoginController
         {
             case SYSTEM_ADMINISTRATOR:
                 loginView.dispose();
-                return MainController.openSystemAdministratorHomePage(userRepo.getConnection());
+                return MainController.openSystemAdministratorHomePage(getConnection());
             case PLANNER:
                 loginView.dispose();
-                return MainController.openPlannerHomePage(userRepo.getConnection());
+                return MainController.openPlannerHomePage(getConnection());
             default:
                 JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
                 break;

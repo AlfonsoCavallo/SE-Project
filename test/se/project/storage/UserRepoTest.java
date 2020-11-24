@@ -16,6 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.User.Role.*;
+import static se.project.storage.DatabaseConnection.*;
 
 /**
  *
@@ -47,57 +48,6 @@ public class UserRepoTest
     public void tearDown()
     {
     }
-    
-    // TESTS FOR CONNECT
-    
-    @Test(expected = SQLException.class)
-    public void testConnectUnavailableCredentials() throws ClassNotFoundException, SQLException
-    {
-        // Test for Username and Password not available
-        UserRepo instance = new UserRepo();
-        instance.connect("Unavailable User", "Unavailable Password".toCharArray());        
-    }
-    
-    @Test(expected = SQLException.class)
-    public void testConnectWrongPassword() throws ClassNotFoundException, SQLException
-    {
-        // Test for Username and wrong password
-        UserRepo instance = new UserRepo();
-        instance.connect("finneas", "wrong password".toCharArray());       
-    }
-    
-    @Test(expected = SQLException.class)
-    public void testConnectWrongUsername() throws ClassNotFoundException, SQLException
-    {
-        // Test for password and wrong username
-        UserRepo instance = new UserRepo();
-        instance.connect("wrong username", "finneas".toCharArray());        
-    }
-    
-    @Test
-    public void testConnectCorrectCredentials() 
-    {
-        // Test for correct user name and password
-        UserRepo instance = new UserRepo();
-        try
-        {
-            assertTrue(instance.connect("finneas", "finneas".toCharArray()) instanceof Connection);
-            instance.closeConnection();
-        }
-        catch(ClassNotFoundException | SQLException ex)
-        {
-            fail();
-        }
-    }
-    
-    @Test(expected = SQLException.class)
-    public void testConnectAlreadyConnected() throws ClassNotFoundException, SQLException 
-    {
-        // Test for correct user name and password
-        UserRepo instance = new UserRepo();
-        instance.connect("finneas", "finneas".toCharArray());
-        instance.connect("finneas", "finneas".toCharArray());
-    }
 
     // TESTS FOR QUERY
 
@@ -108,15 +58,15 @@ public class UserRepoTest
         {
             // Tests query for an SA user
             UserRepo systemAdministratorRepo = new UserRepo();
-            systemAdministratorRepo.connect("finneas", "finneas".toCharArray());
+            connect("finneas", "finneas".toCharArray());
             assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(SYSTEM_ADMINISTRATOR, "finneas", null));
-            systemAdministratorRepo.closeConnection();
+            closeConnection();
             
             // Test query for a Planner user
             UserRepo plannerRepo = new UserRepo();
-            plannerRepo.connect("jon", "jon".toCharArray());
+            connect("jon", "jon".toCharArray());
             assertEquals(plannerRepo.queryCurrentUser(), new User(PLANNER, "jon", null));
-            plannerRepo.closeConnection();
+            closeConnection();
         }
         catch(ClassNotFoundException | SQLException | IOException ex)
         {
@@ -132,42 +82,14 @@ public class UserRepoTest
         instance.queryCurrentUser();
     }
     
-    @Test(expected = SQLException.class)
+    @Test(expected = NullPointerException.class)
     public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
     {
         // Test for Repo with closed connection
         UserRepo instance = new UserRepo();
-        instance.connect("finneas", "finneas".toCharArray());
-        instance.closeConnection();
+        connect("finneas", "finneas".toCharArray());
+        closeConnection();
         instance.queryCurrentUser();
-    }
-
-    // TESTS FOR CLOSE CONNECTION
-    
-    @Test
-    public void testCloseOnClosedConnection() throws ClassNotFoundException, SQLException
-    {
-        // tests CloseConnection on a connection already closed
-        UserRepo instance = new UserRepo();
-        instance.connect("finneas", "finneas".toCharArray());
-        instance.closeConnection();
-        instance.closeConnection();
-    }
-    
-    @Test
-    public void testCloseConnection()
-    {
-        try
-        {
-            // test CloseConnection on a working connection
-            UserRepo instance = new UserRepo();
-            instance.connect("finneas", "finneas".toCharArray());
-            instance.closeConnection();
-        }
-        catch (ClassNotFoundException | SQLException ex)
-        {
-            fail();
-        }
     }
     
 }
