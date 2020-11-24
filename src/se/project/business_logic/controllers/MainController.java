@@ -5,6 +5,7 @@
  */
 
 package se.project.business_logic.controllers;
+import java.sql.Connection;
 import javax.swing.JFrame;
 import se.project.presentation.views.LoginView;
 
@@ -20,13 +21,13 @@ public class MainController
         LoginController loginController = new LoginController(loginView);
     }
     
-    public static JFrame openSystemAdministratorHomePage()
+    public static JFrame openSystemAdministratorHomePage(Connection connection)
     {
         // Opens System Administrator homepage
         return null;
     }
     
-    public static JFrame openPlannerHomePage()
+    public static JFrame openPlannerHomePage(Connection connection)
     {
         // Opens System Planner homepage
         return null;

@@ -19,34 +19,27 @@ import se.project.storage.User.Role;
  *
  * @author Utente
  */
-public class UserRepo
+public class UserRepo extends AbstractRepo
 {
 
-    private Connection connection = null;
-
-    private final String DATABASE_URL = "jdbc:postgresql://localhost/gruppo8_se";
+    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
 
     public UserRepo()
     {
-
+        super();
     }
-
-    public Connection connect(String username, char[] password) throws ClassNotFoundException, SQLException
+    
+    public UserRepo(Connection connection)
     {
-        //Open the connection to PostreSQL Database
-        Class.forName("org.postgresql.Driver");
-        connection = DriverManager.getConnection(DATABASE_URL, username, String.valueOf(password));
-        return connection;
+        super(connection);
     }
 
     public User queryCurrentUser() throws SQLException, IOException
     {
         // Return a model of the current user
         String query = getStringFromFile(QUERY_CURRENT_USER_PATH);
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
+        ResultSet resultSet = super.queryDatabase(query);
 
         Role role = null;
         String username = resultSet.getString("username");
@@ -61,10 +54,5 @@ public class UserRepo
         return user;
     }
 
-    public void closeConnection() throws SQLException
-    {
-        //Close the connection to the database
-        this.connection.close();
-    }
 
 }

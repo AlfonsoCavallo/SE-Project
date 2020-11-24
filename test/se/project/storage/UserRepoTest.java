@@ -89,6 +89,15 @@ public class UserRepoTest
             fail();
         }
     }
+    
+    @Test(expected = SQLException.class)
+    public void testConnectAlreadyConnected() throws ClassNotFoundException, SQLException 
+    {
+        // Test for correct user name and password
+        UserRepo instance = new UserRepo();
+        instance.connect("finneas", "finneas".toCharArray());
+        instance.connect("finneas", "finneas".toCharArray());
+    }
 
     // TESTS FOR QUERY
 

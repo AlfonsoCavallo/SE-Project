@@ -73,10 +73,10 @@ public class LoginController
         {
             case SYSTEM_ADMINISTRATOR:
                 loginView.dispose();
-                return MainController.openSystemAdministratorHomePage();
+                return MainController.openSystemAdministratorHomePage(userRepo.getConnection());
             case PLANNER:
                 loginView.dispose();
-                return MainController.openPlannerHomePage();
+                return MainController.openPlannerHomePage(userRepo.getConnection());
             default:
                 JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
                 break;
