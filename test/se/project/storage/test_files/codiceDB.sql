@@ -185,10 +185,10 @@ insert into maintenance_system.user_data(username, email, pass, name_user, surna
 values('jon','jon@jon.it','jon','jon','athan','planner');
 
 insert into maintenance_system.user_access(username_access_ref, access_date, access_time)
-values('finneas', current_date, current_time);
+values('finneas', '2020-11-26', '15:30:02.000');
 
 insert into maintenance_system.user_access(username_access_ref, access_date, access_time)
-values('jon', current_date, current_time);
+values('jon', '2020-11-25', '15:00:00.000');
 
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
