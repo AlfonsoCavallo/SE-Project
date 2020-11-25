@@ -9,17 +9,15 @@ package se.project.storage;
  *
  * @author delso
  */
-public class MaintenanceActivity
+public abstract class MaintenanceActivity
 {
-    private int ID_ACTIVITY;
+    private int IDActivity;
     private String activityName;
     private int timeNedeed;
-    private String interruptible;
+    private boolean interruptible;
     private Typology typology;
     private String activityDescription;
     private int week;
-    private String planned;
-    private String standardProcedure;
     
     public enum Typology
     {
@@ -35,28 +33,27 @@ public class MaintenanceActivity
             this.typology = typology;
         }
         
-        public String getTypology()
+        public String getValue()
         {
             return typology;
         }        
     }
 
-    public MaintenanceActivity(int ID_ACTIVITY, String activityName, int timeNedeed, String interruptible, Typology typology, String activityDescription, int week, String planned, String standardProcedure)
+    public MaintenanceActivity(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+            Typology typology, String activityDescription, int week)
     {
-        this.ID_ACTIVITY = ID_ACTIVITY;
+        this.IDActivity = IDActivity;
         this.activityName = activityName;
         this.timeNedeed = timeNedeed;
         this.interruptible = interruptible;
         this.typology = typology;
         this.activityDescription = activityDescription;
         this.week = week;
-        this.planned = planned;
-        this.standardProcedure = standardProcedure; 
     }
     
    public int getIdActivity()
    {
-       return ID_ACTIVITY;
+       return IDActivity;
    }
    
    public String getActivityName()
@@ -69,7 +66,7 @@ public class MaintenanceActivity
        return timeNedeed;
    }        
    
-   public String getInterruptible()
+   public boolean isInterruptible()
    {
        return interruptible;
    }        
@@ -89,14 +86,9 @@ public class MaintenanceActivity
        return week;
    }        
            
-   public String getPlanned()
+   public boolean isValidWeek(int week)
    {
-       return planned;
-   }  
-   
-   public String getStandardProcedure()
-   {
-       return standardProcedure;
-   }
+       return week >= 1 && week <= 52; 
+   }        
    
 }
