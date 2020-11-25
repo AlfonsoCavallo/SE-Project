@@ -7,14 +7,23 @@
 package se.project.storage;
 
 import java.awt.List;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static se.project.storage.DatabaseConnection.*;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.DatabaseTesting.*;
+import se.project.storage.models.UserAccess;
+import se.project.storage.repos.UserAccessRepo;
 
 /**
  *
@@ -46,12 +55,39 @@ public class UserAccessRepoTest
     @After
     public void tearDown()
     {
+        try
+        {
+            closeConnection();
+        }
+        catch (SQLException ex)
+        {
+            
+        }
     }
 
     @Test
     public void testQueryAllUserAccesses()
     {
-        
+        // Tests the query of all user accesses
+        try
+        {
+            connect(getTestUser());
+            UserAccessRepo instance = new UserAccessRepo();
+            LinkedList<UserAccess> userAccesses = instance.queryAllUserAccesses();
+            
+            // Tests expected elements
+            UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
+            assertEquals(userAccesses.getFirst(), expectedFirstElement);
+            
+            UserAccess expectedLastElement = new UserAccess(2, "jon", LocalDateTime.of(2020, Month.NOVEMBER, 25, 15, 00, 0, 0));
+            assertEquals(userAccesses.getLast(), expectedLastElement);
+            
+            closeConnection();
+        }
+        catch (IOException | SQLException | ClassNotFoundException ex)
+        {
+            fail();
+        }
     }
 
     @Test

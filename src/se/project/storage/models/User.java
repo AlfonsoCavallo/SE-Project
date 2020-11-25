@@ -65,25 +65,25 @@ public class User
     @Override
     public boolean equals(Object obj)
     {
-        if (obj == null)
+        if(obj == null)
         {
             return false;
         }
-        if (getClass() != obj.getClass())
+        if(getClass() != obj.getClass())
         {
             return false;
         }
         
         final User other = (User) obj;
-        if (this.role != other.role)
+        if(this.role != other.role)
         {
             return false;
         }
-        if (!Objects.equals(this.username, other.username))
+        if(!Objects.equals(this.username, other.username))
         {
             return false;
         }
-        if (!Arrays.equals(this.password, other.password))
+        if(!Arrays.equals(this.password, other.password))
         {
             return false;
         }

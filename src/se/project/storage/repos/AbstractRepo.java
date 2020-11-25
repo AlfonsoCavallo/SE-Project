@@ -21,7 +21,6 @@ public abstract class AbstractRepo
     {
         PreparedStatement preparedStatement = getConnection().prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
-        resultSet.next();
         return resultSet;
     }    
 }

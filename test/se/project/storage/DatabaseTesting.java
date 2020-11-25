@@ -13,25 +13,26 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import static se.project.business_logic.utilities.FileUtilities.getStringFromFile;
 import static se.project.storage.DatabaseConnection.*;
+import se.project.storage.models.User;
 
 
 
 public class DatabaseTesting
 {
-    private static String reset = null;
+    private static String reset = null;    
+    private static final String ADMIN_USERNAME = "test_admin";
+    private static final String ADMIN_PASSWORD = "test_admin";
     
     public static boolean resetDatabase()
     {
-        String ADMIN_USERNAME = "test_admin";
-        String ADMIN_PASSWORD = "test_admin";
         
         try
         {
-            Connection connection = connect(ADMIN_USERNAME, ADMIN_PASSWORD.toCharArray());
+            Connection connection = connect(getTestUser());
             
             if(reset == null)
             {
-                String reset = getStringFromFile("/se/project/storage/test_files/codiceDB.sql");
+                reset = getStringFromFile("/se/project/storage/test_files/codiceDB.sql");
             }
             
             PreparedStatement preparedStatement = getConnection().prepareStatement(reset);
@@ -44,5 +45,10 @@ public class DatabaseTesting
         {
             return false;
         }
+    }
+    
+    public static User getTestUser()
+    {
+        return new User(null, ADMIN_USERNAME, ADMIN_PASSWORD.toCharArray());
     }
 }

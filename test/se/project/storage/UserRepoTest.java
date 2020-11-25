@@ -51,6 +51,14 @@ public class UserRepoTest
     @After
     public void tearDown()
     {
+        try
+        {
+            closeConnection();
+        }
+        catch (SQLException ex)
+        {
+            
+        }
     }
 
     // TESTS FOR QUERY

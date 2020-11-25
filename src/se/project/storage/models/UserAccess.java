@@ -7,6 +7,7 @@
 package se.project.storage.models;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  *
@@ -38,5 +39,34 @@ public class UserAccess
     public LocalDateTime getAccessTime()
     {
         return accessTime;
-    }    
+    }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+        {
+            return false;
+        }
+        if(getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final UserAccess other = (UserAccess) obj;
+        if(this.ID != other.ID)
+        {
+            return false;
+        }
+        if(!Objects.equals(this.username, other.username))
+        {
+            return false;
+        }
+        if(!Objects.equals(this.accessTime, other.accessTime))
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
