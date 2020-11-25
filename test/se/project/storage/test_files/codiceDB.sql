@@ -15,7 +15,7 @@ drop table if exists maintenance_system.user_data cascade;
 create table maintenance_system.user_access (
    id_access             serial               not null,
    username_access_ref   varchar(30)          not null,
-   access_time           timestamptz          not null,
+   access_time           timestamp          not null,
    constraint pk_access primary key (id_access)
 );
 
