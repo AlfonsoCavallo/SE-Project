@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package se.project.storage;
+package se.project.storage.repos;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

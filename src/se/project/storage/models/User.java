@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package se.project.storage;
+package se.project.storage.models;
 
 import java.util.Arrays;
 import java.util.Objects;

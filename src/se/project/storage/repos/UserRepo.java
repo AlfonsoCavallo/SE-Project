@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.storage;
+package se.project.storage.repos;
 
+import se.project.storage.models.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,8 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static se.project.business_logic.utilities.FileUtilities.*;
-import static se.project.storage.User.Role.*;
-import se.project.storage.User.Role;
+import static se.project.storage.models.User.Role.*;
+import se.project.storage.models.User.Role;
 
 /**
  *

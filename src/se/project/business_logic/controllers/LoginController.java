@@ -14,9 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import se.project.presentation.views.LoginView;
-import se.project.storage.User;
-import se.project.storage.UserRepo;
-import static se.project.storage.User.Role.*;
+import se.project.storage.models.User;
+import se.project.storage.repos.UserRepo;
 import static se.project.storage.DatabaseConnection.*;
 
 /**
