@@ -15,8 +15,7 @@ drop table if exists maintenance_system.user_data cascade;
 create table maintenance_system.user_access (
    id_access             serial               not null,
    username_access_ref   varchar(30)          not null,
-   access_date           date                 not null,
-   access_time           time                 not null,
+   access_time           timestamptz          not null,
    constraint pk_access primary key (id_access)
 );
 
@@ -184,11 +183,11 @@ values('finneas','finneas@finneas.it','finneas','fin','neas','system_administrat
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('jon','jon@jon.it','jon','jon','athan','planner');
 
-insert into maintenance_system.user_access(username_access_ref, access_date, access_time)
-values('finneas', '2020-11-26', '15:30:02.000');
+insert into maintenance_system.user_access(username_access_ref, access_time)
+values('finneas', '2020-11-26 15:30:02');
 
-insert into maintenance_system.user_access(username_access_ref, access_date, access_time)
-values('jon', '2020-11-25', '15:00:00.000');
+insert into maintenance_system.user_access(username_access_ref, access_time)
+values('jon', '2020-11-25 15:00:00');
 
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
@@ -214,6 +213,3 @@ values('jon', '2020-11-25', '15:00:00.000');
 
 --insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
 --values ('attività2', 45, 'yes', 'electrical', 'riparazione turbina 2', 2, 'yes', 'yes', '1... 2... 3...');
-
-
-
