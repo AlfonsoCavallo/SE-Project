@@ -15,7 +15,7 @@ import static se.project.storage.DatabaseConnection.*;
  *
  * @author Utente
  */
-public class AbstractRepo
+public abstract class AbstractRepo
 {    
     public ResultSet queryDatabase(String query) throws SQLException
     {
