@@ -6,6 +6,8 @@
 
 package se.project.storage;
 
+import se.project.storage.repos.UserRepo;
+import se.project.storage.models.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,8 +17,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static se.project.storage.User.Role.*;
+import static se.project.storage.models.User.Role.*;
 import static se.project.storage.DatabaseConnection.*;
+import static se.project.storage.DatabaseTesting.resetDatabase;
 
 /**
  *
@@ -42,6 +45,7 @@ public class UserRepoTest
     @Before
     public void setUp()
     {
+        resetDatabase();
     }
     
     @After

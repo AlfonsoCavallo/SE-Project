@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.storage;
+package se.project.storage.models.maintenance_activity;
+
+import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 
 /**
  *

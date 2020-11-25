@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package se.project.storage;
+package se.project.storage.repos;
 
+import se.project.storage.models.UserAccess;
 import java.awt.List;
 
 /**

@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.storage;
+package se.project.storage.models.maintenance_activity;
+
+import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 
 /**
  *
  * @author delso
  */
-public class EWO extends UnplannedActivity
+public abstract class UnplannedActivity extends MaintenanceActivity
 {
     
-    public EWO(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+    public UnplannedActivity(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
         super(IDActivity, activityName, timeNedeed, interruptible, typology, activityDescription, week);
