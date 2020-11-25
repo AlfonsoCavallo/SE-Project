@@ -12,12 +12,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static se.project.storage.DatabaseConnection.*;
 import static se.project.storage.DatabaseTesting.*;
+import se.project.storage.models.User;
 
 /**
  *
@@ -53,9 +54,10 @@ public class DatabaseConnectionTest
         try
         {
             closeConnection();
-        } catch (SQLException ex)
+        }
+        catch (SQLException ex)
         {
-            Logger.getLogger(DatabaseConnectionTest.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 
@@ -86,12 +88,17 @@ public class DatabaseConnectionTest
     }
     
     @Test
-    public void testConnectCorrectCredentials() 
+    public void testConnectCorrectCredentials() throws ClassNotFoundException, SQLException 
     {
         // Test for correct user name and password
         try
         {
+            // With parameters
             assertTrue(connect("finneas", "finneas".toCharArray()) instanceof Connection);
+            closeConnection();
+            
+            // With user
+            assertTrue(connect(new User(null, "finneas", "finneas".toCharArray())) instanceof Connection);
             closeConnection();
         }
         catch(ClassNotFoundException | SQLException ex)

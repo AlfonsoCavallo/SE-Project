@@ -9,6 +9,8 @@ package se.project.storage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Arrays;
+import se.project.storage.models.User;
 
 /**
  *
@@ -37,6 +39,11 @@ public class DatabaseConnection
         Class.forName("org.postgresql.Driver");
         connection = DriverManager.getConnection(DATABASE_URL, username, String.valueOf(password));
         return connection;
+    }
+    
+    static synchronized public Connection connect(User user) throws ClassNotFoundException, SQLException
+    {
+        return connect(user.getUsername(), user.getPassword());
     }
     
     static synchronized public void closeConnection() throws SQLException

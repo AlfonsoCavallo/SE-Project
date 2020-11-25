@@ -33,6 +33,7 @@ public class UserRepo extends AbstractRepo
         // Return a model of the current user
         String query = getStringFromFile(QUERY_CURRENT_USER_PATH);
         ResultSet resultSet = super.queryDatabase(query);
+        resultSet.next();
 
         Role role = null;
         String username = resultSet.getString("username");
