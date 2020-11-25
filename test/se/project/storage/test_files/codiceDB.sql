@@ -189,8 +189,3 @@ values('jon', current_date, current_time);
 
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
-
-
-
-
-

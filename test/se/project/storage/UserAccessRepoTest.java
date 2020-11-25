@@ -14,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static se.project.storage.DatabaseConnection.*;
+import static se.project.storage.DatabaseTesting.resetDatabase;
 
 /**
  *
@@ -39,6 +40,7 @@ public class UserAccessRepoTest
     @Before
     public void setUp()
     {
+        resetDatabase();
     }
     
     @After

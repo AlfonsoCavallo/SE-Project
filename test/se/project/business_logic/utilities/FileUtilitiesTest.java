@@ -58,7 +58,7 @@ public class FileUtilitiesTest
     public void testReadingFromOneLineFile() throws IOException
     {
         // test getStringFromFile from a one-line file
-        String text = getStringFromFile("/se/project/business_logic/utilities/testFile/testOneLineFile.sql");
+        String text = getStringFromFile("/se/project/business_logic/utilities/test_files/testOneLineFile.sql");
         assertEquals("create user group;\n", text);
     }
     
@@ -66,7 +66,7 @@ public class FileUtilitiesTest
     public void testReadingFromMoreLineFile() throws IOException
     {
         // test getStringFromFile from a more-line file
-        String text = getStringFromFile("/se/project/business_logic/utilities/testFile/testMoreLineFile.sql");
+        String text = getStringFromFile("/se/project/business_logic/utilities/test_files/testMoreLineFile.sql");
         assertEquals("create user;\ndelete table;\ncascade;\n", text);
     }
     
@@ -74,7 +74,7 @@ public class FileUtilitiesTest
     public void testVoidFile() throws IOException
     {
         // test getStringFromFile from a void file
-        String text = getStringFromFile("/se/project/business_logic/utilities/testFile/testVoidFile.sql");
+        String text = getStringFromFile("/se/project/business_logic/utilities/test_files/testVoidFile.sql");
         assertEquals("", text);
     }
     
