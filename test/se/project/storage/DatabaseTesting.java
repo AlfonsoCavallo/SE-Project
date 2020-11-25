@@ -18,6 +18,8 @@ import static se.project.storage.DatabaseConnection.*;
 
 public class DatabaseTesting
 {
+    private static String reset = null;
+    
     public static boolean resetDatabase()
     {
         String ADMIN_USERNAME = "test_admin";
@@ -26,7 +28,11 @@ public class DatabaseTesting
         try
         {
             Connection connection = connect(ADMIN_USERNAME, ADMIN_PASSWORD.toCharArray());
-            String reset = getStringFromFile("/se/project/storage/test_files/codiceDB.sql");
+            
+            if(reset == null)
+            {
+                String reset = getStringFromFile("/se/project/storage/test_files/codiceDB.sql");
+            }
             
             PreparedStatement preparedStatement = getConnection().prepareStatement(reset);
             preparedStatement.execute();
