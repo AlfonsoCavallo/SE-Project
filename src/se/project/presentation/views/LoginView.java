@@ -94,40 +94,39 @@ public class LoginView extends javax.swing.JFrame
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 250, -1));
 
         jUsernameTextField.setBackground(new java.awt.Color(23, 23, 25));
-        jUsernameTextField.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jUsernameTextField.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jUsernameTextField.setForeground(new java.awt.Color(153, 153, 153));
         jUsernameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jUsernameTextField.setText("e.g mariorossi");
         jUsernameTextField.setBorder(null);
-        jUsernameTextField.addFocusListener(new java.awt.event.FocusAdapter()
+        jUsernameTextField.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void focusGained(java.awt.event.FocusEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jUsernameTextFieldFocusGained(evt);
+                jUsernameTextFieldMouseClicked(evt);
             }
         });
         jPanel2.add(jUsernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 260, 30));
 
         jPasswordField.setBackground(new java.awt.Color(23, 23, 25));
-        jPasswordField.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jPasswordField.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jPasswordField.setForeground(new java.awt.Color(153, 153, 153));
         jPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPasswordField.setText("marior");
         jPasswordField.setBorder(null);
-        jPasswordField.addFocusListener(new java.awt.event.FocusAdapter()
+        jPasswordField.addMouseListener(new java.awt.event.MouseAdapter()
         {
-            public void focusGained(java.awt.event.FocusEvent evt)
+            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                jPasswordFieldFocusGained(evt);
+                jPasswordFieldMouseClicked(evt);
             }
         });
         jPanel2.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 260, 30));
 
-        jPanel3.setBackground(new java.awt.Color(22, 51, 255));
+        jPanel3.setBackground(new java.awt.Color(188, 180, 169));
 
         jLoginLabel.setBackground(new java.awt.Color(60, 63, 65));
         jLoginLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLoginLabel.setForeground(new java.awt.Color(204, 204, 204));
         jLoginLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLoginLabel.setText("Log in");
         jLoginLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -230,21 +229,21 @@ public class LoginView extends javax.swing.JFrame
         System.exit(0);
     }//GEN-LAST:event_jExitLabelMouseClicked
 
-    private void jUsernameTextFieldFocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jUsernameTextFieldFocusGained
-    {//GEN-HEADEREND:event_jUsernameTextFieldFocusGained
-        jUsernameTextField.setText("");
-    }//GEN-LAST:event_jUsernameTextFieldFocusGained
-
-    private void jPasswordFieldFocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jPasswordFieldFocusGained
-    {//GEN-HEADEREND:event_jPasswordFieldFocusGained
-        jPasswordField.setText("");
-    }//GEN-LAST:event_jPasswordFieldFocusGained
-
     private void jLoginLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLoginLabelMouseClicked
     {//GEN-HEADEREND:event_jLoginLabelMouseClicked
         LoginController loginController = new LoginController(this);
         loginController.login();
     }//GEN-LAST:event_jLoginLabelMouseClicked
+
+    private void jUsernameTextFieldMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jUsernameTextFieldMouseClicked
+    {//GEN-HEADEREND:event_jUsernameTextFieldMouseClicked
+        jUsernameTextField.setText("");
+    }//GEN-LAST:event_jUsernameTextFieldMouseClicked
+
+    private void jPasswordFieldMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPasswordFieldMouseClicked
+    {//GEN-HEADEREND:event_jPasswordFieldMouseClicked
+        jPasswordField.setText("");
+    }//GEN-LAST:event_jPasswordFieldMouseClicked
 
     /**
      * @param args the command line arguments
