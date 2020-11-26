@@ -26,6 +26,8 @@ public class SAHomepageController
     public static JFrame openRecordAccessPage(Connection connection)
     {
         UserAccessesView userAccessesView = new UserAccessesView();
+        UserAccessesController userAccessesController = new UserAccessesController(userAccessesView);
+        userAccessesView.setController(userAccessesController);
         return userAccessesView;
     }
     

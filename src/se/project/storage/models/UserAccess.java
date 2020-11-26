@@ -47,6 +47,11 @@ public class UserAccess
         return accessTime;
     }
     
+    public Object[] getDataModel()
+    {
+        return new Object[]{String.valueOf(ID), username, accessTime.toString()};
+    }
+    
     @Override
     public boolean equals(Object obj)
     {

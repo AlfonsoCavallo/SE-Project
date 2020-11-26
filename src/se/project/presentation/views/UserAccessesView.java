@@ -8,7 +8,9 @@ package se.project.presentation.views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import se.project.business_logic.controllers.UserAccessesController;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**
@@ -17,6 +19,8 @@ import static se.project.storage.DatabaseConnection.closeConnection;
  */
 public class UserAccessesView extends javax.swing.JFrame
 {
+    private DefaultTableModel tableModel;
+    private UserAccessesController userAccessesController;
 
     /**
      * Creates new form UserAccessesView
@@ -24,7 +28,15 @@ public class UserAccessesView extends javax.swing.JFrame
     public UserAccessesView()
     {
         initComponents();
+        this.tableModel = (DefaultTableModel) jTable.getModel();
         this.setVisible(true);
+    }
+    
+    
+    public void setController(UserAccessesController userAccessesController)
+    {
+        this.userAccessesController = userAccessesController;
+        userAccessesController.updateAccesses();
     }
 
     /**
@@ -216,9 +228,19 @@ public class UserAccessesView extends javax.swing.JFrame
 
     private void jSearchLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSearchLabelMouseClicked
     {//GEN-HEADEREND:event_jSearchLabelMouseClicked
-        // TODO add your handling code here:
+        userAccessesController.updateAccesses();        
     }//GEN-LAST:event_jSearchLabelMouseClicked
 
+    public DefaultTableModel getTableModel()
+    {
+        return this.tableModel;
+    }
+    
+    public String getUsernameField()
+    {
+        return jTextField1.getText();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -276,4 +298,5 @@ public class UserAccessesView extends javax.swing.JFrame
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
 }

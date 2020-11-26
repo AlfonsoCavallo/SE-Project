@@ -3,8 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package se.project.business_logic.controllers;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.UserAccessesView;
+import se.project.storage.models.UserAccess;
+import se.project.storage.repos.UserAccessRepo;
 
 /**
  *
@@ -12,5 +21,51 @@ package se.project.business_logic.controllers;
  */
 public class UserAccessesController
 {
+
+    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could net get user accesses from database.";
+    private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     
+    private final UserAccessesView userAccessesView;
+    private UserAccessRepo userAccessesRepo = null;
+
+    public UserAccessesController(UserAccessesView userAccessesView)
+    {
+        this.userAccessesView = userAccessesView;
+    }
+
+    public void updateAccesses()
+    {
+        LinkedList<UserAccess> userAccesses;
+        DefaultTableModel tableModel = userAccessesView.getTableModel();
+        this.userAccessesRepo = new UserAccessRepo();
+        
+        try
+        {
+            String usernameToSearch = userAccessesView.getUsernameField();
+            if(usernameToSearch != null)
+            {
+                userAccesses = userAccessesRepo.queryUserAccesses(usernameToSearch);
+            }
+            else
+            {
+                userAccesses = userAccessesRepo.queryAllUserAccesses();
+            }
+            
+            // Iterates over userAccesses
+            int index = 0;
+            for(UserAccess userAccess : userAccesses)
+            {
+                tableModel.insertRow(index++, userAccess.getDataModel());
+            }
+        } 
+        catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
+        }
+        catch(IOException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
+        }
+
+    }
 }

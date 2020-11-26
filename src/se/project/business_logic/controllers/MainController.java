@@ -18,13 +18,14 @@ public class MainController
 {
     public static void main(String args[])
     {
-        LoginView loginView = openLoginPage();
-        LoginController loginController = new LoginController(loginView);
+        openLoginPage();
     }
     
     public static LoginView openLoginPage()
     {
         LoginView loginView = new LoginView();
+        LoginController loginController = new LoginController(loginView);
+        loginView.setController(loginController);
         return loginView;
     }
     
