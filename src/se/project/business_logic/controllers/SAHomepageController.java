@@ -7,6 +7,7 @@ package se.project.business_logic.controllers;
 
 import java.sql.Connection;
 import javax.swing.JFrame;
+import se.project.presentation.views.UserAccessesView;
 import se.project.presentation.views.UserInfoView;
 
 /**
@@ -24,7 +25,8 @@ public class SAHomepageController
     
     public static JFrame openRecordAccessPage(Connection connection)
     {
-        return null;
+        UserAccessesView userAccessesView = new UserAccessesView();
+        return userAccessesView;
     }
     
     public static JFrame openMaintenanceProceduresPage(Connection connection)
