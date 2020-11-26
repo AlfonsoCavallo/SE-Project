@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.*;
 import static se.project.storage.models.User.Role.*;
 import se.project.storage.models.User.Role;
@@ -23,7 +24,9 @@ import se.project.storage.models.User.Role;
 public class UserRepo extends AbstractRepo
 {    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
-
+    private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
+    private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
+    
     public UserRepo()
     {
     }
@@ -46,5 +49,15 @@ public class UserRepo extends AbstractRepo
         }
         User user = new User(role, username, null);
         return user;
+    }
+    
+    public LinkedList<User> queryAllUsers()
+    {
+        return null;
+    }
+    
+    public User queryViewOneUser(String username)
+    {
+        return null;
     }
 }
