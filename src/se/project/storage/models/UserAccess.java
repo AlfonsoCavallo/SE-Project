@@ -15,13 +15,19 @@ import java.util.Objects;
  */
 public class UserAccess
 {
-    private int ID; // null ID
+    private int ID = -1; // null ID
     private String username;
     private LocalDateTime accessTime;
 
     public UserAccess(int ID, String username, LocalDateTime accessTime)
     {
         this.ID = ID;
+        this.username = username;
+        this.accessTime = accessTime;
+    }
+    
+    public UserAccess(String username, LocalDateTime accessTime)
+    {
         this.username = username;
         this.accessTime = accessTime;
     }

@@ -22,11 +22,38 @@ import se.project.storage.models.UserAccess;
 public class UserAccessRepo extends AbstractRepo
 {
     private final String QUERY_ALL_USER_ACCESSES_PATH = "/se/project/assets/query/QueryAllUserAccesses.sql";
+    private final String QUERY_USER_ACCESSES_PATH = "/se/project/assets/query/QueryUserAccesses.sql";
     
     public LinkedList<UserAccess> queryAllUserAccesses() throws IOException, SQLException
     {
         // Return all the user accesses to the system
         String query = getStringFromFile(QUERY_ALL_USER_ACCESSES_PATH);
+        return queryUserList(query);
+    }
+    
+    public LinkedList<UserAccess> queryUserAccesses(String username) throws IOException, SQLException
+    {
+        // Return all the access of a determined user
+        String query = getStringFromFile(QUERY_USER_ACCESSES_PATH);
+        query = query.replaceAll("username_param", username);
+        return queryUserList(query);
+    }
+    
+    public void storeUserAccess(UserAccess userAccess)
+    {
+        // Stores a user access
+    }
+    
+    public void storeCurrentUserAccess(String username)
+    {
+        // Stores a user access at current LocalTime
+    }
+    
+    // PRIVATE USEFUL METHODS
+    
+    private LinkedList<UserAccess> queryUserList(String query) throws SQLException
+    {
+        // Query a filtered list of Users
         ResultSet resultSet = super.queryDatabase(query);
 
         // Models construction
@@ -41,22 +68,6 @@ public class UserAccessRepo extends AbstractRepo
             output.add(new UserAccess(ID, username, accessTime));
         }
         
-        return output;
-    }
-    
-    public List queryUserAccesses(String username)
-    {
-        // Return all the access of a determined user
-        return null;
-    }
-    
-    public void storeUserAccess(UserAccess userAccess)
-    {
-        // Stores a user access
-    }
-    
-    public void storeCurrentUserAccess(String username)
-    {
-        // Stores a user access at current LocalTime
+        return output;        
     }
 }

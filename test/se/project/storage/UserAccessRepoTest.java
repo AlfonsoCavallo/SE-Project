@@ -93,13 +93,48 @@ public class UserAccessRepoTest
     @Test
     public void testQueryUserAccesses()
     {
-        
+        // Tests the query of all user accesses
+        try
+        {
+            connect(getTestUser());
+            UserAccessRepo instance = new UserAccessRepo();
+            LinkedList<UserAccess> userAccesses = instance.queryUserAccesses("finneas");
+            
+            // Tests expected elements
+            UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
+            assertEquals(userAccesses.size(), 1);
+            assertEquals(userAccesses.getFirst(), expectedFirstElement);
+            
+            closeConnection();
+        }
+        catch (SQLException | ClassNotFoundException | IOException ex)
+        {
+            fail();
+        }
     }
 
     @Test
     public void testStoreUserAccess()
     {
-        
+        // Tests the query of all user accesses
+        try
+        {
+            connect(getTestUser());
+            UserAccessRepo instance = new UserAccessRepo();
+            UserAccess modelToStore = new UserAccess("finneas", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
+            
+            
+            // Tests expected elements
+            UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
+            assertEquals(userAccesses.size(), 1);
+            assertEquals(userAccesses.getFirst(), expectedFirstElement);
+            
+            closeConnection();
+        }
+        catch (SQLException | ClassNotFoundException | IOException ex)
+        {
+            fail();
+        }
     }
 
     @Test
