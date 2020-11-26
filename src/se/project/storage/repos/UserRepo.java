@@ -51,12 +51,14 @@ public class UserRepo extends AbstractRepo
         return user;
     }
     
-    public LinkedList<User> queryAllUsers()
+    public LinkedList<User> queryAllUsers() throws IOException
     {
+        // Return all the users to the system
+        String query = getStringFromFile(QUERY_ALL_USERS_PATH);
         return null;
     }
     
-    public User queryViewOneUser(String username)
+    public LinkedList<User> queryViewOneUser(String username)
     {
         return null;
     }

@@ -158,7 +158,7 @@ public class UpdateUserView extends javax.swing.JFrame
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setText("Update Management ");
+        jLabel4.setText("Update Users ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,7 +187,7 @@ public class UpdateUserView extends javax.swing.JFrame
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(390, 390, 390))
+                .addGap(475, 475, 475))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,9 +197,9 @@ public class UpdateUserView extends javax.swing.JFrame
                     .addComponent(jGoBackLabel)
                     .addComponent(jExitLabel)
                     .addComponent(jCloseConnectionLabel))
-                .addGap(4, 4, 4)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel4)
-                .addGap(47, 47, 47)
+                .addGap(49, 49, 49)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

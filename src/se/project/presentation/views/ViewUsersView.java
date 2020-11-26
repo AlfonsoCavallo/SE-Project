@@ -8,7 +8,11 @@ package se.project.presentation.views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import se.project.business_logic.controllers.ViewUsersController;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**
@@ -17,15 +21,29 @@ import static se.project.storage.DatabaseConnection.closeConnection;
  */
 public class ViewUsersView extends javax.swing.JFrame
 {
-
-    /**
-     * Creates new form ViewUsersView
-     */
+    private DefaultTableModel defaultTableModel;
+    private ViewUsersController viewUsersController;
+    
     public ViewUsersView()
     {
         initComponents();
+        this.defaultTableModel = new DefaultTableModel();
+        Object columns[] = {"Username", "Name", "Surname", "E-mail", "Role", "Password"};
+        this.defaultTableModel.setColumnIdentifiers(columns);
+        this.jTable.setModel(this.defaultTableModel);
+        this.setVisible(true);
+    }
+    
+    public void setController(ViewUsersController viewUsersController)
+    {
+        this.viewUsersController = viewUsersController;
+        this.viewUsersController.viewUsers();
     }
 
+    public String getUsername()
+    {
+        return this.jTextField.getText();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
