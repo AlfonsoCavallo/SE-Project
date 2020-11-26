@@ -49,7 +49,7 @@ public class UserAccess
     
     public Object[] getDataModel()
     {
-        return new Object[]{String.valueOf(ID), username, accessTime.toString()};
+        return new Object[]{ID, username, accessTime};
     }
     
     @Override

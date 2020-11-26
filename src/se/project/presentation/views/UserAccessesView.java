@@ -36,7 +36,7 @@ public class UserAccessesView extends javax.swing.JFrame
     public void setController(UserAccessesController userAccessesController)
     {
         this.userAccessesController = userAccessesController;
-        userAccessesController.updateAccesses();
+        this.userAccessesController.updateAccesses();
     }
 
     /**
@@ -100,14 +100,11 @@ public class UserAccessesView extends javax.swing.JFrame
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Access ID", "Username", "Access Time"
             }
         ));
         jScrollPane1.setViewportView(jTable);
@@ -217,6 +214,7 @@ public class UserAccessesView extends javax.swing.JFrame
 
     private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
     {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
+        userAccessesController.backToHomepage();
         dispose();
         // Recall goBackSAHomepage method from the controller
     }//GEN-LAST:event_jGoBackLabelMouseClicked

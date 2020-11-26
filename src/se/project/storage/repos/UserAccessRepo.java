@@ -44,7 +44,7 @@ public class UserAccessRepo extends AbstractRepo
         // Stores a user access
         String statement = getStringFromFile(STORE_USER_ACCESS_PATH);
         statement = statement.replaceAll("username_param", userAccess.getUsername());
-        statement = statement.replaceAll("accessTime_param", java.sql.Timestamp.valueOf(userAccess.getAccessTime()).toString());
+        statement = statement.replaceAll("accessTime_param", "'" + java.sql.Timestamp.valueOf(userAccess.getAccessTime()).toString() + "'");
         super.executeStatement(statement);  
     }
     
