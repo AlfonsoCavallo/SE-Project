@@ -66,7 +66,7 @@ public class AddUserView extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(21, 21, 23));
+        jPanel1.setBackground(new java.awt.Color(33, 33, 35));
         jPanel1.setPreferredSize(new java.awt.Dimension(1228, 701));
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
