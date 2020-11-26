@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UserAccessesView;
 import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
@@ -42,7 +43,7 @@ public class UserAccessesController
         try
         {
             String usernameToSearch = userAccessesView.getUsernameField();
-            if(usernameToSearch != null)
+            if(!usernameToSearch.equals(""))
             {
                 userAccesses = userAccessesRepo.queryUserAccesses(usernameToSearch);
             }
@@ -51,11 +52,16 @@ public class UserAccessesController
                 userAccesses = userAccessesRepo.queryAllUserAccesses();
             }
             
+            // Clears the model
+            while(tableModel.getRowCount() > 0)
+            {
+                tableModel.removeRow(0);
+            }
+            
             // Iterates over userAccesses
-            int index = 0;
             for(UserAccess userAccess : userAccesses)
             {
-                tableModel.insertRow(index++, userAccess.getDataModel());
+                tableModel.addRow(userAccess.getDataModel());
             }
         } 
         catch(SQLException ex)
@@ -66,6 +72,11 @@ public class UserAccessesController
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
         }
-
+    }
+    
+    public SAHomepageView backToHomepage()
+    {
+        SAHomepageView saHomepageView = new SAHomepageView();
+        return saHomepageView;        
     }
 }
