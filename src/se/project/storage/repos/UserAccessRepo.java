@@ -6,7 +6,6 @@
 
 package se.project.storage.repos;
 
-import java.awt.List;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
