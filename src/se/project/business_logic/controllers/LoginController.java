@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import se.project.presentation.views.LoginView;
-import se.project.storage.models.User;
-import se.project.storage.repos.UserRepo;
 import static se.project.storage.DatabaseConnection.*;
+import se.project.storage.models.User;
+import se.project.storage.repos.UserAccessRepo;
+import se.project.storage.repos.UserRepo;
 
 /**
  *
@@ -24,6 +24,7 @@ public class LoginController
 
     private final LoginView loginView;
     private UserRepo userRepo;
+    private UserAccessRepo userAccessRepo;
 
     private final String LOGIN_FAILED_MESSAGE = "Login failed.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -39,10 +40,13 @@ public class LoginController
         char[] password = loginView.getPassword();
 
         userRepo = new UserRepo();
+        userAccessRepo = new UserAccessRepo();
+        
         try
         {
             connect(username, password);
             User currentUser = userRepo.queryCurrentUser();
+            userAccessRepo.storeCurrentUserAccess(currentUser.getUsername());
             return openUserPage(currentUser.getRole());
         } catch (ClassNotFoundException | SQLException ex)
         {
