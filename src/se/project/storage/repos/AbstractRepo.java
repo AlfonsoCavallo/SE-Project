@@ -22,5 +22,11 @@ public abstract class AbstractRepo
         PreparedStatement preparedStatement = getConnection().prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet;
-    }    
+    }
+    
+    public boolean executeStatement(String statement) throws SQLException
+    {
+        PreparedStatement preparedStatement = getConnection().prepareStatement(statement);
+        return preparedStatement.execute();
+    }
 }

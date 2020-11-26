@@ -23,6 +23,7 @@ public class UserAccessRepo extends AbstractRepo
 {
     private final String QUERY_ALL_USER_ACCESSES_PATH = "/se/project/assets/query/QueryAllUserAccesses.sql";
     private final String QUERY_USER_ACCESSES_PATH = "/se/project/assets/query/QueryUserAccesses.sql";
+    private final String STORE_USER_ACCESS_PATH = "/se/project/assets/query/StoreUserAccess.sql";
     
     public LinkedList<UserAccess> queryAllUserAccesses() throws IOException, SQLException
     {
@@ -39,14 +40,22 @@ public class UserAccessRepo extends AbstractRepo
         return queryUserList(query);
     }
     
-    public void storeUserAccess(UserAccess userAccess)
+    public void storeUserAccess(UserAccess userAccess) throws IOException, SQLException
     {
         // Stores a user access
+        String statement = getStringFromFile(STORE_USER_ACCESS_PATH);
+        statement = statement.replaceAll("username_param", userAccess.getUsername());
+        statement = statement.replaceAll("accessTime_param", java.sql.Timestamp.valueOf(userAccess.getAccessTime()).toString());
+        super.executeStatement(statement);  
     }
     
-    public void storeCurrentUserAccess(String username)
+    public void storeCurrentUserAccess(String username) throws IOException, SQLException
     {
-        // Stores a user access at current LocalTime
+        // Stores a user access at current LocalDateTime
+        String statement = getStringFromFile(STORE_USER_ACCESS_PATH);
+        statement = statement.replaceAll("username_param", username);
+        statement = statement.replaceAll("accessTime_param", "current_timestamp");
+        super.executeStatement(statement);  
     }
     
     // PRIVATE USEFUL METHODS

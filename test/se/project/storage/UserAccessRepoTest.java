@@ -6,20 +6,18 @@
 
 package se.project.storage;
 
-import java.awt.List;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.postgresql.util.PSQLException;
 import static se.project.storage.DatabaseConnection.*;
 import static se.project.storage.DatabaseTesting.*;
 import se.project.storage.models.UserAccess;
@@ -84,7 +82,7 @@ public class UserAccessRepoTest
             
             closeConnection();
         }
-        catch (IOException | SQLException | ClassNotFoundException ex)
+        catch(IOException | SQLException | ClassNotFoundException ex)
         {
             fail();
         }
@@ -93,7 +91,7 @@ public class UserAccessRepoTest
     @Test
     public void testQueryUserAccesses()
     {
-        // Tests the query of all user accesses
+        // Tests the query of specific user accesses
         try
         {
             connect(getTestUser());
@@ -105,9 +103,12 @@ public class UserAccessRepoTest
             assertEquals(userAccesses.size(), 1);
             assertEquals(userAccesses.getFirst(), expectedFirstElement);
             
+            // Tests unavailable user
+            userAccesses = instance.queryUserAccesses("unavailable_user");
+            assertEquals(userAccesses.size(), 0);
             closeConnection();
         }
-        catch (SQLException | ClassNotFoundException | IOException ex)
+        catch(SQLException | ClassNotFoundException | IOException ex)
         {
             fail();
         }
@@ -121,26 +122,37 @@ public class UserAccessRepoTest
         {
             connect(getTestUser());
             UserAccessRepo instance = new UserAccessRepo();
-            UserAccess modelToStore = new UserAccess("finneas", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
+            UserAccess modelToStore = new UserAccess(3, "finneas", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
             
             
-            // Tests expected elements
-            UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
-            assertEquals(userAccesses.size(), 1);
-            assertEquals(userAccesses.getFirst(), expectedFirstElement);
+            // Tests correct insertion
+            instance.storeUserAccess(modelToStore);
+            LinkedList<UserAccess> userAccesses = instance.queryUserAccesses("finneas");
+            assertEquals(userAccesses.size(), 2);
+            assertEquals(userAccesses.getLast(), modelToStore);
             
             closeConnection();
         }
-        catch (SQLException | ClassNotFoundException | IOException ex)
+        catch(SQLException | ClassNotFoundException | IOException ex)
         {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
 
-    @Test
-    public void testStoreCurrentUserAccess()
+    @Test(expected = SQLException.class)
+    public void testStoreNotExistingUser() throws IOException, SQLException, ClassNotFoundException
     {
-        
+        // Tests the query of all user accesses
+        connect(getTestUser());
+        UserAccessRepo instance = new UserAccessRepo();
+        UserAccess modelToStore = new UserAccess(3, "mark", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
+            
+            
+        // Tests correct insertion
+        instance.storeUserAccess(modelToStore);
+          
+        closeConnection();
     }
     
 }
