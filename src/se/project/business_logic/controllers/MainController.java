@@ -32,6 +32,7 @@ public class MainController
     public static JFrame openSystemAdministratorHomePage(Connection connection)
     {
         SAHomepageView saHomepageView = new SAHomepageView();
+        SAHomepageController saHomepageController = new SAHomepageController(saHomepageView);
         return saHomepageView;
     }
     

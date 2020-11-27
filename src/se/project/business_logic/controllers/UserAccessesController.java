@@ -15,6 +15,7 @@ import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UserAccessesView;
 import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
+import static se.project.storage.DatabaseConnection.*;
 
 /**
  *
@@ -32,6 +33,53 @@ public class UserAccessesController
     public UserAccessesController(UserAccessesView userAccessesView)
     {
         this.userAccessesView = userAccessesView;
+        initListeners();
+        updateAccesses();
+    }
+    
+    private void initListeners()
+    {
+        userAccessesView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                updateAccesses();
+            }
+        });
+        
+        userAccessesView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                backToHomepage();
+                userAccessesView.dispose();
+            }
+        });
+        
+        userAccessesView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                try
+                {
+                    closeConnection();
+                }
+                catch (SQLException ex)
+                {
+                    System.err.println(ex.getMessage());
+                }
+                userAccessesView.dispose();
+                MainController.openLoginPage();
+            }
+        });
+        
+        userAccessesView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                System.exit(0);
+            }
+        });
     }
 
     public void updateAccesses()
@@ -77,6 +125,7 @@ public class UserAccessesController
     public SAHomepageView backToHomepage()
     {
         SAHomepageView saHomepageView = new SAHomepageView();
+        SAHomepageController saHomepageController = new SAHomepageController(saHomepageView);
         return saHomepageView;        
     }
 }

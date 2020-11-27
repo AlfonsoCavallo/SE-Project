@@ -109,9 +109,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jExitLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jCloseConnectionLabel">
           <Properties>
@@ -122,9 +119,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCloseConnectionLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -146,9 +140,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUserInfoPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -202,9 +193,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jAccessRecordPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -258,9 +246,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMaintenanceProceduresPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">

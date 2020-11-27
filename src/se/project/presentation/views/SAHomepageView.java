@@ -7,6 +7,8 @@ package se.project.presentation.views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.business_logic.controllers.SAHomepageController.*;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -26,6 +28,31 @@ public class SAHomepageView extends javax.swing.JFrame
     {
         initComponents();
         this.setVisible(true);
+    }
+
+    public JPanel getjAccessRecordPanel()
+    {
+        return jAccessRecordPanel;
+    }
+
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JPanel getjMaintenanceProceduresPanel()
+    {
+        return jMaintenanceProceduresPanel;
+    }
+
+    public JPanel getjUserInfoPanel()
+    {
+        return jUserInfoPanel;
     }
 
     /**
@@ -60,23 +87,9 @@ public class SAHomepageView extends javax.swing.JFrame
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -84,13 +97,6 @@ public class SAHomepageView extends javax.swing.JFrame
 
         jUserInfoPanel.setBackground(new java.awt.Color(188, 180, 169));
         jUserInfoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jUserInfoPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jUserInfoPanelMouseClicked(evt);
-            }
-        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_user_50px.png"))); // NOI18N
 
@@ -120,13 +126,6 @@ public class SAHomepageView extends javax.swing.JFrame
 
         jAccessRecordPanel.setBackground(new java.awt.Color(188, 180, 169));
         jAccessRecordPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jAccessRecordPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jAccessRecordPanelMouseClicked(evt);
-            }
-        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_timeline_50px.png"))); // NOI18N
 
@@ -156,13 +155,6 @@ public class SAHomepageView extends javax.swing.JFrame
 
         jMaintenanceProceduresPanel.setBackground(new java.awt.Color(188, 180, 169));
         jMaintenanceProceduresPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMaintenanceProceduresPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jMaintenanceProceduresPanelMouseClicked(evt);
-            }
-        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_engineering_50px.png"))); // NOI18N
 
@@ -252,43 +244,6 @@ public class SAHomepageView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(SAHomepageView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
-
-    private void jUserInfoPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jUserInfoPanelMouseClicked
-    {//GEN-HEADEREND:event_jUserInfoPanelMouseClicked
-        dispose();
-        openUserInfoPage(getConnection());
-    }//GEN-LAST:event_jUserInfoPanelMouseClicked
-
-    private void jAccessRecordPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jAccessRecordPanelMouseClicked
-    {//GEN-HEADEREND:event_jAccessRecordPanelMouseClicked
-        dispose();
-        openRecordAccessPage(getConnection());
-    }//GEN-LAST:event_jAccessRecordPanelMouseClicked
-
-    private void jMaintenanceProceduresPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jMaintenanceProceduresPanelMouseClicked
-    {//GEN-HEADEREND:event_jMaintenanceProceduresPanelMouseClicked
-        dispose();
-        openMaintenanceProceduresPage(getConnection());
-    }//GEN-LAST:event_jMaintenanceProceduresPanelMouseClicked
 
     /**
      * @param args the command line arguments

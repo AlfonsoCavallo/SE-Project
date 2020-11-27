@@ -8,6 +8,7 @@ package se.project.presentation.views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.UserAccessesController;
@@ -30,6 +31,26 @@ public class UserAccessesView extends javax.swing.JFrame
         initComponents();
         this.tableModel = (DefaultTableModel) jTable.getModel();
         this.setVisible(true);
+    }
+
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
+    
+    public JLabel getjSearchLabel()
+    {
+        return jSearchLabel;
     }
     
     
@@ -67,33 +88,12 @@ public class UserAccessesView extends javax.swing.JFrame
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jGoBackLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jGoBackLabelMouseClicked(evt);
-            }
-        });
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jTable.setBackground(new java.awt.Color(188, 180, 169));
         jTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -118,13 +118,6 @@ public class UserAccessesView extends javax.swing.JFrame
 
         jSearchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_search_50px.png"))); // NOI18N
         jSearchLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jSearchLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jSearchLabelMouseClicked(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
@@ -198,37 +191,6 @@ public class UserAccessesView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(UserAccessesView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
-
-    private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
-    {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
-        userAccessesController.backToHomepage();
-        dispose();
-        // Recall goBackSAHomepage method from the controller
-    }//GEN-LAST:event_jGoBackLabelMouseClicked
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jSearchLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSearchLabelMouseClicked
-    {//GEN-HEADEREND:event_jSearchLabelMouseClicked
-        userAccessesController.updateAccesses();        
-    }//GEN-LAST:event_jSearchLabelMouseClicked
 
     public DefaultTableModel getTableModel()
     {

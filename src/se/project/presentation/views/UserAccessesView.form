@@ -120,9 +120,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCloseConnectionLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jGoBackLabel">
           <Properties>
@@ -133,9 +130,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jGoBackLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jExitLabel">
           <Properties>
@@ -146,9 +140,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jExitLabelMouseClicked"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -228,9 +219,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSearchLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

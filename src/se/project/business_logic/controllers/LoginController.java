@@ -32,6 +32,42 @@ public class LoginController
     public LoginController(LoginView loginView)
     {
         this.loginView = loginView;
+        initListeners();
+    }
+    
+    private void initListeners()
+    {
+        loginView.getjUsernameTextField().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                loginView.getjUsernameTextField().setText("");
+            }
+        });
+        
+        loginView.getjPasswordField().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                loginView.getjPasswordField().setText("");
+            }
+        });
+        
+        loginView.getjLoginLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                login();
+            }
+        });
+        
+        loginView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                System.exit(0);
+            }
+        });
     }
 
     public JFrame login()

@@ -6,6 +6,9 @@
 
 package se.project.presentation.views;
 
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import se.project.business_logic.controllers.LoginController;
 
 /**
@@ -34,6 +37,26 @@ public class LoginView extends javax.swing.JFrame
     public char[] getPassword()
     {
         return jPasswordField.getPassword();
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjLoginLabel()
+    {
+        return jLoginLabel;
+    }
+
+    public JPasswordField getjPasswordField()
+    {
+        return jPasswordField;
+    }
+
+    public JTextField getjUsernameTextField()
+    {
+        return jUsernameTextField;
     }
     
     public void setController(LoginController loginController)
@@ -106,13 +129,6 @@ public class LoginView extends javax.swing.JFrame
         jUsernameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jUsernameTextField.setText("e.g mariorossi");
         jUsernameTextField.setBorder(null);
-        jUsernameTextField.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jUsernameTextFieldMouseClicked(evt);
-            }
-        });
         jPanel2.add(jUsernameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 260, 30));
 
         jPasswordField.setBackground(new java.awt.Color(23, 23, 25));
@@ -121,13 +137,6 @@ public class LoginView extends javax.swing.JFrame
         jPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPasswordField.setText("marior");
         jPasswordField.setBorder(null);
-        jPasswordField.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jPasswordFieldMouseClicked(evt);
-            }
-        });
         jPanel2.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 260, 30));
 
         jPanel3.setBackground(new java.awt.Color(188, 180, 169));
@@ -137,13 +146,6 @@ public class LoginView extends javax.swing.JFrame
         jLoginLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLoginLabel.setText("Log in");
         jLoginLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLoginLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLoginLabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -187,13 +189,6 @@ public class LoginView extends javax.swing.JFrame
         jExitLabel.setForeground(new java.awt.Color(153, 153, 153));
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,27 +225,6 @@ public class LoginView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jLoginLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLoginLabelMouseClicked
-    {//GEN-HEADEREND:event_jLoginLabelMouseClicked
-        LoginController loginController = new LoginController(this);
-        loginController.login();
-    }//GEN-LAST:event_jLoginLabelMouseClicked
-
-    private void jUsernameTextFieldMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jUsernameTextFieldMouseClicked
-    {//GEN-HEADEREND:event_jUsernameTextFieldMouseClicked
-        jUsernameTextField.setText("");
-    }//GEN-LAST:event_jUsernameTextFieldMouseClicked
-
-    private void jPasswordFieldMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPasswordFieldMouseClicked
-    {//GEN-HEADEREND:event_jPasswordFieldMouseClicked
-        jPasswordField.setText("");
-    }//GEN-LAST:event_jPasswordFieldMouseClicked
 
     /**
      * @param args the command line arguments
