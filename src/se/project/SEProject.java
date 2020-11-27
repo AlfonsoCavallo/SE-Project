@@ -31,10 +31,12 @@ public class SEProject {
         {
             Class.forName("org.postgresql.Driver");
             DriverManager.getConnection("jdbc:postgresql://localhost:5432/gruppo8_se", "finneas", "finneas");
-        }catch (SQLException ex)
+        }
+        catch (SQLException ex)
         {
             System.out.println(ex);
-        } catch (ClassNotFoundException ex)
+        }
+        catch (ClassNotFoundException ex)
         {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
