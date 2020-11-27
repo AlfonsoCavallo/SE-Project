@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.ViewUsersView;
 import se.project.presentation.views.UserInfoView;
+import static se.project.storage.DatabaseConnection.closeConnection;
 import se.project.storage.models.SystemUser;
 import se.project.storage.models.User;
 import se.project.storage.repos.SystemUserRepo;
@@ -39,7 +40,52 @@ public class ViewUsersController
         this.userRepo = new UserRepo();
     }
     
-    public static JFrame goBackUserInfoPage(Connection connection)
+    private void initListeners()
+    {
+        viewUsersView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                viewUsers();
+            }
+        });
+        
+        viewUsersView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                goBackUserInfoPage();
+                viewUsersView.dispose();
+            }
+        });
+        
+        viewUsersView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                try
+                {
+                    closeConnection();
+                }
+                catch (SQLException ex)
+                {
+                    System.err.println(ex.getMessage());
+                }
+                viewUsersView.dispose();
+                MainController.openLoginPage();
+            }
+        });
+        
+        viewUsersView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                System.exit(0);
+            }
+        });
+    }
+    
+    public static JFrame goBackUserInfoPage()
     {
        UserInfoView userInfoView = new UserInfoView();
        return userInfoView;
@@ -50,15 +96,15 @@ public class ViewUsersController
         LinkedList<User> users;
         try
         {
-           String usernameToSearch =  viewUsersView.getUsername();
-           if(!usernameToSearch.equals(""))
-           {
-               users = userRepo.queryViewOneUser(usernameToSearch);
-           }
-           else
-           {
-               users = userRepo.queryAllUsers();
-           }
+            String usernameToSearch =  viewUsersView.getUsername();
+            if(!usernameToSearch.equals(""))
+            {
+                users = userRepo.queryViewOneUser(usernameToSearch);
+            }
+            else
+            {
+                users = userRepo.queryAllUsers();
+            }
            
         }
         catch (IOException ex)

@@ -34,6 +34,7 @@ public class UserRepo extends AbstractRepo
     {
         // Return the user with username equals to username
         String query = getStringFromFile(QUERY_VIEW_ONE_USER_PATH);
+        query = query.replaceAll("username_param", username);
         return queryUserList(query);
     }
     
@@ -51,12 +52,12 @@ public class UserRepo extends AbstractRepo
             String name = resultSet.getString("name_user");
             String surname = resultSet.getString("surname");
             String email = resultSet.getString("email");
-            String password = resultSet.getString("pass");
+            //String password = resultSet.getString("pass");
             String role = resultSet.getString("user_role");
             if(role.equals("system_administrator"))
-                output.add(new SystemAdministrator(username, email, name, surname, password));
+                output.add(new SystemAdministrator(username, email, name, surname, null));
             else if(role.equals("planner"))
-                output.add(new Planner(username, email, name, surname, password));
+                output.add(new Planner(username, email, name, surname, null));
         }
         
         return output;        

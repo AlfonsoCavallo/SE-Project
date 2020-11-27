@@ -8,12 +8,15 @@ package se.project.presentation.views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.ViewUsersController;
+import static se.project.business_logic.controllers.ViewUsersController.goBackUserInfoPage;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 
 /**
  *
@@ -28,7 +31,7 @@ public class ViewUsersView extends javax.swing.JFrame
     {
         initComponents();
         this.defaultTableModel = new DefaultTableModel();
-        Object columns[] = {"Username", "Name", "Surname", "E-mail", "Role", "Password"};
+        Object columns[] = {"Username", "Name", "Surname", "E-mail", "Role"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
         this.setVisible(true);
@@ -43,6 +46,26 @@ public class ViewUsersView extends javax.swing.JFrame
     public String getUsername()
     {
         return this.jTextField.getText();
+    }
+    
+    public JLabel getjSearchLabel()
+    {
+        return jSearchLabel;
+    }
+    
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,33 +95,12 @@ public class ViewUsersView extends javax.swing.JFrame
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jGoBackLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jGoBackLabelMouseClicked(evt);
-            }
-        });
 
         jTable.setBackground(new java.awt.Color(188, 180, 169));
         jTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -122,23 +124,9 @@ public class ViewUsersView extends javax.swing.JFrame
         jLabel1.setText("View Users");
 
         jTextField.setBackground(new java.awt.Color(188, 180, 169));
-        jTextField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jTextFieldActionPerformed(evt);
-            }
-        });
 
         jSearchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_search_50px.png"))); // NOI18N
         jSearchLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jSearchLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jSearchLabelMouseClicked(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -212,41 +200,6 @@ public class ViewUsersView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(ViewUsersView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
-
-    private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
-    {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
-        dispose();
-        // goBackUserInfoPage(getConnection());
-    }//GEN-LAST:event_jGoBackLabelMouseClicked
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldActionPerformed
-    {//GEN-HEADEREND:event_jTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldActionPerformed
-
-    private void jSearchLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSearchLabelMouseClicked
-    {//GEN-HEADEREND:event_jSearchLabelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jSearchLabelMouseClicked
 
     /**
      * @param args the command line arguments

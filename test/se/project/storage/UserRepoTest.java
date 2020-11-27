@@ -70,22 +70,52 @@ public class UserRepoTest
     {
         try
         {
-            // Test queryAllUsers
+            // Test queryAllUsers method
             connect(getTestUser());
             UserRepo instance = new UserRepo();
             LinkedList<User> users = instance.queryAllUsers();
             
             // Tests expected elements
-            /*User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", "finneas");
+            User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
             assertEquals(users.getFirst(), expectedFirstElement);
             
-            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", "jon");
-            assertEquals(users.getFirst(), expectedLastElement);*/
+            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null);
+            assertEquals(users.getLast(), expectedLastElement);
             
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
         {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+    }
+    
+    @Test
+    public void testQuarySearchedUser()
+    {
+        try
+        {
+            // Test queryViewOneUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test existing user
+            String username = "finneas";
+            LinkedList<User> user = instance.queryViewOneUser(username);
+            User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
+            assertEquals(1, user.size());
+            assertEquals(expectedUser, user.getFirst());
+            
+            // Test unvailable user
+            String unvailable_username = "unvailable";
+            user = instance.queryViewOneUser(unvailable_username);
+            assertEquals(user.size(), 0);
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
