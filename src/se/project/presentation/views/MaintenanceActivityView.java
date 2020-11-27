@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import static se.project.business_logic.controllers.MaintenanceActivityController.openAddMaintenanceActivityPage;
 import static se.project.business_logic.controllers.UserInfoController.goBackSystemAdministratorHomepage;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -287,7 +288,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jGoBackLabel)
                         .addComponent(jExitLabel))
                     .addComponent(jCloseConnectionLabel))
@@ -345,7 +346,8 @@ public class MaintenanceActivityView extends javax.swing.JFrame
 
     private void jAddMaintenancePanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jAddMaintenancePanelMouseClicked
     {//GEN-HEADEREND:event_jAddMaintenancePanelMouseClicked
-        // TODO add your handling code here:
+        dispose();
+        openAddMaintenanceActivityPage(getConnection());
     }//GEN-LAST:event_jAddMaintenancePanelMouseClicked
 
     private void jViewMaintenancePanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jViewMaintenancePanelMouseClicked
