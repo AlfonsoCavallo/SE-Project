@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import static se.project.business_logic.utilities.FileUtilities.getStringFromFile;
 import static se.project.storage.DatabaseConnection.*;
-import se.project.storage.models.User;
+import se.project.storage.models.SystemUser;
 
 
 
@@ -47,8 +47,8 @@ public class DatabaseTesting
         }
     }
     
-    public static User getTestUser()
+    public static SystemUser getTestUser()
     {
-        return new User(null, ADMIN_USERNAME, ADMIN_PASSWORD.toCharArray());
+        return new SystemUser(null, ADMIN_USERNAME, ADMIN_PASSWORD.toCharArray());
     }
 }

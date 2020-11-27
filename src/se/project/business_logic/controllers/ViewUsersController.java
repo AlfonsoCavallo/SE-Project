@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.ViewUsersView;
 import se.project.presentation.views.UserInfoView;
+import se.project.storage.models.SystemUser;
 import se.project.storage.models.User;
+import se.project.storage.repos.SystemUserRepo;
 import se.project.storage.repos.UserRepo;
 
 /**
@@ -61,6 +63,9 @@ public class ViewUsersController
         } catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }
     }
 }

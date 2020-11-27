@@ -18,7 +18,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.DatabaseConnection.*;
 import static se.project.storage.DatabaseTesting.*;
-import se.project.storage.models.User;
+import se.project.storage.models.SystemUser;
 
 /**
  *
@@ -98,7 +98,7 @@ public class DatabaseConnectionTest
             closeConnection();
             
             // With user
-            assertTrue(connect(new User(null, "finneas", "finneas".toCharArray())) instanceof Connection);
+            assertTrue(connect(new SystemUser(null, "finneas", "finneas".toCharArray())) instanceof Connection);
             closeConnection();
         }
         catch(ClassNotFoundException | SQLException ex)

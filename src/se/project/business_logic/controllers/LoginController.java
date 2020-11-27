@@ -11,9 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import se.project.presentation.views.LoginView;
 import static se.project.storage.DatabaseConnection.*;
-import se.project.storage.models.User;
+import se.project.storage.models.SystemUser;
 import se.project.storage.repos.UserAccessRepo;
-import se.project.storage.repos.UserRepo;
+import se.project.storage.repos.SystemUserRepo;
 
 /**
  *
@@ -23,7 +23,7 @@ public class LoginController
 {
 
     private final LoginView loginView;
-    private UserRepo userRepo;
+    private SystemUserRepo userRepo;
     private UserAccessRepo userAccessRepo;
 
     private final String LOGIN_FAILED_MESSAGE = "Login failed.";
@@ -39,13 +39,13 @@ public class LoginController
         String username = loginView.getUsername();
         char[] password = loginView.getPassword();
 
-        userRepo = new UserRepo();
+        userRepo = new SystemUserRepo();
         userAccessRepo = new UserAccessRepo();
         
         try
         {
             connect(username, password);
-            User currentUser = userRepo.queryCurrentUser();
+            SystemUser currentUser = userRepo.queryCurrentUser();
             userAccessRepo.storeCurrentUserAccess(currentUser.getUsername());
             return openUserPage(currentUser.getRole());
         } catch (ClassNotFoundException | SQLException ex)
@@ -59,7 +59,7 @@ public class LoginController
         }
     }
 
-    private JFrame openUserPage(User.Role role)
+    private JFrame openUserPage(SystemUser.Role role)
     {
         if (null == role)
         {

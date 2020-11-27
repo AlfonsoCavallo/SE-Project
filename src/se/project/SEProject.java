@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import se.project.business_logic.controllers.MainController;
-import se.project.storage.repos.UserRepo;
+import se.project.storage.repos.SystemUserRepo;
 
 /**
  *
@@ -26,7 +26,7 @@ public class SEProject {
         // TODO code application logic here
         
         
-        UserRepo userRepo = new UserRepo();
+        SystemUserRepo userRepo = new SystemUserRepo();
         try
         {
             Class.forName("org.postgresql.Driver");

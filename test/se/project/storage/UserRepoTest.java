@@ -3,27 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package se.project.storage;
 
-import se.project.storage.repos.UserRepo;
-import se.project.storage.models.User;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static se.project.storage.models.User.Role.*;
-import static se.project.storage.DatabaseConnection.*;
+import static org.junit.Assert.*;
+import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.connect;
+import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
+import se.project.storage.models.Planner;
+import se.project.storage.models.SystemAdministrator;
+import se.project.storage.models.User;
+import se.project.storage.repos.UserRepo;
 
 /**
  *
- * @author Utente
+ * @author Giorgio
  */
 public class UserRepoTest
 {
@@ -61,47 +65,28 @@ public class UserRepoTest
         }
     }
 
-    // TESTS FOR QUERY
-
     @Test
-    public void testQueryCurrentUser() 
+    public void testQueryAllUsers()
     {
         try
         {
-            // Tests query for an SA user
-            UserRepo systemAdministratorRepo = new UserRepo();
-            connect("finneas", "finneas".toCharArray());
-            assertEquals(systemAdministratorRepo.queryCurrentUser(), new User(SYSTEM_ADMINISTRATOR, "finneas", null));
-            closeConnection();
+            // Test queryAllUsers
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            LinkedList<User> users = instance.queryAllUsers();
             
-            // Test query for a Planner user
-            UserRepo plannerRepo = new UserRepo();
-            connect("jon", "jon".toCharArray());
-            assertEquals(plannerRepo.queryCurrentUser(), new User(PLANNER, "jon", null));
+            // Tests expected elements
+            User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", "finneas");
+            assertEquals(users.getFirst(), expectedFirstElement);
+            
+            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", "jon");
+            assertEquals(users.getFirst(), expectedLastElement);
+            
             closeConnection();
-        }
-        catch(ClassNotFoundException | SQLException | IOException ex)
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
         {
             fail();
         }
     }
-    
-    @Test(expected = NullPointerException.class)
-    public void testQueryWithNoConnectionCurrentUser() throws SQLException, IOException
-    {
-        // Test for Repo not yet connected
-        UserRepo instance = new UserRepo();
-        instance.queryCurrentUser();
-    }
-    
-    @Test(expected = NullPointerException.class)
-    public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
-    {
-        // Test for Repo with closed connection
-        UserRepo instance = new UserRepo();
-        connect("finneas", "finneas".toCharArray());
-        closeConnection();
-        instance.queryCurrentUser();
-    }
-    
 }

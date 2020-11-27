@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
-import se.project.storage.models.User;
+import se.project.storage.models.SystemUser;
 
 /**
  *
@@ -41,7 +41,7 @@ public class DatabaseConnection
         return connection;
     }
     
-    static synchronized public Connection connect(User user) throws ClassNotFoundException, SQLException
+    static synchronized public Connection connect(SystemUser user) throws ClassNotFoundException, SQLException
     {
         return connect(user.getUsername(), user.getPassword());
     }
