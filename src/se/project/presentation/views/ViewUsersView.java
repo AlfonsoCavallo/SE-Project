@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.ViewUsersController;
 import static se.project.business_logic.controllers.ViewUsersController.goBackUserInfoPage;

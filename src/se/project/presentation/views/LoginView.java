@@ -17,8 +17,6 @@ import se.project.business_logic.controllers.LoginController;
  */
 public class LoginView extends javax.swing.JFrame 
 {
-
-    private LoginController loginController;
     
     /**
      * Creates new form LoginView
@@ -57,11 +55,6 @@ public class LoginView extends javax.swing.JFrame
     public JTextField getjUsernameTextField()
     {
         return jUsernameTextField;
-    }
-    
-    public void setController(LoginController loginController)
-    {
-        this.loginController = loginController;
     }
     
 
