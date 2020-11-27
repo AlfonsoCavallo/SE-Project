@@ -192,6 +192,9 @@ values('jon', '2020-11-25 15:00:00');
 grant all privileges on all tables in schema maintenance_system to finneas;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to finneas;
 
+grant all privileges on all tables in schema maintenance_system to jon;
+grant usage, select on sequence maintenance_system.user_access_id_access_seq to jon;
+
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 

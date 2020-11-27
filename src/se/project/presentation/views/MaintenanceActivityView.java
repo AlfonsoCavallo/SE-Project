@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import se.project.business_logic.controllers.MaintenanceActivityController;
 import static se.project.business_logic.controllers.MaintenanceActivityController.openAddMaintenanceActivityPage;
 import static se.project.business_logic.controllers.UserInfoController.goBackSystemAdministratorHomepage;
 import static se.project.storage.DatabaseConnection.closeConnection;
@@ -20,6 +21,7 @@ import static se.project.storage.DatabaseConnection.getConnection;
  */
 public class MaintenanceActivityView extends javax.swing.JFrame
 {
+    private MaintenanceActivityController maintenanceActivityController;
 
     /**
      * Creates new form MaintenanceActivityView
@@ -28,7 +30,11 @@ public class MaintenanceActivityView extends javax.swing.JFrame
     {
         initComponents();
     }
-
+    
+    public void setController(MaintenanceActivityController maintenanceActivityController)
+    {
+        this.maintenanceActivityController = maintenanceActivityController;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
