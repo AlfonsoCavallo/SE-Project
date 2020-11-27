@@ -342,7 +342,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
     private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
     {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
         dispose();
-        goBackSystemAdministratorHomepage(getConnection());
+        //goBackSystemAdministratorHomepage(getConnection());
     }//GEN-LAST:event_jGoBackLabelMouseClicked
 
     private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked

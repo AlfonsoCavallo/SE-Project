@@ -38,6 +38,8 @@ public class ViewUsersController
     {
         this.viewUsersView = viewUsersView;
         this.userRepo = new UserRepo();
+        viewUsers();
+        initListeners();
     }
     
     private void initListeners()
@@ -88,6 +90,7 @@ public class ViewUsersController
     public static JFrame goBackUserInfoPage()
     {
        UserInfoView userInfoView = new UserInfoView();
+       UserInfoController userInfoController = new UserInfoController(userInfoView);
        return userInfoView;
     }
     

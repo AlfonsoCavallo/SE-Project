@@ -19,12 +19,11 @@ import static se.project.storage.DatabaseConnection.getConnection;
 
 /**
  *
- * @author Giacomo
+ * @author Giorgio
  */
 public class ViewUsersView extends javax.swing.JFrame
 {
     private DefaultTableModel defaultTableModel;
-    private ViewUsersController viewUsersController;
     
     public ViewUsersView()
     {
@@ -34,12 +33,6 @@ public class ViewUsersView extends javax.swing.JFrame
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
         this.setVisible(true);
-    }
-    
-    public void setController(ViewUsersController viewUsersController)
-    {
-        this.viewUsersController = viewUsersController;
-        this.viewUsersController.viewUsers();
     }
 
     public String getUsername()
