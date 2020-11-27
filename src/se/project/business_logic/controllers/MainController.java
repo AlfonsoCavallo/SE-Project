@@ -26,7 +26,6 @@ public class MainController
     {
         LoginView loginView = new LoginView();
         LoginController loginController = new LoginController(loginView);
-        loginView.setController(loginController);
         return loginView;
     }
     
@@ -41,7 +40,6 @@ public class MainController
     {
         MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
         MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        maintenanceActivityView.setController(maintenanceActivityController);
         return maintenanceActivityView;
     }
 }

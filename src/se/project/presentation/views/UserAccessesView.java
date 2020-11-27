@@ -4,15 +4,9 @@
  * and open the template in the editor.
  */
 package se.project.presentation.views;
-
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.UserAccessesController;
-import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**
  *
@@ -21,7 +15,6 @@ import static se.project.storage.DatabaseConnection.closeConnection;
 public class UserAccessesView extends javax.swing.JFrame
 {
     private DefaultTableModel tableModel;
-    private UserAccessesController userAccessesController;
 
     /**
      * Creates new form UserAccessesView
@@ -51,13 +44,6 @@ public class UserAccessesView extends javax.swing.JFrame
     public JLabel getjSearchLabel()
     {
         return jSearchLabel;
-    }
-    
-    
-    public void setController(UserAccessesController userAccessesController)
-    {
-        this.userAccessesController = userAccessesController;
-        this.userAccessesController.updateAccesses();
     }
 
     /**
