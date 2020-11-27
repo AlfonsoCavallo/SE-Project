@@ -6,6 +6,7 @@
 
 package se.project.storage.repos;
 
+import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,12 +19,13 @@ import se.project.storage.models.UserAccess;
  *
  * @author Utente
  */
-public class UserAccessRepo extends AbstractRepo
+public class UserAccessRepo extends AbstractRepo implements UserAccessRepoInterface
 {
     private final String QUERY_ALL_USER_ACCESSES_PATH = "/se/project/assets/query/QueryAllUserAccesses.sql";
     private final String QUERY_USER_ACCESSES_PATH = "/se/project/assets/query/QueryUserAccesses.sql";
     private final String STORE_USER_ACCESS_PATH = "/se/project/assets/query/StoreUserAccess.sql";
     
+    @Override
     public LinkedList<UserAccess> queryAllUserAccesses() throws IOException, SQLException
     {
         // Return all the user accesses to the system
@@ -31,6 +33,7 @@ public class UserAccessRepo extends AbstractRepo
         return queryUserList(query);
     }
     
+    @Override
     public LinkedList<UserAccess> queryUserAccesses(String username) throws IOException, SQLException
     {
         // Return all the access of a determined user
@@ -39,6 +42,7 @@ public class UserAccessRepo extends AbstractRepo
         return queryUserList(query);
     }
     
+    @Override
     public void storeUserAccess(UserAccess userAccess) throws IOException, SQLException
     {
         // Stores a user access
@@ -48,6 +52,7 @@ public class UserAccessRepo extends AbstractRepo
         super.executeStatement(statement);  
     }
     
+    @Override
     public void storeCurrentUserAccess(String username) throws IOException, SQLException
     {
         // Stores a user access at current LocalDateTime

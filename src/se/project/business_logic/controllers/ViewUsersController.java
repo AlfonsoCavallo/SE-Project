@@ -60,7 +60,8 @@ public class ViewUsersController
                users = userRepo.queryAllUsers();
            }
            
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
         } catch (SQLException ex)

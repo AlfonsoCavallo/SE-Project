@@ -103,6 +103,7 @@ public class DatabaseConnectionTest
         }
         catch(ClassNotFoundException | SQLException ex)
         {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
@@ -140,6 +141,7 @@ public class DatabaseConnectionTest
         }
         catch (ClassNotFoundException | SQLException ex)
         {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
