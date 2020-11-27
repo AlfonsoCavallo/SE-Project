@@ -16,12 +16,13 @@ import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.*;
 import static se.project.storage.models.SystemUser.Role.*;
 import se.project.storage.models.SystemUser.Role;
+import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 
 /**
  *
  * @author Utente
  */
-public class SystemUserRepo extends AbstractRepo
+public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterface
 {    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
     
@@ -47,5 +48,11 @@ public class SystemUserRepo extends AbstractRepo
         }
         SystemUser user = new SystemUser(role, username, null);
         return user;
+    }
+
+    @Override
+    public LinkedList<SystemUser> queryAllUsers() throws IOException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
