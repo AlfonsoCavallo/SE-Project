@@ -48,11 +48,13 @@ public class LoginController
             User currentUser = userRepo.queryCurrentUser();
             userAccessRepo.storeCurrentUserAccess(currentUser.getUsername());
             return openUserPage(currentUser.getRole());
-        } catch (ClassNotFoundException | SQLException ex)
+        }
+        catch (ClassNotFoundException | SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
             return null;
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
             return null;

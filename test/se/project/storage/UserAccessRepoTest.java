@@ -84,6 +84,7 @@ public class UserAccessRepoTest
         }
         catch(IOException | SQLException | ClassNotFoundException ex)
         {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
@@ -110,6 +111,7 @@ public class UserAccessRepoTest
         }
         catch(SQLException | ClassNotFoundException | IOException ex)
         {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
