@@ -218,7 +218,8 @@ public class ViewUsersView extends javax.swing.JFrame
         try
         {
             closeConnection();
-        } catch (SQLException ex)
+        }
+        catch (SQLException ex)
         {
             Logger.getLogger(ViewUsersView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -267,16 +268,20 @@ public class ViewUsersView extends javax.swing.JFrame
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
+        }
+        catch (ClassNotFoundException ex)
         {
             java.util.logging.Logger.getLogger(ViewUsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
+        }
+        catch (InstantiationException ex)
         {
             java.util.logging.Logger.getLogger(ViewUsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
+        }
+        catch (IllegalAccessException ex)
         {
             java.util.logging.Logger.getLogger(ViewUsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
             java.util.logging.Logger.getLogger(ViewUsersView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

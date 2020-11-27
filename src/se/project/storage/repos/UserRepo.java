@@ -5,6 +5,7 @@
  */
 package se.project.storage.repos;
 
+import se.project.storage.repos.interfaces.UserRepoInterface;
 import se.project.storage.models.User;
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ import se.project.storage.models.User.Role;
  *
  * @author Utente
  */
-public class UserRepo extends AbstractRepo
+public class UserRepo extends AbstractRepo implements UserRepoInterface
 {    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
@@ -31,6 +32,7 @@ public class UserRepo extends AbstractRepo
     {
     }
 
+    @Override
     public User queryCurrentUser() throws SQLException, IOException
     {
         // Return a model of the current user
@@ -51,6 +53,7 @@ public class UserRepo extends AbstractRepo
         return user;
     }
     
+    @Override
     public LinkedList<User> queryAllUsers() throws IOException
     {
         // Return all the users to the system

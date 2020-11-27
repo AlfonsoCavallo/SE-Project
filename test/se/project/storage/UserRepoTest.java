@@ -82,6 +82,7 @@ public class UserRepoTest
         }
         catch(ClassNotFoundException | SQLException | IOException ex)
         {
+            System.err.println(ex.getMessage());
             fail();
         }
     }
