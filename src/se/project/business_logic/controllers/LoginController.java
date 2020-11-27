@@ -52,6 +52,7 @@ public class LoginController
         catch (ClassNotFoundException | SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
+            System.out.println(ex.getMessage());
             return null;
         }
         catch (IOException ex)

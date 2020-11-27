@@ -189,6 +189,9 @@ values('finneas', '2020-11-26 15:30:02');
 insert into maintenance_system.user_access(username_access_ref, access_time)
 values('jon', '2020-11-25 15:00:00');
 
+grant all privileges on all table in maintenance_system to finneas;
+grant usage, select on sequence maintenance_system.user_access_id_access_seq to finneas;
+
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 
