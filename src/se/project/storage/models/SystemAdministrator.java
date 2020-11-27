@@ -9,7 +9,7 @@ package se.project.storage.models;
  *
  * @author Giorgio
  */
-public class SystemAdministrator extends UserGio
+public class SystemAdministrator extends User
 {
 
     public SystemAdministrator(String username, String email, String name, String surname, String password)

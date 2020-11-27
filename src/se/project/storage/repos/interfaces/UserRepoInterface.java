@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import se.project.storage.models.SystemUser;
-import se.project.storage.models.UserGio;
+import se.project.storage.models.User;
 
 /**
  *
@@ -21,6 +21,6 @@ public interface UserRepoInterface
     public SystemUser queryCurrentUser() throws SQLException, IOException;
     // Return a model of the current user
     
-    public LinkedList<UserGio> queryAllUsers() throws IOException;
+    public LinkedList<User> queryAllUsers() throws IOException;
     // Return all the users to the system
 }

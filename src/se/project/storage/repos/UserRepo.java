@@ -12,38 +12,38 @@ import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.getStringFromFile;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
-import se.project.storage.models.UserGio;
+import se.project.storage.models.User;
 
 /**
  *
  * @author Giorgio
  */
-public class UserRepoGio extends AbstractRepo
+public class UserRepo extends AbstractRepo
 {
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
     private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
     
-    public LinkedList<UserGio> queryAllUsers() throws IOException, SQLException
+    public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {
         // Return all the users to the system
         String query = getStringFromFile(QUERY_ALL_USERS_PATH);
         return queryUserList(query);
     }
     
-    public LinkedList<UserGio> queryViewOneUser(String username) throws IOException, SQLException
+    public LinkedList<User> queryViewOneUser(String username) throws IOException, SQLException
     {
         // Return the user with username equals to username
         String query = getStringFromFile(QUERY_VIEW_ONE_USER_PATH);
         return queryUserList(query);
     }
     
-    private LinkedList<UserGio> queryUserList(String query) throws SQLException
+    private LinkedList<User> queryUserList(String query) throws SQLException
     {
         // Query a filtered list of Users
         ResultSet resultSet = super.queryDatabase(query);
 
         // Models construction
-        LinkedList<UserGio> output = new LinkedList<>();
+        LinkedList<User> output = new LinkedList<>();
         
         while(resultSet.next())
         {

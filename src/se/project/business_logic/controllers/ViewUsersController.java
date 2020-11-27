@@ -17,9 +17,9 @@ import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.ViewUsersView;
 import se.project.presentation.views.UserInfoView;
 import se.project.storage.models.SystemUser;
-import se.project.storage.models.UserGio;
+import se.project.storage.models.User;
 import se.project.storage.repos.SystemUserRepo;
-import se.project.storage.repos.UserRepoGio;
+import se.project.storage.repos.UserRepo;
 
 /**
  *
@@ -31,12 +31,12 @@ public class ViewUsersController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query."; 
     
     private final ViewUsersView viewUsersView;
-    private UserRepoGio userRepo = null;
+    private UserRepo userRepo = null;
     
     public ViewUsersController(ViewUsersView viewUsersView)
     {
         this.viewUsersView = viewUsersView;
-        this.userRepo = new UserRepoGio();
+        this.userRepo = new UserRepo();
     }
     
     public static JFrame goBackUserInfoPage(Connection connection)
@@ -47,7 +47,7 @@ public class ViewUsersController
     
     public void viewUsers()
     {
-        LinkedList<UserGio> users;
+        LinkedList<User> users;
         try
         {
            String usernameToSearch =  viewUsersView.getUsername();
