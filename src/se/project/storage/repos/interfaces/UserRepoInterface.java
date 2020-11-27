@@ -9,7 +9,7 @@ package se.project.storage.repos.interfaces;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import se.project.storage.models.User;
+import se.project.storage.models.UserGio;
 
 /**
  *
@@ -17,9 +17,9 @@ import se.project.storage.models.User;
  */
 public interface UserRepoInterface
 {
-    public User queryCurrentUser() throws SQLException, IOException;
+    public UserGio queryCurrentUser() throws SQLException, IOException;
     // Return a model of the current user
     
-    public LinkedList<User> queryAllUsers() throws IOException;
+    public LinkedList<UserGio> queryAllUsers() throws IOException;
     // Return all the users to the system
 }

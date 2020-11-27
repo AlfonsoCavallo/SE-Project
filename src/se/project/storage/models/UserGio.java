@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Giorgio
  */
-public abstract class User
+public abstract class UserGio
 {
     private String username;
     private String password;
@@ -19,7 +19,7 @@ public abstract class User
     private String name;
     private String surname;
 
-    public User(String username, String email, String name, String surname, String password)
+    public UserGio(String username, String email, String name, String surname, String password)
     {
         this.username = username;
         this.password = password;
@@ -69,7 +69,7 @@ public abstract class User
         {
             return false;
         }
-        final User other = (User) obj;
+        final UserGio other = (UserGio) obj;
         return Objects.equals(this.username, other.username);
     }
     

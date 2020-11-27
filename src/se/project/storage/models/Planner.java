@@ -9,7 +9,7 @@ package se.project.storage.models;
  *
  * @author Giorgio
  */
-public class Planner extends User
+public class Planner extends UserGio
 {
 
     public Planner(String username, String email, String name, String surname, String password)

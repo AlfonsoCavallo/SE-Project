@@ -22,17 +22,17 @@ import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
-import se.project.storage.models.User;
-import se.project.storage.repos.UserRepo;
+import se.project.storage.models.UserGio;
+import se.project.storage.repos.UserRepoGio;
 
 /**
  *
  * @author Giorgio
  */
-public class UserRepoTest
+public class UserRepoTestGio
 {
     
-    public UserRepoTest()
+    public UserRepoTestGio()
     {
     }
     
@@ -72,14 +72,14 @@ public class UserRepoTest
         {
             // Test queryAllUsers
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
-            LinkedList<User> users = instance.queryAllUsers();
+            UserRepoGio instance = new UserRepoGio();
+            LinkedList<UserGio> users = instance.queryAllUsers();
             
             // Tests expected elements
-            /*User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", "finneas");
+            /*UserGio expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", "finneas");
             assertEquals(users.getFirst(), expectedFirstElement);
             
-            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", "jon");
+            UserGio expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", "jon");
             assertEquals(users.getFirst(), expectedLastElement);*/
             
             closeConnection();
