@@ -6,20 +6,15 @@
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.ViewUsersView;
 import se.project.presentation.views.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
-import se.project.storage.models.SystemUser;
 import se.project.storage.models.User;
-import se.project.storage.repos.SystemUserRepo;
 import se.project.storage.repos.UserRepo;
 
 /**
