@@ -13,7 +13,7 @@ public abstract class MaintenanceActivity
 {
     private int IDActivity;
     private String activityName;
-    private int timeNedeed;
+    private int timeNeeded;
     private boolean interruptible;
     private Typology typology;
     private String activityDescription;
@@ -36,15 +36,26 @@ public abstract class MaintenanceActivity
         public String getValue()
         {
             return typology;
+        }
+        
+        public static Typology fromString(String string)
+        {
+            for(Typology typology : Typology.values())
+            {
+                if(typology.typology.equalsIgnoreCase(string))
+                    return typology;
+            }
+            return null;
         }        
+       
     }
 
-    public MaintenanceActivity(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+    public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
         this.IDActivity = IDActivity;
         this.activityName = activityName;
-        this.timeNedeed = timeNedeed;
+        this.timeNeeded = timeNeeded;
         this.interruptible = interruptible;
         this.typology = typology;
         this.activityDescription = activityDescription;
@@ -61,9 +72,9 @@ public abstract class MaintenanceActivity
        return activityName;
    }
    
-   public int getTimeNedeed()
+   public int getTimeNeeded()
    {
-       return timeNedeed;
+       return timeNeeded;
    }        
    
    public boolean isInterruptible()
@@ -84,7 +95,9 @@ public abstract class MaintenanceActivity
    public int getWeek()
    {
        return week;
-   }        
+   }
+   
+   public abstract Object[] getDataModel();
            
    public boolean isValidWeek(int week)
    {

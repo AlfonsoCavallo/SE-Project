@@ -20,6 +20,9 @@ public interface MaintenanceActivityRepoInterface
     public LinkedList<MaintenanceActivity> queryAllMaintenanceActivity() throws IOException, SQLException;
     // Return all the maintenance activities in the system
     
-    public LinkedList<MaintenanceActivity> queryUserMaintenanceActivity(String username) throws IOException, SQLException;
-    // Return all the maintenance activities associated to a specific user
+    public LinkedList<MaintenanceActivity> queryViewOneMaintenanceActivity(String activity_name) throws IOException, SQLException;
+    // Return a specific maintenance activity
+    
+    public void queryDeleteMaintenanceActivity(String activity_name) throws IOException, SQLException;
+    // Delete a specific maintenance activity
 }

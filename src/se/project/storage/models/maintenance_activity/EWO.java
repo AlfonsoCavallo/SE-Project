@@ -12,10 +12,16 @@ package se.project.storage.models.maintenance_activity;
 public class EWO extends UnplannedActivity
 {
     
-    public EWO(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+    public EWO(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(IDActivity, activityName, timeNedeed, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
+    }
+
+    @Override
+    public Object[] getDataModel()
+    {
+        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(), isInterruptible(), getTypology(), getActivityDescription(), getWeek()};
     }
     
 }

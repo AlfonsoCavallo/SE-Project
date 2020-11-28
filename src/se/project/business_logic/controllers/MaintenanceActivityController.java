@@ -9,8 +9,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import se.project.presentation.views.AddMaintenanceActivityView;
-import se.project.presentation.views.DeleteMaintenanceActivityView;
 import se.project.presentation.views.MaintenanceActivityView;
+import se.project.presentation.views.PlannerHomepageView;
 import se.project.presentation.views.UpdateMaintenanceActivityView;
 import se.project.presentation.views.ViewMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
@@ -58,6 +58,15 @@ public class MaintenanceActivityController
                 System.exit(0);
             }        
         });
+        
+        maintenanceActivityView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                goBackPlannerHomepage(null);
+                maintenanceActivityView.dispose();
+            }
+        });        
 
         maintenanceActivityView.getjAddMaintenancePanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -87,14 +96,6 @@ public class MaintenanceActivityController
             }
         });          
                 
-        maintenanceActivityView.getjDeleteMaintenancePanel().addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                openDeleteMaintenanceActivityPage(null);
-                maintenanceActivityView.dispose();
-            }
-        });
     }        
     
     public static JFrame openAddMaintenanceActivityPage(Connection connection)
@@ -118,10 +119,10 @@ public class MaintenanceActivityController
         return viewMaintenanceActivityView;
     }
     
-    public static JFrame openDeleteMaintenanceActivityPage(Connection connection)
+    public static JFrame goBackPlannerHomepage(Connection connection)
     {
-        DeleteMaintenanceActivityView deleteMaintenanceActivityView = new DeleteMaintenanceActivityView();
-        DeleteMaintenanceActivityController deleteMaintenanceActivityController = new DeleteMaintenanceActivityController(deleteMaintenanceActivityView);
-        return deleteMaintenanceActivityView;
+        PlannerHomepageView plannerHomepageView = new PlannerHomepageView();
+        PlannerHomepageController plannerHomepageController = new PlannerHomepageController(plannerHomepageView);
+        return plannerHomepageView;
     }
 }

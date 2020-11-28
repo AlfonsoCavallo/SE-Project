@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import se.project.business_logic.controllers.ViewMaintenanceActivityController;
 
 /**
  *
@@ -19,21 +18,34 @@ import se.project.business_logic.controllers.ViewMaintenanceActivityController;
 public class ViewMaintenanceActivityView extends javax.swing.JFrame
 {
     private DefaultTableModel defaultTableModel;
-    private ViewMaintenanceActivityController viewMaintenanceActivityController;
 
-    /**
-     * Creates new form ViewMaintenanceActivityView
-     */
     public ViewMaintenanceActivityView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel();
-        Object columns[] = {"Name", "Time Needed", "Interruptible", "Typology", "Description", 
+        this.defaultTableModel = new DefaultTableModel()
+        {
+           @Override
+           public boolean isCellEditable(int row, int column)
+           {
+               return false; // So all cells are be not editable
+           }        
+        };
+        Object columns[] = {"ID", "Name", "Time Needed", "Interruptible", "Typology", "Description", 
                             "Week", "Planned", "EWO", "Standard Procedure"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
         this.setVisible(true);
     }
+    
+    public String getName()
+    {
+        return this.jNameTextField.getText();
+    } 
+    
+    public void resetNameField()
+    {
+        this.jNameTextField.setText("");
+    }        
 
     public JLabel getjCloseConnectionLabel()
     {
@@ -55,11 +67,16 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
         return jSearchLabel;
     }
     
-    public void setController(ViewMaintenanceActivityController viewMaintenanceActivityController)
+    public JLabel getjDeleteLabel()
     {
-        this.viewMaintenanceActivityController = viewMaintenanceActivityController;
-        //this.viewMaintenanceActivityController;
-    }        
+        return jDeleteLabel;
+    }
+
+    public DefaultTableModel getTableModel()
+    {
+        return defaultTableModel;
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,6 +98,7 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
         jNameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jSearchLabel = new javax.swing.JLabel();
+        jDeleteLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,6 +145,9 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
         jSearchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_search_50px.png"))); // NOI18N
         jSearchLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jDeleteLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_waste_50px.png"))); // NOI18N
+        jDeleteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -141,16 +162,18 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jExitLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addGap(48, 48, 48)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSearchLabel)))
-                        .addGap(0, 30, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSearchLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jDeleteLabel))
+                            .addComponent(jLabel2))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -160,23 +183,28 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jGoBackLabel)
-                    .addComponent(jCloseConnectionLabel)
-                    .addComponent(jExitLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jGoBackLabel)
+                            .addComponent(jCloseConnectionLabel)
+                            .addComponent(jExitLabel)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel1)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSearchLabel))
-                .addGap(308, 308, 308))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSearchLabel)
+                            .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDeleteLabel))))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
 
@@ -254,6 +282,7 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jCloseConnectionLabel;
+    private javax.swing.JLabel jDeleteLabel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;

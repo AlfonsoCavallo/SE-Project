@@ -16,11 +16,22 @@ public class PlannedActivity extends MaintenanceActivity
     
     private String standardProcedure;
     
-    public PlannedActivity(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+    public PlannedActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week, String standardProcedure)
     {
-        super(IDActivity, activityName, timeNedeed, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
         this.standardProcedure = standardProcedure;
+    }
+
+    public String getStandardProcedure()
+    {
+        return standardProcedure;
+    }
+    
+    @Override
+    public Object[] getDataModel()
+    {
+        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(), isInterruptible(), getTypology(), getActivityDescription(), getWeek(), getStandardProcedure()};
     }
     
 }

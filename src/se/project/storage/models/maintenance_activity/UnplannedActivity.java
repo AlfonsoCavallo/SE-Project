@@ -14,10 +14,10 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 public abstract class UnplannedActivity extends MaintenanceActivity
 {
     
-    public UnplannedActivity(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+    public UnplannedActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(IDActivity, activityName, timeNedeed, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
     }
     
 }

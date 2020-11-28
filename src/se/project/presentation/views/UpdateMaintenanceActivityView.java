@@ -9,7 +9,6 @@ package se.project.presentation.views;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import se.project.business_logic.controllers.UpdateMaintenanceActivityController;
 
 
 /**
@@ -19,7 +18,6 @@ import se.project.business_logic.controllers.UpdateMaintenanceActivityController
 public class UpdateMaintenanceActivityView extends javax.swing.JFrame
 {
      private DefaultTableModel defaultTableModel;
-     private UpdateMaintenanceActivityController updateMaintenanceActivityController;
 
     /**
      * Creates new form UpdateMaintenanceActivityView
@@ -27,7 +25,14 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
     public UpdateMaintenanceActivityView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel();
+        this.defaultTableModel = new DefaultTableModel()
+        {
+             @Override
+           public boolean isCellEditable(int row, int column)
+           {
+               return false; // So all cells are be not editable
+           }
+        };        
         Object columns[] = {"Name", "Time Needed", "Interruptible", "Typology", "Description", 
                             "Week", "Planned", "EWO", "Standard Procedure"};
         this.defaultTableModel.setColumnIdentifiers(columns);
@@ -54,7 +59,11 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
     {
         return jCloseConnectionLabel;
     }
-    
+
+    public DefaultTableModel getDefaultTableModel()
+    {
+        return defaultTableModel;
+    }
     
     
     /**

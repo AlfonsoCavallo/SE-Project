@@ -36,7 +36,7 @@ public class MaintenanceActivityRepoTest
     {
     }
     
-    @Before
+    /*@Before
     public void setUp()
     {
         resetDatabase();
@@ -53,7 +53,7 @@ public class MaintenanceActivityRepoTest
         {
             
         }
-    }
+    }*/
 
     // Tests for Query
     

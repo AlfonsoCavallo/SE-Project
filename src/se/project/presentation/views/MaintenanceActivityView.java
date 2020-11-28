@@ -36,11 +36,6 @@ public class MaintenanceActivityView extends javax.swing.JFrame
         return jCloseConnectionLabel;
     }
 
-    public JPanel getjDeleteMaintenancePanel()
-    {
-        return jDeleteMaintenancePanel;
-    }
-
     public JLabel getjExitLabel()
     {
         return jExitLabel;
@@ -58,7 +53,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
 
     public JPanel getjViewMaintenancePanel()
     {
-        return jViewMaintenancePanel;
+        return jViewDeleteMaintenancePanel;
     }
     
     /**
@@ -82,12 +77,9 @@ public class MaintenanceActivityView extends javax.swing.JFrame
         jUpdateMaintenancePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jViewMaintenancePanel = new javax.swing.JPanel();
+        jViewDeleteMaintenancePanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jDeleteMaintenancePanel = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -125,7 +117,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jAddMaintenancePanelLayout.setVerticalGroup(
             jAddMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +150,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jUpdateMaintenancePanelLayout.setVerticalGroup(
             jUpdateMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,68 +165,36 @@ public class MaintenanceActivityView extends javax.swing.JFrame
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jViewMaintenancePanel.setBackground(new java.awt.Color(188, 180, 169));
-        jViewMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jViewMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
+        jViewDeleteMaintenancePanel.setBackground(new java.awt.Color(188, 180, 169));
+        jViewDeleteMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jViewDeleteMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_analyze_50px.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setText("View Maintenance Activity");
+        jLabel8.setText("View & Delete Maintenance Activity");
 
-        javax.swing.GroupLayout jViewMaintenancePanelLayout = new javax.swing.GroupLayout(jViewMaintenancePanel);
-        jViewMaintenancePanel.setLayout(jViewMaintenancePanelLayout);
-        jViewMaintenancePanelLayout.setHorizontalGroup(
-            jViewMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jViewMaintenancePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jViewDeleteMaintenancePanelLayout = new javax.swing.GroupLayout(jViewDeleteMaintenancePanel);
+        jViewDeleteMaintenancePanel.setLayout(jViewDeleteMaintenancePanelLayout);
+        jViewDeleteMaintenancePanelLayout.setHorizontalGroup(
+            jViewDeleteMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-        jViewMaintenancePanelLayout.setVerticalGroup(
-            jViewMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jViewMaintenancePanelLayout.createSequentialGroup()
+        jViewDeleteMaintenancePanelLayout.setVerticalGroup(
+            jViewDeleteMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel4)
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jViewMaintenancePanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(26, 26, 26))
-        );
-
-        jDeleteMaintenancePanel.setBackground(new java.awt.Color(188, 180, 169));
-        jDeleteMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jDeleteMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_delete_file_50px.png"))); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setText("Delete Maintenance Activity");
-
-        javax.swing.GroupLayout jDeleteMaintenancePanelLayout = new javax.swing.GroupLayout(jDeleteMaintenancePanel);
-        jDeleteMaintenancePanel.setLayout(jDeleteMaintenancePanelLayout);
-        jDeleteMaintenancePanelLayout.setHorizontalGroup(
-            jDeleteMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDeleteMaintenancePanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-        jDeleteMaintenancePanelLayout.setVerticalGroup(
-            jDeleteMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDeleteMaintenancePanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jDeleteMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDeleteMaintenancePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(10, 10, 10)))
-                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -252,19 +212,16 @@ public class MaintenanceActivityView extends javax.swing.JFrame
                         .addComponent(jExitLabel)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 109, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jViewMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jAddMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(139, 139, 139)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDeleteMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jUpdateMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(110, 110, 110))))
+                        .addGap(0, 266, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(247, 247, 247))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(247, 247, 247))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jUpdateMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jViewDeleteMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAddMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(347, 347, 347))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,15 +234,13 @@ public class MaintenanceActivityView extends javax.swing.JFrame
                     .addComponent(jCloseConnectionLabel))
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
-                .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jUpdateMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jAddMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jViewMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDeleteMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addGap(83, 83, 83)
+                .addComponent(jAddMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(jViewDeleteMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(jUpdateMaintenancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -351,20 +306,17 @@ public class MaintenanceActivityView extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jAddMaintenancePanel;
     private javax.swing.JLabel jCloseConnectionLabel;
-    private javax.swing.JPanel jDeleteMaintenancePanel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jUpdateMaintenancePanel;
-    private javax.swing.JPanel jViewMaintenancePanel;
+    private javax.swing.JPanel jViewDeleteMaintenancePanel;
     // End of variables declaration//GEN-END:variables
 }
