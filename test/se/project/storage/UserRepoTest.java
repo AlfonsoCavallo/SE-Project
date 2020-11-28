@@ -143,6 +143,7 @@ public class UserRepoTest
             instance.queryDeleteUser(unvailableUsername);
             usersAfterDelete = instance.queryAllUsers();
             assertEquals(newUsersSize, usersAfterDelete.size());
+            closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
         {
@@ -150,5 +151,112 @@ public class UserRepoTest
             fail();
         }
         
+    }
+    
+    @Test
+    public void testAddQuery()
+    {
+       try
+        {
+            // Test queryAddUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test adding a system administrator 
+            SystemAdministrator saUser = new SystemAdministrator("front", "front@front.com", "front", "man", "front", "system_administrator");
+            LinkedList<User> users = instance.queryAllUsers();
+            int usersSize = users.size();
+            instance.queryAddUser(saUser);
+            LinkedList<User> usersAfterAdd = instance.queryAllUsers();
+            assertEquals(usersSize + 1, usersAfterAdd.size());
+            
+            String username = saUser.getUsername();
+            LinkedList<User> user = instance.queryViewOneUser(username);
+            assertEquals(1, user.size());
+            
+            // Test adding a planner
+            Planner planner = new Planner("black", "black@black.com", "black", "jack", "black", "planner");
+            users = instance.queryAllUsers();
+            usersSize = users.size();
+            instance.queryAddUser(planner);
+            usersAfterAdd = instance.queryAllUsers();
+            assertEquals(usersSize + 1, usersAfterAdd.size());
+            
+            username = planner.getUsername();
+            user = instance.queryViewOneUser(username);
+            assertEquals(1, user.size());
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        } 
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testAddExistingUser()
+    {
+        try
+        {
+            // Test queryAddUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test queryAddUser method adding an existing username
+            Planner planner = new Planner("jon", "black@black.com", "black", "jack", "black", "planner");
+            instance.queryAddUser(planner);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }        
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testAddExistingEmail()
+    {
+        try
+        {
+            // Test queryAddUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test queryAddUser method adding an existing email
+            Planner planner = new Planner("black", "jon@jon.it", "black", "jack", "black", "planner");
+            instance.queryAddUser(planner);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }        
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testAddEmptyField()
+    {
+        try
+        {
+            // Test queryAddUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test queryAddUser method adding a user with an empty mandatory field
+            Planner planner = new Planner("black", "jon@jon.it", null , "jack", "black", "planner");
+            instance.queryAddUser(planner);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }        
     }
 }

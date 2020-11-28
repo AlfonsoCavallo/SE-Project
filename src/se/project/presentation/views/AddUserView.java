@@ -84,6 +84,35 @@ public class AddUserView extends javax.swing.JFrame
         return this.jClearPanel;
     }
     
+    public void resetjUsernameTextField()
+    {
+        this.jUsernameTextField.setText("");
+    }
+    
+    public void resetjNameTextField()
+    {
+        this.jNameTextField.setText("");
+    }
+    
+    public void resetjSurnameTextField()
+    {
+        this.jSurnameTextField.setText("");
+    }
+    
+    public void resetjEmailTextField()
+    {
+        this.jEmailTextField.setText("");
+    }
+    
+    public void resetjPasswordField()
+    {
+        this.jPasswordField.setText("");
+    }
+    
+    public void resetjRoleComboBox()
+    {
+        this.jRoleComboBox.setSelectedIndex(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
