@@ -22,6 +22,7 @@ public class UserRepo extends AbstractRepo
 {
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
     private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
+    private final String QUERY_DELETE_USER_PATH = "/se/project/assets/query/QueryDeleteUser.sql";
     
     public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {
@@ -36,6 +37,13 @@ public class UserRepo extends AbstractRepo
         String query = getStringFromFile(QUERY_VIEW_ONE_USER_PATH);
         query = query.replaceAll("username_param", username);
         return queryUserList(query);
+    }
+    
+    public void queryDeleteUser(String username) throws IOException, SQLException
+    {
+        String query = getStringFromFile(QUERY_DELETE_USER_PATH);
+        query = query.replaceAll("username_param", username);
+        executeStatement(query);
     }
     
     private LinkedList<User> queryUserList(String query) throws SQLException

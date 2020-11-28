@@ -41,6 +41,11 @@ public class ViewUsersView extends javax.swing.JFrame
         return this.jTextField.getText();
     }
     
+    public void resetUsernameField()
+    {
+        this.jTextField.setText("");
+    }
+    
     public JLabel getjSearchLabel()
     {
         return jSearchLabel;
@@ -59,6 +64,11 @@ public class ViewUsersView extends javax.swing.JFrame
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
+    }
+    
+    public JLabel getjDeleteLabel()
+    {
+        return jDeleteLabel;
     }
     
     public DefaultTableModel getTableModel()
@@ -85,6 +95,7 @@ public class ViewUsersView extends javax.swing.JFrame
         jTextField = new javax.swing.JTextField();
         jSearchLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jDeleteLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -131,6 +142,9 @@ public class ViewUsersView extends javax.swing.JFrame
     jLabel3.setForeground(new java.awt.Color(204, 204, 204));
     jLabel3.setText("Search by Username");
 
+    jDeleteLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_waste_50px.png"))); // NOI18N
+    jDeleteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -152,14 +166,16 @@ public class ViewUsersView extends javax.swing.JFrame
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(82, 82, 82)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel3)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jSearchLabel)))
-            .addGap(59, 59, 59))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jSearchLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jDeleteLabel)))
+            .addGap(29, 29, 29))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,9 +193,14 @@ public class ViewUsersView extends javax.swing.JFrame
                     .addComponent(jLabel3)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSearchLabel)
-                        .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(295, 295, 295))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSearchLabel)
+                                .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(295, 295, 295))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jDeleteLabel)
+                            .addGap(315, 315, 315))))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(109, 109, 109))))
@@ -251,6 +272,7 @@ public class ViewUsersView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jCloseConnectionLabel;
+    private javax.swing.JLabel jDeleteLabel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
