@@ -5,11 +5,12 @@
  */
 package se.project.presentation.views;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
-import static se.project.storage.DatabaseConnection.closeConnection;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import se.project.business_logic.controllers.UpdateMaintenanceActivityController;
+
 
 /**
  *
@@ -17,6 +18,8 @@ import static se.project.storage.DatabaseConnection.closeConnection;
  */
 public class UpdateMaintenanceActivityView extends javax.swing.JFrame
 {
+     private DefaultTableModel defaultTableModel;
+     private UpdateMaintenanceActivityController updateMaintenanceActivityController;
 
     /**
      * Creates new form UpdateMaintenanceActivityView
@@ -24,8 +27,30 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
     public UpdateMaintenanceActivityView()
     {
         initComponents();
+        this.defaultTableModel = new DefaultTableModel();
+        Object columns[] = {"Name", "Time Needed", "Interruptible", "Typology", "Description", 
+                            "Week", "Planned", "EWO", "Standard Procedure"};
+        this.defaultTableModel.setColumnIdentifiers(columns);
+        this.jTable.setModel(this.defaultTableModel);
+        this.setVisible(true);
     }
 
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
+
+    public JPanel getjUpdateMaintenanceProcedurePanel()
+    {
+        return jUpdateMaintenanceProcedurePanel;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,37 +79,16 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jGoBackLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jGoBackLabelMouseClicked(evt);
-            }
-        });
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Update Maintenance Procedure ");
+        jLabel1.setText("Update Maintenance Activity ");
 
         jTable.setBackground(new java.awt.Color(188, 180, 169));
         jTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -106,18 +110,11 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
         jUpdateMaintenanceProcedurePanel.setBackground(new java.awt.Color(188, 180, 169));
         jUpdateMaintenanceProcedurePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jUpdateMaintenanceProcedurePanel.setPreferredSize(new java.awt.Dimension(251, 52));
-        jUpdateMaintenanceProcedurePanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jUpdateMaintenanceProcedurePanelMouseClicked(evt);
-            }
-        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_restart_30px.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Update Maintenance Procedure ");
+        jLabel3.setText("Update Maintenance Activity ");
 
         javax.swing.GroupLayout jUpdateMaintenanceProcedurePanelLayout = new javax.swing.GroupLayout(jUpdateMaintenanceProcedurePanel);
         jUpdateMaintenanceProcedurePanel.setLayout(jUpdateMaintenanceProcedurePanelLayout);
@@ -128,7 +125,7 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jUpdateMaintenanceProcedurePanelLayout.setVerticalGroup(
             jUpdateMaintenanceProcedurePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,18 +152,18 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
                         .addComponent(jExitLabel)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 338, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(293, 293, 293))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(453, 453, 453)
-                        .addComponent(jUpdateMaintenanceProcedurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 199, Short.MAX_VALUE))
+                        .addComponent(jUpdateMaintenanceProcedurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,35 +196,6 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(UpdateMaintenanceActivityView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
-
-    private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
-    {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
-        dispose();
-        // goBackMaintenanceActivityPage(getConnection());
-    }//GEN-LAST:event_jGoBackLabelMouseClicked
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jUpdateMaintenanceProcedurePanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jUpdateMaintenanceProcedurePanelMouseClicked
-    {//GEN-HEADEREND:event_jUpdateMaintenanceProcedurePanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jUpdateMaintenanceProcedurePanelMouseClicked
 
     /**
      * @param args the command line arguments
