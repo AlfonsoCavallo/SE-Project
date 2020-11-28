@@ -9,6 +9,7 @@ import java.sql.Connection;
 import javax.swing.JFrame;
 import se.project.presentation.views.LoginView;
 import se.project.presentation.views.MaintenanceActivityView;
+import se.project.presentation.views.PlannerHomepageView;
 import se.project.presentation.views.SAHomepageView;
 
 /**
@@ -38,8 +39,8 @@ public class MainController
     
     public static JFrame openPlannerHomePage(Connection connection)
     {
-        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
-        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        return maintenanceActivityView;
+        PlannerHomepageView plannerHomepageView = new PlannerHomepageView();
+        PlannerHomepageController plannerHomepageController = new PlannerHomepageController(plannerHomepageView);
+        return plannerHomepageView;
     }
 }

@@ -5,6 +5,9 @@
  */
 package se.project.presentation.views;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Giacomo
@@ -18,6 +21,27 @@ public class PlannerHomepageView extends javax.swing.JFrame
     public PlannerHomepageView()
     {
         initComponents();
+        this.setVisible(true);
+    }
+    
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
+    
+    public JPanel getjMaintenanceActivityPanel()
+    {
+        return jMaintenanceActivityPanel;
     }
 
     /**
