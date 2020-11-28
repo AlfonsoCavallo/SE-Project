@@ -77,10 +77,10 @@ public class UserRepoTest
             
             // Tests expected elements
             User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
-            assertEquals(users.getFirst(), expectedFirstElement);
+            assertEquals(expectedFirstElement, users.getFirst());
             
             User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null);
-            assertEquals(users.getLast(), expectedLastElement);
+            assertEquals(expectedLastElement, users.getLast());
             
             closeConnection();
         } 
@@ -104,13 +104,13 @@ public class UserRepoTest
             String username = "finneas";
             LinkedList<User> user = instance.queryViewOneUser(username);
             User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
-            assertEquals(1, user.size());
+            assertEquals(user.size(), 1);
             assertEquals(expectedUser, user.getFirst());
             
             // Test unvailable user
             String unvailable_username = "unvailable";
             user = instance.queryViewOneUser(unvailable_username);
-            assertEquals(user.size(), 0);
+            assertEquals(0, user.size());
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)

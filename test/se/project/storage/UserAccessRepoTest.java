@@ -75,10 +75,10 @@ public class UserAccessRepoTest
             
             // Tests expected elements
             UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
-            assertEquals(userAccesses.getFirst(), expectedFirstElement);
+            assertEquals(expectedFirstElement, userAccesses.getFirst());
             
             UserAccess expectedLastElement = new UserAccess(2, "jon", LocalDateTime.of(2020, Month.NOVEMBER, 25, 15, 00, 0, 0));
-            assertEquals(userAccesses.getLast(), expectedLastElement);
+            assertEquals(expectedLastElement, userAccesses.getLast());
             
             closeConnection();
         }
@@ -102,11 +102,11 @@ public class UserAccessRepoTest
             // Tests expected elements
             UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
             assertEquals(userAccesses.size(), 1);
-            assertEquals(userAccesses.getFirst(), expectedFirstElement);
+            assertEquals(expectedFirstElement, userAccesses.getFirst());
             
             // Tests unavailable user
             userAccesses = instance.queryUserAccesses("unavailable_user");
-            assertEquals(userAccesses.size(), 0);
+            assertEquals(0, userAccesses.size());
             closeConnection();
         }
         catch(SQLException | ClassNotFoundException | IOException ex)
@@ -130,8 +130,8 @@ public class UserAccessRepoTest
             // Tests correct insertion
             instance.storeUserAccess(modelToStore);
             LinkedList<UserAccess> userAccesses = instance.queryUserAccesses("finneas");
-            assertEquals(userAccesses.size(), 2);
-            assertEquals(userAccesses.getLast(), modelToStore);
+            assertEquals(2, userAccesses.size());
+            assertEquals(modelToStore, userAccesses.getLast());
             
             closeConnection();
         }
