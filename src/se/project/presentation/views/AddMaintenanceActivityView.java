@@ -5,11 +5,11 @@
  */
 package se.project.presentation.views;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
-import static se.project.storage.DatabaseConnection.closeConnection;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -24,7 +24,80 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
     public AddMaintenanceActivityView()
     {
         initComponents();
+        this.setVisible(true);
     }
+
+    public JPanel getjAddPanel()
+    {
+        return jAddPanel;
+    }
+
+    public JPanel getjClearPanel()
+    {
+        return jClearPanel;
+    }
+
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
+
+    public JTextArea getjDescriptionTextArea()
+    {
+        return jDescriptionTextArea;
+    }
+
+    public JComboBox<String> getjEWOComboBox()
+    {
+        return jEWOComboBox;
+    }
+
+    public JComboBox<String> getjInterruptibleComboBox()
+    {
+        return jInterruptibleComboBox;
+    }
+
+    public JTextField getjNameTextField()
+    {
+        return jNameTextField;
+    }
+
+    public JComboBox<String> getjPlannedComboBox()
+    {
+        return jPlannedComboBox;
+    }
+
+    public JTextField getjStandardProcedureTextField()
+    {
+        return jStandardProcedureTextField;
+    }
+
+    public JTextField getjTimeTextField()
+    {
+        return jTimeTextField;
+    }
+
+    public JComboBox<String> getjTypologyComboBox()
+    {
+        return jTypologyComboBox;
+    }
+
+    public JComboBox<String> getjWeekComboBox()
+    {
+        return jWeekComboBox;
+    }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,47 +148,19 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jGoBackLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jGoBackLabelMouseClicked(evt);
-            }
-        });
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Add Maintenance Procedure");
+        jLabel1.setText("Add Maintenance Activity");
 
         jNameTextField.setBackground(new java.awt.Color(188, 180, 169));
         jNameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jNameTextField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jNameTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
@@ -123,13 +168,6 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
 
         jTimeTextField.setBackground(new java.awt.Color(188, 180, 169));
         jTimeTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTimeTextField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jTimeTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -187,13 +225,6 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
 
         jStandardProcedureTextField.setBackground(new java.awt.Color(188, 180, 169));
         jStandardProcedureTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jStandardProcedureTextField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jStandardProcedureTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
@@ -201,13 +232,6 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
 
         jAddPanel.setBackground(new java.awt.Color(188, 180, 169));
         jAddPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jAddPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jAddPanelMouseClicked(evt);
-            }
-        });
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_plus_30px.png"))); // NOI18N
 
@@ -237,13 +261,6 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
 
         jClearPanel.setBackground(new java.awt.Color(188, 180, 169));
         jClearPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jClearPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jClearPanelMouseClicked(evt);
-            }
-        });
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_broom_30px.png"))); // NOI18N
 
@@ -275,10 +292,6 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(332, 332, 332)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,13 +329,17 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
                                     .addComponent(jLabel7)
                                     .addComponent(jWeekComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10))))
-                        .addGap(138, 138, 138))))
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141)
+                        .addComponent(jClearPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(314, 314, 314))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141)
-                .addComponent(jClearPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(314, 314, 314))
+                .addComponent(jLabel1)
+                .addGap(353, 353, 353))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,9 +358,9 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -400,55 +417,6 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(AddMaintenanceActivityView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
-
-    private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
-    {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
-        dispose();
-        // goBackMaintenanceActivityPage(getConnection());
-    }//GEN-LAST:event_jGoBackLabelMouseClicked
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jNameTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jNameTextFieldActionPerformed
-    {//GEN-HEADEREND:event_jNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNameTextFieldActionPerformed
-
-    private void jTimeTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTimeTextFieldActionPerformed
-    {//GEN-HEADEREND:event_jTimeTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTimeTextFieldActionPerformed
-
-    private void jStandardProcedureTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jStandardProcedureTextFieldActionPerformed
-    {//GEN-HEADEREND:event_jStandardProcedureTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jStandardProcedureTextFieldActionPerformed
-
-    private void jAddPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jAddPanelMouseClicked
-    {//GEN-HEADEREND:event_jAddPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jAddPanelMouseClicked
-
-    private void jClearPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jClearPanelMouseClicked
-    {//GEN-HEADEREND:event_jClearPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jClearPanelMouseClicked
 
     /**
      * @param args the command line arguments
