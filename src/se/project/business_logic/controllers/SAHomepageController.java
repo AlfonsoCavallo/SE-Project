@@ -86,6 +86,7 @@ public class SAHomepageController
     public static JFrame openUserInfoPage(Connection connection)
     {
         UserInfoView userInfoView = new UserInfoView();
+        UserInfoController userInfoController = new UserInfoController(userInfoView);
         return userInfoView;
     }
     
