@@ -96,7 +96,7 @@ public class UserInfoController
     public static JFrame openAddUserPage()
     {
         AddUserView addUserView = new AddUserView();
-        AddUserController addUserController = new AddUserController(/*addUserView*/);
+        AddUserController addUserController = new AddUserController(addUserView);
         return addUserView;
     }
     

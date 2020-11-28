@@ -54,6 +54,8 @@ public abstract class User
         return surname;
     }
     
+    public abstract String getRole();
+    
     public abstract Object[] getDataModel();
     
     @Override

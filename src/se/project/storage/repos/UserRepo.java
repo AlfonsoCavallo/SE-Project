@@ -23,6 +23,7 @@ public class UserRepo extends AbstractRepo
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
     private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
     private final String QUERY_DELETE_USER_PATH = "/se/project/assets/query/QueryDeleteUser.sql";
+    private final String QUERY_ADD_USER_PATH = "/se/project/assets/query/QueryAddUser.sql";
     
     public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {
@@ -43,6 +44,24 @@ public class UserRepo extends AbstractRepo
     {
         String query = getStringFromFile(QUERY_DELETE_USER_PATH);
         query = query.replaceAll("username_param", username);
+        executeStatement(query);
+    }
+    
+    public void queryAddUser(User user) throws IOException, SQLException
+    {
+        String query = getStringFromFile(QUERY_ADD_USER_PATH);
+        String username = user.getUsername();
+        String name = user.getName();
+        String surname = user.getSurname();
+        String email = user.getEmail();
+        String role = user.getRole();
+        String password = user.getPassword();
+        query = query.replaceAll("username_param", username);
+        query = query.replaceAll("surname_param", surname);
+        query = query.replaceAll("name_param", name);
+        query = query.replaceAll("email_param", email);
+        query = query.replaceAll("role_param", role);
+        query = query.replaceAll("password_param", password);
         executeStatement(query);
     }
     
