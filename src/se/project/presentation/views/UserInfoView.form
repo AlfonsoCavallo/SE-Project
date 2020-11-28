@@ -113,9 +113,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCloseConnectionLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jExitLabel">
           <Properties>
@@ -126,9 +123,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jExitLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jGoBackLabel">
           <Properties>
@@ -139,9 +133,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jGoBackLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -166,9 +157,6 @@
               <Dimension value="[430, 89]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jAddUserPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -230,9 +218,6 @@
               <Dimension value="[430, 89]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jUpdateUserPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -291,9 +276,6 @@
               <Dimension value="[430, 89]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jDeleteUserPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -355,9 +337,6 @@
               <Dimension value="[430, 89]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jViewUserPanelMouseClicked"/>
-          </Events>
 
           <Layout>
             <DimensionLayout dim="0">

@@ -5,19 +5,15 @@
  */
 package se.project.presentation.views;
 
-import java.sql.SQLException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
-import static se.project.business_logic.controllers.MainController.openSystemAdministratorHomePage;
-import static se.project.business_logic.controllers.UserInfoController.goBackSystemAdministratorHomepage;
-import static se.project.business_logic.controllers.UserInfoController.openAddUserPage;
-import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.storage.DatabaseConnection.getConnection;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Giorgio
+ * @author Giacomo
  */
 public class UserInfoView extends javax.swing.JFrame
 {
@@ -31,6 +27,40 @@ public class UserInfoView extends javax.swing.JFrame
         this.setVisible(true);
     }
 
+    public JPanel getjAddUserPanel()
+    {
+      return this.jAddUserPanel ; 
+    }
+    
+    public JPanel getjViewUserPanel()
+    {
+      return this.jViewUserPanel ; 
+    }
+    
+    public JPanel getjDeleteUserPanel()
+    {
+      return this.jDeleteUserPanel ; 
+    }
+    
+    public JPanel getjUpdateUserPanel()
+    {
+      return this.jUpdateUserPanel ; 
+    }
+    
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,33 +96,12 @@ public class UserInfoView extends javax.swing.JFrame
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jGoBackLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jGoBackLabelMouseClicked(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -101,13 +110,6 @@ public class UserInfoView extends javax.swing.JFrame
         jAddUserPanel.setBackground(new java.awt.Color(188, 180, 169));
         jAddUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jAddUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
-        jAddUserPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jAddUserPanelMouseClicked(evt);
-            }
-        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_add_user_male_50px.png"))); // NOI18N
 
@@ -141,13 +143,6 @@ public class UserInfoView extends javax.swing.JFrame
         jUpdateUserPanel.setBackground(new java.awt.Color(188, 180, 169));
         jUpdateUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jUpdateUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
-        jUpdateUserPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jUpdateUserPanelMouseClicked(evt);
-            }
-        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_registration_50px.png"))); // NOI18N
 
@@ -180,13 +175,6 @@ public class UserInfoView extends javax.swing.JFrame
         jDeleteUserPanel.setBackground(new java.awt.Color(188, 180, 169));
         jDeleteUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jDeleteUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
-        jDeleteUserPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jDeleteUserPanelMouseClicked(evt);
-            }
-        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_denied_50px.png"))); // NOI18N
 
@@ -220,13 +208,6 @@ public class UserInfoView extends javax.swing.JFrame
         jViewUserPanel.setBackground(new java.awt.Color(188, 180, 169));
         jViewUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jViewUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
-        jViewUserPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jViewUserPanelMouseClicked(evt);
-            }
-        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_user_menu_male_50px.png"))); // NOI18N
 
@@ -321,51 +302,6 @@ public class UserInfoView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(UserInfoView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
-
-    private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
-    {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
-        dispose();
-        goBackSystemAdministratorHomepage(getConnection());
-    }//GEN-LAST:event_jGoBackLabelMouseClicked
-
-    private void jDeleteUserPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jDeleteUserPanelMouseClicked
-    {//GEN-HEADEREND:event_jDeleteUserPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jDeleteUserPanelMouseClicked
-
-    private void jUpdateUserPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jUpdateUserPanelMouseClicked
-    {//GEN-HEADEREND:event_jUpdateUserPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jUpdateUserPanelMouseClicked
-
-    private void jAddUserPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jAddUserPanelMouseClicked
-    {//GEN-HEADEREND:event_jAddUserPanelMouseClicked
-        dispose();
-        openAddUserPage(getConnection());
-    }//GEN-LAST:event_jAddUserPanelMouseClicked
-
-    private void jViewUserPanelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jViewUserPanelMouseClicked
-    {//GEN-HEADEREND:event_jViewUserPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jViewUserPanelMouseClicked
 
     /**
      * @param args the command line arguments
