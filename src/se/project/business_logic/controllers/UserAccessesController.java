@@ -24,7 +24,7 @@ import static se.project.storage.DatabaseConnection.*;
 public class UserAccessesController
 {
 
-    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could net get user accesses from database.";
+    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get user accesses from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     
     private final UserAccessesView userAccessesView;
