@@ -131,7 +131,7 @@ public class ViewUsersView extends javax.swing.JFrame
 
     jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
     jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-    jLabel1.setText("View Users");
+    jLabel1.setText("View & Delete Users");
 
     jTextField.setBackground(new java.awt.Color(188, 180, 169));
 
@@ -150,23 +150,21 @@ public class ViewUsersView extends javax.swing.JFrame
     jPanel1Layout.setHorizontalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jCloseConnectionLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jGoBackLabel)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jExitLabel))
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(507, 507, 507)
-                    .addComponent(jLabel1)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap()
+            .addComponent(jCloseConnectionLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jGoBackLabel)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jExitLabel)
             .addContainerGap())
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(82, 82, 82)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel1)
+                    .addGap(8, 8, 8)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLabel3)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -185,9 +183,9 @@ public class ViewUsersView extends javax.swing.JFrame
                 .addComponent(jGoBackLabel)
                 .addComponent(jExitLabel)
                 .addComponent(jCloseConnectionLabel))
-            .addGap(29, 29, 29)
+            .addGap(26, 26, 26)
             .addComponent(jLabel1)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addComponent(jLabel3)
