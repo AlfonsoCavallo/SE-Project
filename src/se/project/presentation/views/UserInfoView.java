@@ -37,11 +37,6 @@ public class UserInfoView extends javax.swing.JFrame
       return this.jViewUserPanel ; 
     }
     
-    public JPanel getjDeleteUserPanel()
-    {
-      return this.jDeleteUserPanel ; 
-    }
-    
     public JPanel getjUpdateUserPanel()
     {
       return this.jUpdateUserPanel ; 
@@ -82,12 +77,9 @@ public class UserInfoView extends javax.swing.JFrame
         jUpdateUserPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jDeleteUserPanel = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jViewUserPanel = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -172,47 +164,14 @@ public class UserInfoView extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jDeleteUserPanel.setBackground(new java.awt.Color(188, 180, 169));
-        jDeleteUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jDeleteUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_denied_50px.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setText("Delete User");
-
-        javax.swing.GroupLayout jDeleteUserPanelLayout = new javax.swing.GroupLayout(jDeleteUserPanel);
-        jDeleteUserPanel.setLayout(jDeleteUserPanelLayout);
-        jDeleteUserPanelLayout.setHorizontalGroup(
-            jDeleteUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDeleteUserPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addContainerGap(217, Short.MAX_VALUE))
-        );
-        jDeleteUserPanelLayout.setVerticalGroup(
-            jDeleteUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDeleteUserPanelLayout.createSequentialGroup()
-                .addGroup(jDeleteUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDeleteUserPanelLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel4))
-                    .addGroup(jDeleteUserPanelLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel7)))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
         jViewUserPanel.setBackground(new java.awt.Color(188, 180, 169));
         jViewUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jViewUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_user_menu_male_50px.png"))); // NOI18N
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setText("View User");
+        jLabel9.setText("View & Delete Users");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_denied_50px.png"))); // NOI18N
 
         javax.swing.GroupLayout jViewUserPanelLayout = new javax.swing.GroupLayout(jViewUserPanel);
         jViewUserPanel.setLayout(jViewUserPanelLayout);
@@ -220,21 +179,21 @@ public class UserInfoView extends javax.swing.JFrame
             jViewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jViewUserPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel8)
+                .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jViewUserPanelLayout.setVerticalGroup(
             jViewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jViewUserPanelLayout.createSequentialGroup()
                 .addGroup(jViewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jViewUserPanelLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel8))
-                    .addGroup(jViewUserPanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel9)))
+                        .addComponent(jLabel9))
+                    .addGroup(jViewUserPanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel4)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -253,19 +212,16 @@ public class UserInfoView extends javax.swing.JFrame
                         .addComponent(jExitLabel)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 418, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(420, 420, 420))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jUpdateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jViewUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jAddUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jUpdateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDeleteUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 151, Short.MAX_VALUE))
+                .addGap(395, 395, 395))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,15 +233,13 @@ public class UserInfoView extends javax.swing.JFrame
                     .addComponent(jCloseConnectionLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(121, 121, 121)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jUpdateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jAddUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(jAddUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jViewUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDeleteUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addComponent(jViewUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(jUpdateUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -351,7 +305,6 @@ public class UserInfoView extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jAddUserPanel;
     private javax.swing.JLabel jCloseConnectionLabel;
-    private javax.swing.JPanel jDeleteUserPanel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
@@ -360,8 +313,6 @@ public class UserInfoView extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jUpdateUserPanel;
