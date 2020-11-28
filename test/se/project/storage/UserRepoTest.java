@@ -76,10 +76,10 @@ public class UserRepoTest
             LinkedList<User> users = instance.queryAllUsers();
             
             // Tests expected elements
-            User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
+            User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null, "system_administrator");
             assertEquals(users.getFirst(), expectedFirstElement);
             
-            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null);
+            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null, "planner");
             assertEquals(users.getLast(), expectedLastElement);
             
             closeConnection();
@@ -103,7 +103,7 @@ public class UserRepoTest
             // Test existing user
             String username = "finneas";
             LinkedList<User> user = instance.queryViewOneUser(username);
-            User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
+            User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null, "system_administrator");
             assertEquals(1, user.size());
             assertEquals(expectedUser, user.getFirst());
             

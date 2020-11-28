@@ -96,6 +96,7 @@ public class ViewUsersController
     
     public void viewUsers()
     {
+        DefaultTableModel tableModel = viewUsersView.getTableModel();
         LinkedList<User> users;
         try
         {
@@ -108,7 +109,17 @@ public class ViewUsersController
             {
                 users = userRepo.queryAllUsers();
             }
-           
+            // Clears the model
+            while(tableModel.getRowCount() > 0)
+            {
+                tableModel.removeRow(0);
+            }
+            
+            // Iterates over users
+            for(User user : users)
+            {
+                tableModel.addRow(user.getDataModel());
+            }
         }
         catch (IOException ex)
         {

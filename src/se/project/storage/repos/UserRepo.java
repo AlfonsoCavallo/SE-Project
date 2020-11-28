@@ -55,9 +55,9 @@ public class UserRepo extends AbstractRepo
             //String password = resultSet.getString("pass");
             String role = resultSet.getString("user_role");
             if(role.equals("system_administrator"))
-                output.add(new SystemAdministrator(username, email, name, surname, null));
+                output.add(new SystemAdministrator(username, email, name, surname, null, role));
             else if(role.equals("planner"))
-                output.add(new Planner(username, email, name, surname, null));
+                output.add(new Planner(username, email, name, surname, null, role));
         }
         
         return output;        

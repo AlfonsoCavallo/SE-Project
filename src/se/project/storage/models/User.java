@@ -53,7 +53,9 @@ public abstract class User
     {
         return surname;
     }
-
+    
+    public abstract Object[] getDataModel();
+    
     @Override
     public boolean equals(Object obj)
     {
