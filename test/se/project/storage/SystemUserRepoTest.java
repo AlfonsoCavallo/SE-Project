@@ -10,9 +10,6 @@ import se.project.storage.repos.SystemUserRepo;
 import se.project.storage.models.SystemUser;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -21,7 +18,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.models.SystemUser.Role.*;
 import static se.project.storage.DatabaseConnection.*;
-import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
 
 /**
@@ -74,13 +70,13 @@ public class SystemUserRepoTest
             // Tests query for an SA user
             SystemUserRepo systemAdministratorRepo = new SystemUserRepo();
             connect("finneas", "finneas".toCharArray());
-            assertEquals(systemAdministratorRepo.queryCurrentUser(), new SystemUser(SYSTEM_ADMINISTRATOR, "finneas", null));
+            assertEquals(new SystemUser(SYSTEM_ADMINISTRATOR, "finneas", null), systemAdministratorRepo.queryCurrentUser());
             closeConnection();
             
             // Test query for a Planner user
             SystemUserRepo plannerRepo = new SystemUserRepo();
             connect("jon", "jon".toCharArray());
-            assertEquals(plannerRepo.queryCurrentUser(), new SystemUser(PLANNER, "jon", null));
+            assertEquals(new SystemUser(PLANNER, "jon", null), plannerRepo.queryCurrentUser());
             closeConnection();
         }
         catch(ClassNotFoundException | SQLException | IOException ex)

@@ -110,7 +110,7 @@ public class UserRepoTest
             // Test unvailable user
             String unvailable_username = "unvailable";
             user = instance.queryViewOneUser(unvailable_username);
-            assertEquals(user.size(), 0);
+            assertEquals(0, user.size());
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
