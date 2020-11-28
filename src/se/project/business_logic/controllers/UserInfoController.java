@@ -5,11 +5,9 @@
  */
 package se.project.business_logic.controllers;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import se.project.presentation.views.AddUserView;
-import se.project.presentation.views.DeleteUserView;
 import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UpdateUserView;
 import se.project.presentation.views.UserInfoView;
@@ -47,15 +45,6 @@ public class UserInfoController
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openViewUserPage();
-                userInfoView.dispose();
-            }
-        });
-        
-        userInfoView.getjDeleteUserPanel().addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                openDeleteUserPage();
                 userInfoView.dispose();
             }
         });
@@ -116,11 +105,6 @@ public class UserInfoController
         ViewUsersView viewUserView = new ViewUsersView();
         ViewUsersController viewUsersController = new ViewUsersController(viewUserView);
         return viewUserView;
-    }
-    public static JFrame openDeleteUserPage()
-    {
-        DeleteUserView deleteUserView = new DeleteUserView();
-        return deleteUserView;
     }
     
     public static JFrame openUpdateUserPage()

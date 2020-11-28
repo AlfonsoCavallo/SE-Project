@@ -85,7 +85,7 @@
                               <Component id="jSurnameTextField" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jPasswordField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jComboBox1" min="-2" pref="268" max="-2" attributes="0"/>
+                              <Component id="jRoleComboBox" min="-2" pref="268" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
                       </Group>
@@ -146,7 +146,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jEmailTextField" max="32767" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="jRoleComboBox" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="158" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -168,9 +168,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jExitLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jGoBackLabel">
           <Properties>
@@ -181,9 +178,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jGoBackLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jCloseConnectionLabel">
           <Properties>
@@ -194,9 +188,6 @@
               <Color id="Cursore mano"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCloseConnectionLabelMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -378,7 +369,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="jRoleComboBox">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a9" green="b4" red="bc" type="rgb"/>
@@ -419,7 +410,7 @@
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="113" max="32767" attributes="0"/>
+                      <EmptySpace pref="118" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

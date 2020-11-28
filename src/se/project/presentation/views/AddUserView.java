@@ -8,6 +8,9 @@ package se.project.presentation.views;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import static se.project.business_logic.controllers.AddUserController.goBackUserInfoPage;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import static se.project.storage.DatabaseConnection.closeConnection;
@@ -20,15 +23,67 @@ import static se.project.storage.DatabaseConnection.getConnection;
 public class AddUserView extends javax.swing.JFrame
 {
 
-    /**
-     * Creates new form AddUserView
-     */
     public AddUserView()
     {
         initComponents();
         this.setVisible(true);
     }
 
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
+    
+    public String getUsername()
+    {
+        return this.jUsernameTextField.getText();
+    }
+    
+    public String getNameUser()
+    {
+        return this.jNameTextField.getText();
+    }
+    
+    public String getSurname()
+    {
+        return this.jSurnameTextField.getText();
+    }
+    
+    public String getEmail()
+    {
+        return this.jEmailTextField.getText();
+    }
+    
+    public  char[] getPassword()
+    {
+        return this.jPasswordField.getPassword();
+    }
+    
+    public String getRole()
+    {
+        return (String)this.jRoleComboBox.getSelectedItem();
+    }
+    
+    public JPanel getjAddPanel()
+    {
+        return this.jAddPanel;
+    }
+    
+    public JPanel getjClearPanel()
+    {
+        return this.jClearPanel;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +113,7 @@ public class AddUserView extends javax.swing.JFrame
         jAddPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jRoleComboBox = new javax.swing.JComboBox<>();
         jClearPanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -71,33 +126,12 @@ public class AddUserView extends javax.swing.JFrame
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jExitLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jExitLabelMouseClicked(evt);
-            }
-        });
 
         jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jGoBackLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jGoBackLabelMouseClicked(evt);
-            }
-        });
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCloseConnectionLabel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jCloseConnectionLabelMouseClicked(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -171,9 +205,9 @@ public class AddUserView extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jComboBox1.setBackground(new java.awt.Color(188, 180, 169));
-        jComboBox1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sistem_administrator", "planner", "maintainer" }));
+        jRoleComboBox.setBackground(new java.awt.Color(188, 180, 169));
+        jRoleComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sistem_administrator", "planner", "maintainer" }));
 
         jClearPanel.setBackground(new java.awt.Color(188, 180, 169));
         jClearPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -242,7 +276,7 @@ public class AddUserView extends javax.swing.JFrame
                             .addComponent(jSurnameTextField)
                             .addComponent(jLabel6)
                             .addComponent(jPasswordField)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(264, 264, 264))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,7 +323,7 @@ public class AddUserView extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jEmailTextField)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,31 +345,6 @@ public class AddUserView extends javax.swing.JFrame
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jExitLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jExitLabelMouseClicked
-    {//GEN-HEADEREND:event_jExitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jExitLabelMouseClicked
-
-    private void jGoBackLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jGoBackLabelMouseClicked
-    {//GEN-HEADEREND:event_jGoBackLabelMouseClicked
-        dispose();
-        goBackUserInfoPage(getConnection());
-    }//GEN-LAST:event_jGoBackLabelMouseClicked
-
-    private void jCloseConnectionLabelMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jCloseConnectionLabelMouseClicked
-    {//GEN-HEADEREND:event_jCloseConnectionLabelMouseClicked
-        try
-        {
-            closeConnection();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(AddUserView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dispose();
-        openLoginPage();
-    }//GEN-LAST:event_jCloseConnectionLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -390,7 +399,6 @@ public class AddUserView extends javax.swing.JFrame
     private javax.swing.JPanel jAddPanel;
     private javax.swing.JPanel jClearPanel;
     private javax.swing.JLabel jCloseConnectionLabel;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTextField jEmailTextField;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
@@ -408,6 +416,7 @@ public class AddUserView extends javax.swing.JFrame
     private javax.swing.JTextField jNameTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JComboBox<String> jRoleComboBox;
     private javax.swing.JTextField jSurnameTextField;
     private javax.swing.JTextField jUsernameTextField;
     // End of variables declaration//GEN-END:variables

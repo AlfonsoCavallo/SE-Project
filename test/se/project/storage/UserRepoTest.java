@@ -76,10 +76,10 @@ public class UserRepoTest
             LinkedList<User> users = instance.queryAllUsers();
             
             // Tests expected elements
-            User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
+            User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null, "system_administrator");
             assertEquals(users.getFirst(), expectedFirstElement);
             
-            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null);
+            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null, "planner");
             assertEquals(users.getLast(), expectedLastElement);
             
             closeConnection();
@@ -103,14 +103,14 @@ public class UserRepoTest
             // Test existing user
             String username = "finneas";
             LinkedList<User> user = instance.queryViewOneUser(username);
-            User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null);
+            User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null, "system_administrator");
             assertEquals(1, user.size());
             assertEquals(expectedUser, user.getFirst());
             
             // Test unvailable user
-            String unvailable_username = "unvailable";
-            user = instance.queryViewOneUser(unvailable_username);
-            assertEquals(user.size(), 0);
+            String unvailableUsername = "unvailable";
+            user = instance.queryViewOneUser(unvailableUsername);
+            assertEquals(0, user.size());
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
@@ -118,5 +118,37 @@ public class UserRepoTest
             System.err.println(ex.getMessage());
             fail();
         }
+    }
+    
+    @Test
+    public void testQueryDeleteUser()
+    {
+        try
+        {
+            // Test queryDeleteUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test an available username
+            String username = "jon";
+            LinkedList<User> users = instance.queryAllUsers();
+            int usersSize = users.size();
+            instance.queryDeleteUser(username);
+            LinkedList<User> usersAfterDelete = instance.queryAllUsers();
+            int newUsersSize = usersAfterDelete.size();
+            assertEquals(usersSize - 1, newUsersSize);
+            
+            // Test an unvailable name
+            String unvailableUsername = "unvailable";
+            instance.queryDeleteUser(unvailableUsername);
+            usersAfterDelete = instance.queryAllUsers();
+            assertEquals(newUsersSize, usersAfterDelete.size());
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+        
     }
 }

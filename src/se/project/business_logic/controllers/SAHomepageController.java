@@ -34,7 +34,7 @@ public class SAHomepageController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                openUserInfoPage(null);
+                openUserInfoPage();
                 saHomepageView.dispose();
             }
         });
@@ -43,19 +43,11 @@ public class SAHomepageController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                openRecordAccessPage(null);
+                openRecordAccessPage();
                 saHomepageView.dispose();
             }
         });
         
-        saHomepageView.getjMaintenanceProceduresPanel().addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                openMaintenanceProceduresPage(null);
-                saHomepageView.dispose();
-            }
-        });
         
         saHomepageView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -83,22 +75,17 @@ public class SAHomepageController
         });
     }
     
-    public static JFrame openUserInfoPage(Connection connection)
+    public static JFrame openUserInfoPage()
     {
         UserInfoView userInfoView = new UserInfoView();
+        UserInfoController userInfoController = new UserInfoController(userInfoView);
         return userInfoView;
     }
     
-    public static JFrame openRecordAccessPage(Connection connection)
+    public static JFrame openRecordAccessPage()
     {
         UserAccessesView userAccessesView = new UserAccessesView();
         UserAccessesController userAccessesController = new UserAccessesController(userAccessesView);
         return userAccessesView;
     }
-    
-    public static JFrame openMaintenanceProceduresPage(Connection connection)
-    {
-        return null;
-    } 
-    
 }

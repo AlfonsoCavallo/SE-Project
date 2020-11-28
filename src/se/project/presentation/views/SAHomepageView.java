@@ -45,11 +45,6 @@ public class SAHomepageView extends javax.swing.JFrame
         return jExitLabel;
     }
 
-    public JPanel getjMaintenanceProceduresPanel()
-    {
-        return jMaintenanceProceduresPanel;
-    }
-
     public JPanel getjUserInfoPanel()
     {
         return jUserInfoPanel;
@@ -75,9 +70,6 @@ public class SAHomepageView extends javax.swing.JFrame
         jAccessRecordPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jMaintenanceProceduresPanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -153,35 +145,6 @@ public class SAHomepageView extends javax.swing.JFrame
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jMaintenanceProceduresPanel.setBackground(new java.awt.Color(188, 180, 169));
-        jMaintenanceProceduresPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_engineering_50px.png"))); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 28)); // NOI18N
-        jLabel9.setText("Maintenance Procedures");
-
-        javax.swing.GroupLayout jMaintenanceProceduresPanelLayout = new javax.swing.GroupLayout(jMaintenanceProceduresPanel);
-        jMaintenanceProceduresPanel.setLayout(jMaintenanceProceduresPanelLayout);
-        jMaintenanceProceduresPanelLayout.setHorizontalGroup(
-            jMaintenanceProceduresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jMaintenanceProceduresPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(20, 20, 20))
-        );
-        jMaintenanceProceduresPanelLayout.setVerticalGroup(
-            jMaintenanceProceduresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jMaintenanceProceduresPanelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jMaintenanceProceduresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel6))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/SA_Homepage.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -199,7 +162,6 @@ public class SAHomepageView extends javax.swing.JFrame
                                 .addGap(42, 42, 42)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jAccessRecordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jMaintenanceProceduresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jUserInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11))
@@ -223,9 +185,7 @@ public class SAHomepageView extends javax.swing.JFrame
                         .addGap(93, 93, 93)
                         .addComponent(jUserInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(jAccessRecordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jMaintenanceProceduresPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jAccessRecordPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel11))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -302,11 +262,8 @@ public class SAHomepageView extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jMaintenanceProceduresPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jUserInfoPanel;
     // End of variables declaration//GEN-END:variables

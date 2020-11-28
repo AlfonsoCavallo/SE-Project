@@ -5,17 +5,11 @@
  */
 package se.project.presentation.views;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
-import se.project.business_logic.controllers.ViewUsersController;
-import static se.project.business_logic.controllers.ViewUsersController.goBackUserInfoPage;
-import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.storage.DatabaseConnection.getConnection;
+
 
 /**
  *
@@ -28,7 +22,14 @@ public class ViewUsersView extends javax.swing.JFrame
     public ViewUsersView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel();
+        this.defaultTableModel = new DefaultTableModel()
+        {
+            @Override
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;//This causes all cells to be not editable
+            }
+        };
         Object columns[] = {"Username", "Name", "Surname", "E-mail", "Role"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
@@ -38,6 +39,11 @@ public class ViewUsersView extends javax.swing.JFrame
     public String getUsername()
     {
         return this.jTextField.getText();
+    }
+    
+    public void resetUsernameField()
+    {
+        this.jTextField.setText("");
     }
     
     public JLabel getjSearchLabel()
@@ -59,6 +65,16 @@ public class ViewUsersView extends javax.swing.JFrame
     {
         return jGoBackLabel;
     }
+    
+    public JLabel getjDeleteLabel()
+    {
+        return jDeleteLabel;
+    }
+    
+    public DefaultTableModel getTableModel()
+    {
+        return this.defaultTableModel;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,6 +95,7 @@ public class ViewUsersView extends javax.swing.JFrame
         jTextField = new javax.swing.JTextField();
         jSearchLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jDeleteLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -108,89 +125,100 @@ public class ViewUsersView extends javax.swing.JFrame
             {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
-        jScrollPane1.setViewportView(jTable);
+        )
+    );
+    jScrollPane1.setViewportView(jTable);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("View Users");
+    jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
+    jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+    jLabel1.setText("View Users");
 
-        jTextField.setBackground(new java.awt.Color(188, 180, 169));
+    jTextField.setBackground(new java.awt.Color(188, 180, 169));
 
-        jSearchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_search_50px.png"))); // NOI18N
-        jSearchLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    jSearchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_search_50px.png"))); // NOI18N
+    jSearchLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("Search by Username");
+    jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+    jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+    jLabel3.setText("Search by Username");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jCloseConnectionLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jGoBackLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jExitLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(507, 507, 507)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSearchLabel)))
-                .addGap(59, 59, 59))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    jDeleteLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_waste_50px.png"))); // NOI18N
+    jDeleteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jCloseConnectionLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jGoBackLabel)
-                    .addComponent(jExitLabel)
-                    .addComponent(jCloseConnectionLabel))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSearchLabel)
-                            .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(295, 295, 295))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))))
-        );
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jExitLabel))
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(507, 507, 507)
+                    .addComponent(jLabel1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(82, 82, 82)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jSearchLabel)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jDeleteLabel)))
+            .addGap(29, 29, 29))
+    );
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jGoBackLabel)
+                .addComponent(jExitLabel)
+                .addComponent(jCloseConnectionLabel))
+            .addGap(29, 29, 29)
+            .addComponent(jLabel1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel3)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSearchLabel)
+                                .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(295, 295, 295))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jDeleteLabel)
+                            .addGap(315, 315, 315))))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(109, 109, 109))))
+    );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
 
-        pack();
-        setLocationRelativeTo(null);
+    pack();
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -244,6 +272,7 @@ public class ViewUsersView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jCloseConnectionLabel;
+    private javax.swing.JLabel jDeleteLabel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
