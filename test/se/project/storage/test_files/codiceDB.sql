@@ -135,7 +135,7 @@ create table maintenance_system.user_data (
 alter table maintenance_system.user_access
    add constraint fk_access_login_user_data foreign key (username_access_ref)
       references maintenance_system.user_data (username)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.afferent
    add constraint fk_afferent_afferent_maintena foreign key (id_activity_afferent_ref)
@@ -150,12 +150,12 @@ alter table maintenance_system.afferent
 alter table maintenance_system.competence_needed
    add constraint fk_competen_competenc_maintena foreign key (id_activity_competence_needed_ref)
       references maintenance_system.maintenance_activity (id_activity)
-      on delete restrict on update restrict;
+      on delete cascade on update restrict;
 
 alter table maintenance_system.competence_needed
    add constraint fk_competen_competenc_competen foreign key (competence_name_needed_ref)
       references maintenance_system.competence (competence_name)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.material_needed
    add constraint fk_material_materialn_material foreign key (material_name_ref)

@@ -108,8 +108,8 @@ public class UserRepoTest
             assertEquals(expectedUser, user.getFirst());
             
             // Test unvailable user
-            String unvailable_username = "unvailable";
-            user = instance.queryViewOneUser(unvailable_username);
+            String unvailableUsername = "unvailable";
+            user = instance.queryViewOneUser(unvailableUsername);
             assertEquals(0, user.size());
             closeConnection();
         } 
@@ -118,5 +118,37 @@ public class UserRepoTest
             System.err.println(ex.getMessage());
             fail();
         }
+    }
+    
+    @Test
+    public void testQueryDeleteUser()
+    {
+        try
+        {
+            // Test queryDeleteUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test an available username
+            String username = "jon";
+            LinkedList<User> users = instance.queryAllUsers();
+            int usersSize = users.size();
+            instance.queryDeleteUser(username);
+            LinkedList<User> usersAfterDelete = instance.queryAllUsers();
+            int newUsersSize = usersAfterDelete.size();
+            assertEquals(usersSize - 1, newUsersSize);
+            
+            // Test an unvailable name
+            String unvailableUsername = "unvailable";
+            instance.queryDeleteUser(unvailableUsername);
+            usersAfterDelete = instance.queryAllUsers();
+            assertEquals(newUsersSize, usersAfterDelete.size());
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+        
     }
 }
