@@ -189,6 +189,9 @@ values('finneas', '2020-11-26 15:30:02');
 insert into maintenance_system.user_access(username_access_ref, access_time)
 values('jon', '2020-11-25 15:00:00');
 
+insert into maintenance_system.maintenance_activity(id_activity, activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
+values(1,'attività1', 45, 'yes', 'electrical', 'riparazione turbina 3', 2, 'yes', null, '1... 2... 3...');
+
 grant all privileges on all tables in schema maintenance_system to finneas;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to finneas;
 
