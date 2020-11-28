@@ -49,6 +49,12 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
     {
         return jUpdateMaintenanceProcedurePanel;
     }
+
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+    
     
     
     /**

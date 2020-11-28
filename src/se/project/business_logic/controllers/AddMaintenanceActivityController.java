@@ -5,7 +5,12 @@
  */
 package se.project.business_logic.controllers;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JFrame;
 import se.project.presentation.views.AddMaintenanceActivityView;
+import se.project.presentation.views.MaintenanceActivityView;
+import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**
  *
@@ -23,7 +28,47 @@ public class AddMaintenanceActivityController
     
     public void initListeners()
     {
-        //addMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        addMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                try
+                {
+                    closeConnection();
+                }
+                catch (SQLException ex)
+                {
+                    System.err.println(ex.getMessage());
+                }
+                addMaintenanceActivityView.dispose();
+                MainController.openLoginPage();
+            }
+        });
+
+        addMaintenanceActivityView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                goBackMaintenanceActivityPage(null);
+                addMaintenanceActivityView.dispose();
+            }       
+        });
+
+        addMaintenanceActivityView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                System.exit(0);
+            }
+        });        
         
     }
+    
+    public static JFrame goBackMaintenanceActivityPage(Connection connection)
+    {
+        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
+        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
+        return maintenanceActivityView;
+    }
+    
 }
