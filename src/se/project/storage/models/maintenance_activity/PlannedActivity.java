@@ -31,7 +31,8 @@ public class PlannedActivity extends MaintenanceActivity
     @Override
     public Object[] getDataModel()
     {
-        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(), isInterruptible(), getTypology(), getActivityDescription(), getWeek(), getStandardProcedure()};
+        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(),
+            isInterruptible(), getTypology().getValue(), getActivityDescription(), getWeek(), "yes", "no", getStandardProcedure()};
     }
     
 }
