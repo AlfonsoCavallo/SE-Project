@@ -68,8 +68,8 @@ create table maintenance_system.maintenance_activity (
    check (planned in ('yes','no')),
    check (interruptible in ('yes','no')),
    check (typology in ('electrical','electronic', 'hydraulic', 'mechanical')),
-   check ((planned='no' and standard_procedure is null and ewo is not null) or
-          (planned='yes' and standard_procedure is not null and ewo is null)),
+   check ((planned='no' and standard_procedure = '-' and ewo is not null) or
+          (planned='yes' and standard_procedure is not null and ewo = 'no')),
    check (ewo in ('yes','no')),
    check ((week >= 1) and (week <= 52)),
    constraint pk_maintenance_activity primary key (id_activity),
@@ -189,18 +189,18 @@ values('finneas', '2020-11-26 15:30:02');
 insert into maintenance_system.user_access(username_access_ref, access_time)
 values('jon', '2020-11-25 15:00:00');
 
-insert into maintenance_system.maintenance_activity(id_activity, activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
-values(1,'activity1', 45, 'yes', 'electrical', 'riparazione turbina 3', 2, 'yes', null, '1... 2... 3...');
+insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
+values('activity1', 45, 'yes', 'electrical', 'riparazione turbina 3', 2, 'yes', null, '1... 2... 3...');
 
-insert into maintenance_system.maintenance_activity(id_activity, activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
-values(2,'activity2', 30, 'yes', 'hydraulic', 'riparazione turbina 5', 3, 'yes', null, '4... 5... 6...');
+insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
+values('activity2', 30, 'yes', 'hydraulic', 'riparazione turbina 5', 3, 'yes', null, '4... 5... 6...');
 
 grant all privileges on all tables in schema maintenance_system to finneas;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to finneas;
 
 grant all privileges on all tables in schema maintenance_system to jon;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to jon;
-
+grant usage, select on sequence maintenance_system.maintenance_activity_id_activity_seq to jon;
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 

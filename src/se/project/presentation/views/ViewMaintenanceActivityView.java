@@ -76,8 +76,17 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
     {
         return defaultTableModel;
     }
-
     
+    public JTable getjTable()
+    {
+        return jTable;
+    }
+
+    public JTextField getjNameTextField()
+    {
+        return jNameTextField;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -223,18 +232,6 @@ public class ViewMaintenanceActivityView extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public JTable getjTable()
-    {
-        return jTable;
-    }
-
-    public JTextField getjNameTextField()
-    {
-        return jNameTextField;
-    }
-    
-    
-    
     /**
      * @param args the command line arguments
      */

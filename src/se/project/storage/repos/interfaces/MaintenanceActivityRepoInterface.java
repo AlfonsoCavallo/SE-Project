@@ -25,4 +25,7 @@ public interface MaintenanceActivityRepoInterface
     
     public void queryDeleteMaintenanceActivity(String activity_name) throws IOException, SQLException;
     // Delete a specific maintenance activity
+    
+    public void queryAddMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException;
+    // Add a new maintenance activity
 }

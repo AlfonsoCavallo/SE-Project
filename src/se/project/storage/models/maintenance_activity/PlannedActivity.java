@@ -5,8 +5,6 @@
  */
 package se.project.storage.models.maintenance_activity;
 
-import se.project.storage.models.maintenance_activity.MaintenanceActivity;
-
 /**
  *
  * @author delso
@@ -15,14 +13,28 @@ public class PlannedActivity extends MaintenanceActivity
 {
     
     private String standardProcedure;
+    private String planned;
+    private String ewo;
     
     public PlannedActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week, String standardProcedure)
     {
         super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
         this.standardProcedure = standardProcedure;
+        this.planned = "yes";
+        this.ewo = "no";
+    }
+    
+    public PlannedActivity(String activityName, int timeNeeded, boolean interruptible, 
+            Typology typology, String activityDescription, int week, String standardProcedure)
+    {
+        super(activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        this.standardProcedure = standardProcedure;
+        this.planned = "yes";
+        this.ewo = "no";
     }
 
+    @Override
     public String getStandardProcedure()
     {
         return standardProcedure;
@@ -32,7 +44,18 @@ public class PlannedActivity extends MaintenanceActivity
     public Object[] getDataModel()
     {
         return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(),
-            isInterruptible(), getTypology().getValue(), getActivityDescription(), getWeek(), "yes", "no", getStandardProcedure()};
+            isInterruptible(), getTypology().getValue(), getActivityDescription(), getWeek(), isPlanned(), isEWO(), getStandardProcedure()};
     }
-    
+
+    @Override
+    public String isPlanned()
+    {
+        return this.planned;
+    }
+
+    @Override
+    public String isEWO()
+    {
+        return this.ewo;
+    }
 }

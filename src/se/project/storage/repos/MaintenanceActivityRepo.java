@@ -24,9 +24,10 @@ import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
  */
 public class MaintenanceActivityRepo extends AbstractRepo implements MaintenanceActivityRepoInterface     
 {
-    private String QUERY_ALL_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAllMaintenanceActivity.sql";
-    private String QUERY_VIEW_ONE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryViewOneMaintenanceActivity.sql";
-    private String QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryDeleteMaintenanceActivity.sql";
+    private final String QUERY_ALL_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAllMaintenanceActivity.sql";
+    private final String QUERY_VIEW_ONE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryViewOneMaintenanceActivity.sql";
+    private final String QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryDeleteMaintenanceActivity.sql";
+    private final String QUERY_ADD_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAddMaintenanceActivity.sql";
     
     @Override
     public LinkedList<MaintenanceActivity> queryAllMaintenanceActivity() throws IOException, SQLException
@@ -53,6 +54,33 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         executeStatement(query);
     }
     
+    @Override
+    public void queryAddMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException
+    {
+        String query = getStringFromFile(QUERY_ADD_MAINTENANCE_ACTIVITY_PATH);
+        
+        String activityName = maintenanceActivity.getActivityName();
+        int timeNeeded = maintenanceActivity.getTimeNeeded();
+        String interruptible = maintenanceActivity.isInterruptible();
+        String typology = maintenanceActivity.getTypology().getValue();
+        String activityDescription = maintenanceActivity.getActivityDescription();
+        int week = maintenanceActivity.getWeek();
+        String planned = maintenanceActivity.isPlanned();
+        String ewo = maintenanceActivity.isEWO();
+        String standardProcedure = maintenanceActivity.getStandardProcedure();
+        
+        query = query.replaceAll("activity_name_param", activityName);
+        query = query.replaceAll("time_needed_param", String.valueOf(timeNeeded));
+        query = query.replaceAll("interruptible_param", interruptible);
+        query = query.replaceAll("typology_param", String.valueOf(typology));
+        query = query.replaceAll("activity_description_param", activityDescription);
+        query = query.replaceAll("week_param", String.valueOf(week));
+        query = query.replaceAll("planned_param", planned);
+        query = query.replaceAll("ewo_param", ewo);
+        query = query.replaceAll("standard_param", standardProcedure);
+        executeStatement(query);
+    }
+    
     private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException
     {
         ResultSet resultSet = super.queryDatabase(query);
@@ -62,7 +90,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         {
             int IDActivity = resultSet.getInt("id_activity");
             String activityName = resultSet.getString("activity_name");
-            int timeNedeed = resultSet.getInt("time_needed");
+            int timeNeeded = resultSet.getInt("time_needed");
             boolean interruptible = resultSet.getBoolean("interruptible");
             Typology typology = fromString(resultSet.getString("typology"));
             String activityDescription = resultSet.getString("activity_description");
@@ -72,13 +100,13 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String standardProcedure = resultSet.getString("standard_procedure");
             
             if(planned.equals("yes"))
-                output.add(new PlannedActivity(IDActivity, activityName, timeNedeed, interruptible, 
+                output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, interruptible, 
                             typology, activityDescription, week, standardProcedure));
             else if(ewo.equals("yes"))
-                output.add(new EWO(IDActivity, activityName, timeNedeed, interruptible, 
+                output.add(new EWO(IDActivity, activityName, timeNeeded, interruptible, 
                             typology, activityDescription, week));
             else if(ewo.equals("no"))
-                output.add(new ExtraActivity(IDActivity, activityName, timeNedeed, interruptible, 
+                output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, interruptible, 
                             typology, activityDescription, week));
         }
         return output;

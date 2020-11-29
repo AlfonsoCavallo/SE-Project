@@ -5,11 +5,8 @@
  */
 package se.project.presentation.views;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
@@ -52,50 +49,98 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         return jGoBackLabel;
     }
 
-    public JTextArea getjDescriptionTextArea()
+    public String getjDescriptionTextArea()
     {
-        return jDescriptionTextArea;
+        return this.jDescriptionTextArea.getText();
     }
 
-    public JComboBox<String> getjEWOComboBox()
+    public String getjEWOComboBox()
     {
-        return jEWOComboBox;
+        return this.jEWOComboBox.getSelectedItem().toString();
     }
 
-    public JComboBox<String> getjInterruptibleComboBox()
+    public String getjInterruptibleComboBox()
     {
-        return jInterruptibleComboBox;
+        return this.jInterruptibleComboBox.getSelectedItem().toString();
     }
 
-    public JTextField getjNameTextField()
+    public String getjNameTextField()
     {
-        return jNameTextField;
+        return this.jNameTextField.getText();
     }
 
-    public JComboBox<String> getjPlannedComboBox()
+    public String getjPlannedComboBox()
     {
-        return jPlannedComboBox;
+        return this.jPlannedComboBox.getSelectedItem().toString();
     }
 
-    public JTextField getjStandardProcedureTextField()
+    public String getjStandardProcedureTextField()
     {
-        return jStandardProcedureTextField;
+        return this.jStandardProcedureTextField.getText();
     }
 
-    public JTextField getjTimeTextField()
+    public String getjTimeTextField()
     {
-        return jTimeTextField;
+        return this.jTimeTextField.getText();
     }
 
-    public JComboBox<String> getjTypologyComboBox()
+    public String getjTypologyComboBox()
     {
-        return jTypologyComboBox;
+        return this.jTypologyComboBox.getSelectedItem().toString();
     }
 
-    public JComboBox<String> getjWeekComboBox()
+    public String getjWeekComboBox()
     {
-        return jWeekComboBox;
+        return this.jWeekComboBox.getSelectedItem().toString();
     }
+
+    public void resetjDescriptionTextArea()
+    {
+        this.jDescriptionTextArea.setText("");
+    }
+
+    public void resetjNameTextField()
+    {
+        this.jNameTextField.setText("");
+    }
+
+    public void resetjStandardProcedureTextField()
+    {
+        this.jStandardProcedureTextField.setText("");
+    }
+
+    public void resetjTimeTextField()
+    {
+        this.jTimeTextField.setText("");
+    }
+
+    public void resetjEWOComboBox()
+    {
+        this.jEWOComboBox.setSelectedIndex(0);
+    }
+
+    public void resetjInterruptibleComboBox()
+    {
+        this.jInterruptibleComboBox.setSelectedIndex(0);
+    }
+
+    public void resetjPlannedComboBox()
+    {
+        this.jPlannedComboBox.setSelectedIndex(0);
+    }
+
+    public void resetjTypologyComboBox()
+    {
+        this.jTypologyComboBox.setSelectedIndex(0);
+    }
+
+    public void resetjWeekComboBox()
+    {
+        this.jWeekComboBox.setSelectedIndex(0);
+    }
+    
+    
+    
     
  
 
@@ -221,7 +266,7 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
 
         jEWOComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jEWOComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jEWOComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
+        jEWOComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "no", "yes" }));
 
         jStandardProcedureTextField.setBackground(new java.awt.Color(188, 180, 169));
         jStandardProcedureTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N

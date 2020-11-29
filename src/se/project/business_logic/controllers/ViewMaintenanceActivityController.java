@@ -27,6 +27,7 @@ public class ViewMaintenanceActivityController
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get maintenance activities from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query."; 
     private final String CONFIRM_DELETION_MESSAGE = "Are you sure to delete \" activity_name_param \"?";
+    private final String SELECT_DELETION_MESSAGE = "Please, select a maintenance activity before deleting!";
     
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
     private MaintenanceActivityRepo maintenanceActivityRepo = null;
@@ -142,7 +143,8 @@ public class ViewMaintenanceActivityController
     {
         try
         {
-            String nameToDelete = viewMaintenanceActivityView.getName();
+            int row = viewMaintenanceActivityView.getjTable().getSelectedRow();
+            String nameToDelete = viewMaintenanceActivityView.getjTable().getValueAt(row, 1).toString();
             if(!nameToDelete.equals(""))
             {
                 String confirmMessage = CONFIRM_DELETION_MESSAGE.replaceAll("activity_name_param", nameToDelete);
@@ -161,6 +163,10 @@ public class ViewMaintenanceActivityController
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
+        }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), SELECT_DELETION_MESSAGE);
         }
     }        
     

@@ -11,7 +11,7 @@ package se.project.storage.models.maintenance_activity;
  */
 public abstract class MaintenanceActivity
 {
-    private int IDActivity;
+    private int IDActivity = -1;
     private String activityName;
     private int timeNeeded;
     private boolean interruptible;
@@ -62,6 +62,17 @@ public abstract class MaintenanceActivity
         this.week = week;
     }
     
+    public MaintenanceActivity(String activityName, int timeNeeded, boolean interruptible, 
+            Typology typology, String activityDescription, int week)
+    {
+        this.activityName = activityName;
+        this.timeNeeded = timeNeeded;
+        this.interruptible = interruptible;
+        this.typology = typology;
+        this.activityDescription = activityDescription;
+        this.week = week;
+    }
+    
    public int getIdActivity()
    {
        return IDActivity;
@@ -77,9 +88,15 @@ public abstract class MaintenanceActivity
        return timeNeeded;
    }        
    
-   public boolean isInterruptible()
+   public String isInterruptible()
    {
-       return interruptible;
+       String output;
+       
+       if(this.interruptible == true)
+          output = "yes";
+       else
+           output = "no";
+       return output;
    }        
    
    public Typology getTypology()
@@ -96,6 +113,12 @@ public abstract class MaintenanceActivity
    {
        return week;
    }
+   
+   public abstract String isPlanned();
+   
+   public abstract String isEWO();
+   
+   public abstract String getStandardProcedure();
    
    public abstract Object[] getDataModel();
            

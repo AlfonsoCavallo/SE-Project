@@ -21,9 +21,6 @@ import static se.project.storage.DatabaseConnection.closeConnection;
  */
 public class MaintenanceActivityController
 {
-    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get maintenance activities from database.";
-    private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query."; 
-    
     private final MaintenanceActivityView maintenanceActivityView;
     
     public MaintenanceActivityController(MaintenanceActivityView maintenanceActivityView)
