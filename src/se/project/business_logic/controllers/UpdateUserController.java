@@ -51,7 +51,7 @@ public class UpdateUserController
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 updateUser();
-                viewUsers(false);
+                //viewUsers(false);
             }
         });
         
@@ -142,11 +142,10 @@ public class UpdateUserController
     public void viewUsers(boolean showPassword)
     {
         DefaultTableModel tableModel = updateUserView.getTableModel();
-        LinkedList<User> users;
         int columnNumber = this.updateUserView.getTable().getColumnCount();
         try
         {
-            users = userRepo.queryAllUsers();
+            LinkedList<User> users = userRepo.queryAllUsers();
             usernameList.clear();
            
             // Clears the model
