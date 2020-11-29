@@ -29,4 +29,9 @@ public class Planner extends User
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole()};
     }
     
+    public Object[] getDataPasswordModel()
+    {
+        return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole(), getPassword()};
+    }
+    
 }

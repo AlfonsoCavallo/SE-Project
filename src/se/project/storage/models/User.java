@@ -58,6 +58,8 @@ public abstract class User
     
     public abstract Object[] getDataModel();
     
+    public abstract Object[] getDataPasswordModel();
+    
     @Override
     public boolean equals(Object obj)
     {

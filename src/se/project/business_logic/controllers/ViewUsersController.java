@@ -8,8 +8,6 @@ package se.project.business_logic.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
@@ -30,6 +28,7 @@ public class ViewUsersController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query."; 
     private final String CONFIRM_DELETION_MESSAGE = "Are you sure to delete \"username_param\"?";
     private final String DELETED_MESSAGE = "User \"username_param\" has been removed successfully!";
+    private final String SELECT_USER_MESSAGE = "Please, select a user before deleting!";
     
     private final ViewUsersView viewUsersView;
     private UserRepo userRepo = null;
@@ -143,7 +142,8 @@ public class ViewUsersController
     {
         try
         {
-            String usernameToDelete =  viewUsersView.getUsername();
+            int row = viewUsersView.getTable().getSelectedRow();
+            String usernameToDelete = viewUsersView.getTable().getValueAt(row, 0).toString();
             if(!usernameToDelete.equals(""))
             {
                 String confirmMessage = CONFIRM_DELETION_MESSAGE.replaceAll("username_param", usernameToDelete);
@@ -165,5 +165,9 @@ public class ViewUsersController
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         } 
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), SELECT_USER_MESSAGE);
+        }
     }
 }

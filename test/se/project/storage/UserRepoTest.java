@@ -8,8 +8,6 @@ package se.project.storage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -57,6 +55,7 @@ public class UserRepoTest
     {
         try
         {
+            resetDatabase();
             closeConnection();
         }
         catch (SQLException ex)
@@ -111,6 +110,7 @@ public class UserRepoTest
             String unvailableUsername = "unvailable";
             user = instance.queryViewOneUser(unvailableUsername);
             assertEquals(0, user.size());
+            
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
@@ -143,6 +143,7 @@ public class UserRepoTest
             instance.queryDeleteUser(unvailableUsername);
             usersAfterDelete = instance.queryAllUsers();
             assertEquals(newUsersSize, usersAfterDelete.size());
+            
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
@@ -185,6 +186,7 @@ public class UserRepoTest
             username = planner.getUsername();
             user = instance.queryViewOneUser(username);
             assertEquals(1, user.size());
+            
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
@@ -258,5 +260,215 @@ public class UserRepoTest
             System.err.println(ex.getMessage());
             fail();
         }        
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testAddEmptyString()
+    {
+        try
+        {
+            // Test queryAddUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test queryAddUser method adding a user with an empty string field
+            Planner planner = new Planner("black", "black@jon.it", "" , "jack", "black", "planner");
+            instance.queryAddUser(planner);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }        
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testAddInvalidRole()
+    {
+        try
+        {
+            // Test queryAddUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test queryAddUser method adding a user with an invalid role
+            Planner planner = new Planner("black", "black@black.it", "black" , "jack", "black", "invalid_role");
+            instance.queryAddUser(planner);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }        
+    }
+    
+    @Test
+    public void testQueryUpdateUser()
+    {
+        try
+        {
+            // Test queryUpdateUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test updating a planner username
+            Planner user = new Planner("jonathan", "jon@jon.it", "jon", "athan", "jon", "planner");
+            String oldUsername = "jon";
+            instance.queryUpdateUser(user, oldUsername);
+            String username = user.getUsername();
+            LinkedList<User> userSearched = instance.queryViewOneUser(username);
+            assertEquals(1, userSearched.size());
+            
+            // Test updating a system administrator username
+            SystemAdministrator saUser = new SystemAdministrator("fin", "finneas@finneas.it", "fin", "neas", "finneas", "system_administrator");
+            oldUsername = "finneas";
+            instance.queryUpdateUser(saUser, oldUsername);
+            username = saUser.getUsername();
+            userSearched = instance.queryViewOneUser(username);
+            assertEquals(1, userSearched.size());
+            
+            
+            // Test updating a planner attribute (email)
+            user = new Planner("jonathan", "newEmail@jon.com", "jon", "athan", "jon", "planner");
+            oldUsername = "jonathan";
+            instance.queryUpdateUser(user, oldUsername);
+            username = user.getUsername();
+            String email = user.getEmail();
+            userSearched = instance.queryViewOneUser(username);
+            assertEquals(1, userSearched.size());
+            assertEquals("newEmail@jon.com", email);
+            
+            closeConnection();
+            
+        } catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+        
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testUpdateWithExistingUsername()
+    {
+        try
+        {
+            // Test queryUpdateUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test updating user with an already existing username
+            Planner user = new Planner("finneas", "jon@jon.it", "jon", "athan", "jon", "planner");
+            String oldUsername = "jon";
+            instance.queryUpdateUser(user, oldUsername);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+            
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testUpdateWithExistingEmail()
+    {
+        try
+        {
+            // Test queryUpdateUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test updating user with an already existing email
+            Planner user = new Planner("jon", "finneas@finneas.it", "jon", "athan", "jon", "planner");
+            String oldUsername = "jon";
+            instance.queryUpdateUser(user, oldUsername);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+            
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testUpdateInvalidRole()
+    {
+        try
+        {
+            // Test queryUpdateUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test updating user with an invalid role
+            Planner user = new Planner("jon", "jon@jon.it", "jon", "athan", "jon", "invalid_role");
+            String oldUsername = "jon";
+            instance.queryUpdateUser(user, oldUsername);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+            
+    }
+    
+    @Test(expected = AssertionError.class)
+    public void testUpdateEmptyString()
+    {
+        try
+        {
+            // Test queryUpdateUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test updating user with an empty field
+            Planner user = new Planner("jon", "jon@jon.it", "jon", "", "jon", "planner");
+            String oldUsername = "jon";
+            instance.queryUpdateUser(user, oldUsername);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+            
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testUpdateNullField()
+    {
+        try
+        {
+            // Test queryUpdateUser method
+            connect(getTestUser());
+            UserRepo instance = new UserRepo();
+            
+            // Test updating user with a null mandatory field
+            Planner user = new Planner("jon", "jon@jon.it", "jon", null, "jon", "planner");
+            String oldUsername = "jon";
+            instance.queryUpdateUser(user, oldUsername);
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+            
     }
 }
