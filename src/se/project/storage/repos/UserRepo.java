@@ -99,12 +99,12 @@ public class UserRepo extends AbstractRepo
             String name = resultSet.getString("name_user");
             String surname = resultSet.getString("surname");
             String email = resultSet.getString("email");
-            //String password = resultSet.getString("pass");
+            String password = resultSet.getString("pass");
             String role = resultSet.getString("user_role");
             if(role.equals("system_administrator"))
-                output.add(new SystemAdministrator(username, email, name, surname, null, role));
+                output.add(new SystemAdministrator(username, email, name, surname, password, role));
             else if(role.equals("planner"))
-                output.add(new Planner(username, email, name, surname, null, role));
+                output.add(new Planner(username, email, name, surname, password, role));
         }
         
         return output;        

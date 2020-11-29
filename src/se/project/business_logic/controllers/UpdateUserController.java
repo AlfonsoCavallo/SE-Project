@@ -30,16 +30,19 @@ public class UpdateUserController
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update user in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String UPDATED_MESSAGE = "User \"username_param\" has been updated successfully!";
+    private final String QUERY_NULL_POINTER_MESSAGE = "All the fields must be filled!";
     
     private final UpdateUserView updateUserView;
     private UserRepo userRepo;
     private LinkedList<String> usernameList;
+    private int columnNumber;
 
     public UpdateUserController(UpdateUserView updateUserView)
     {
         this.updateUserView = updateUserView;
         this.userRepo = new UserRepo();
         this.usernameList = new LinkedList<>();
+        this.columnNumber = this.updateUserView.getTable().getColumnCount();
         initListeners();
         viewUsers(false);
     }
@@ -51,7 +54,7 @@ public class UpdateUserController
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 updateUser();
-                //viewUsers(false);
+                viewUsers(false);
             }
         });
         
@@ -59,7 +62,7 @@ public class UpdateUserController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                viewUsers(true);
+                showPassword();
             }
         });
         
@@ -108,12 +111,25 @@ public class UpdateUserController
     public void updateUser()
     {
         int row = updateUserView.getTable().getSelectedRow();
-        String username = updateUserView.getTable().getValueAt(row, 0).toString();
-        String name = updateUserView.getTable().getValueAt(row, 1).toString();
-        String surname = updateUserView.getTable().getValueAt(row, 2).toString();
-        String email = updateUserView.getTable().getValueAt(row, 3).toString();
-        String role = updateUserView.getTable().getValueAt(row, 4).toString();
-        String password = updateUserView.getTable().getValueAt(row, 5).toString();
+        String username = null;
+        String name = null;
+        String surname = null;
+        String email = null;
+        String role = null;
+        String password = null;
+        try
+        {
+            username = updateUserView.getTable().getValueAt(row, 0).toString();
+            name = updateUserView.getTable().getValueAt(row, 1).toString();
+            surname = updateUserView.getTable().getValueAt(row, 2).toString();
+            email = updateUserView.getTable().getValueAt(row, 3).toString();
+            role = updateUserView.getTable().getValueAt(row, 4).toString();
+            password = updateUserView.getTable().getValueAt(row, 5).toString();
+        }
+        catch (NullPointerException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), QUERY_NULL_POINTER_MESSAGE);
+        }
         User user = null;
         if(role.equals("system_administrator"))
         {
@@ -127,7 +143,8 @@ public class UpdateUserController
         {
             String oldUsername = this.usernameList.get(row);
             userRepo.queryUpdateUser(user, oldUsername);
-            JOptionPane.showMessageDialog(null, UPDATED_MESSAGE);
+            String updatedMessage = UPDATED_MESSAGE.replaceAll("username_param", username);
+            JOptionPane.showMessageDialog(null, updatedMessage);
         } 
         catch (IOException ex)
         {
@@ -137,12 +154,14 @@ public class UpdateUserController
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }
+        catch (NullPointerException ex)
+        {
+        }
     }
     
     public void viewUsers(boolean showPassword)
     {
         DefaultTableModel tableModel = updateUserView.getTableModel();
-        int columnNumber = this.updateUserView.getTable().getColumnCount();
         try
         {
             LinkedList<User> users = userRepo.queryAllUsers();
@@ -155,20 +174,27 @@ public class UpdateUserController
             }
             
             // Verifies if it must show password
-            if(!showPassword)
+            /*if(!showPassword)
             {               
-                updateUserView.getjShowPasswordLabel().setText("Show Passwords");
-                //this.updateUserView.getTable().removeColumn(updateUserView.getTable().getColumnModel().getColumn(columnNumber - 1));
+                
+                updateUserView.getTable().getColumnModel().removeColumn(updateUserView.getTable().getColumnModel().getColumn(columnNumber - 1));
             }
             else
             {
-                updateUserView.getjShowPasswordLabel().setText("Hide Passwords");
-            }
+                updateUserView.getTable().getColumnModel().addColumn(updateUserView.getTable().getColumnModel().getColumn(columnNumber - 1));
+            }*/
             
             // Iterates over users
             for(User user : users)
             {
-                tableModel.addRow(user.getDataPasswordModel());
+                if(!showPassword)
+                {
+                    tableModel.addRow(user.getDataModel());
+                }
+                else
+                {
+                    tableModel.addRow(user.getDataPasswordModel());
+                }
                 this.usernameList.add(user.getUsername());
             }
         }
@@ -181,15 +207,18 @@ public class UpdateUserController
         }
     }
     
-    public void showPassword(boolean showPassword)
+    public void showPassword()
     {
-        if(!showPassword)
-            {               
-                updateUserView.getjShowPasswordLabel().setText("Show Passwords");
-            }
-            else
-            {
-                updateUserView.getjShowPasswordLabel().setText("Hide Passwords");
-            }
+        String buttonMessage = updateUserView.getjShowPasswordLabel().getText();
+        if(buttonMessage.equals("Hide Passwords"))
+        {               
+            updateUserView.getjShowPasswordLabel().setText("Show Passwords");
+            viewUsers(false);
+        }
+        else
+        {
+            updateUserView.getjShowPasswordLabel().setText("Hide Passwords");
+            viewUsers(true);
+        }
     }
 }

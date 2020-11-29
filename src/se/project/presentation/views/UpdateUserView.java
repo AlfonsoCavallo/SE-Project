@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import static se.project.storage.DatabaseConnection.closeConnection;
-
 /**
  *
  * @author Giacomo
@@ -163,14 +162,14 @@ public class UpdateUserView extends javax.swing.JFrame
         jShowPasswordPanel.setPreferredSize(new java.awt.Dimension(251, 52));
 
         jShowPasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jShowPasswordLabel.setText("Show Password");
+        jShowPasswordLabel.setText("Show Passwords");
 
         javax.swing.GroupLayout jShowPasswordPanelLayout = new javax.swing.GroupLayout(jShowPasswordPanel);
         jShowPasswordPanel.setLayout(jShowPasswordPanelLayout);
         jShowPasswordPanelLayout.setHorizontalGroup(
             jShowPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jShowPasswordPanelLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jShowPasswordLabel)
                 .addGap(62, 62, 62))
         );

@@ -27,7 +27,7 @@ import se.project.storage.repos.UserRepo;
  */
 public class AddUserController
 {
-    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not add user in database.";
+    private final String QUERY_ADD_FAILED_MESSAGE = "Could not add user in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String ADDED_MESSAGE = "User \"username_param\" has been added successfully!";
     
@@ -132,7 +132,7 @@ public class AddUserController
         } 
         catch (SQLException ex)
         {
-            JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), QUERY_ADD_FAILED_MESSAGE);
         }
         
     }
