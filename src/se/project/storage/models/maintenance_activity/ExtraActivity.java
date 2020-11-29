@@ -21,7 +21,8 @@ public class ExtraActivity extends UnplannedActivity
     @Override
     public Object[] getDataModel()
     {
-        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(), isInterruptible(), getTypology(), getActivityDescription(), getWeek()};
+        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(),
+            isInterruptible(), getTypology().getValue(), getActivityDescription(), getWeek(), "no", "no", "-"};
     }
     
 }
