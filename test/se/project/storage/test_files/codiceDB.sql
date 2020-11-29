@@ -127,6 +127,7 @@ create table maintenance_system.user_data (
    surname              varchar(20)          not null,
    user_role            varchar(30)          not null,
    check (user_role in ('system_administrator','planner', 'maintainer')),
+   check ((username <> '') and (email <> '') and (pass <> '') and (name_user <> '') and (surname <> '')),
    constraint pk_user_data primary key (username),
    constraint ak_email_user_data unique (email)
 );

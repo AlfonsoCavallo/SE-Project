@@ -110,6 +110,7 @@ public class UserInfoController
     public static JFrame openUpdateUserPage()
     {
         UpdateUserView updateUserView = new UpdateUserView();
+        UpdateUserController updateUserController = new UpdateUserController(updateUserView);
         return updateUserView;
     }
     

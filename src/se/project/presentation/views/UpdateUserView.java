@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import static se.project.storage.DatabaseConnection.closeConnection;
@@ -25,14 +26,7 @@ public class UpdateUserView extends javax.swing.JFrame
     public UpdateUserView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel()
-        {
-            @Override
-            public boolean isCellEditable(int row, int column)
-            {
-                return false;//This causes all cells to be not editable
-            }
-        };
+        this.defaultTableModel = new DefaultTableModel();
         Object columns[] = {"Username", "Name", "Surname", "E-mail", "Role", "Password"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
@@ -64,10 +58,22 @@ public class UpdateUserView extends javax.swing.JFrame
         return jGoBackLabel;
     }
     
+    public JLabel getjShowPasswordLabel()
+    {
+        return this.jShowPasswordLabel;
+    }
+    
     public DefaultTableModel getTableModel()
     {
         return this.defaultTableModel;
     }
+    
+    public JTable getTable()
+    {
+        return this.jTable;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +94,7 @@ public class UpdateUserView extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jShowPasswordPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jShowPasswordLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -156,8 +162,8 @@ public class UpdateUserView extends javax.swing.JFrame
         jShowPasswordPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jShowPasswordPanel.setPreferredSize(new java.awt.Dimension(251, 52));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Show Password");
+        jShowPasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jShowPasswordLabel.setText("Show Password");
 
         javax.swing.GroupLayout jShowPasswordPanelLayout = new javax.swing.GroupLayout(jShowPasswordPanel);
         jShowPasswordPanel.setLayout(jShowPasswordPanelLayout);
@@ -165,14 +171,14 @@ public class UpdateUserView extends javax.swing.JFrame
             jShowPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jShowPasswordPanelLayout.createSequentialGroup()
                 .addContainerGap(64, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(jShowPasswordLabel)
                 .addGap(62, 62, 62))
         );
         jShowPasswordPanelLayout.setVerticalGroup(
             jShowPasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jShowPasswordPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jShowPasswordLabel)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -297,11 +303,11 @@ public class UpdateUserView extends javax.swing.JFrame
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jShowPasswordLabel;
     private javax.swing.JPanel jShowPasswordPanel;
     private javax.swing.JTable jTable;
     private javax.swing.JPanel jUpdateUserPanel;

@@ -24,6 +24,7 @@ public class UserRepo extends AbstractRepo
     private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
     private final String QUERY_DELETE_USER_PATH = "/se/project/assets/query/QueryDeleteUser.sql";
     private final String QUERY_ADD_USER_PATH = "/se/project/assets/query/QueryAddUser.sql";
+    private final String QUERY_UPDATE_USER_PATH = "/se/project/assets/query/QueryUpdateUser.sql";
     
     public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {
@@ -65,6 +66,25 @@ public class UserRepo extends AbstractRepo
         executeStatement(query);
     }
     
+    public void queryUpdateUser(User user, String userToUpdate) throws IOException, SQLException
+    {
+        String query = getStringFromFile(QUERY_UPDATE_USER_PATH);
+        String username = user.getUsername();
+        String name = user.getName();
+        String surname = user.getSurname();
+        String email = user.getEmail();
+        String role = user.getRole();
+        String password = user.getPassword();
+        String oldUsername = userToUpdate;
+        query = query.replaceAll("username_param", username);
+        query = query.replaceAll("surname_param", surname);
+        query = query.replaceAll("name_param", name);
+        query = query.replaceAll("email_param", email);
+        query = query.replaceAll("role_param", role);
+        query = query.replaceAll("password_param", password);
+        query = query.replaceAll("user_param", oldUsername);
+        executeStatement(query);
+    }
     private LinkedList<User> queryUserList(String query) throws SQLException
     {
         // Query a filtered list of Users
