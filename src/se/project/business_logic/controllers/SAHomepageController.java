@@ -5,7 +5,6 @@
  */
 package se.project.business_logic.controllers;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import static se.project.business_logic.controllers.MainController.openLoginPage;

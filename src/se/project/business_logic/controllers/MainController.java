@@ -8,7 +8,6 @@ package se.project.business_logic.controllers;
 import java.sql.Connection;
 import javax.swing.JFrame;
 import se.project.presentation.views.LoginView;
-import se.project.presentation.views.MaintenanceActivityView;
 import se.project.presentation.views.PlannerHomepageView;
 import se.project.presentation.views.SAHomepageView;
 

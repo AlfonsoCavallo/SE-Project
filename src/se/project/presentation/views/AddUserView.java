@@ -5,16 +5,8 @@
  */
 package se.project.presentation.views;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-import static se.project.business_logic.controllers.AddUserController.goBackUserInfoPage;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
-import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.storage.DatabaseConnection.getConnection;
 
 /**
  *

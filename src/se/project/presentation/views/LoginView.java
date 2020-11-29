@@ -9,7 +9,6 @@ package se.project.presentation.views;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import se.project.business_logic.controllers.LoginController;
 
 /**
  *

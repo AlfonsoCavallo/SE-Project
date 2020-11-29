@@ -6,7 +6,6 @@
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JFrame;
@@ -31,6 +30,7 @@ public class UpdateUserController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String UPDATED_MESSAGE = "User \"username_param\" has been updated successfully!";
     private final String QUERY_NULL_POINTER_MESSAGE = "All the fields must be filled!";
+    private final String SELECT_USER_MESSAGE = "Please, select a user before deleting!";
     
     private final UpdateUserView updateUserView;
     private UserRepo userRepo;
@@ -110,7 +110,7 @@ public class UpdateUserController
     
     public void updateUser()
     {
-        int row = updateUserView.getTable().getSelectedRow();
+        int row = -1;
         String username = null;
         String name = null;
         String surname = null;
@@ -119,6 +119,7 @@ public class UpdateUserController
         String password = null;
         try
         {
+            row = updateUserView.getTable().getSelectedRow();
             username = updateUserView.getTable().getValueAt(row, 0).toString();
             name = updateUserView.getTable().getValueAt(row, 1).toString();
             surname = updateUserView.getTable().getValueAt(row, 2).toString();
@@ -130,17 +131,21 @@ public class UpdateUserController
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_NULL_POINTER_MESSAGE);
         }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), SELECT_USER_MESSAGE);
+        }
         User user = null;
-        if(role.equals("system_administrator"))
-        {
-            user = new SystemAdministrator(username, email, name, surname, password, role);
-        }
-        else if(role.equals("planner"))
-        {
-            user = new Planner(username, email, name, surname, password, role);
-        }
         try
         {
+            if(role.equals("system_administrator"))
+            {
+                user = new SystemAdministrator(username, email, name, surname, password, role);
+            }
+            else if(role.equals("planner"))
+            {
+                user = new Planner(username, email, name, surname, password, role);
+            }
             String oldUsername = this.usernameList.get(row);
             userRepo.queryUpdateUser(user, oldUsername);
             String updatedMessage = UPDATED_MESSAGE.replaceAll("username_param", username);
