@@ -169,7 +169,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
         jViewDeleteMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jViewDeleteMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_analyze_50px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_delete_file_50px.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("View & Delete Maintenance Activity");
