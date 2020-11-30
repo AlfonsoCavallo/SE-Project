@@ -39,7 +39,15 @@ public abstract class AbstractRepo implements RepoInterface
     public boolean executeStatement(String statement) throws SQLException
     {
         // Executes a statement on the database
-        PreparedStatement preparedStatement = getConnection().prepareStatement(statement);
+        PreparedStatement preparedStatement = getConnection().prepareStatement(getTransaction(statement));
         return preparedStatement.execute();
+    }
+    
+    private String getTransaction(String query)
+    {
+        String output = "begin;\n" +
+                query + "\n" +
+                "commit;";
+        return output;
     }
 }

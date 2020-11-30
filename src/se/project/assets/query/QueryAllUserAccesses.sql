@@ -1,3 +1,3 @@
 
 select *
-from maintenance_system.user_access
+from maintenance_system.user_access;
