@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
@@ -39,6 +34,10 @@ public class UpdateUserController extends AbstractController
     private LinkedList<String> usernameList;
     private int columnNumber;
 
+    /**
+     * Constructor
+     * @param updateUserView 
+     */
     public UpdateUserController(UpdateUserView updateUserView)
     {
         this.view = updateUserView;
@@ -50,6 +49,9 @@ public class UpdateUserController extends AbstractController
         viewUsers(false);
     }
     
+    /**
+     *  initializes the listeners of updateUserView
+     */
     private void initListeners()
     {
         updateUserView.getjUpdateUserPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -104,6 +106,10 @@ public class UpdateUserController extends AbstractController
         });
     }
     
+    /**
+     * 
+     * @return a JFrame representing the userInfoView
+     */
     public static JFrame goBackUserInfoPage()
     {
        UserInfoView userInfoView = new UserInfoView();
@@ -111,6 +117,9 @@ public class UpdateUserController extends AbstractController
        return userInfoView;
     }
     
+    /**
+     *  Executes the update of the selected user
+     */
     public void updateUser()
     {
         int row = -1;
@@ -167,6 +176,11 @@ public class UpdateUserController extends AbstractController
         }
     }
     
+    /**
+     * 
+     * @param showPassword indicates if the passwords must be shown
+     * This method shows in a table the users in the database
+     */
     public void viewUsers(boolean showPassword)
     {
         DefaultTableModel tableModel = updateUserView.getTableModel();
@@ -181,20 +195,10 @@ public class UpdateUserController extends AbstractController
                 tableModel.removeRow(0);
             }
             
-            // Verifies if it must show password
-            /*if(!showPassword)
-            {               
-                
-                updateUserView.getTable().getColumnModel().removeColumn(updateUserView.getTable().getColumnModel().getColumn(columnNumber - 1));
-            }
-            else
-            {
-                updateUserView.getTable().getColumnModel().addColumn(updateUserView.getTable().getColumnModel().getColumn(columnNumber - 1));
-            }*/
-            
             // Iterates over users
             for(User user : users)
             {
+                // Verifies if it must show password
                 if(!showPassword)
                 {
                     tableModel.addRow(user.getDataModel());
@@ -209,12 +213,16 @@ public class UpdateUserController extends AbstractController
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
-        } catch (SQLException ex)
+        } 
+        catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }
     }
     
+    /**
+     *  This method changes the show password button and modify the View
+     */
     public void showPassword()
     {
         String buttonMessage = updateUserView.getjShowPasswordLabel().getText();

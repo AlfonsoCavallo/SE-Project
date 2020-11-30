@@ -28,26 +28,47 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     private final String QUERY_ADD_USER_PATH = "/se/project/assets/query/QueryAddUser.sql";
     private final String QUERY_UPDATE_USER_PATH = "/se/project/assets/query/QueryUpdateUser.sql";
 
+    /**
+     * Constructor
+     * @param connection 
+     */
     public UserRepo(Connection connection)
     {
         super(connection);
     }
     
+    /**
+     * 
+     * @return a LinkedList of User containing all the users in the database
+     * @throws IOException
+     * @throws SQLException 
+     */
     public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {
-        // Return all the users to the system
         String query = getStringFromFile(QUERY_ALL_USERS_PATH);
         return queryUserList(query);
     }
     
+    /**
+     * 
+     * @param username is the username of the searched user
+     * @return a LinkedList of User containing the user with username equals to username
+     * @throws IOException
+     * @throws SQLException 
+     */
     public LinkedList<User> queryViewOneUser(String username) throws IOException, SQLException
     {
-        // Return the user with username equals to username
         String query = getStringFromFile(QUERY_VIEW_ONE_USER_PATH);
         query = query.replaceAll("username_param", username);
         return queryUserList(query);
     }
     
+    /**
+     * Execute the query that delete user on database
+     * @param username is the username of the user that has to be deleted
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void queryDeleteUser(String username) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_DELETE_USER_PATH);
@@ -55,6 +76,12 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
         executeStatement(query);
     }
     
+    /**
+     * Execute the query that add user on database
+     * @param user is the user that has to be added to the database
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void queryAddUser(User user) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_ADD_USER_PATH);
@@ -73,6 +100,13 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
         executeStatement(query);
     }
     
+    /**
+     * Execute the update query on the database
+     * @param user is the user that has to be updated in the database
+     * @param userToUpdate is the original username of user
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void queryUpdateUser(User user, String userToUpdate) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_UPDATE_USER_PATH);
@@ -93,12 +127,18 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
         executeStatement(query);
     }
     
+    /**
+     * 
+     * @param query is the query from which to extract data to build the model
+     * @return a LinkedList of User that are in the database
+     * @throws SQLException 
+     */
     private LinkedList<User> queryUserList(String query) throws SQLException
     {
         // Query a filtered list of Users
         ResultSet resultSet = super.queryDatabase(query);
 
-        // Models construction
+        // Model's construction
         LinkedList<User> output = new LinkedList<>();
         
         while(resultSet.next())
