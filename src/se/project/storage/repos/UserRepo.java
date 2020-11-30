@@ -6,6 +6,7 @@
 package se.project.storage.repos;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -13,18 +14,24 @@ import static se.project.business_logic.utilities.FileUtilities.getStringFromFil
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
+import se.project.storage.repos.interfaces.UserRepoInterface;
 
 /**
  *
  * @author Giorgio
  */
-public class UserRepo extends AbstractRepo
+public class UserRepo extends AbstractRepo implements UserRepoInterface
 {
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
     private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
     private final String QUERY_DELETE_USER_PATH = "/se/project/assets/query/QueryDeleteUser.sql";
     private final String QUERY_ADD_USER_PATH = "/se/project/assets/query/QueryAddUser.sql";
     private final String QUERY_UPDATE_USER_PATH = "/se/project/assets/query/QueryUpdateUser.sql";
+
+    public UserRepo(Connection connection)
+    {
+        super(connection);
+    }
     
     public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {
@@ -85,6 +92,7 @@ public class UserRepo extends AbstractRepo
         query = query.replaceAll("user_param", oldUsername);
         executeStatement(query);
     }
+    
     private LinkedList<User> queryUserList(String query) throws SQLException
     {
         // Query a filtered list of Users

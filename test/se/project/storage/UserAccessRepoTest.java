@@ -70,7 +70,7 @@ public class UserAccessRepoTest
         try
         {
             connect(getTestUser());
-            UserAccessRepo instance = new UserAccessRepo();
+            UserAccessRepo instance = new UserAccessRepo(getConnection());
             LinkedList<UserAccess> userAccesses = instance.queryAllUserAccesses();
             
             // Tests expected elements
@@ -96,7 +96,7 @@ public class UserAccessRepoTest
         try
         {
             connect(getTestUser());
-            UserAccessRepo instance = new UserAccessRepo();
+            UserAccessRepo instance = new UserAccessRepo(getConnection());
             LinkedList<UserAccess> userAccesses = instance.queryUserAccesses("finneas");
             
             // Tests expected elements
@@ -123,7 +123,7 @@ public class UserAccessRepoTest
         try
         {
             connect(getTestUser());
-            UserAccessRepo instance = new UserAccessRepo();
+            UserAccessRepo instance = new UserAccessRepo(getConnection());
             UserAccess modelToStore = new UserAccess(3, "finneas", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
             
             
@@ -147,7 +147,7 @@ public class UserAccessRepoTest
     {
         // Tests the query of all user accesses
         connect(getTestUser());
-        UserAccessRepo instance = new UserAccessRepo();
+        UserAccessRepo instance = new UserAccessRepo(getConnection());
         UserAccess modelToStore = new UserAccess(3, "mark", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
             
             

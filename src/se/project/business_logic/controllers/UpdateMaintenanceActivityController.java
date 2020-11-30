@@ -7,6 +7,8 @@ package se.project.business_logic.controllers;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -16,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.MaintenanceActivityView;
 import se.project.presentation.views.UpdateMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.EWO;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 /**
  *
@@ -36,14 +40,14 @@ public class UpdateMaintenanceActivityController
     private final String SELECT_ACTIVITY_MESSAGE = "Please, select a  before updating!";
     
     private final UpdateMaintenanceActivityView updateMaintenanceActivityView;
-    private MaintenanceActivityRepo maintenanceActivityRepo;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo;
     private LinkedList<String> activityNameList;
     private int columnNumber;
     
     public UpdateMaintenanceActivityController(UpdateMaintenanceActivityView updateMaintenanceActivityView)
     {
         this.updateMaintenanceActivityView = updateMaintenanceActivityView;
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo();
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         this.activityNameList = new LinkedList<>();
         this.columnNumber = this.updateMaintenanceActivityView.getjTable().getColumnCount();
         initListeners();

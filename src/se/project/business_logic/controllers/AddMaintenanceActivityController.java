@@ -8,6 +8,9 @@ package se.project.business_logic.controllers;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -15,12 +18,14 @@ import javax.swing.JOptionPane;
 import se.project.presentation.views.AddMaintenanceActivityView;
 import se.project.presentation.views.MaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.EWO;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 /**
  *
@@ -33,12 +38,12 @@ public class AddMaintenanceActivityController
     private final String ADDED_MESSAGE = "Maintenance activity \"activity_name_param\" has been added successfully!";
     
     private final AddMaintenanceActivityView addMaintenanceActivityView;
-    private MaintenanceActivityRepo maintenanceActivityRepo = null;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
             
     public AddMaintenanceActivityController(AddMaintenanceActivityView addMaintenanceActivityView)
     {
         this.addMaintenanceActivityView = addMaintenanceActivityView;
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo();
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         clearFields();
         initListeners();
     }

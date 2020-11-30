@@ -13,9 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UserAccessesView;
+import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
-import static se.project.storage.DatabaseConnection.*;
+import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
 /**
  *
@@ -28,7 +29,7 @@ public class UserAccessesController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     
     private final UserAccessesView userAccessesView;
-    private UserAccessRepo userAccessesRepo = null;
+    private UserAccessRepoInterface userAccessesRepo = null;
 
     public UserAccessesController(UserAccessesView userAccessesView)
     {
@@ -86,7 +87,7 @@ public class UserAccessesController
     {
         LinkedList<UserAccess> userAccesses;
         DefaultTableModel tableModel = userAccessesView.getTableModel();
-        this.userAccessesRepo = new UserAccessRepo();
+        this.userAccessesRepo = new UserAccessRepo(getConnection());
         
         try
         {

@@ -15,8 +15,10 @@ import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.MaintenanceActivityView;
 import se.project.presentation.views.ViewMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 /**
  *
@@ -30,12 +32,12 @@ public class ViewMaintenanceActivityController
     private final String SELECT_DELETION_MESSAGE = "Please, select a maintenance activity before deleting!";
     
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
-    private MaintenanceActivityRepo maintenanceActivityRepo = null;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
     
     public ViewMaintenanceActivityController(ViewMaintenanceActivityView viewMaintenanceActivityView)
     {
         this.viewMaintenanceActivityView = viewMaintenanceActivityView;
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo();
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();
         viewMaintenanceActivities();
     }

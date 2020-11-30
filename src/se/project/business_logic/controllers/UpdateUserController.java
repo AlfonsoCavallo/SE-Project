@@ -11,14 +11,16 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.UpdateUserView;
 import se.project.presentation.views.UserInfoView;
-import se.project.storage.repos.UserRepo;
 import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
+import se.project.storage.repos.UserRepo;
+import se.project.storage.repos.interfaces.UserRepoInterface;
 
 /**
  *
@@ -33,14 +35,14 @@ public class UpdateUserController
     private final String SELECT_USER_MESSAGE = "Please, select a user before deleting!";
     
     private final UpdateUserView updateUserView;
-    private UserRepo userRepo;
+    private UserRepoInterface userRepo;
     private LinkedList<String> usernameList;
     private int columnNumber;
 
     public UpdateUserController(UpdateUserView updateUserView)
     {
         this.updateUserView = updateUserView;
-        this.userRepo = new UserRepo();
+        this.userRepo = new UserRepo(getConnection());
         this.usernameList = new LinkedList<>();
         this.columnNumber = this.updateUserView.getTable().getColumnCount();
         initListeners();

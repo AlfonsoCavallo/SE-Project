@@ -25,9 +25,10 @@ import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterface
 {    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
-    
-    public SystemUserRepo()
+
+    public SystemUserRepo(Connection connection)
     {
+        super(connection);
     }
 
     public SystemUser queryCurrentUser() throws SQLException, IOException

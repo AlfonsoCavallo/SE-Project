@@ -16,6 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
+import static se.project.storage.DatabaseConnection.getConnection;
 import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
@@ -71,7 +72,7 @@ public class MaintenanceActivityRepoTest
         try
         {
             connect(getTestUser());
-            MaintenanceActivityRepo instance = new MaintenanceActivityRepo();
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryAllMaintenanceActivity();
             
             // Tests expected elements
@@ -101,7 +102,7 @@ public class MaintenanceActivityRepoTest
         {            
             // Tests Query on existent activity
             connect(getTestUser());
-            MaintenanceActivityRepo instance = new MaintenanceActivityRepo();
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryViewOneMaintenanceActivity("activity2");
             LinkedList<MaintenanceActivity> noActivity = instance.queryViewOneMaintenanceActivity("unavailable_activity");
             
@@ -130,7 +131,7 @@ public class MaintenanceActivityRepoTest
             
             // Tests delete on existent activity
             connect(getTestUser());
-            MaintenanceActivityRepo instance = new MaintenanceActivityRepo();
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             
             // Deletes activity1
             instance.queryDeleteMaintenanceActivity("activity1");
@@ -159,7 +160,7 @@ public class MaintenanceActivityRepoTest
         {            
             // Tests delete on existent activity
             connect(getTestUser());
-            MaintenanceActivityRepo instance = new MaintenanceActivityRepo();
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             
             // Deletes no activity
             instance.queryDeleteMaintenanceActivity("unavailable_activity");

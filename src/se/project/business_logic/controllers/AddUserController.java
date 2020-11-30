@@ -9,14 +9,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.AddUserView;
 import se.project.presentation.views.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
+import se.project.storage.repos.interfaces.UserRepoInterface;
 
 /**
  *
@@ -29,12 +31,12 @@ public class AddUserController
     private final String ADDED_MESSAGE = "User \"username_param\" has been added successfully!";
     
     private final AddUserView addUserView;
-    private UserRepo userRepo = null;
+    private UserRepoInterface userRepo = null;
     
     public AddUserController(AddUserView addUserView)
     {
         this.addUserView = addUserView;
-        this.userRepo = new UserRepo();
+        this.userRepo = new UserRepo(getConnection());
         clearFields();
         initListeners();
     }

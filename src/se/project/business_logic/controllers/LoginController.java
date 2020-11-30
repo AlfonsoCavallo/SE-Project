@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
 import se.project.presentation.views.LoginView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.SystemUser;
-import se.project.storage.repos.UserAccessRepo;
 import se.project.storage.repos.SystemUserRepo;
+import se.project.storage.repos.UserAccessRepo;
+import se.project.storage.repos.interfaces.SystemUserRepoInterface;
+import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
 /**
  *
@@ -23,8 +25,8 @@ public class LoginController
 {
 
     private final LoginView loginView;
-    private SystemUserRepo userRepo;
-    private UserAccessRepo userAccessRepo;
+    private SystemUserRepoInterface userRepo;
+    private UserAccessRepoInterface userAccessRepo;
 
     private final String LOGIN_FAILED_MESSAGE = "Login failed.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -75,8 +77,8 @@ public class LoginController
         String username = loginView.getUsername();
         char[] password = loginView.getPassword();
 
-        userRepo = new SystemUserRepo();
-        userAccessRepo = new UserAccessRepo();
+        userRepo = new SystemUserRepo(getConnection());
+        userAccessRepo = new UserAccessRepo(getConnection());
         
         try
         {
