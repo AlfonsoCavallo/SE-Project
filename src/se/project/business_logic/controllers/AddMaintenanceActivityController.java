@@ -8,6 +8,7 @@ package se.project.business_logic.controllers;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 /**
  *
@@ -33,7 +35,7 @@ public class AddMaintenanceActivityController
     private final String ADDED_MESSAGE = "Maintenance activity \"activity_name_param\" has been added successfully!";
     
     private final AddMaintenanceActivityView addMaintenanceActivityView;
-    private MaintenanceActivityRepo maintenanceActivityRepo = null;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
             
     public AddMaintenanceActivityController(AddMaintenanceActivityView addMaintenanceActivityView)
     {

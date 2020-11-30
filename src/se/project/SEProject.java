@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import se.project.business_logic.controllers.MainController;
 import se.project.storage.repos.SystemUserRepo;
+import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 
 /**
  *
@@ -26,7 +27,7 @@ public class SEProject {
         // TODO code application logic here
         
         
-        SystemUserRepo userRepo = new SystemUserRepo();
+        SystemUserRepoInterface userRepo = new SystemUserRepo();
         try
         {
             Class.forName("org.postgresql.Driver");

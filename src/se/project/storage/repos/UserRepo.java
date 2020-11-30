@@ -13,12 +13,13 @@ import static se.project.business_logic.utilities.FileUtilities.getStringFromFil
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
+import se.project.storage.repos.interfaces.UserRepoInterface;
 
 /**
  *
  * @author Giorgio
  */
-public class UserRepo extends AbstractRepo
+public class UserRepo extends AbstractRepo implements UserRepoInterface
 {
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
     private final String QUERY_VIEW_ONE_USER_PATH = "/se/project/assets/query/QueryViewOneUser.sql";
@@ -85,6 +86,7 @@ public class UserRepo extends AbstractRepo
         query = query.replaceAll("user_param", oldUsername);
         executeStatement(query);
     }
+    
     private LinkedList<User> queryUserList(String query) throws SQLException
     {
         // Query a filtered list of Users
