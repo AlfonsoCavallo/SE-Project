@@ -194,7 +194,7 @@
         <Component class="javax.swing.JLabel" name="jCloseConnectionLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_shutdown_30px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_shutdown_30px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -204,7 +204,7 @@
         <Component class="javax.swing.JLabel" name="jGoBackLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_back_to_30px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_back_to_30px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -214,7 +214,7 @@
         <Component class="javax.swing.JLabel" name="jExitLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_cancel_30px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_cancel_30px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -568,7 +568,7 @@
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/se/project/icon/icons8_plus_30px.png"/>
+                  <Image iconType="3" name="/se/project/assets/icons/icons8_plus_30px.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -621,7 +621,7 @@
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/se/project/icon/icons8_broom_30px.png"/>
+                  <Image iconType="3" name="/se/project/assets/icons/icons8_broom_30px.png"/>
                 </Property>
               </Properties>
             </Component>

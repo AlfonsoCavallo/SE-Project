@@ -86,13 +86,13 @@ public class UserInfoView extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(33, 33, 35));
 
-        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
+        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
+        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
+        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
@@ -103,7 +103,7 @@ public class UserInfoView extends javax.swing.JFrame
         jAddUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jAddUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_add_user_male_50px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_add_user_male_50px.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Add User");
@@ -136,7 +136,7 @@ public class UserInfoView extends javax.swing.JFrame
         jUpdateUserPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jUpdateUserPanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_registration_50px.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_registration_50px.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Update User");
@@ -161,7 +161,7 @@ public class UserInfoView extends javax.swing.JFrame
             .addGroup(jUpdateUserPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jViewUserPanel.setBackground(new java.awt.Color(188, 180, 169));
@@ -171,7 +171,7 @@ public class UserInfoView extends javax.swing.JFrame
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setText("View & Delete Users");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_denied_50px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_denied_50px.png"))); // NOI18N
 
         javax.swing.GroupLayout jViewUserPanelLayout = new javax.swing.GroupLayout(jViewUserPanel);
         jViewUserPanel.setLayout(jViewUserPanelLayout);

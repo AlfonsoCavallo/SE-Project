@@ -86,13 +86,13 @@ public class MaintenanceActivityView extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(33, 33, 35));
 
-        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
+        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
+        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
+        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
@@ -103,7 +103,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
         jAddMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jAddMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_new_copy_50px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_new_copy_50px.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Add Maintenance Activity");
@@ -136,7 +136,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
         jUpdateMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jUpdateMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_renew_50px.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_renew_50px.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setText("Update Maintenance Activity");
@@ -169,7 +169,7 @@ public class MaintenanceActivityView extends javax.swing.JFrame
         jViewDeleteMaintenancePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jViewDeleteMaintenancePanel.setPreferredSize(new java.awt.Dimension(430, 89));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_delete_file_50px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_delete_file_50px.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("View & Delete Maintenance Activity");

@@ -202,13 +202,13 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         jPanel1.setBackground(new java.awt.Color(33, 33, 35));
         jPanel1.setPreferredSize(new java.awt.Dimension(1228, 700));
 
-        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
+        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
+        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
+        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
@@ -289,7 +289,7 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         jAddPanel.setBackground(new java.awt.Color(188, 180, 169));
         jAddPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_plus_30px.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_plus_30px.png"))); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel14.setText("Add");
@@ -318,7 +318,7 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         jClearPanel.setBackground(new java.awt.Color(188, 180, 169));
         jClearPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_broom_30px.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_broom_30px.png"))); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Clear");

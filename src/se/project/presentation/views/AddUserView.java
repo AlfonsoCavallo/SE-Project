@@ -145,13 +145,13 @@ public class AddUserView extends javax.swing.JFrame
         jPanel1.setBackground(new java.awt.Color(33, 33, 35));
         jPanel1.setPreferredSize(new java.awt.Dimension(1228, 701));
 
-        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
+        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_back_to_30px.png"))); // NOI18N
+        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_back_to_30px.png"))); // NOI18N
         jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_shutdown_30px.png"))); // NOI18N
+        jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
@@ -200,7 +200,7 @@ public class AddUserView extends javax.swing.JFrame
         jAddPanel.setBackground(new java.awt.Color(188, 180, 169));
         jAddPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_plus_30px.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_plus_30px.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Add");
@@ -234,7 +234,7 @@ public class AddUserView extends javax.swing.JFrame
         jClearPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jClearPanel.setPreferredSize(new java.awt.Dimension(215, 52));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_broom_30px.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_broom_30px.png"))); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Clear");

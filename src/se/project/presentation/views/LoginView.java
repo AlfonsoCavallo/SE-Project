@@ -156,7 +156,7 @@ public class LoginView extends javax.swing.JFrame
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 100, 40));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_engineering_30px_1.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_engineering_30px_1.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 30, 30));
 
@@ -179,7 +179,7 @@ public class LoginView extends javax.swing.JFrame
         jExitLabel.setBackground(new java.awt.Color(60, 63, 65));
         jExitLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jExitLabel.setForeground(new java.awt.Color(153, 153, 153));
-        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/icon/icons8_cancel_30px.png"))); // NOI18N
+        jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

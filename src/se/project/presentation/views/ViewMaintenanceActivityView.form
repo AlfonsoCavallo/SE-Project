@@ -59,16 +59,16 @@
                           <Component id="jScrollPane1" min="-2" pref="765" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jNameTextField" min="-2" pref="215" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jSearchLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jDeleteLabel" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -109,7 +109,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jSearchLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="jNameTextField" min="-2" pref="52" max="-2" attributes="0"/>
-                              <Component id="jDeleteLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="jDeleteLabel" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -122,7 +122,7 @@
         <Component class="javax.swing.JLabel" name="jCloseConnectionLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_shutdown_30px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_shutdown_30px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -132,7 +132,7 @@
         <Component class="javax.swing.JLabel" name="jGoBackLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_back_to_30px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_back_to_30px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -142,7 +142,7 @@
         <Component class="javax.swing.JLabel" name="jExitLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_cancel_30px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_cancel_30px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -211,7 +211,7 @@
         <Component class="javax.swing.JLabel" name="jSearchLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_search_50px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_search_50px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
@@ -221,7 +221,7 @@
         <Component class="javax.swing.JLabel" name="jDeleteLabel">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/se/project/icon/icons8_waste_50px.png"/>
+              <Image iconType="3" name="/se/project/assets/icons/icons8_waste_50px.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursore mano"/>
