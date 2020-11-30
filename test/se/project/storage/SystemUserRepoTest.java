@@ -68,13 +68,13 @@ public class SystemUserRepoTest
         try
         {
             // Tests query for an SA user
-            SystemUserRepo systemAdministratorRepo = new SystemUserRepo();
+            SystemUserRepo systemAdministratorRepo = new SystemUserRepo(getConnection());
             connect("finneas", "finneas".toCharArray());
             assertEquals(new SystemUser(SYSTEM_ADMINISTRATOR, "finneas", null), systemAdministratorRepo.queryCurrentUser());
             closeConnection();
             
             // Test query for a Planner user
-            SystemUserRepo plannerRepo = new SystemUserRepo();
+            SystemUserRepo plannerRepo = new SystemUserRepo(getConnection());
             connect("jon", "jon".toCharArray());
             assertEquals(new SystemUser(PLANNER, "jon", null), plannerRepo.queryCurrentUser());
             closeConnection();
@@ -89,7 +89,7 @@ public class SystemUserRepoTest
     public void testQueryWithNoConnectionCurrentUser() throws SQLException, IOException
     {
         // Test for Repo not yet connected
-        SystemUserRepo instance = new SystemUserRepo();
+        SystemUserRepo instance = new SystemUserRepo(getConnection());
         instance.queryCurrentUser();
     }
     
@@ -97,7 +97,7 @@ public class SystemUserRepoTest
     public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
     {
         // Test for Repo with closed connection
-        SystemUserRepo instance = new SystemUserRepo();
+        SystemUserRepo instance = new SystemUserRepo(getConnection());
         connect("finneas", "finneas".toCharArray());
         closeConnection();
         instance.queryCurrentUser();

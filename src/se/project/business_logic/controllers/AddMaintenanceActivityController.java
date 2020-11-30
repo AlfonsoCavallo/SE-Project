@@ -9,6 +9,8 @@ import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
 import se.project.presentation.views.AddMaintenanceActivityView;
 import se.project.presentation.views.MaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.EWO;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
@@ -40,7 +43,7 @@ public class AddMaintenanceActivityController
     public AddMaintenanceActivityController(AddMaintenanceActivityView addMaintenanceActivityView)
     {
         this.addMaintenanceActivityView = addMaintenanceActivityView;
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo();
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         clearFields();
         initListeners();
     }

@@ -12,11 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.ViewUsersView;
 import se.project.presentation.views.UserInfoView;
+import se.project.presentation.views.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
+import se.project.storage.repos.interfaces.UserRepoInterface;
 
 /**
  *
@@ -31,12 +33,12 @@ public class ViewUsersController
     private final String SELECT_USER_MESSAGE = "Please, select a user before deleting!";
     
     private final ViewUsersView viewUsersView;
-    private UserRepo userRepo = null;
+    private UserRepoInterface userRepo = null;
     
     public ViewUsersController(ViewUsersView viewUsersView)
     {
         this.viewUsersView = viewUsersView;
-        this.userRepo = new UserRepo();
+        this.userRepo = new UserRepo(getConnection());
         viewUsers();
         initListeners();
     }

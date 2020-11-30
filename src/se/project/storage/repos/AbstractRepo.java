@@ -6,18 +6,26 @@
 
 package se.project.storage.repos;
 
-import se.project.storage.repos.interfaces.RepoInterface;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import static se.project.storage.DatabaseConnection.*;
+import se.project.storage.repos.interfaces.RepoInterface;
 
 /**
  *
  * @author Utente
  */
 public abstract class AbstractRepo implements RepoInterface
-{    
+{   
+    private final Connection connection;
+    
+    public AbstractRepo(Connection connection)
+    {
+        this.connection = connection;
+    }
+    
     @Override
     public ResultSet queryDatabase(String query) throws SQLException
     {

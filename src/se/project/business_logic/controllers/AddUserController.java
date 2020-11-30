@@ -13,6 +13,7 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.AddUserView;
 import se.project.presentation.views.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
@@ -35,7 +36,7 @@ public class AddUserController
     public AddUserController(AddUserView addUserView)
     {
         this.addUserView = addUserView;
-        this.userRepo = new UserRepo();
+        this.userRepo = new UserRepo(getConnection());
         clearFields();
         initListeners();
     }

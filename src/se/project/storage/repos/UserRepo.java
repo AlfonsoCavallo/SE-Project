@@ -6,6 +6,7 @@
 package se.project.storage.repos;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -26,6 +27,11 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     private final String QUERY_DELETE_USER_PATH = "/se/project/assets/query/QueryDeleteUser.sql";
     private final String QUERY_ADD_USER_PATH = "/se/project/assets/query/QueryAddUser.sql";
     private final String QUERY_UPDATE_USER_PATH = "/se/project/assets/query/QueryUpdateUser.sql";
+
+    public UserRepo(Connection connection)
+    {
+        super(connection);
+    }
     
     public LinkedList<User> queryAllUsers() throws IOException, SQLException
     {

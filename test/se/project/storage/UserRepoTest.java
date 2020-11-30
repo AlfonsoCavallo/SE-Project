@@ -10,12 +10,14 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
+import static se.project.storage.DatabaseConnection.connect;
+import static se.project.storage.DatabaseConnection.getConnection;
 import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
 import se.project.storage.models.Planner;
@@ -71,7 +73,7 @@ public class UserRepoTest
         {
             // Test queryAllUsers method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             LinkedList<User> users = instance.queryAllUsers();
             
             // Tests expected elements
@@ -97,7 +99,7 @@ public class UserRepoTest
         {
             // Test queryViewOneUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test existing user
             String username = "finneas";
@@ -127,7 +129,7 @@ public class UserRepoTest
         {
             // Test queryDeleteUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test an available username
             String username = "jon";
@@ -161,7 +163,7 @@ public class UserRepoTest
         {
             // Test queryAddUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test adding a system administrator 
             SystemAdministrator saUser = new SystemAdministrator("front", "front@front.com", "front", "man", "front", "system_administrator");
@@ -203,7 +205,7 @@ public class UserRepoTest
         {
             // Test queryAddUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test queryAddUser method adding an existing username
             Planner planner = new Planner("jon", "black@black.com", "black", "jack", "black", "planner");
@@ -225,7 +227,7 @@ public class UserRepoTest
         {
             // Test queryAddUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test queryAddUser method adding an existing email
             Planner planner = new Planner("black", "jon@jon.it", "black", "jack", "black", "planner");
@@ -247,7 +249,7 @@ public class UserRepoTest
         {
             // Test queryAddUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test queryAddUser method adding a user with an empty mandatory field
             Planner planner = new Planner("black", "jon@jon.it", null , "jack", "black", "planner");
@@ -269,7 +271,7 @@ public class UserRepoTest
         {
             // Test queryAddUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test queryAddUser method adding a user with an empty string field
             Planner planner = new Planner("black", "black@jon.it", "" , "jack", "black", "planner");
@@ -291,7 +293,7 @@ public class UserRepoTest
         {
             // Test queryAddUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test queryAddUser method adding a user with an invalid role
             Planner planner = new Planner("black", "black@black.it", "black" , "jack", "black", "invalid_role");
@@ -313,7 +315,7 @@ public class UserRepoTest
         {
             // Test queryUpdateUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test updating a planner username
             Planner user = new Planner("jonathan", "jon@jon.it", "jon", "athan", "jon", "planner");
@@ -359,7 +361,7 @@ public class UserRepoTest
         {
             // Test queryUpdateUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test updating user with an already existing username
             Planner user = new Planner("finneas", "jon@jon.it", "jon", "athan", "jon", "planner");
@@ -383,7 +385,7 @@ public class UserRepoTest
         {
             // Test queryUpdateUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test updating user with an already existing email
             Planner user = new Planner("jon", "finneas@finneas.it", "jon", "athan", "jon", "planner");
@@ -407,7 +409,7 @@ public class UserRepoTest
         {
             // Test queryUpdateUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test updating user with an invalid role
             Planner user = new Planner("jon", "jon@jon.it", "jon", "athan", "jon", "invalid_role");
@@ -431,7 +433,7 @@ public class UserRepoTest
         {
             // Test queryUpdateUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test updating user with an empty field
             Planner user = new Planner("jon", "jon@jon.it", "jon", "", "jon", "planner");
@@ -455,7 +457,7 @@ public class UserRepoTest
         {
             // Test queryUpdateUser method
             connect(getTestUser());
-            UserRepo instance = new UserRepo();
+            UserRepo instance = new UserRepo(getConnection());
             
             // Test updating user with a null mandatory field
             Planner user = new Planner("jon", "jon@jon.it", "jon", null, "jon", "planner");

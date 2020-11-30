@@ -6,6 +6,7 @@
 package se.project.storage.repos;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -29,6 +30,11 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     private final String QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryDeleteMaintenanceActivity.sql";
     private final String QUERY_ADD_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAddMaintenanceActivity.sql";
     private final String QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryUpdateMaintenanceActivity.sql";
+
+    public MaintenanceActivityRepo(Connection connection)
+    {
+        super(connection);
+    }
     
     @Override
     public LinkedList<MaintenanceActivity> queryAllMaintenanceActivity() throws IOException, SQLException

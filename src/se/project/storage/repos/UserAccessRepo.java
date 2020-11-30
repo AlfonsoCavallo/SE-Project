@@ -8,6 +8,7 @@ package se.project.storage.repos;
 
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -24,6 +25,11 @@ public class UserAccessRepo extends AbstractRepo implements UserAccessRepoInterf
     private final String QUERY_ALL_USER_ACCESSES_PATH = "/se/project/assets/query/QueryAllUserAccesses.sql";
     private final String QUERY_USER_ACCESSES_PATH = "/se/project/assets/query/QueryUserAccesses.sql";
     private final String STORE_USER_ACCESS_PATH = "/se/project/assets/query/StoreUserAccess.sql";
+
+    public UserAccessRepo(Connection connection)
+    {
+        super(connection);
+    }
     
     @Override
     public LinkedList<UserAccess> queryAllUserAccesses() throws IOException, SQLException
