@@ -5,6 +5,8 @@
  */
 package se.project.storage.models.maintenance_activity;
 
+import java.util.Objects;
+
 /**
  *
  * @author delso
@@ -126,5 +128,50 @@ public abstract class MaintenanceActivity
    {
        return week >= 1 && week <= 52; 
    }        
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final MaintenanceActivity other = (MaintenanceActivity) obj;
+        if (this.IDActivity != other.IDActivity)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.activityName, other.activityName))
+        {
+            return false;
+        }
+        if (this.timeNeeded != other.timeNeeded)
+        {
+            return false;
+        }
+        if (this.interruptible != other.interruptible)
+        {
+            return false;
+        }
+        if (this.typology != other.typology)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.activityDescription, other.activityDescription))
+        {
+            return false;
+        }
+        if (this.week != other.week)
+        {
+            return false;
+        }
+        return true;
+    }
+   
+   
    
 }

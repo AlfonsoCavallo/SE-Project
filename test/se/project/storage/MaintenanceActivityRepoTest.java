@@ -151,7 +151,7 @@ public class MaintenanceActivityRepoTest
         }
     }
     
-    @Test(expected = SQLException.class)
+    @Test
     public void testQueryDeleteOnNonExistentMaintenanceActivity() throws SQLException
     {
         // Delete a specific maintenance activity
@@ -161,7 +161,7 @@ public class MaintenanceActivityRepoTest
             connect(getTestUser());
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo();
             
-            // Deletes activity1
+            // Deletes no activity
             instance.queryDeleteMaintenanceActivity("unavailable_activity");
         }
         catch(ClassNotFoundException | IOException ex)

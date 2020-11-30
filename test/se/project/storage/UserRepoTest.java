@@ -400,8 +400,8 @@ public class UserRepoTest
             
     }
     
-    @Test(expected = AssertionError.class)
-    public void testUpdateInvalidRole()
+    @Test(expected = SQLException.class)
+    public void testUpdateInvalidRole() throws SQLException
     {
         try
         {
@@ -416,7 +416,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
