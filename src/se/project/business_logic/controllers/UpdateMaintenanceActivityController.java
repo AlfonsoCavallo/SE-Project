@@ -7,9 +7,6 @@ package se.project.business_logic.controllers;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JFrame;
@@ -78,7 +75,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                goBackMaintenanceActivityPage(null);
+                goBackMaintenanceActivityPage();
                 updateMaintenanceActivityView.dispose();
             }  
         });
@@ -102,7 +99,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
     }
     
-    public static JFrame goBackMaintenanceActivityPage(Connection connection)
+    public static JFrame goBackMaintenanceActivityPage()
     {
         MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
         MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
@@ -159,7 +156,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
         try
         {
-           if(planned.equals("yes"))
+            if(planned.equals("yes"))
             {
                 maintenanceActivity = new PlannedActivity(activityName, parseInt(timeNeeded), interruptible, 
                 fromString(typology), activityDescription, parseInt(week), standardProcedure);

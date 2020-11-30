@@ -5,7 +5,6 @@
  */
 package se.project.business_logic.controllers;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import se.project.presentation.views.AddMaintenanceActivityView;
@@ -61,7 +60,7 @@ public class MaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                goBackPlannerHomepage(null);
+                goBackPlannerHomepage();
                 maintenanceActivityView.dispose();
             }
         });        
@@ -70,7 +69,7 @@ public class MaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                openAddMaintenanceActivityPage(null);
+                openAddMaintenanceActivityPage();
                 maintenanceActivityView.dispose();
             }        
             
@@ -80,7 +79,7 @@ public class MaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                openUpdateMaintenanceActivityPage(null);
+                openUpdateMaintenanceActivityPage();
                 maintenanceActivityView.dispose();
             }
         });        
@@ -89,35 +88,35 @@ public class MaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                openViewMaintenanceActivityPage(null);
+                openViewMaintenanceActivityPage();
                 maintenanceActivityView.dispose();
             }
         });          
                 
     }        
     
-    public static JFrame openAddMaintenanceActivityPage(Connection connection)
+    public static JFrame openAddMaintenanceActivityPage()
     {
         AddMaintenanceActivityView addMaintenanceActivityView = new AddMaintenanceActivityView();
         AddMaintenanceActivityController addMaintenanceActivityController = new AddMaintenanceActivityController(addMaintenanceActivityView);
         return addMaintenanceActivityView;
     }
     
-    public static JFrame openUpdateMaintenanceActivityPage(Connection connection)
+    public static JFrame openUpdateMaintenanceActivityPage()
     {
         UpdateMaintenanceActivityView updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
         UpdateMaintenanceActivityController updateMaintenanceActivityController = new UpdateMaintenanceActivityController(updateMaintenanceActivityView);
         return updateMaintenanceActivityView;
     }
     
-    public static JFrame openViewMaintenanceActivityPage(Connection connection)
+    public static JFrame openViewMaintenanceActivityPage()
     {
         ViewMaintenanceActivityView viewMaintenanceActivityView = new ViewMaintenanceActivityView();
         ViewMaintenanceActivityController viewMaintenanceActivityController = new ViewMaintenanceActivityController(viewMaintenanceActivityView);
         return viewMaintenanceActivityView;
     }
     
-    public static JFrame goBackPlannerHomepage(Connection connection)
+    public static JFrame goBackPlannerHomepage()
     {
         PlannerHomepageView plannerHomepageView = new PlannerHomepageView();
         PlannerHomepageController plannerHomepageController = new PlannerHomepageController(plannerHomepageView);

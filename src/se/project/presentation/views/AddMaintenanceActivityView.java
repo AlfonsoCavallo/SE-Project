@@ -8,6 +8,7 @@ package se.project.presentation.views;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -85,11 +86,16 @@ public class AddMaintenanceActivityView extends AbstractView
         return jPlannedComboBox;
     }
     
-    public String getjStandardProcedureTextField()
+    public String getStringStandardProcedureTextField()
     {
         return this.jStandardProcedureTextField.getText();
     }
 
+    public JTextField getjStandardProcedureTextField()
+    {
+        return jStandardProcedureTextField;
+    }
+    
     public String getjTimeTextField()
     {
         return this.jTimeTextField.getText();
@@ -149,12 +155,8 @@ public class AddMaintenanceActivityView extends AbstractView
     {
         this.jWeekComboBox.setSelectedIndex(0);
     }
-    
-    
-    
-    
- 
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,10 +187,10 @@ public class AddMaintenanceActivityView extends AbstractView
         jWeekComboBox = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jPlannedComboBox = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
+        jEWOLabel = new javax.swing.JLabel();
         jEWOComboBox = new javax.swing.JComboBox<>();
         jStandardProcedureTextField = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        jStandardProcedureLabel = new javax.swing.JLabel();
         jAddPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -271,20 +273,21 @@ public class AddMaintenanceActivityView extends AbstractView
         jPlannedComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPlannedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel9.setText("EWO");
+        jEWOLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jEWOLabel.setForeground(new java.awt.Color(204, 204, 204));
+        jEWOLabel.setText("EWO");
 
         jEWOComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jEWOComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jEWOComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "no", "yes" }));
+        jEWOComboBox.setEnabled(false);
 
         jStandardProcedureTextField.setBackground(new java.awt.Color(188, 180, 169));
         jStandardProcedureTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel10.setText("Standard Procedure");
+        jStandardProcedureLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jStandardProcedureLabel.setForeground(new java.awt.Color(204, 204, 204));
+        jStandardProcedureLabel.setText("Standard Procedure");
 
         jAddPanel.setBackground(new java.awt.Color(188, 180, 169));
         jAddPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -377,14 +380,14 @@ public class AddMaintenanceActivityView extends AbstractView
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
                                     .addComponent(jEWOComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))
+                                    .addComponent(jEWOLabel))
                                 .addGap(109, 109, 109)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jInterruptibleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7)
                                     .addComponent(jWeekComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10))))
+                                    .addComponent(jStandardProcedureLabel))))
                         .addGap(138, 138, 138))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -440,10 +443,10 @@ public class AddMaintenanceActivityView extends AbstractView
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
+                            .addComponent(jStandardProcedureLabel)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jLabel9)))
+                                .addComponent(jEWOLabel)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jEWOComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -525,11 +528,11 @@ public class AddMaintenanceActivityView extends AbstractView
     private javax.swing.JLabel jCloseConnectionLabel;
     private javax.swing.JTextArea jDescriptionTextArea;
     private javax.swing.JComboBox<String> jEWOComboBox;
+    private javax.swing.JLabel jEWOLabel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JComboBox<String> jInterruptibleComboBox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -541,11 +544,11 @@ public class AddMaintenanceActivityView extends AbstractView
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jNameTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jPlannedComboBox;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jStandardProcedureLabel;
     private javax.swing.JTextField jStandardProcedureTextField;
     private javax.swing.JTextField jTimeTextField;
     private javax.swing.JComboBox<String> jTypologyComboBox;

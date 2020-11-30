@@ -8,10 +8,6 @@ package se.project.business_logic.controllers;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -72,7 +68,7 @@ public class AddMaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                goBackMaintenanceActivityPage(null);
+                goBackMaintenanceActivityPage();
                 addMaintenanceActivityView.dispose();
             }       
         });
@@ -108,15 +104,25 @@ public class AddMaintenanceActivityController extends AbstractController
             {
                 if (evt.getStateChange() == ItemEvent.SELECTED)
                 {
-                    
-                    System.out.println(addMaintenanceActivityView.getIsPlannedValue());
-                    addMaintenanceActivityView.getjEWOComboBox().setVisible(!addMaintenanceActivityView.getIsPlannedValue().equals("yes"));  
+                    if(addMaintenanceActivityView.getIsPlannedValue().equals("no"))
+                    {
+                        addMaintenanceActivityView.getjEWOComboBox().setEnabled(true);
+                        addMaintenanceActivityView.getjStandardProcedureTextField().setText("-");
+                        addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(false);
+                    }
+                    else
+                    {
+                        addMaintenanceActivityView.getjEWOComboBox().setEnabled(false);
+                        addMaintenanceActivityView.resetjStandardProcedureTextField();
+                        addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(true);
+                    }
                 }
             }              
-        });        
+        });
+
     }
     
-    public static JFrame goBackMaintenanceActivityPage(Connection connection)
+    public static JFrame goBackMaintenanceActivityPage()
     {
         MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
         MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
@@ -135,7 +141,7 @@ public class AddMaintenanceActivityController extends AbstractController
         String week = addMaintenanceActivityView.getjWeekComboBox();
         String planned = addMaintenanceActivityView.getIsPlannedValue();
         String ewo = addMaintenanceActivityView.getIsEWOValue();
-        String standardProcedure = addMaintenanceActivityView.getjStandardProcedureTextField();
+        String standardProcedure = addMaintenanceActivityView.getStringStandardProcedureTextField();
         
         boolean interruptible;
         

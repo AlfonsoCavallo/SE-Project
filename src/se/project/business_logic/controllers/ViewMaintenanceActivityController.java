@@ -6,7 +6,6 @@
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JFrame;
@@ -66,7 +65,7 @@ public class ViewMaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                goBackMaintenanceActivityPage(null);
+                goBackMaintenanceActivityPage();
                 viewMaintenanceActivityView.dispose();
             }  
         });
@@ -98,7 +97,7 @@ public class ViewMaintenanceActivityController extends AbstractController
         
     }
     
-    public static JFrame goBackMaintenanceActivityPage(Connection connection)
+    public static JFrame goBackMaintenanceActivityPage()
     {
         MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
         MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
@@ -136,7 +135,8 @@ public class ViewMaintenanceActivityController extends AbstractController
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
-        } catch (SQLException ex)
+        }
+        catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }
