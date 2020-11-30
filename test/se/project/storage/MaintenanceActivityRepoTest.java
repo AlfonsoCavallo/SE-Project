@@ -106,7 +106,7 @@ public class MaintenanceActivityRepoTest
             LinkedList<MaintenanceActivity> noActivity = instance.queryViewOneMaintenanceActivity("unavailable_activity");
             
             // Test expected elements
-            MaintenanceActivity expectedElement = new PlannedActivity("activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "4... 5... 6...");
+            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "4... 5... 6...");
             assertEquals(expectedElement, maintenanceActivities.getFirst());
             assertEquals(1, maintenanceActivities.size());
             

@@ -5,6 +5,7 @@
  */
 package se.project.presentation.views;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -54,11 +55,16 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         return this.jDescriptionTextArea.getText();
     }
 
-    public String getjEWOComboBox()
+    public String getIsEWOValue()
     {
         return this.jEWOComboBox.getSelectedItem().toString();
     }
 
+    public JComboBox<String> getjEWOComboBox()
+    {
+        return jEWOComboBox;
+    }
+    
     public String getjInterruptibleComboBox()
     {
         return this.jInterruptibleComboBox.getSelectedItem().toString();
@@ -69,11 +75,16 @@ public class AddMaintenanceActivityView extends javax.swing.JFrame
         return this.jNameTextField.getText();
     }
 
-    public String getjPlannedComboBox()
+    public String getIsPlannedValue()
     {
         return this.jPlannedComboBox.getSelectedItem().toString();
     }
 
+    public JComboBox<String> getjPlannedComboBox()
+    {
+        return jPlannedComboBox;
+    }
+    
     public String getjStandardProcedureTextField()
     {
         return this.jStandardProcedureTextField.getText();

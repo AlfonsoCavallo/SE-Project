@@ -5,6 +5,7 @@
  */
 package se.project.business_logic.controllers;
 
+import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
@@ -95,6 +96,18 @@ public class AddMaintenanceActivityController
             }        
         });        
         
+        addMaintenanceActivityView.getjPlannedComboBox().addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                if (evt.getStateChange() == ItemEvent.SELECTED)
+                {
+                    
+                    System.out.println(addMaintenanceActivityView.getIsPlannedValue());
+                    addMaintenanceActivityView.getjEWOComboBox().setVisible(!addMaintenanceActivityView.getIsPlannedValue().equals("yes"));  
+                }
+            }              
+        });        
     }
     
     public static JFrame goBackMaintenanceActivityPage(Connection connection)
@@ -114,8 +127,8 @@ public class AddMaintenanceActivityController
         String typology = addMaintenanceActivityView.getjTypologyComboBox();
         String activityDescription = addMaintenanceActivityView.getjDescriptionTextArea();
         String week = addMaintenanceActivityView.getjWeekComboBox();
-        String planned = addMaintenanceActivityView.getjPlannedComboBox();
-        String ewo = addMaintenanceActivityView.getjEWOComboBox();
+        String planned = addMaintenanceActivityView.getIsPlannedValue();
+        String ewo = addMaintenanceActivityView.getIsEWOValue();
         String standardProcedure = addMaintenanceActivityView.getjStandardProcedureTextField();
         
         boolean interruptible;
