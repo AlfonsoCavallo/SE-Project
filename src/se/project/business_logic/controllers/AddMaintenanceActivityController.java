@@ -113,6 +113,7 @@ public class AddMaintenanceActivityController extends AbstractController
                     else
                     {
                         addMaintenanceActivityView.getjEWOComboBox().setEnabled(false);
+                        addMaintenanceActivityView.resetjEWOComboBox();
                         addMaintenanceActivityView.resetjStandardProcedureTextField();
                         addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(true);
                     }
