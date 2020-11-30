@@ -28,6 +28,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     private final String QUERY_VIEW_ONE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryViewOneMaintenanceActivity.sql";
     private final String QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryDeleteMaintenanceActivity.sql";
     private final String QUERY_ADD_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAddMaintenanceActivity.sql";
+    private final String QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryUpdateMaintenanceActivity.sql";
     
     @Override
     public LinkedList<MaintenanceActivity> queryAllMaintenanceActivity() throws IOException, SQLException
@@ -81,6 +82,35 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         executeStatement(query);
     }
     
+    @Override
+    public void queryUpdateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException
+    {
+        String query = getStringFromFile(QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH);
+        
+        String activityName = maintenanceActivity.getActivityName();
+        int timeNeeded = maintenanceActivity.getTimeNeeded();
+        String interruptible = maintenanceActivity.isInterruptible();
+        String typology = maintenanceActivity.getTypology().getValue();
+        String activityDescription = maintenanceActivity.getActivityDescription();
+        int week = maintenanceActivity.getWeek();
+        String planned = maintenanceActivity.isPlanned();
+        String ewo = maintenanceActivity.isEWO();
+        String standardProcedure = maintenanceActivity.getStandardProcedure();
+        String oldActivityName = activityToUpdate;
+        
+        query = query.replaceAll("activity_name_param", activityName);
+        query = query.replaceAll("time_needed_param", String.valueOf(timeNeeded));
+        query = query.replaceAll("interruptible_param", interruptible);
+        query = query.replaceAll("typology_param", String.valueOf(typology));
+        query = query.replaceAll("activity_description_param", activityDescription);
+        query = query.replaceAll("week_param", String.valueOf(week));
+        query = query.replaceAll("planned_param", planned);
+        query = query.replaceAll("ewo_param", ewo);
+        query = query.replaceAll("standard_param", standardProcedure);
+        query = query.replaceAll("activity_param", oldActivityName);
+        executeStatement(query);
+    }
+    
     private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException
     {
         ResultSet resultSet = super.queryDatabase(query);
@@ -111,5 +141,4 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         }
         return output;
     }        
-
 }

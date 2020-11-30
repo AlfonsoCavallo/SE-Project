@@ -109,23 +109,14 @@ public class AddMaintenanceActivityController
         MaintenanceActivity maintenanceActivity = null;
         
         String activityName = addMaintenanceActivityView.getjNameTextField();
-        System.out.println("nome " + activityName);
         String timeNeeded = addMaintenanceActivityView.getjTimeTextField();
-        System.out.println("tempo " + timeNeeded);
         String interruptibleString = addMaintenanceActivityView.getjInterruptibleComboBox();
-        System.out.println("interrup " + interruptibleString);
         String typology = addMaintenanceActivityView.getjTypologyComboBox();
-        System.out.println("type " + typology);
         String activityDescription = addMaintenanceActivityView.getjDescriptionTextArea();
-        System.out.println("description " + activityDescription);
         String week = addMaintenanceActivityView.getjWeekComboBox();
-        System.out.println("week " + week);
         String planned = addMaintenanceActivityView.getjPlannedComboBox();
-        System.out.println("planned " + planned);
         String ewo = addMaintenanceActivityView.getjEWOComboBox();
-        System.out.println("ewo " + ewo);
         String standardProcedure = addMaintenanceActivityView.getjStandardProcedureTextField();
-        System.out.println("standardProcedure " + standardProcedure);
         
         boolean interruptible;
         

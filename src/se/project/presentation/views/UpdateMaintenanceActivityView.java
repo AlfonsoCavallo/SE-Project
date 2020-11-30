@@ -8,6 +8,7 @@ package se.project.presentation.views;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -25,15 +26,8 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
     public UpdateMaintenanceActivityView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel()
-        {
-             @Override
-           public boolean isCellEditable(int row, int column)
-           {
-               return false; // So all cells are be not editable
-           }
-        };        
-        Object columns[] = {"Name", "Time Needed", "Interruptible", "Typology", "Description", 
+        this.defaultTableModel = new DefaultTableModel();       
+        Object columns[] = {"ID", "Name", "Time Needed", "Interruptible", "Typology", "Description", 
                             "Week", "Planned", "EWO", "Standard Procedure"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
@@ -62,9 +56,13 @@ public class UpdateMaintenanceActivityView extends javax.swing.JFrame
 
     public DefaultTableModel getDefaultTableModel()
     {
-        return defaultTableModel;
+        return this.defaultTableModel;
     }
-    
+
+    public JTable getjTable()
+    {
+        return this.jTable;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
