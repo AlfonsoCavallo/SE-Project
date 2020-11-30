@@ -228,7 +228,7 @@ public class AddUserView extends javax.swing.JFrame
 
         jRoleComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jRoleComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "sistem_administrator", "planner", "maintainer" }));
+        jRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "system_administrator", "planner" }));
 
         jClearPanel.setBackground(new java.awt.Color(188, 180, 169));
         jClearPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

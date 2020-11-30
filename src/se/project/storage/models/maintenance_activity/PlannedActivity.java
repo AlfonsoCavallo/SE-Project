@@ -5,6 +5,8 @@
  */
 package se.project.storage.models.maintenance_activity;
 
+import java.util.Objects;
+
 /**
  *
  * @author delso
@@ -58,4 +60,37 @@ public class PlannedActivity extends MaintenanceActivity
     {
         return this.ewo;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final PlannedActivity other = (PlannedActivity) obj;
+        if (!Objects.equals(this.standardProcedure, other.standardProcedure))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.planned, other.planned))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.ewo, other.ewo))
+        {
+            return false;
+        }
+        if (!super.equals((MaintenanceActivity)obj))
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

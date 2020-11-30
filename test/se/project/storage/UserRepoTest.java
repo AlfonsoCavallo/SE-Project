@@ -196,8 +196,8 @@ public class UserRepoTest
         } 
     }
     
-    @Test(expected = AssertionError.class)
-    public void testAddExistingUser()
+    @Test(expected = SQLException.class)
+    public void testAddExistingUser() throws SQLException
     {
         try
         {
@@ -211,15 +211,15 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
         }        
     }
     
-    @Test(expected = AssertionError.class)
-    public void testAddExistingEmail()
+    @Test(expected = SQLException.class)
+    public void testAddExistingEmail() throws SQLException
     {
         try
         {
@@ -233,7 +233,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
@@ -262,8 +262,8 @@ public class UserRepoTest
         }        
     }
     
-    @Test(expected = AssertionError.class)
-    public void testAddEmptyString()
+    @Test(expected = SQLException.class)
+    public void testAddEmptyString() throws SQLException
     {
         try
         {
@@ -277,15 +277,15 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
         }        
     }
     
-    @Test(expected = AssertionError.class)
-    public void testAddInvalidRole()
+    @Test(expected = SQLException.class)
+    public void testAddInvalidRole() throws SQLException
     {
         try
         {
@@ -299,7 +299,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
@@ -352,8 +352,8 @@ public class UserRepoTest
         
     }
     
-    @Test(expected = AssertionError.class)
-    public void testUpdateWithExistingUsername()
+    @Test(expected = SQLException.class)
+    public void testUpdateWithExistingUsername() throws SQLException
     {
         try
         {
@@ -368,7 +368,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
@@ -376,8 +376,8 @@ public class UserRepoTest
             
     }
     
-    @Test(expected = AssertionError.class)
-    public void testUpdateWithExistingEmail()
+    @Test(expected = SQLException.class)
+    public void testUpdateWithExistingEmail() throws SQLException
     {
         try
         {
@@ -392,7 +392,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
@@ -400,8 +400,8 @@ public class UserRepoTest
             
     }
     
-    @Test(expected = AssertionError.class)
-    public void testUpdateInvalidRole()
+    @Test(expected = SQLException.class)
+    public void testUpdateInvalidRole() throws SQLException
     {
         try
         {
@@ -416,7 +416,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
@@ -424,8 +424,8 @@ public class UserRepoTest
             
     }
     
-    @Test(expected = AssertionError.class)
-    public void testUpdateEmptyString()
+    @Test(expected = SQLException.class)
+    public void testUpdateEmptyString() throws SQLException
     {
         try
         {
@@ -440,7 +440,7 @@ public class UserRepoTest
             
             closeConnection();
         } 
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch (ClassNotFoundException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
