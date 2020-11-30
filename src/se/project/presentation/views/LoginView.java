@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  *
  * @author Utente
  */
-public class LoginView extends javax.swing.JFrame 
+public class LoginView extends AbstractView
 {
     
     /**

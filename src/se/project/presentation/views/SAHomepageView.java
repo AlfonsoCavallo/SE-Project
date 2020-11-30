@@ -18,7 +18,7 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
  *
  * @author Giacomo
  */
-public class SAHomepageView extends javax.swing.JFrame
+public class SAHomepageView extends AbstractView
 {
 
     /**

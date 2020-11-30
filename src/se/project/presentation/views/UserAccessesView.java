@@ -12,7 +12,7 @@ import se.project.business_logic.controllers.UserAccessesController;
  *
  * @author Giacomo
  */
-public class UserAccessesView extends javax.swing.JFrame
+public class UserAccessesView extends AbstractView
 {
     private DefaultTableModel tableModel;
 

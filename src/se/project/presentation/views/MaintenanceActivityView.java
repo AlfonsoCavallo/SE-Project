@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author Giacomo
  */
-public class MaintenanceActivityView extends javax.swing.JFrame
+public class MaintenanceActivityView extends AbstractView
 {
     
     /**

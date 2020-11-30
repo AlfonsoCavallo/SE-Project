@@ -26,7 +26,7 @@ import se.project.storage.repos.interfaces.UserRepoInterface;
  *
  * @author Giorgio
  */
-public class UpdateUserController
+public class UpdateUserController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update user in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -41,6 +41,7 @@ public class UpdateUserController
 
     public UpdateUserController(UpdateUserView updateUserView)
     {
+        this.view = updateUserView;
         this.updateUserView = updateUserView;
         this.userRepo = new UserRepo(getConnection());
         this.usernameList = new LinkedList<>();

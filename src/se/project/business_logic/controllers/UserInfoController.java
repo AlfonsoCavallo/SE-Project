@@ -19,12 +19,13 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
  *
  * @author Giorgio
  */
-public class UserInfoController 
+public class UserInfoController  extends AbstractController
 {
     private final UserInfoView userInfoView;
     
     public UserInfoController(UserInfoView userInfoView)
     {
+        this.view = userInfoView;
         this.userInfoView = userInfoView;
         initListeners();
     }

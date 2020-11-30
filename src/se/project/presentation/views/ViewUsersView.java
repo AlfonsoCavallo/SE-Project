@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Giorgio
  */
-public class ViewUsersView extends javax.swing.JFrame
+public class ViewUsersView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
     

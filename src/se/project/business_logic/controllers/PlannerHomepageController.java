@@ -16,12 +16,13 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
  *
  * @author Giacomo
  */
-public class PlannerHomepageController
+public class PlannerHomepageController extends AbstractController
 {
     private final PlannerHomepageView plannerHomepageView;
 
     public PlannerHomepageController(PlannerHomepageView plannerHomepageView)
     {
+        this.view = plannerHomepageView;
         this.plannerHomepageView = plannerHomepageView;
         initListeners();
     }

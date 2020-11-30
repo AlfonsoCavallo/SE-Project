@@ -17,12 +17,13 @@ import static se.project.storage.DatabaseConnection.closeConnection;
  *
  * @author Giacomo
  */
-public class SAHomepageController
+public class SAHomepageController extends AbstractController
 {
     private final SAHomepageView saHomepageView;
     
     public SAHomepageController(SAHomepageView saHomepageView)
     {
+        this.view = saHomepageView;
         this.saHomepageView = saHomepageView;
         initListeners();
     }

@@ -31,7 +31,7 @@ import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
  *
  * @author delso
  */
-public class AddMaintenanceActivityController
+public class AddMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not add maintenance activity in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -42,6 +42,7 @@ public class AddMaintenanceActivityController
             
     public AddMaintenanceActivityController(AddMaintenanceActivityView addMaintenanceActivityView)
     {
+        this.view = addMaintenanceActivityView;
         this.addMaintenanceActivityView = addMaintenanceActivityView;
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         clearFields();

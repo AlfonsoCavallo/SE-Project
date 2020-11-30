@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author Giacomo
  */
-public class UserInfoView extends javax.swing.JFrame
+public class UserInfoView extends AbstractView
 {
 
     /**

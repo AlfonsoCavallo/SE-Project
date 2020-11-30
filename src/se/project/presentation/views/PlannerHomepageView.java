@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Giacomo
  */
-public class PlannerHomepageView extends javax.swing.JFrame
+public class PlannerHomepageView extends AbstractView
 {
 
     /**

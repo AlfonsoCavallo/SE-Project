@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Giorgio
  */
-public class AddUserView extends javax.swing.JFrame
+public class AddUserView extends AbstractView
 {
 
     public AddUserView()

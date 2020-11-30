@@ -24,7 +24,7 @@ import se.project.storage.repos.interfaces.UserRepoInterface;
  *
  * @author Giorgio
  */
-public class ViewUsersController
+public class ViewUsersController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get users from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query."; 
@@ -37,6 +37,7 @@ public class ViewUsersController
     
     public ViewUsersController(ViewUsersView viewUsersView)
     {
+        this.view = viewUsersView;
         this.viewUsersView = viewUsersView;
         this.userRepo = new UserRepo(getConnection());
         viewUsers();

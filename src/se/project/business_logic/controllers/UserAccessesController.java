@@ -22,7 +22,7 @@ import se.project.storage.repos.interfaces.UserAccessRepoInterface;
  *
  * @author Utente
  */
-public class UserAccessesController
+public class UserAccessesController extends AbstractController
 {
 
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get user accesses from database.";
@@ -33,6 +33,7 @@ public class UserAccessesController
 
     public UserAccessesController(UserAccessesView userAccessesView)
     {
+        this.view = userAccessesView;
         this.userAccessesView = userAccessesView;
         initListeners();
         updateAccesses();

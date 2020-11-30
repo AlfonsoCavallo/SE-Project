@@ -19,12 +19,13 @@ import static se.project.storage.DatabaseConnection.closeConnection;
  *
  * @author delso
  */
-public class MaintenanceActivityController
+public class MaintenanceActivityController extends AbstractController
 {
     private final MaintenanceActivityView maintenanceActivityView;
     
     public MaintenanceActivityController(MaintenanceActivityView maintenanceActivityView)
     {
+       this.view = maintenanceActivityView;
        this.maintenanceActivityView = maintenanceActivityView;
        initListeners();
     }  

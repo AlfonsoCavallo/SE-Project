@@ -31,7 +31,7 @@ import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
  *
  * @author delso
  */
-public class UpdateMaintenanceActivityController
+public class UpdateMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update maintenance activity in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -46,6 +46,7 @@ public class UpdateMaintenanceActivityController
     
     public UpdateMaintenanceActivityController(UpdateMaintenanceActivityView updateMaintenanceActivityView)
     {
+        this.view = updateMaintenanceActivityView;
         this.updateMaintenanceActivityView = updateMaintenanceActivityView;
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         this.activityNameList = new LinkedList<>();

@@ -24,7 +24,7 @@ import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
  *
  * @author delso
  */
-public class ViewMaintenanceActivityController
+public class ViewMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get maintenance activities from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query."; 
@@ -36,6 +36,7 @@ public class ViewMaintenanceActivityController
     
     public ViewMaintenanceActivityController(ViewMaintenanceActivityView viewMaintenanceActivityView)
     {
+        this.view = viewMaintenanceActivityView;
         this.viewMaintenanceActivityView = viewMaintenanceActivityView;
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();

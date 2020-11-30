@@ -24,7 +24,7 @@ import se.project.storage.repos.interfaces.UserRepoInterface;
  *
  * @author Giorgio
  */
-public class AddUserController
+public class AddUserController extends AbstractController
 {
     private final String QUERY_ADD_FAILED_MESSAGE = "Could not add user in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -35,6 +35,7 @@ public class AddUserController
     
     public AddUserController(AddUserView addUserView)
     {
+        this.view = addUserView;
         this.addUserView = addUserView;
         this.userRepo = new UserRepo(getConnection());
         clearFields();

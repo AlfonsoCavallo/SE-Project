@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Giacomo
  */
-public class ViewMaintenanceActivityView extends javax.swing.JFrame
+public class ViewMaintenanceActivityView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
 

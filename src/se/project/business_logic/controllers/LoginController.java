@@ -21,7 +21,7 @@ import se.project.storage.repos.interfaces.UserAccessRepoInterface;
  *
  * @author Utente
  */
-public class LoginController
+public class LoginController extends AbstractController
 {
 
     private final LoginView loginView;
@@ -33,6 +33,7 @@ public class LoginController
 
     public LoginController(LoginView loginView)
     {
+        this.view = loginView;
         this.loginView = loginView;
         initListeners();
     }

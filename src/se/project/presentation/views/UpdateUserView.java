@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Giacomo
  */
-public class UpdateUserView extends javax.swing.JFrame
+public class UpdateUserView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
     
