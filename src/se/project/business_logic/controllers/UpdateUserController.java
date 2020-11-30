@@ -32,7 +32,7 @@ public class UpdateUserController extends AbstractController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String UPDATED_MESSAGE = "User \"username_param\" has been updated successfully!";
     private final String QUERY_NULL_POINTER_MESSAGE = "All the fields must be filled!";
-    private final String SELECT_USER_MESSAGE = "Please, select a user before deleting!";
+    private final String SELECT_USER_MESSAGE = "Please, select a user before updating!";
     
     private final UpdateUserView updateUserView;
     private UserRepoInterface userRepo;
