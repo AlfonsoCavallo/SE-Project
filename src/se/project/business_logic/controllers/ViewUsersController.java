@@ -120,6 +120,7 @@ public class ViewUsersController extends AbstractController
             {
                 users = userRepo.queryAllUsers();
             }
+            
             // Clears the model
             while(tableModel.getRowCount() > 0)
             {
@@ -135,7 +136,8 @@ public class ViewUsersController extends AbstractController
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
-        } catch (SQLException ex)
+        } 
+        catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }

@@ -16,7 +16,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
-import static se.project.storage.DatabaseConnection.connect;
 import static se.project.storage.DatabaseConnection.getConnection;
 import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
@@ -344,9 +343,9 @@ public class UserRepoTest
             assertEquals(1, userSearched.size());
             assertEquals("newEmail@jon.com", email);
             
-            closeConnection();
-            
-        } catch (ClassNotFoundException | SQLException | IOException ex)
+            closeConnection();    
+        } 
+        catch (ClassNotFoundException | SQLException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
