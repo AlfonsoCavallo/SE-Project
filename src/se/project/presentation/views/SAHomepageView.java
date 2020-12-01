@@ -1,23 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.presentation.views;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.business_logic.controllers.SAHomepageController.*;
-import static se.project.storage.DatabaseConnection.getConnection;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
 
-/**
- *
- * @author Giacomo
- */
+
 public class SAHomepageView extends AbstractView
 {
 
@@ -30,21 +15,37 @@ public class SAHomepageView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the access records page
+     */
     public JPanel getjAccessRecordPanel()
     {
         return jAccessRecordPanel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open user info page
+     */
     public JPanel getjUserInfoPanel()
     {
         return jUserInfoPanel;

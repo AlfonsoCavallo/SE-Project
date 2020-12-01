@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.presentation.views;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Giacomo
- */
+
 public class PlannerHomepageView extends AbstractView
 {
 
@@ -24,21 +16,37 @@ public class PlannerHomepageView extends AbstractView
         this.setVisible(true);
     }
     
+    /**
+     * 
+     * @return a JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
     
+    /**
+     * 
+     * @return a JPanel representing the button to open the maintenance activity page
+     */
     public JPanel getjMaintenanceActivityPanel()
     {
         return jMaintenanceActivityPanel;

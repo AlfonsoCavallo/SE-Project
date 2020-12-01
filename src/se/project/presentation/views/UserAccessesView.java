@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.presentation.views;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import se.project.business_logic.controllers.UserAccessesController;
 
-/**
- *
- * @author Giacomo
- */
+
 public class UserAccessesView extends AbstractView
 {
     private DefaultTableModel tableModel;
@@ -26,24 +17,58 @@ public class UserAccessesView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
     
+    /**
+     * 
+     * @return a JLabel representing the the search button
+     */
     public JLabel getjSearchLabel()
     {
         return jSearchLabel;
+    }
+    
+    /**
+     * 
+     * @return the DefaultTableModel of the table in the page
+     */
+    public DefaultTableModel getTableModel()
+    {
+        return this.tableModel;
+    }
+    
+    /**
+     * 
+     * @return a String containing the text in the username text field
+     */
+    public String getUsernameField()
+    {
+        return jTextField1.getText();
     }
 
     /**
@@ -185,15 +210,6 @@ public class UserAccessesView extends AbstractView
     setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public DefaultTableModel getTableModel()
-    {
-        return this.tableModel;
-    }
-    
-    public String getUsernameField()
-    {
-        return jTextField1.getText();
-    }
     
     /**
      * @param args the command line arguments
