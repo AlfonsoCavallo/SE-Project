@@ -16,14 +16,23 @@ public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterf
 {    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
 
+    /**
+     * Creates a new SystemUserRepo
+     * @param connection is the current connection
+     */
     public SystemUserRepo(Connection connection)
     {
         super(connection);
     }
 
+    /**
+     * 
+     * @return a SystemUser (that's the model of the current user)
+     * @throws SQLException
+     * @throws IOException 
+     */
     public SystemUser queryCurrentUser() throws SQLException, IOException
     {
-        // Return a model of the current user
         String query = getStringFromFile(QUERY_CURRENT_USER_PATH);
         ResultSet resultSet = super.queryDatabase(query);
         resultSet.next();
@@ -41,6 +50,11 @@ public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterf
         return user;
     }
 
+    /**
+     * 
+     * @return a LinkedList of SystemUser that are in the system
+     * @throws IOException 
+     */
     @Override
     public LinkedList<SystemUser> queryAllUsers() throws IOException
     {

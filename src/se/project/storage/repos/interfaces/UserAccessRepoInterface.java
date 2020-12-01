@@ -9,16 +9,39 @@ import se.project.storage.models.UserAccess;
 public interface UserAccessRepoInterface
 {
 
+    /**
+     * 
+     * @return a LinkedList of the UserAccess in the system
+     * @throws IOException
+     * @throws SQLException 
+     */
     public LinkedList<UserAccess> queryAllUserAccesses() throws IOException, SQLException;
-    // Return all the user accesses to the system
 
+    /**
+     * 
+     * @param username is the username of the user whose accesses has to be shown
+     * @return a LinkedList of UserAccess in which there are the accesses of a specific user 
+     * @throws IOException
+     * @throws SQLException 
+     */
     public LinkedList<UserAccess> queryUserAccesses(String username) throws IOException, SQLException;
-    // Return all the access of a determined user
     
+    /**
+     * 
+     * Add a new access from a user to the database
+     * @param userAccess is the userAccess that has to be added in the database
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void storeUserAccess(UserAccess userAccess) throws IOException, SQLException;
-    // Stores a user access
 
+    /**
+     * 
+     * Stores a user access at current LocalDateTime
+     * @param username is the username of the user that has logged in in that moment
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void storeCurrentUserAccess(String username) throws IOException, SQLException;
-    // Stores a user access at current LocalDateTime
 
 }

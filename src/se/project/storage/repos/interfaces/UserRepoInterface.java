@@ -8,18 +8,48 @@ import se.project.storage.models.User;
 
 public interface UserRepoInterface
 {
+    /**
+     * 
+     * @return a LinkedList of the User in the system
+     * @throws IOException
+     * @throws SQLException 
+     */
     public LinkedList<User> queryAllUsers() throws IOException, SQLException;
-    // Querys all users in the database
     
+    /**
+     * 
+     * @param username is the username of the user that has to be shown
+     * @return a LinkedList of User in which there is a specific user 
+     * @throws IOException
+     * @throws SQLException 
+     */
     public LinkedList<User> queryViewOneUser(String username) throws IOException, SQLException;
-    // Querys a specific user in the database
     
+    /**
+     * 
+     * Delete a specific user from the database
+     * @param username is the username of the user that has to be deleted
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void queryDeleteUser(String username) throws IOException, SQLException;
-    // Deletes a user in the database
     
+    /**
+     * 
+     * Add a new user to the database
+     * @param user is the user that has to be added
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void queryAddUser(User user) throws IOException, SQLException;
-    // Adds a user in the database
     
+    /**
+     * 
+     * Update a specific usar in the database
+     * @param user is the that has to be updated
+     * @param userToUpdate is the previous username of the user that has to be updated
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void queryUpdateUser(User user, String userToUpdate) throws IOException, SQLException;
-    // Update a user in database
 }

@@ -6,9 +6,19 @@ import java.sql.SQLException;
 
 public interface RepoInterface
 {
+    /**
+     * 
+     * @param query is the query for the database 
+     * @return a ResultSet that contains the result of a query on the database
+     * @throws SQLException 
+     */
     public ResultSet queryDatabase(String query) throws SQLException;
-    // Returns the result of a query on the database
     
+    /**
+     * 
+     * @param statement is the statement that has to be executed
+     * @return true if the statement is executed succesfully, false otherwise
+     * @throws SQLException 
+     */
     public boolean executeStatement(String statement) throws SQLException;
-    // Executes a statement on the database
 }
