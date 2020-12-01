@@ -23,15 +23,14 @@ public class DatabaseConnection
     
     /**
      * 
-     * @param username
-     * @param password
-     * @return
+     * @param username is the username of the System User trying to log in
+     * @param password is the password of the System User trying to log in
+     * @return the singleton instance of connection with database
      * @throws ClassNotFoundException
      * @throws SQLException 
      */
     static synchronized public Connection connect(String username, char[] password) throws ClassNotFoundException, SQLException
-    {
-        // Establishes the singleton connection with database
+    { 
         if(connection != null)
         {
             throw new SQLException(ALREADY_CONNECTED_MESSAGE);
@@ -42,14 +41,25 @@ public class DatabaseConnection
         return connection;
     }
     
+    /**
+     * 
+     * @param user is the SystemUser trying to connect with the database
+     * @return the singleton instance of connection with database
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     static synchronized public Connection connect(SystemUser user) throws ClassNotFoundException, SQLException
     {
         return connect(user.getUsername(), user.getPassword());
     }
     
+    /**
+     * 
+     * closes the singleton connection to the database
+     * @throws SQLException 
+     */
     static synchronized public void closeConnection() throws SQLException
     {
-        // Close the singleton connection to the database
         if(connection != null)
         {
             connection.close();
