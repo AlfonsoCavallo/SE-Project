@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.presentation.views.activities_management;
 
 
@@ -12,10 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.AbstractView;
 
-/**
- *
- * @author Giacomo
- */
+
 public class ViewMaintenanceActivityView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
