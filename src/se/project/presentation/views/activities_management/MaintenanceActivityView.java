@@ -18,31 +18,55 @@ public class MaintenanceActivityView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open tha add maintenance activity page
+     */
     public JPanel getjAddMaintenancePanel()
     {
         return jAddMaintenancePanel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the update maintenance activity page
+     */
     public JPanel getjUpdateMaintenancePanel()
     {
         return jUpdateMaintenancePanel;
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the view and delete maintenance activity page
+     */
     public JPanel getjViewMaintenancePanel()
     {
         return jViewDeleteMaintenancePanel;
