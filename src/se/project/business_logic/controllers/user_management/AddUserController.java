@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
@@ -20,10 +15,7 @@ import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-/**
- *
- * @author Giorgio
- */
+
 public class AddUserController extends AbstractController
 {
     private final String QUERY_ADD_FAILED_MESSAGE = "Could not add user in database.";
