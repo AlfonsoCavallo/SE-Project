@@ -8,96 +8,162 @@ import se.project.presentation.views.AbstractView;
 public class AddUserView extends AbstractView
 {
 
+    /**
+     * Creates new form AddUserView
+     */
     public AddUserView()
     {
         initComponents();
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
     
+    /**
+     * 
+     * @return a String containing the text in the username text field
+     */
     public String getUsername()
     {
         return this.jUsernameTextField.getText();
     }
     
+    /**
+     * 
+     * @return a String containing the text in the name text field
+     */
     public String getNameUser()
     {
         return this.jNameTextField.getText();
     }
     
+    /**
+     * 
+     * @return a String containing the text in the surname text field
+     */
     public String getSurname()
     {
         return this.jSurnameTextField.getText();
     }
     
+    /**
+     * 
+     * @return a String containing the text in the email text field
+     */
     public String getEmail()
     {
         return this.jEmailTextField.getText();
     }
     
+    /**
+     * 
+     * @return a Char containing the password in the password field
+     */
     public  char[] getPassword()
     {
         return this.jPasswordField.getPassword();
     }
     
+    /**
+     * 
+     * @return a String containing the selected value in the Role Combo Box
+     */
     public String getRole()
     {
         return (String)this.jRoleComboBox.getSelectedItem();
     }
     
+    /**
+     * 
+     * @return a JPanel representing tha add user button
+     */
     public JPanel getjAddPanel()
     {
         return this.jAddPanel;
     }
     
+    /**
+     * 
+     * @return a JPanel representing the clear button
+     */
     public JPanel getjClearPanel()
     {
         return this.jClearPanel;
     }
     
+    /**
+     * resets the username text field
+     */
     public void resetjUsernameTextField()
     {
         this.jUsernameTextField.setText("");
     }
     
+    /**
+     * resets the name text field
+     */
     public void resetjNameTextField()
     {
         this.jNameTextField.setText("");
     }
     
+    /**
+     * resets the surname text field
+     */
     public void resetjSurnameTextField()
     {
         this.jSurnameTextField.setText("");
     }
     
+    /**
+     * resets the email text field
+     */
     public void resetjEmailTextField()
     {
         this.jEmailTextField.setText("");
     }
     
+    /**
+     * resets the password field
+     */
     public void resetjPasswordField()
     {
         this.jPasswordField.setText("");
     }
     
+    /**
+     * resets the role combo box
+     */
     public void resetjRoleComboBox()
     {
         this.jRoleComboBox.setSelectedIndex(0);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
