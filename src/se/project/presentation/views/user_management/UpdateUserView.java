@@ -11,6 +11,9 @@ public class UpdateUserView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
     
+    /**
+     * Creates new form UpdateUserView
+     */
     public UpdateUserView()
     {
         initComponents();
@@ -21,46 +24,77 @@ public class UpdateUserView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return JPanel representing the button to open update user page
+     */
     public JPanel getjUpdateUserPanel()
     {
         return jUpdateUserPanel;
     }
     
+    /**
+     * 
+     * @return JPanel representing the button to show the password of the username
+     */
     public JPanel getjShowPasswordPanel()
     {
         return jShowPasswordPanel;
     }
     
+    /**
+     * 
+     * @return JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
     
+    /**
+     * 
+     * @return JLabel that changes on click
+     */
     public JLabel getjShowPasswordLabel()
     {
         return this.jShowPasswordLabel;
     }
     
+    /**
+     * 
+     * @return the DefaultTableModel of the table that is in the page
+     */
     public DefaultTableModel getTableModel()
     {
         return this.defaultTableModel;
     }
     
+    /**
+     * 
+     * @return the JTable that is in the page
+     */
     public JTable getTable()
     {
         return this.jTable;
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.

@@ -11,6 +11,9 @@ public class ViewUsersView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
     
+    /**
+     * Creates new form ViewUsersView
+     */
     public ViewUsersView()
     {
         initComponents();
@@ -28,46 +31,81 @@ public class ViewUsersView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a String containing the username in the name text field
+     */
     public String getUsername()
     {
         return this.jTextField.getText();
     }
     
+    /**
+     * resets the username text field
+     */
     public void resetUsernameField()
     {
         this.jTextField.setText("");
     }
     
+    /**
+     * 
+     * @return the JLabel representing the search button
+     */
     public JLabel getjSearchLabel()
     {
         return jSearchLabel;
     }
     
+    /**
+     * 
+     * @return the JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return the JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return the JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
     
+    /**
+     * 
+     * @return the JLabel representing the delete button
+     */
     public JLabel getjDeleteLabel()
     {
         return jDeleteLabel;
     }
     
+    /**
+     * 
+     * @return the DefaultTableModel of the table that is in the page
+     */
     public DefaultTableModel getTableModel()
     {
         return this.defaultTableModel;
     }
     
+    /**
+     * 
+     * @return the JTable that is in the page
+     */
     public JTable getTable()
     {
         return this.jTable;

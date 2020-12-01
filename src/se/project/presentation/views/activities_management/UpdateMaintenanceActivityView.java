@@ -1,6 +1,5 @@
 package se.project.presentation.views.activities_management;
 
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;

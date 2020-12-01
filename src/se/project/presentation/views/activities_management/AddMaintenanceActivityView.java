@@ -21,7 +21,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JPanel representing tha add user button
+     * @return a JPanel representing the add maintenance activity button
      */
     public JPanel getjAddPanel()
     {
@@ -243,7 +243,6 @@ public class AddMaintenanceActivityView extends AbstractView
     {
         this.jWeekComboBox.setSelectedIndex(0);
     }
-
     
     /**
      * This method is called from within the constructor to initialize the form.
