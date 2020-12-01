@@ -29,6 +29,10 @@ public class AddMaintenanceActivityController extends AbstractController
     private final AddMaintenanceActivityView addMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
             
+    /**
+     * 
+     * Crates a new AddMaintenanceActivityController
+     */
     public AddMaintenanceActivityController()
     {
         this.addMaintenanceActivityView = new AddMaintenanceActivityView();
@@ -37,6 +41,10 @@ public class AddMaintenanceActivityController extends AbstractController
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of addMaintenanceActivityView
+     */
     public void initListeners()
     {
         addMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -115,11 +123,19 @@ public class AddMaintenanceActivityController extends AbstractController
 
     }
     
+    /**
+     * 
+     * Opens the maintenance activity page using its controller
+     */
     public static void goBackMaintenanceActivityPage()
     {
         new MaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Add a new maintenanance activity using data from the page and method from the repo
+     */
     public void addMaintenanceActivity()
     {
         MaintenanceActivity maintenanceActivity = null;
@@ -134,16 +150,7 @@ public class AddMaintenanceActivityController extends AbstractController
         String ewo = addMaintenanceActivityView.getIsEWOValue();
         String standardProcedure = addMaintenanceActivityView.getStringStandardProcedureTextField();
         
-        boolean interruptible;
-        
-        if(interruptibleString.equals("yes"))
-        {
-            interruptible = true;
-        }
-        else
-        {
-            interruptible = false;
-        }    
+        boolean interruptible = interruptibleString.equals("yes");    
         
         if(planned.equals("yes"))
         {
@@ -180,6 +187,10 @@ public class AddMaintenanceActivityController extends AbstractController
         }
     } 
     
+    /**
+     * 
+     * Clears all the fields in the page
+     */
     public void clearFields()
     {
         addMaintenanceActivityView.resetjDescriptionTextArea();

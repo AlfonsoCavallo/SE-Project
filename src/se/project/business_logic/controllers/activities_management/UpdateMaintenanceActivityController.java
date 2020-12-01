@@ -34,6 +34,10 @@ public class UpdateMaintenanceActivityController extends AbstractController
     private LinkedList<String> activityNameList;
     private int columnNumber;
     
+    /**
+     * 
+     * Creates a new UpdateMaintenanceActivityController
+     */
     public UpdateMaintenanceActivityController()
     {
         this.updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
@@ -44,6 +48,10 @@ public class UpdateMaintenanceActivityController extends AbstractController
         viewMaintenanceActivity();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of updateMaintenanceActivityView
+     */
     public void initListeners()
     {
         updateMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -91,11 +99,19 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
     }
     
+    /**
+     * 
+     * Opens the maintenance activity page using its controller
+     */
     public static void goBackMaintenanceActivityPage()
     {
         new MaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Updates the selected maintenance activity 
+     */
     public void updateMaintenanceActivity()
     {
         MaintenanceActivity maintenanceActivity = null;
@@ -182,6 +198,10 @@ public class UpdateMaintenanceActivityController extends AbstractController
         }   
     }
     
+    /**
+     * 
+     * Shows in the table all the maintenance activities
+     */
     public void viewMaintenanceActivity(){
         DefaultTableModel tableModel = updateMaintenanceActivityView.getDefaultTableModel();
         try

@@ -12,12 +12,20 @@ public class MaintenanceActivityController extends AbstractController
 {
     private final MaintenanceActivityView maintenanceActivityView;
     
+    /**
+     * 
+     * Creates a new MaintenanceActivityController
+     */
     public MaintenanceActivityController()
     {
        this.maintenanceActivityView = new MaintenanceActivityView();
        initListeners();
     }  
     
+    /**
+     * 
+     *  Initializes the listeners of addMaintenanceActivityView
+     */
     private void initListeners()
     {
         maintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -84,21 +92,37 @@ public class MaintenanceActivityController extends AbstractController
                 
     }        
     
+    /**
+     * 
+     * Opens the add maintenance activity page using its controller
+     */
     public static void openAddMaintenanceActivityPage()
     {
         new AddMaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Opens the update maintenance activity page using its controller
+     */
     public static void openUpdateMaintenanceActivityPage()
     {
         new UpdateMaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Opens the view and delete maintenance activity page using its controller
+     */
     public static void openViewMaintenanceActivityPage()
     {
         new ViewMaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Opens the planner homepage using its controller
+     */
     public static void goBackPlannerHomepage()
     {
         new PlannerHomepageController();

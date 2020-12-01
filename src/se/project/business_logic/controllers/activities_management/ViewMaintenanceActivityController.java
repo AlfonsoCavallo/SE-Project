@@ -26,6 +26,10 @@ public class ViewMaintenanceActivityController extends AbstractController
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
     
+    /**
+     * 
+     * Creates a new ViewMaintenanceActivityController
+     */
     public ViewMaintenanceActivityController()
     {
         this.viewMaintenanceActivityView = new ViewMaintenanceActivityView();
@@ -34,6 +38,10 @@ public class ViewMaintenanceActivityController extends AbstractController
         viewMaintenanceActivities();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of viewMaintenanceActivityView
+     */
     public void initListeners()
     {
         viewMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -89,11 +97,18 @@ public class ViewMaintenanceActivityController extends AbstractController
         
     }
     
+    /**
+     * 
+     * Opens the maintenance activity page using its controller
+     */
     public static void goBackMaintenanceActivityPage()
     {
         new MaintenanceActivityController();
     }
     
+    /**
+     * Updates the table in the page inserting the all the maintenance activities or a specific one
+     */
     public void viewMaintenanceActivities()
     {
         DefaultTableModel tableModel = viewMaintenanceActivityView.getTableModel();
@@ -132,6 +147,10 @@ public class ViewMaintenanceActivityController extends AbstractController
         }
     }
     
+    /**
+     * 
+     * Deletes the selected maintenance activity
+     */
     public void deleteMaintenanceActivity()
     {
         try
