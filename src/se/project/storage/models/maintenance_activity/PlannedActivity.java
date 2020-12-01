@@ -12,7 +12,7 @@ public class PlannedActivity extends MaintenanceActivity
     
     /**
      * 
-     * Creates a new Planned Activity
+     * Creates a new PlannedActivity
      * @param IDActivity is the IDActivity of the Planned Activity
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
@@ -33,7 +33,7 @@ public class PlannedActivity extends MaintenanceActivity
     
     /**
      * 
-     * Creates a new Planned Activity without considering the ID
+     * Creates a new PlannedActivity without considering the ID
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
      * @param interruptible is the type of the Planned Activity
@@ -63,7 +63,7 @@ public class PlannedActivity extends MaintenanceActivity
     
     /**
      * 
-     * @return the data model of a Planned Activity
+     * @return the data model of the Planned Activity
      */
     @Override
     public Object[] getDataModel()
@@ -74,7 +74,7 @@ public class PlannedActivity extends MaintenanceActivity
 
     /**
      * 
-     * @return a String containing the planned activity
+     * @return a String corresponding to the attribute planned
      */
     @Override
     public String isPlanned()
@@ -84,7 +84,7 @@ public class PlannedActivity extends MaintenanceActivity
 
     /**
      * 
-     * @return a String containing the Ewo
+     * @return a String correspoding to the attribute ewo
      */
     @Override
     public String isEWO()

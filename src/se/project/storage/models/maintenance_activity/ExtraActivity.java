@@ -9,24 +9,49 @@ public class ExtraActivity extends UnplannedActivity
     private String planned;
     private String ewo;
     
-    public ExtraActivity(int IDActivity, String activityName, int timeNedeed, boolean interruptible, 
+    /**
+     * 
+     * Creates a new ExtraActivity
+     * @param IDActivity is the ID of the Maintenance Activity
+     * @param activityName is the name of the Maintenance Activity
+     * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
+     * @param typology is the typology of the Maintenance Activity
+     * @param activityDescription is the description of the Maintenance Activity
+     * @param week is the week in which the Maintenance Activity must be done
+     */
+    public ExtraActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(IDActivity, activityName, timeNedeed, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "no";
     }
     
-    public ExtraActivity(String activityName, int timeNedeed, boolean interruptible, 
+    /**
+     * 
+     * Creates a new ExtraActivity without considering the ID
+     * @param activityName is the name of the Maintenance Activity
+     * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
+     * @param typology is the typology of the Maintenance Activity
+     * @param activityDescription is the description of the Maintenance Activity
+     * @param week is the week in which the Maintenance Activity must be done
+     */
+    public ExtraActivity(String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(activityName, timeNedeed, interruptible, typology, activityDescription, week);
+        super(activityName, timeNeeded, interruptible, typology, activityDescription, week);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "no";
     }
 
+    /**
+    * 
+    * @return an Object array representing the data model of the maintenance activity
+    */
     @Override
     public Object[] getDataModel()
     {
@@ -35,23 +60,41 @@ public class ExtraActivity extends UnplannedActivity
             getWeek(), isPlanned(), isEWO(), getStandardProcedure()};
     }
 
+    /**
+    * 
+    * @return a String corresponding to the attribute planned
+    */
     @Override
     public String isPlanned()
     {
         return this.planned;
     }
 
+    /**
+    * 
+    * @return a String corresponding to the attribute ewo
+    */
     @Override
     public String isEWO()
     {
         return this.ewo;
     }
 
+    /**
+    * 
+    * @return a String representing the standard procedure of the maintenance activity
+    */
     @Override
     public String getStandardProcedure()
     {
         return standardProcedure;
     }
+    
+    /**
+     * 
+     * @param obj is the object to compare
+     * @return true if the compared objects are equals, otherwise false
+     */
     @Override
     public boolean equals(Object obj)
     {
