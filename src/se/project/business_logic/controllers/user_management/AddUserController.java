@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import se.project.business_logic.controllers.AbstractController;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.user_management.AddUserView;
-import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
@@ -34,10 +33,9 @@ public class AddUserController extends AbstractController
     private final AddUserView addUserView;
     private UserRepoInterface userRepo = null;
     
-    public AddUserController(AddUserView addUserView)
+    public AddUserController()
     {
-        this.view = addUserView;
-        this.addUserView = addUserView;
+        this.addUserView = new AddUserView();
         this.userRepo = new UserRepo(getConnection());
         clearFields();
         initListeners();
@@ -97,11 +95,9 @@ public class AddUserController extends AbstractController
         });
     }
     
-    public static JFrame goBackUserInfoPage()
+    public static void goBackUserInfoPage()
     {
-        UserInfoView userInfoView = new UserInfoView();
-        UserInfoController userInfoController = new UserInfoController(userInfoView);
-        return userInfoView;
+        new UserInfoController();
     }
     
     public void addUser()

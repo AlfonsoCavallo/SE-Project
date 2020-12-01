@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.user_management.UpdateUserView;
-import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
@@ -39,10 +38,9 @@ public class UpdateUserController extends AbstractController
      * Constructor
      * @param updateUserView 
      */
-    public UpdateUserController(UpdateUserView updateUserView)
+    public UpdateUserController()
     {
-        this.view = updateUserView;
-        this.updateUserView = updateUserView;
+        this.updateUserView = new UpdateUserView();
         this.userRepo = new UserRepo(getConnection());
         this.usernameList = new LinkedList<>();
         this.columnNumber = this.updateUserView.getTable().getColumnCount();
@@ -111,11 +109,9 @@ public class UpdateUserController extends AbstractController
      * 
      * @return a JFrame representing the userInfoView
      */
-    public static JFrame goBackUserInfoPage()
+    public static void goBackUserInfoPage()
     {
-       UserInfoView userInfoView = new UserInfoView();
-       UserInfoController userInfoController = new UserInfoController(userInfoView);
-       return userInfoView;
+       new UserInfoController();
     }
     
     /**

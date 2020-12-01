@@ -7,11 +7,8 @@ package se.project.business_logic.controllers;
 
 import se.project.business_logic.controllers.user_management.UserInfoController;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.SAHomepageView;
-import se.project.presentation.views.UserAccessesView;
-import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**
@@ -22,10 +19,9 @@ public class SAHomepageController extends AbstractController
 {
     private final SAHomepageView saHomepageView;
     
-    public SAHomepageController(SAHomepageView saHomepageView)
+    public SAHomepageController()
     {
-        this.view = saHomepageView;
-        this.saHomepageView = saHomepageView;
+        this.saHomepageView = new SAHomepageView();
         initListeners();
     }
     
@@ -76,17 +72,14 @@ public class SAHomepageController extends AbstractController
         });
     }
     
-    public static JFrame openUserInfoPage()
+    public void openUserInfoPage()
     {
-        UserInfoView userInfoView = new UserInfoView();
-        UserInfoController userInfoController = new UserInfoController(userInfoView);
-        return userInfoView;
+        new UserInfoController();
     }
     
-    public static JFrame openRecordAccessPage()
+    public void openRecordAccessPage()
     {
-        UserAccessesView userAccessesView = new UserAccessesView();
-        UserAccessesController userAccessesController = new UserAccessesController(userAccessesView);
-        return userAccessesView;
+        new UserAccessesController();
     }
+    
 }

@@ -7,15 +7,10 @@ package se.project.business_logic.controllers.activities_management;
 
 import se.project.business_logic.controllers.activities_management.AddMaintenanceActivityController;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
 import se.project.business_logic.controllers.PlannerHomepageController;
-import se.project.presentation.views.activities_management.AddMaintenanceActivityView;
 import se.project.presentation.views.activities_management.MaintenanceActivityView;
-import se.project.presentation.views.PlannerHomepageView;
-import se.project.presentation.views.activities_management.UpdateMaintenanceActivityView;
-import se.project.presentation.views.activities_management.ViewMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**
@@ -26,10 +21,9 @@ public class MaintenanceActivityController extends AbstractController
 {
     private final MaintenanceActivityView maintenanceActivityView;
     
-    public MaintenanceActivityController(MaintenanceActivityView maintenanceActivityView)
+    public MaintenanceActivityController()
     {
-       this.view = maintenanceActivityView;
-       this.maintenanceActivityView = maintenanceActivityView;
+       this.maintenanceActivityView = new MaintenanceActivityView();
        initListeners();
     }  
     
@@ -99,31 +93,23 @@ public class MaintenanceActivityController extends AbstractController
                 
     }        
     
-    public static JFrame openAddMaintenanceActivityPage()
+    public static void openAddMaintenanceActivityPage()
     {
-        AddMaintenanceActivityView addMaintenanceActivityView = new AddMaintenanceActivityView();
-        AddMaintenanceActivityController addMaintenanceActivityController = new AddMaintenanceActivityController(addMaintenanceActivityView);
-        return addMaintenanceActivityView;
+        new AddMaintenanceActivityController();
     }
     
-    public static JFrame openUpdateMaintenanceActivityPage()
+    public static void openUpdateMaintenanceActivityPage()
     {
-        UpdateMaintenanceActivityView updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
-        UpdateMaintenanceActivityController updateMaintenanceActivityController = new UpdateMaintenanceActivityController(updateMaintenanceActivityView);
-        return updateMaintenanceActivityView;
+        new UpdateMaintenanceActivityController();
     }
     
-    public static JFrame openViewMaintenanceActivityPage()
+    public static void openViewMaintenanceActivityPage()
     {
-        ViewMaintenanceActivityView viewMaintenanceActivityView = new ViewMaintenanceActivityView();
-        ViewMaintenanceActivityController viewMaintenanceActivityController = new ViewMaintenanceActivityController(viewMaintenanceActivityView);
-        return viewMaintenanceActivityView;
+        new ViewMaintenanceActivityController();
     }
     
-    public static JFrame goBackPlannerHomepage()
+    public static void goBackPlannerHomepage()
     {
-        PlannerHomepageView plannerHomepageView = new PlannerHomepageView();
-        PlannerHomepageController plannerHomepageController = new PlannerHomepageController(plannerHomepageView);
-        return plannerHomepageView;
+        new PlannerHomepageController();
     }
 }

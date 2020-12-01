@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UserAccessesView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.UserAccess;
@@ -31,10 +30,9 @@ public class UserAccessesController extends AbstractController
     private final UserAccessesView userAccessesView;
     private UserAccessRepoInterface userAccessesRepo = null;
 
-    public UserAccessesController(UserAccessesView userAccessesView)
+    public UserAccessesController()
     {
-        this.view = userAccessesView;
-        this.userAccessesView = userAccessesView;
+        this.userAccessesView = new UserAccessesView();
         initListeners();
         updateAccesses();
     }
@@ -53,7 +51,7 @@ public class UserAccessesController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                backToHomepage();
+                goBackSystemAdministratorHomepage();
                 userAccessesView.dispose();
             }
         });
@@ -124,10 +122,8 @@ public class UserAccessesController extends AbstractController
         }
     }
     
-    public SAHomepageView backToHomepage()
+    public void goBackSystemAdministratorHomepage()
     {
-        SAHomepageView saHomepageView = new SAHomepageView();
-        SAHomepageController saHomepageController = new SAHomepageController(saHomepageView);
-        return saHomepageView;        
+        new SAHomepageController();      
     }
 }

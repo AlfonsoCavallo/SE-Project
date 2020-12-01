@@ -18,35 +18,60 @@ public class UserInfoView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the add user page
+     */
     public JPanel getjAddUserPanel()
     {
       return this.jAddUserPanel ; 
     }
     
+    /**
+     * 
+     * @return a JPanel representing the button to open the view and delete user page
+     */
     public JPanel getjViewUserPanel()
     {
       return this.jViewUserPanel ; 
     }
     
+    /**
+     * 
+     * @return a JPanel representing the button to open the update user page
+     */
     public JPanel getjUpdateUserPanel()
     {
       return this.jUpdateUserPanel ; 
     }
     
+    /**
+     * 
+     * @return a JLabel representing close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return  a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
