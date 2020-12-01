@@ -9,6 +9,17 @@ public class EWO extends UnplannedActivity
     private String planned;
     private String ewo;
     
+    /**
+     * 
+     * Creates a new EWO
+     * @param IDActivity is the IDActivity of the EWO
+     * @param activityName is the name of the EWO
+     * @param timeNeeded is the time needed for the EWO
+     * @param interruptible is the type of the EWO
+     * @param typology is the typology of the EWO
+     * @param activityDescription is the activity description of the EWO
+     * @param week is the week dedicated to the EWO
+     */
     public EWO(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
@@ -18,6 +29,16 @@ public class EWO extends UnplannedActivity
         this.ewo = "yes";
     }
     
+    /**
+     * 
+     * Creates a new EWO  without considering the ID
+     * @param activityName is the name of the EWO
+     * @param timeNeeded is the time needed for the EWO
+     * @param interruptible is the type of the EWO
+     * @param typology is the typology of the EWO
+     * @param activityDescription is the activity description of the EWO
+     * @param week is the week dedicated to the EWO
+     */
     public EWO(String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
@@ -27,6 +48,10 @@ public class EWO extends UnplannedActivity
         this.ewo = "yes";
     }
 
+    /**
+     * 
+     * @return an Object array representing the data model of the maintenance activity
+     */
     @Override
     public Object[] getDataModel()
     {
@@ -35,24 +60,41 @@ public class EWO extends UnplannedActivity
             getWeek(), isPlanned(), isEWO(), getStandardProcedure()};
     }
 
+    /**
+     * 
+     * @return a String corrisponding to the attribute planned
+     */
     @Override
     public String isPlanned()
     {
         return this.planned;
     }
 
+    /**
+     * 
+     * @return a String corrisponding to the attribute EWO
+     */
     @Override
     public String isEWO()
     {
         return this.ewo;
     }
 
+    /**
+     * 
+     * @return a String containing the standard procedure
+     */
     @Override
     public String getStandardProcedure()
     {
         return standardProcedure;
     }
 
+    /**
+     * 
+     * @param obj is the object to compare
+     * @return true if the compared objects are equals, otherwise false
+     */
     @Override
     public boolean equals(Object obj)
     {
