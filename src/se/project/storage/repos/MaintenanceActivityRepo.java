@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.storage.repos;
 
 import java.io.IOException;
@@ -19,10 +14,7 @@ import static se.project.storage.models.maintenance_activity.MaintenanceActivity
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-/**
- *
- * @author delso
- */
+
 public class MaintenanceActivityRepo extends AbstractRepo implements MaintenanceActivityRepoInterface     
 {
     private final String QUERY_ALL_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAllMaintenanceActivity.sql";

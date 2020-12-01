@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repos;
 
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
@@ -16,10 +10,7 @@ import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.*;
 import se.project.storage.models.UserAccess;
 
-/**
- *
- * @author Utente
- */
+
 public class UserAccessRepo extends AbstractRepo implements UserAccessRepoInterface
 {
     private final String QUERY_ALL_USER_ACCESSES_PATH = "/se/project/assets/query/QueryAllUserAccesses.sql";

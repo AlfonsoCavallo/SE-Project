@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repos;
 
 import java.sql.Connection;
@@ -13,10 +7,7 @@ import java.sql.SQLException;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.repos.interfaces.RepoInterface;
 
-/**
- *
- * @author Utente
- */
+
 public abstract class AbstractRepo implements RepoInterface
 {   
     private final Connection connection;
