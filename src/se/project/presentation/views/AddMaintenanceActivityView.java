@@ -51,7 +51,7 @@ public class AddMaintenanceActivityView extends AbstractView
         return jGoBackLabel;
     }
 
-    public String getjDescriptionTextArea()
+    public String getStringDescriptionTextArea()
     {
         return this.jDescriptionTextArea.getText();
     }
@@ -66,12 +66,12 @@ public class AddMaintenanceActivityView extends AbstractView
         return jEWOComboBox;
     }
     
-    public String getjInterruptibleComboBox()
+    public String getStringInterruptibleComboBox()
     {
         return this.jInterruptibleComboBox.getSelectedItem().toString();
     }
 
-    public String getjNameTextField()
+    public String getStringNameTextField()
     {
         return this.jNameTextField.getText();
     }
@@ -96,17 +96,17 @@ public class AddMaintenanceActivityView extends AbstractView
         return jStandardProcedureTextField;
     }
     
-    public String getjTimeTextField()
+    public String getStringTimeTextField()
     {
         return this.jTimeTextField.getText();
     }
 
-    public String getjTypologyComboBox()
+    public String getStringTypologyComboBox()
     {
         return this.jTypologyComboBox.getSelectedItem().toString();
     }
 
-    public String getjWeekComboBox()
+    public String getStringWeekComboBox()
     {
         return this.jWeekComboBox.getSelectedItem().toString();
     }
