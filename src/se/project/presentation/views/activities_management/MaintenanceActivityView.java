@@ -20,7 +20,7 @@ public class MaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JPanel representing the button to open tha add maintenance activity page
+     * @return a JPanel representing the button to open the add maintenance activity page
      */
     public JPanel getjAddMaintenancePanel()
     {

@@ -12,6 +12,9 @@ public class ViewMaintenanceActivityView extends AbstractView
 {
     private DefaultTableModel defaultTableModel;
 
+    /**
+     * Creates new form ViewMaintenanceActivityView
+     */
     public ViewMaintenanceActivityView()
     {
         initComponents();
@@ -30,51 +33,90 @@ public class ViewMaintenanceActivityView extends AbstractView
         this.setVisible(true);
     }
     
+    /**
+     * 
+     * @return a String containing the text in the name text field
+     */
     public String getName()
     {
         return this.jNameTextField.getText();
     } 
     
+    /**
+     *  resets the name text field
+     */
     public void resetNameField()
     {
         this.jNameTextField.setText("");
     }        
 
+    /**
+     * 
+     * @return the JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return the JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return the JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
 
+    /**
+     * 
+     * @return the JLabel representing the search button
+     */
     public JLabel getjSearchLabel()
     {
         return jSearchLabel;
     }
     
+    /**
+     * 
+     * @return the JLabel representing the delete button
+     */
     public JLabel getjDeleteLabel()
     {
         return jDeleteLabel;
     }
 
+    /**
+     * 
+     * @return the DefaultTableModel of the table that is in the page
+     */
     public DefaultTableModel getTableModel()
     {
         return defaultTableModel;
     }
     
+    /**
+     * 
+     * @return the JTable that is in the page
+     */
     public JTable getjTable()
     {
         return jTable;
     }
 
+    /**
+     * 
+     * @return the JTextField containing the name that has to be searched
+     */
     public JTextField getjNameTextField()
     {
         return jNameTextField;

@@ -26,31 +26,55 @@ public class UpdateMaintenanceActivityView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
 
+    /**
+     * 
+     * @return JPanel representing the button to open update maintenance activity page
+     */
     public JPanel getjUpdateMaintenanceProcedurePanel()
     {
         return jUpdateMaintenanceProcedurePanel;
     }
 
+    /**
+     * 
+     * @return JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return the DefaultTableModel of the table that is in the page
+     */
     public DefaultTableModel getDefaultTableModel()
     {
         return this.defaultTableModel;
     }
 
+    /**
+     * 
+     * @return the JTable that is in the page
+     */
     public JTable getjTable()
     {
         return this.jTable;
