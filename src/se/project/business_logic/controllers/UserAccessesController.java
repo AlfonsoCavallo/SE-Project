@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
@@ -17,10 +12,7 @@ import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
-/**
- *
- * @author Utente
- */
+
 public class UserAccessesController extends AbstractController
 {
 

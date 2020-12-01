@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
 import se.project.business_logic.controllers.user_management.UserInfoController;
@@ -11,10 +6,7 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.SAHomepageView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-/**
- *
- * @author Giacomo
- */
+
 public class SAHomepageController extends AbstractController
 {
     private final SAHomepageView saHomepageView;
