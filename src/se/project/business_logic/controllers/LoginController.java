@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
@@ -17,10 +12,7 @@ import se.project.storage.repos.UserAccessRepo;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
-/**
- *
- * @author Utente
- */
+
 public class LoginController extends AbstractController
 {
 
@@ -31,12 +23,20 @@ public class LoginController extends AbstractController
     private final String LOGIN_FAILED_MESSAGE = "Login failed.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
 
+    /**
+     * 
+     * Creates a new LoginController
+     */
     public LoginController()
     {
         this.loginView = new LoginView();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of loginView
+     */
     private void initListeners()
     {
         loginView.getjUsernameTextField().addMouseListener(new java.awt.event.MouseAdapter()
@@ -72,6 +72,10 @@ public class LoginController extends AbstractController
         });
     }
 
+    /**
+     * 
+     *  Makes the log in
+     */
     public void login()
     {
         String username = loginView.getUsername();
@@ -98,6 +102,11 @@ public class LoginController extends AbstractController
         }
     }
 
+    /**
+     * 
+     * Opens the page corresponding to the specific role
+     * @param role is the role of the system user that has logged in
+     */
     private void openUserPage(SystemUser.Role role)
     {
         if (null == role)

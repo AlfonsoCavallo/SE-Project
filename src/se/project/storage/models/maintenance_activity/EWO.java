@@ -62,7 +62,7 @@ public class EWO extends UnplannedActivity
 
     /**
      * 
-     * @return a String corrisponding to the attribute planned
+     * @return a String corresponding to the attribute planned
      */
     @Override
     public String isPlanned()
@@ -72,7 +72,7 @@ public class EWO extends UnplannedActivity
 
     /**
      * 
-     * @return a String corrisponding to the attribute EWO
+     * @return a String corresponding to the attribute EWO
      */
     @Override
     public String isEWO()

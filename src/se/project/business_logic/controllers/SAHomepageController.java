@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
 import se.project.business_logic.controllers.user_management.UserInfoController;
@@ -11,20 +6,25 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.SAHomepageView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-/**
- *
- * @author Giacomo
- */
+
 public class SAHomepageController extends AbstractController
 {
     private final SAHomepageView saHomepageView;
     
+    /**
+     * 
+     * Creates a new SAHomepageController
+     */
     public SAHomepageController()
     {
         this.saHomepageView = new SAHomepageView();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of saHomepageView
+     */
     private void initListeners()
     {
         saHomepageView.getjUserInfoPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -72,11 +72,19 @@ public class SAHomepageController extends AbstractController
         });
     }
     
+    /**
+     * 
+     * Opens the user info page using its controller
+     */
     public void openUserInfoPage()
     {
         new UserInfoController();
     }
     
+    /**
+     * 
+     * Opens the user access records page using its controller
+     */
     public void openRecordAccessPage()
     {
         new UserAccessesController();
