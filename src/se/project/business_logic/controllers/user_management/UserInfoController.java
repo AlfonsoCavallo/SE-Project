@@ -12,11 +12,11 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.SAHomepageController;
-import se.project.presentation.views.AddUserView;
+import se.project.presentation.views.user_management.AddUserView;
 import se.project.presentation.views.SAHomepageView;
-import se.project.presentation.views.UpdateUserView;
-import se.project.presentation.views.UserInfoView;
-import se.project.presentation.views.ViewUsersView;
+import se.project.presentation.views.user_management.UpdateUserView;
+import se.project.presentation.views.user_management.UserInfoView;
+import se.project.presentation.views.user_management.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 

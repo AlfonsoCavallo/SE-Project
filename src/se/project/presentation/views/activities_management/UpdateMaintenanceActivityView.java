@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.presentation.views;
+package se.project.presentation.views.activities_management;
 
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.AbstractView;
 
 
 /**
@@ -138,7 +139,7 @@ public class UpdateMaintenanceActivityView extends AbstractView
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jUpdateMaintenanceProcedurePanelLayout.setVerticalGroup(
             jUpdateMaintenanceProcedurePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

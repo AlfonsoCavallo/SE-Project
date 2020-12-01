@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.presentation.views;
+package se.project.presentation.views.user_management;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.AbstractView;
 /**
  *
  * @author Giacomo
@@ -140,7 +141,7 @@ public class UpdateUserView extends AbstractView
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         jUpdateUserPanelLayout.setVerticalGroup(
             jUpdateUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +174,7 @@ public class UpdateUserView extends AbstractView
             .addGroup(jShowPasswordPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jShowPasswordLabel)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N

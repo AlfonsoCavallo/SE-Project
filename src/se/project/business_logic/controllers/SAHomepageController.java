@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UserAccessesView;
-import se.project.presentation.views.UserInfoView;
+import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
 /**

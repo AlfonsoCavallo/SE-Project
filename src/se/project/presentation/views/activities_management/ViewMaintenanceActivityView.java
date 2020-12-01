@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.presentation.views;
+package se.project.presentation.views.activities_management;
 
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.AbstractView;
 
 /**
  *

@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.presentation.views;
+package se.project.presentation.views.activities_management;
 
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import se.project.presentation.views.AbstractView;
 
 
 /**
@@ -150,7 +151,7 @@ public class MaintenanceActivityView extends AbstractView
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jUpdateMaintenancePanelLayout.setVerticalGroup(
             jUpdateMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +191,7 @@ public class MaintenanceActivityView extends AbstractView
             .addGroup(jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel4)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)

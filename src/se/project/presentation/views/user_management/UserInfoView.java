@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.presentation.views;
+package se.project.presentation.views.user_management;
 
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import se.project.presentation.views.AbstractView;
 
 /**
  *

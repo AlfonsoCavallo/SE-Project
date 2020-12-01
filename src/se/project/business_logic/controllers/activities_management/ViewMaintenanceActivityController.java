@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.activities_management;
 
+import se.project.business_logic.controllers.activities_management.MaintenanceActivityController;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.MaintenanceActivityView;
-import se.project.presentation.views.ViewMaintenanceActivityView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
+import se.project.presentation.views.activities_management.MaintenanceActivityView;
+import se.project.presentation.views.activities_management.ViewMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
