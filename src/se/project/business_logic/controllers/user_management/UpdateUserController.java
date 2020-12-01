@@ -32,8 +32,8 @@ public class UpdateUserController extends AbstractController
     private int columnNumber;
 
     /**
-     * Constructor
-     * @param updateUserView 
+     * 
+     * Creates a new UpdateUserController
      */
     public UpdateUserController()
     {
@@ -46,7 +46,8 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
-     *  initializes the listeners of updateUserView
+     * 
+     *  Initializes the listeners of updateUserView
      */
     private void initListeners()
     {
@@ -104,7 +105,7 @@ public class UpdateUserController extends AbstractController
     
     /**
      * 
-     * @return a JFrame representing the userInfoView
+     * Opens the user info page using its controller
      */
     public static void goBackUserInfoPage()
     {
@@ -112,6 +113,7 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
+     * 
      *  Executes the update of the selected user
      */
     public void updateUser()
@@ -171,9 +173,8 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
-     * 
+     * This method shows in a table the users in the database 
      * @param showPassword indicates if the passwords must be shown
-     * This method shows in a table the users in the database
      */
     public void viewUsers(boolean showPassword)
     {
@@ -215,7 +216,7 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
-     *  This method changes the show password button and modify the View
+     * This method changes the show password button and modify the View
      */
     public void showPassword()
     {

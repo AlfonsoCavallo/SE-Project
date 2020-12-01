@@ -25,6 +25,10 @@ public class AddUserController extends AbstractController
     private final AddUserView addUserView;
     private UserRepoInterface userRepo = null;
     
+    /**
+     * 
+     * Creates a new AddUserController
+     */
     public AddUserController()
     {
         this.addUserView = new AddUserView();
@@ -33,6 +37,10 @@ public class AddUserController extends AbstractController
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of addUserView
+     */
     private void initListeners()
     {
         addUserView.getjAddPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -87,11 +95,19 @@ public class AddUserController extends AbstractController
         });
     }
     
+    /**
+     * 
+     * Opens the user info page using its controller
+     */
     public static void goBackUserInfoPage()
     {
         new UserInfoController();
     }
     
+    /**
+     * 
+     * Add a new user using data from the page and method from the repo
+     */
     public void addUser()
     {
         String username = addUserView.getUsername();
@@ -126,6 +142,10 @@ public class AddUserController extends AbstractController
         
     }
     
+    /**
+     * 
+     * Clears aòò the fields in the page
+     */
     public void clearFields()
     {
         addUserView.resetjUsernameTextField();

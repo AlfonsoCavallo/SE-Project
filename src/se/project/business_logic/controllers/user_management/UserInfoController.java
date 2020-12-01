@@ -12,12 +12,20 @@ public class UserInfoController  extends AbstractController
 {
     private final UserInfoView userInfoView;
     
+    /**
+     * 
+     * Creates a new UserInfoController
+     */
     public UserInfoController()
     {
         this.userInfoView = new UserInfoView();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of viewMaintenanceActivityView
+     */
     private void initListeners()
     {
         userInfoView.getjAddUserPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -82,21 +90,37 @@ public class UserInfoController  extends AbstractController
         });
     }
     
+    /**
+     * 
+     * Opens the add user page using its controller
+     */
     public static void openAddUserPage()
     {
         new AddUserController();
     }
     
+    /**
+     * 
+     * Opens the view and delete user page using its controller
+     */
     public static void openViewUserPage()
     {
         new ViewUsersController();
     }
     
+    /**
+     * 
+     * Opens the update user page using its controller
+     */
     public static void openUpdateUserPage()
     {
         new UpdateUserController();
     }
     
+    /**
+     * 
+     * Opens the system administrator homepage using its controller
+     */
     public static void goBackSystemAdministratorHomepage()
     {
         new SAHomepageController();

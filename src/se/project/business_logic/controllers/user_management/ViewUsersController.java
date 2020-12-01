@@ -28,6 +28,10 @@ public class ViewUsersController extends AbstractController
     private final ViewUsersView viewUsersView;
     private UserRepoInterface userRepo = null;
     
+    /**
+     * 
+     * Creates a new ViewUsersController
+     */
     public ViewUsersController()
     {
         this.viewUsersView = new ViewUsersView();
@@ -36,6 +40,10 @@ public class ViewUsersController extends AbstractController
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of viewMaintenanceActivityView
+     */
     private void initListeners()
     {
         viewUsersView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -90,11 +98,18 @@ public class ViewUsersController extends AbstractController
         });
     }
     
+    /**
+     * 
+     * Opens the user info page using its controller
+     */
     public static void goBackUserInfoPage()
     {
        new UserInfoController();
     }
     
+    /**
+     * Updates the table in the page inserting the all the users or a specific one
+     */
     public void viewUsers()
     {
         DefaultTableModel tableModel = viewUsersView.getTableModel();
@@ -133,6 +148,10 @@ public class ViewUsersController extends AbstractController
         }
     }
     
+    /**
+     * 
+     * Deletes the selected user
+     */
     public void deleteUser()
     {
         try
