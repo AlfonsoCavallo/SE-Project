@@ -10,6 +10,18 @@ public class PlannedActivity extends MaintenanceActivity
     private String planned;
     private String ewo;
     
+    /**
+     * 
+     * Creates a new Planned Activity
+     * @param IDActivity is the IDActivity of the Planned Activity
+     * @param activityName is the name of the Planned Activity
+     * @param timeNeeded is the time needed for the Planned Activity
+     * @param interruptible is the type of the Planned Activity
+     * @param typology is the typology of the Planned Activity
+     * @param activityDescription is the activity description of the Planned Activity
+     * @param week is the week dedicated to the Planned Activity
+     * @param standardProcedure is the standard procedure
+     */
     public PlannedActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week, String standardProcedure)
     {
@@ -19,6 +31,17 @@ public class PlannedActivity extends MaintenanceActivity
         this.ewo = "no";
     }
     
+    /**
+     * 
+     * Creates a new Planned Activity without considering the ID
+     * @param activityName is the name of the Planned Activity
+     * @param timeNeeded is the time needed for the Planned Activity
+     * @param interruptible is the type of the Planned Activity
+     * @param typology is the typology of the Planned Activity
+     * @param activityDescription is the activity description of the Planned Activity
+     * @param week is the week dedicated to the Planned Activity
+     * @param standardProcedure is the standard procedure
+     */
     public PlannedActivity(String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week, String standardProcedure)
     {
@@ -28,12 +51,20 @@ public class PlannedActivity extends MaintenanceActivity
         this.ewo = "no";
     }
 
+    /**
+     * 
+     * @return a String containing the standard procedure
+     */
     @Override
     public String getStandardProcedure()
     {
         return standardProcedure;
     }
     
+    /**
+     * 
+     * @return the data model of a Planned Activity
+     */
     @Override
     public Object[] getDataModel()
     {
@@ -41,18 +72,31 @@ public class PlannedActivity extends MaintenanceActivity
             isInterruptible(), getTypology().getValue(), getActivityDescription(), getWeek(), isPlanned(), isEWO(), getStandardProcedure()};
     }
 
+    /**
+     * 
+     * @return a String containing the planned activity
+     */
     @Override
     public String isPlanned()
     {
         return this.planned;
     }
 
+    /**
+     * 
+     * @return a String containing the Ewo
+     */
     @Override
     public String isEWO()
     {
         return this.ewo;
     }
 
+    /**
+     * 
+     * @param obj is the object to compare
+     * @return true if the compared objects are equals, otherwise false
+     */
     @Override
     public boolean equals(Object obj)
     {
