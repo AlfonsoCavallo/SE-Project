@@ -6,7 +6,7 @@ public abstract class UnplannedActivity extends MaintenanceActivity
 
     /**
      * 
-     * Creates a new Unplanned Activity
+     * Creates a new UnplannedActivity
      * @param IDActivity is the IDActivity of the Unplanned Activity
      * @param activityName is the name of the Unplanned Activity
      * @param timeNeeded is the time needed for the Unplanned Activity
@@ -23,7 +23,7 @@ public abstract class UnplannedActivity extends MaintenanceActivity
 
     /**
      * 
-     * Creates a new Unplanned Activity without considering the ID
+     * Creates a new UnplannedActivity without considering the ID
      * @param activityName is the name of the Unplanned Activity
      * @param timeNeeded is the time needed for the Unplanned Activity
      * @param interruptible is the type of the Unplanned Activity
