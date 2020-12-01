@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers.activities_management;
 
-import se.project.business_logic.controllers.activities_management.MaintenanceActivityController;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -21,10 +15,7 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-/**
- *
- * @author delso
- */
+
 public class ViewMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get maintenance activities from database.";

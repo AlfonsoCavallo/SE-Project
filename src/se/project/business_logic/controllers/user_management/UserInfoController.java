@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers.user_management;
 
-import se.project.business_logic.controllers.user_management.ViewUsersController;
-import se.project.business_logic.controllers.user_management.UpdateUserController;
-import se.project.business_logic.controllers.user_management.AddUserController;
 import java.sql.SQLException;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.SAHomepageController;
@@ -15,10 +7,7 @@ import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 
-/**
- *
- * @author Giorgio
- */
+
 public class UserInfoController  extends AbstractController
 {
     private final UserInfoView userInfoView;

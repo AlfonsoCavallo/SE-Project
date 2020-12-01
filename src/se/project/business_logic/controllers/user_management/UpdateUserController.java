@@ -17,10 +17,7 @@ import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-/**
- *
- * @author Giorgio
- */
+
 public class UpdateUserController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update user in database.";
