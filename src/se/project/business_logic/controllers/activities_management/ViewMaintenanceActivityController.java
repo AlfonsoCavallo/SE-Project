@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
-import se.project.presentation.views.activities_management.MaintenanceActivityView;
 import se.project.presentation.views.activities_management.ViewMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -36,10 +35,9 @@ public class ViewMaintenanceActivityController extends AbstractController
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
     
-    public ViewMaintenanceActivityController(ViewMaintenanceActivityView viewMaintenanceActivityView)
+    public ViewMaintenanceActivityController()
     {
-        this.view = viewMaintenanceActivityView;
-        this.viewMaintenanceActivityView = viewMaintenanceActivityView;
+        this.viewMaintenanceActivityView = new ViewMaintenanceActivityView();
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();
         viewMaintenanceActivities();
@@ -100,11 +98,9 @@ public class ViewMaintenanceActivityController extends AbstractController
         
     }
     
-    public static JFrame goBackMaintenanceActivityPage()
+    public static void goBackMaintenanceActivityPage()
     {
-        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
-        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        return maintenanceActivityView;
+        new MaintenanceActivityController();
     }
     
     public void viewMaintenanceActivities()

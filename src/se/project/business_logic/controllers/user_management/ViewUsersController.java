@@ -14,7 +14,6 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
-import se.project.presentation.views.user_management.UserInfoView;
 import se.project.presentation.views.user_management.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -37,10 +36,9 @@ public class ViewUsersController extends AbstractController
     private final ViewUsersView viewUsersView;
     private UserRepoInterface userRepo = null;
     
-    public ViewUsersController(ViewUsersView viewUsersView)
+    public ViewUsersController()
     {
-        this.view = viewUsersView;
-        this.viewUsersView = viewUsersView;
+        this.viewUsersView = new ViewUsersView();
         this.userRepo = new UserRepo(getConnection());
         viewUsers();
         initListeners();
@@ -100,11 +98,9 @@ public class ViewUsersController extends AbstractController
         });
     }
     
-    public static JFrame goBackUserInfoPage()
+    public static void goBackUserInfoPage()
     {
-       UserInfoView userInfoView = new UserInfoView();
-       UserInfoController userInfoController = new UserInfoController(userInfoView);
-       return userInfoView;
+       new UserInfoController();
     }
     
     public void viewUsers()

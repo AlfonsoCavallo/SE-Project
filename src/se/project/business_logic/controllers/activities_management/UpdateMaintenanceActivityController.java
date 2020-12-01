@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
-import se.project.presentation.views.activities_management.MaintenanceActivityView;
 import se.project.presentation.views.activities_management.UpdateMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -44,10 +43,9 @@ public class UpdateMaintenanceActivityController extends AbstractController
     private LinkedList<String> activityNameList;
     private int columnNumber;
     
-    public UpdateMaintenanceActivityController(UpdateMaintenanceActivityView updateMaintenanceActivityView)
+    public UpdateMaintenanceActivityController()
     {
-        this.view = updateMaintenanceActivityView;
-        this.updateMaintenanceActivityView = updateMaintenanceActivityView;
+        this.updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         this.activityNameList = new LinkedList<>();
         this.columnNumber = this.updateMaintenanceActivityView.getjTable().getColumnCount();
@@ -102,11 +100,9 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
     }
     
-    public static JFrame goBackMaintenanceActivityPage()
+    public static void goBackMaintenanceActivityPage()
     {
-        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
-        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        return maintenanceActivityView;
+        new MaintenanceActivityController();
     }
     
     public void updateMaintenanceActivity()

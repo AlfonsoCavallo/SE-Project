@@ -31,10 +31,9 @@ public class LoginController extends AbstractController
     private final String LOGIN_FAILED_MESSAGE = "Login failed.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
 
-    public LoginController(LoginView loginView)
+    public LoginController()
     {
-        this.view = loginView;
-        this.loginView = loginView;
+        this.loginView = new LoginView();
         initListeners();
     }
     
@@ -73,7 +72,7 @@ public class LoginController extends AbstractController
         });
     }
 
-    public JFrame login()
+    public void login()
     {
         String username = loginView.getUsername();
         char[] password = loginView.getPassword();
@@ -86,22 +85,20 @@ public class LoginController extends AbstractController
             connect(username, password);
             SystemUser currentUser = userRepo.queryCurrentUser();
             userAccessRepo.storeCurrentUserAccess(currentUser.getUsername());
-            return openUserPage(currentUser.getRole());
+            openUserPage(currentUser.getRole());
         }
         catch (ClassNotFoundException | SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
             System.out.println(ex.getMessage());
-            return null;
         }
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
-            return null;
         }
     }
 
-    private JFrame openUserPage(SystemUser.Role role)
+    private void openUserPage(SystemUser.Role role)
     {
         if (null == role)
         {
@@ -112,16 +109,17 @@ public class LoginController extends AbstractController
             switch (role)
             {
                 case SYSTEM_ADMINISTRATOR:
+                    new SAHomepageController();
                     loginView.dispose();
-                    return MainController.openSystemAdministratorHomePage(getConnection());
+                    break;
                 case PLANNER:
+                    new PlannerHomepageController();
                     loginView.dispose();
-                    return MainController.openPlannerHomePage(getConnection());
+                    break;
                 default:
                     JOptionPane.showMessageDialog(new JFrame(), LOGIN_FAILED_MESSAGE);
                     break;
             }
         }
-        return null;
     }
 }

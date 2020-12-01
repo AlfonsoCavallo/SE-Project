@@ -9,14 +9,9 @@ import se.project.business_logic.controllers.user_management.ViewUsersController
 import se.project.business_logic.controllers.user_management.UpdateUserController;
 import se.project.business_logic.controllers.user_management.AddUserController;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.SAHomepageController;
-import se.project.presentation.views.user_management.AddUserView;
-import se.project.presentation.views.SAHomepageView;
-import se.project.presentation.views.user_management.UpdateUserView;
 import se.project.presentation.views.user_management.UserInfoView;
-import se.project.presentation.views.user_management.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 
@@ -28,10 +23,9 @@ public class UserInfoController  extends AbstractController
 {
     private final UserInfoView userInfoView;
     
-    public UserInfoController(UserInfoView userInfoView)
+    public UserInfoController()
     {
-        this.view = userInfoView;
-        this.userInfoView = userInfoView;
+        this.userInfoView = new UserInfoView();
         initListeners();
     }
     
@@ -99,31 +93,23 @@ public class UserInfoController  extends AbstractController
         });
     }
     
-    public static JFrame openAddUserPage()
+    public static void openAddUserPage()
     {
-        AddUserView addUserView = new AddUserView();
-        AddUserController addUserController = new AddUserController(addUserView);
-        return addUserView;
+        new AddUserController();
     }
     
-    public static JFrame openViewUserPage()
+    public static void openViewUserPage()
     {
-        ViewUsersView viewUserView = new ViewUsersView();
-        ViewUsersController viewUsersController = new ViewUsersController(viewUserView);
-        return viewUserView;
+        new ViewUsersController();
     }
     
-    public static JFrame openUpdateUserPage()
+    public static void openUpdateUserPage()
     {
-        UpdateUserView updateUserView = new UpdateUserView();
-        UpdateUserController updateUserController = new UpdateUserController(updateUserView);
-        return updateUserView;
+        new UpdateUserController();
     }
     
-    public static JFrame goBackSystemAdministratorHomepage()
+    public static void goBackSystemAdministratorHomepage()
     {
-        SAHomepageView saHomepageView = new SAHomepageView();
-        SAHomepageController saHomepageController = new SAHomepageController(saHomepageView);
-        return saHomepageView;
+        new SAHomepageController();
     }
 }
