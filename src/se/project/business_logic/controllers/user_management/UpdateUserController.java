@@ -1,4 +1,4 @@
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import se.project.business_logic.controllers.AbstractController;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.UpdateUserView;
 import se.project.presentation.views.UserInfoView;

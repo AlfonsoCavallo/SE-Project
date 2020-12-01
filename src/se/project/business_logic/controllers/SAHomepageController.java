@@ -5,6 +5,7 @@
  */
 package se.project.business_logic.controllers;
 
+import se.project.business_logic.controllers.user_management.UserInfoController;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import static se.project.business_logic.controllers.MainController.openLoginPage;

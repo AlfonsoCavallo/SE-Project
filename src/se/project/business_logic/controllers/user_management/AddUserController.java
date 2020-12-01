@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import se.project.business_logic.controllers.AbstractController;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.AddUserView;
 import se.project.presentation.views.UserInfoView;

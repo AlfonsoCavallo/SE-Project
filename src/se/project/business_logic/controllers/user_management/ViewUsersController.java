@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.UserInfoView;
 import se.project.presentation.views.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
