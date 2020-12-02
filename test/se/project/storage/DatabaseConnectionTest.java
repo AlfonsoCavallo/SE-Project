@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -20,10 +12,6 @@ import static se.project.storage.DatabaseConnection.*;
 import static se.project.storage.DatabaseTesting.*;
 import se.project.storage.models.SystemUser;
 
-/**
- *
- * @author Utente
- */
 
 public class DatabaseConnectionTest
 {
@@ -60,37 +48,55 @@ public class DatabaseConnectionTest
             
         }
     }
-
-    /**
-     * Test of getConnection method, of class DatabaseConnection.
-     */
+    
+   
     // TESTS FOR CONNECT
     
+    /**
+     * Try to connect with Username and Password both not available.
+     * @Result The connection is not established and exceptions are thrown.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     @Test(expected = SQLException.class)
     public void testConnectUnavailableCredentials() throws ClassNotFoundException, SQLException
     {
-        // Test for Username and Password not available
         DatabaseConnection.connect("Unavailable User", "Unavailable Password".toCharArray());        
     }
     
+    /**
+     * Try to connect with Username available but Password not available.
+     * @Result The connection is not established and exceptions are thrown.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     @Test(expected = SQLException.class)
     public void testConnectWrongPassword() throws ClassNotFoundException, SQLException
     {
-        // Test for Username and wrong password
         connect("finneas", "wrong password".toCharArray());       
     }
     
+    /**
+     * Try to connect with Username not available but Password available.
+     * @Result The connection is not established and exceptions are thrown.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     @Test(expected = SQLException.class)
     public void testConnectWrongUsername() throws ClassNotFoundException, SQLException
     {
-        // Test for password and wrong username
         connect("wrong username", "finneas".toCharArray());        
     }
     
+    /**
+     * Connect with Username and Password both available.
+     * @Result The connection is established.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     @Test
     public void testConnectCorrectCredentials() throws ClassNotFoundException, SQLException 
     {
-        // Test for correct user name and password
         try
         {
             // With parameters
@@ -108,10 +114,15 @@ public class DatabaseConnectionTest
         }
     }
     
+    /**
+     * Try to connect with Username and Password both available but alredy connected.
+     * @Result The new connection is not established and exceptions are thrown.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     @Test(expected = SQLException.class)
     public void testConnectAlreadyConnected() throws ClassNotFoundException, SQLException 
     {
-        // Test for correct user name and password
         connect("finneas", "finneas".toCharArray());
         connect("finneas", "finneas".toCharArray());
         closeConnection();
@@ -120,22 +131,30 @@ public class DatabaseConnectionTest
 
     // TESTS FOR CLOSE CONNECTION
     
+    /**
+     * Try to close a connection on a connection already close.
+     * @Result The connection can not be closed again and exceptions are thrown.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     @Test
     public void testCloseOnClosedConnection() throws ClassNotFoundException, SQLException
     {
-        // tests CloseConnection on a connection already closed
         closeConnection();
         connect("finneas", "finneas".toCharArray());
         closeConnection();
         closeConnection();
     }
     
+    /**
+     * Close a working connection.
+     * @Result The connection is correctly closed.
+     */
     @Test
     public void testCloseConnection()
     {
         try
         {
-            // test CloseConnection on a working connection
             connect("finneas", "finneas".toCharArray());
             closeConnection();
         }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.storage;
 
 import java.io.IOException;
@@ -24,10 +19,7 @@ import static se.project.storage.models.maintenance_activity.MaintenanceActivity
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
 
-/**
- *
- * @author delso
- */
+
 public class MaintenanceActivityRepoTest
 {
 
@@ -64,13 +56,17 @@ public class MaintenanceActivityRepoTest
         }
     }
 
-    // Tests for Query
+    
+    /**
+     * Verify the presence of all maintenance activities in the system.
+     * @Result The two maintenance activities recorded in the system are both correctly checked.
+     */
     @Test
     public void testQueryAllMaintenanceActivity()
     {
-        // Tests Query of all Maintenance Activities
         try
         {
+            // Gets all (two) the maintenance activities in the system
             connect(getTestUser());
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryAllMaintenanceActivity();
@@ -93,14 +89,16 @@ public class MaintenanceActivityRepoTest
         }
     }
 
-    // Return all the maintenance activities in the system
+    /**
+     * Verify the presence of a specific maintenance activity.
+     * @Result First maintenance activity is available and checked but the second one is unavailable.
+     */
     @Test
     public void testQueryViewOneMaintenanceActivity()
     {
-        // Return a specific maintenance activity (available and unavailable)
         try
         {            
-            // Tests Query on existent activity
+            // Gets an existent activity and an unavailable activity
             connect(getTestUser());
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryViewOneMaintenanceActivity("activity2");
@@ -121,15 +119,16 @@ public class MaintenanceActivityRepoTest
             fail();
         }
     }
-
+    
+    /**
+     * Delete a specific maintenance activity.
+     * @Result The activity selected is correctly deleted.
+     */
     @Test
     public void testQueryDeleteExistentMaintenanceActivity()
     {
-        // Delete a specific maintenance activity
         try
         {
-            
-            // Tests delete on existent activity
             connect(getTestUser());
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             
@@ -151,14 +150,16 @@ public class MaintenanceActivityRepoTest
             fail();
         }
     }
-    
+    /**
+     * Try deleting a non-existent maintenance activity.
+     * @Result Throws an exception.
+     * @throws SQLException 
+     */
     @Test
     public void testQueryDeleteOnNonExistentMaintenanceActivity() throws SQLException
     {
-        // Delete a specific maintenance activity
         try
         {            
-            // Tests delete on existent activity
             connect(getTestUser());
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             

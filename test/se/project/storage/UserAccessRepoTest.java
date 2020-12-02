@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage;
 
 import java.io.IOException;
@@ -17,16 +11,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.postgresql.util.PSQLException;
 import static se.project.storage.DatabaseConnection.*;
 import static se.project.storage.DatabaseTesting.*;
 import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
 
-/**
- *
- * @author Utente
- */
+
 public class UserAccessRepoTest
 {
     
@@ -63,10 +53,15 @@ public class UserAccessRepoTest
         }
     }
 
+    
+    /**
+     * Verify the query of all user accesses.
+     * @Result The accesses of the two users logged are correctly checked.
+     */
     @Test
     public void testQueryAllUserAccesses()
     {
-        // Tests the query of all user accesses
+        // Query for all user accesses
         try
         {
             connect(getTestUser());
@@ -89,17 +84,20 @@ public class UserAccessRepoTest
         }
     }
 
+    /**
+     * Return a specific user accesses.
+     * @Result First user access is correctly checked; the second user is unavailable so he has no accesses.
+     */
     @Test
     public void testQueryUserAccesses()
     {
-        // Tests the query of specific user accesses
         try
         {
             connect(getTestUser());
             UserAccessRepo instance = new UserAccessRepo(getConnection());
             LinkedList<UserAccess> userAccesses = instance.queryUserAccesses("finneas");
             
-            // Tests expected elements
+            // Tests expected elements with an available user
             UserAccess expectedFirstElement = new UserAccess(1, "finneas", LocalDateTime.of(2020, Month.NOVEMBER, 26, 15, 30, 2, 0));
             assertEquals(userAccesses.size(), 1);
             assertEquals(expectedFirstElement, userAccesses.getFirst());
@@ -116,10 +114,14 @@ public class UserAccessRepoTest
         }
     }
 
+    /**
+     * Store the acesses of an available user.
+     * @Result The access of the specific user is correctly inserted and checked.
+     */
     @Test
     public void testStoreUserAccess()
     {
-        // Tests the query of all user accesses
+        // Inserts a new access of an existent user
         try
         {
             connect(getTestUser());
@@ -142,16 +144,23 @@ public class UserAccessRepoTest
         }
     }
 
+    /**
+     * Try to store the access of a non-existent user.
+     * @Result The attempt to store fails and exceptions are thrown.
+     * @throws IOException
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     @Test(expected = SQLException.class)
     public void testStoreNotExistingUser() throws IOException, SQLException, ClassNotFoundException
     {
-        // Tests the query of all user accesses
+        // Inserts a new access of a non-existent user
         connect(getTestUser());
         UserAccessRepo instance = new UserAccessRepo(getConnection());
         UserAccess modelToStore = new UserAccess(3, "mark", LocalDateTime.of(2020, Month.DECEMBER, 2, 18, 15, 0, 0));
             
             
-        // Tests correct insertion
+        // Tests the insertion
         instance.storeUserAccess(modelToStore);
           
         closeConnection();

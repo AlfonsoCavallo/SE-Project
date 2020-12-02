@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage;
 
 import se.project.storage.repos.SystemUserRepo;
@@ -20,10 +14,7 @@ import static se.project.storage.models.SystemUser.Role.*;
 import static se.project.storage.DatabaseConnection.*;
 import static se.project.storage.DatabaseTesting.resetDatabase;
 
-/**
- *
- * @author Utente
- */
+
 public class SystemUserRepoTest
 {
     
@@ -60,14 +51,17 @@ public class SystemUserRepoTest
         }
     }
 
-    // TESTS FOR QUERY
-
+    
+    /**
+     * Connect correctly the current user based on his own role.
+     * @Result Both connections are done correctly: firstly as a System Administrator, secondly as a Planner.
+     */
     @Test
     public void testQueryCurrentUser() 
     {
         try
         {
-            // Tests query for an SA user
+            // Test query for a System Administrator user
             SystemUserRepo systemAdministratorRepo = new SystemUserRepo(getConnection());
             connect("finneas", "finneas".toCharArray());
             assertEquals(new SystemUser(SYSTEM_ADMINISTRATOR, "finneas", null), systemAdministratorRepo.queryCurrentUser());
@@ -85,23 +79,33 @@ public class SystemUserRepoTest
         }
     }
     
+    /**
+     * Try to get the current user without first connecting to the system (Repo not yet connected).
+     * @Result Query fails and exceptions are thrown.
+     * @throws SQLException
+     * @throws IOException 
+     */
     @Test(expected = NullPointerException.class)
     public void testQueryWithNoConnectionCurrentUser() throws SQLException, IOException
     {
-        // Test for Repo not yet connected
         SystemUserRepo instance = new SystemUserRepo(getConnection());
         instance.queryCurrentUser();
     }
     
+    /**
+     * Try to get the current user after having already closed the connection to the system (Repo with closed connection).
+     * @Result Query fails and exceptions are thrown.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws IOException 
+     */
     @Test(expected = NullPointerException.class)
     public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
     {
-        // Test for Repo with closed connection
         SystemUserRepo instance = new SystemUserRepo(getConnection());
         connect("finneas", "finneas".toCharArray());
         closeConnection();
         instance.queryCurrentUser();
     }
-    
     
 }
