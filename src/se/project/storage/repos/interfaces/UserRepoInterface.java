@@ -23,7 +23,7 @@ public interface UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public LinkedList<User> queryViewOneUser(String username) throws IOException, SQLException;
+    public LinkedList<User> queryOneUser(String username) throws IOException, SQLException;
     
     /**
      * 
@@ -32,7 +32,7 @@ public interface UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryDeleteUser(String username) throws IOException, SQLException;
+    public void deleteUser(String username) throws IOException, SQLException;
     
     /**
      * 
@@ -41,7 +41,7 @@ public interface UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryAddUser(User user) throws IOException, SQLException;
+    public void addUser(User user) throws IOException, SQLException;
     
     /**
      * 
@@ -51,5 +51,5 @@ public interface UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryUpdateUser(User user, String userToUpdate) throws IOException, SQLException;
+    public void updateUser(User user, String userToUpdate) throws IOException, SQLException;
 }

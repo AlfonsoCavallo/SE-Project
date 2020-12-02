@@ -101,14 +101,14 @@ public class UserRepoTest
             
             // Tests existing user
             String username = "finneas";
-            LinkedList<User> user = instance.queryViewOneUser(username);
+            LinkedList<User> user = instance.queryOneUser(username);
             User expectedUser = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null, "system_administrator");
             assertEquals(1, user.size());
             assertEquals(expectedUser, user.getFirst());
             
             // Tests unvailable user
             String unvailableUsername = "unvailable";
-            user = instance.queryViewOneUser(unvailableUsername);
+            user = instance.queryOneUser("unavailable_username");
             assertEquals(0, user.size());
             
             closeConnection();
@@ -125,7 +125,7 @@ public class UserRepoTest
      * @Result The first user is correctly deleted; the second user is unavailable so there is no delete on him.
      */
     @Test
-    public void testQueryDeleteUser()
+    public void testDeleteUser()
     {
         try
         {
@@ -136,14 +136,14 @@ public class UserRepoTest
             String username = "jon";
             LinkedList<User> users = instance.queryAllUsers();
             int usersSize = users.size();
-            instance.queryDeleteUser(username);
+            instance.deleteUser(username);
             LinkedList<User> usersAfterDelete = instance.queryAllUsers();
             int newUsersSize = usersAfterDelete.size();
             assertEquals(usersSize - 1, newUsersSize);
             
             // Tests an unavailable username
             String unvailableUsername = "unvailable";
-            instance.queryDeleteUser(unvailableUsername);
+            instance.deleteUser("unavailableUsername");
             usersAfterDelete = instance.queryAllUsers();
             assertEquals(newUsersSize, usersAfterDelete.size());
             
@@ -173,24 +173,24 @@ public class UserRepoTest
             SystemAdministrator saUser = new SystemAdministrator("front", "front@front.com", "front", "man", "front", "system_administrator");
             LinkedList<User> users = instance.queryAllUsers();
             int usersSize = users.size();
-            instance.queryAddUser(saUser);
+            instance.addUser(saUser);
             LinkedList<User> usersAfterAdd = instance.queryAllUsers();
             assertEquals(usersSize + 1, usersAfterAdd.size());
             
             String username = saUser.getUsername();
-            LinkedList<User> user = instance.queryViewOneUser(username);
+            LinkedList<User> user = instance.queryOneUser(username);
             assertEquals(1, user.size());
             
             // Test adding a Planner
             Planner planner = new Planner("black", "black@black.com", "black", "jack", "black", "planner");
             users = instance.queryAllUsers();
             usersSize = users.size();
-            instance.queryAddUser(planner);
+            instance.addUser(planner);
             usersAfterAdd = instance.queryAllUsers();
             assertEquals(usersSize + 1, usersAfterAdd.size());
             
             username = planner.getUsername();
-            user = instance.queryViewOneUser(username);
+            user = instance.queryOneUser(username);
             assertEquals(1, user.size());
             
             closeConnection();
@@ -216,7 +216,7 @@ public class UserRepoTest
             UserRepo instance = new UserRepo(getConnection());
             
             Planner planner = new Planner("jon", "black@black.com", "black", "jack", "black", "planner");
-            instance.queryAddUser(planner);
+            instance.addUser(planner);
             
             closeConnection();
         } 
@@ -241,8 +241,7 @@ public class UserRepoTest
             UserRepo instance = new UserRepo(getConnection());
             
             Planner planner = new Planner("black", "jon@jon.it", "black", "jack", "black", "planner");
-            instance.queryAddUser(planner);
-            
+            instance.addUser(planner);
             closeConnection();
         } 
         catch (ClassNotFoundException | IOException ex)
@@ -265,8 +264,7 @@ public class UserRepoTest
             UserRepo instance = new UserRepo(getConnection());
             
             Planner planner = new Planner("black", "jon@jon.it", null , "jack", "black", "planner");
-            instance.queryAddUser(planner);
-            
+            instance.addUser(planner);
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)
@@ -290,7 +288,7 @@ public class UserRepoTest
             UserRepo instance = new UserRepo(getConnection());
             
             Planner planner = new Planner("black", "black@jon.it", "" , "jack", "black", "planner");
-            instance.queryAddUser(planner);
+            instance.addUser(planner);
             
             closeConnection();
         } 
@@ -316,7 +314,7 @@ public class UserRepoTest
             UserRepo instance = new UserRepo(getConnection());
             
             Planner planner = new Planner("black", "black@black.it", "black" , "jack", "black", "invalid_role");
-            instance.queryAddUser(planner);
+            instance.addUser(planner);
             
             closeConnection();
         } 
@@ -332,7 +330,7 @@ public class UserRepoTest
      * @Result All updates (two username and one email) were successful.
      */
     @Test
-    public void testQueryUpdateUser()
+    public void testUpdateUser()
     {
         try
         {
@@ -342,27 +340,27 @@ public class UserRepoTest
             // Test updating a Planner username
             Planner user = new Planner("jonathan", "jon@jon.it", "jon", "athan", "jon", "planner");
             String oldUsername = "jon";
-            instance.queryUpdateUser(user, oldUsername);
+            instance.updateUser(user, oldUsername);
             String username = user.getUsername();
-            LinkedList<User> userSearched = instance.queryViewOneUser(username);
+            LinkedList<User> userSearched = instance.queryOneUser(username);
             assertEquals(1, userSearched.size());
             
             // Test updating a System Administrator username
             SystemAdministrator saUser = new SystemAdministrator("fin", "finneas@finneas.it", "fin", "neas", "finneas", "system_administrator");
             oldUsername = "finneas";
-            instance.queryUpdateUser(saUser, oldUsername);
+            instance.updateUser(saUser, oldUsername);
             username = saUser.getUsername();
-            userSearched = instance.queryViewOneUser(username);
+            userSearched = instance.queryOneUser(username);
             assertEquals(1, userSearched.size());
             
             
             // Test updating a Planner attribute (email)
             user = new Planner("jonathan", "newEmail@jon.com", "jon", "athan", "jon", "planner");
             oldUsername = "jonathan";
-            instance.queryUpdateUser(user, oldUsername);
+            instance.queryOneUser(username);
             username = user.getUsername();
             String email = user.getEmail();
-            userSearched = instance.queryViewOneUser(username);
+            userSearched = instance.queryOneUser(username);
             assertEquals(1, userSearched.size());
             assertEquals("newEmail@jon.com", email);
             
@@ -391,7 +389,7 @@ public class UserRepoTest
             
             Planner user = new Planner("finneas", "jon@jon.it", "jon", "athan", "jon", "planner");
             String oldUsername = "jon";
-            instance.queryUpdateUser(user, oldUsername);
+            instance.updateUser(user, oldUsername);
             
             closeConnection();
         } 
@@ -418,7 +416,7 @@ public class UserRepoTest
             
             Planner user = new Planner("jon", "finneas@finneas.it", "jon", "athan", "jon", "planner");
             String oldUsername = "jon";
-            instance.queryUpdateUser(user, oldUsername);
+            instance.updateUser(user, oldUsername);
             
             closeConnection();
         } 
@@ -445,8 +443,7 @@ public class UserRepoTest
             
             Planner user = new Planner("jon", "jon@jon.it", "jon", "athan", "jon", "invalid_role");
             String oldUsername = "jon";
-            instance.queryUpdateUser(user, oldUsername);
-            
+            instance.updateUser(user, oldUsername);
             closeConnection();
         } 
         catch (ClassNotFoundException | IOException ex)
@@ -472,8 +469,7 @@ public class UserRepoTest
             
             Planner user = new Planner("jon", "jon@jon.it", "jon", "", "jon", "planner");
             String oldUsername = "jon";
-            instance.queryUpdateUser(user, oldUsername);
-            
+            instance.updateUser(user, oldUsername);
             closeConnection();
         } 
         catch (ClassNotFoundException | IOException ex)
@@ -498,8 +494,7 @@ public class UserRepoTest
             
             Planner user = new Planner("jon", "jon@jon.it", "jon", null, "jon", "planner");
             String oldUsername = "jon";
-            instance.queryUpdateUser(user, oldUsername);
-            
+            instance.updateUser(user, oldUsername);
             closeConnection();
         } 
         catch (ClassNotFoundException | SQLException | IOException ex)

@@ -118,7 +118,7 @@ public class ViewMaintenanceActivityController extends AbstractController
             String nameToSearch = viewMaintenanceActivityView.getActivityName();
             if(!nameToSearch.equals(""))
             {
-                maintenanceActivities = maintenanceActivityRepo.queryViewOneMaintenanceActivity(nameToSearch);
+                maintenanceActivities = maintenanceActivityRepo.queryOneMaintenanceActivity(nameToSearch);
             }
             else
             {
@@ -163,7 +163,7 @@ public class ViewMaintenanceActivityController extends AbstractController
                 int input = JOptionPane.showConfirmDialog(null, confirmMessage);
                 if(input == 0)
                 {
-                    maintenanceActivityRepo.queryDeleteMaintenanceActivity(nameToDelete);
+                    maintenanceActivityRepo.deleteMaintenanceActivity(nameToDelete);
                     viewMaintenanceActivityView.resetNameField();
                 }    
             }    

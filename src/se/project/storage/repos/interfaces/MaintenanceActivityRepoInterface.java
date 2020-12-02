@@ -23,7 +23,7 @@ public interface MaintenanceActivityRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public LinkedList<MaintenanceActivity> queryViewOneMaintenanceActivity(String activityName) throws IOException, SQLException;
+    public LinkedList<MaintenanceActivity> queryOneMaintenanceActivity(String activityName) throws IOException, SQLException;
 
     /**
      * 
@@ -32,7 +32,7 @@ public interface MaintenanceActivityRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryDeleteMaintenanceActivity(String activityName) throws IOException, SQLException;
+    public void deleteMaintenanceActivity(String activityName) throws IOException, SQLException;
     
     /**
      * 
@@ -41,7 +41,7 @@ public interface MaintenanceActivityRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryAddMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException;
+    public void addMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException;
     
     /**
      * 
@@ -51,6 +51,6 @@ public interface MaintenanceActivityRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryUpdateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException;
+    public void updateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException;
     
 }

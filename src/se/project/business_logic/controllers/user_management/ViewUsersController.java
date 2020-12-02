@@ -119,7 +119,7 @@ public class ViewUsersController extends AbstractController
             String usernameToSearch =  viewUsersView.getUsername();
             if(!usernameToSearch.equals(""))
             {
-                users = userRepo.queryViewOneUser(usernameToSearch);
+                users = userRepo.queryOneUser(usernameToSearch);
             }
             else
             {
@@ -164,7 +164,7 @@ public class ViewUsersController extends AbstractController
                 int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
                 if(input == 0)
                 {
-                   userRepo.queryDeleteUser(usernameToDelete);
+                   userRepo.deleteUser(usernameToDelete);
                    String deletedMessage = DELETED_MESSAGE.replaceAll("username_param", usernameToDelete);
                    JOptionPane.showMessageDialog(null, deletedMessage);
                    viewUsersView.resetUsernameField();

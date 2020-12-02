@@ -172,7 +172,7 @@ public class AddMaintenanceActivityController extends AbstractController
         }
         try
         {
-            maintenanceActivityRepo.queryAddMaintenanceActivity(maintenanceActivity);
+            maintenanceActivityRepo.addMaintenanceActivity(maintenanceActivity);
             String addedMessage = ADDED_MESSAGE.replaceAll("activity_name_param", activityName);
             JOptionPane.showMessageDialog(null, addedMessage);
         }

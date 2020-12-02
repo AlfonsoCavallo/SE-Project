@@ -101,8 +101,8 @@ public class MaintenanceActivityRepoTest
             // Gets an existent activity and an unavailable activity
             connect(getTestUser());
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
-            LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryViewOneMaintenanceActivity("activity2");
-            LinkedList<MaintenanceActivity> noActivity = instance.queryViewOneMaintenanceActivity("unavailable_activity");
+            LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryOneMaintenanceActivity("activity2");
+            LinkedList<MaintenanceActivity> noActivity = instance.queryOneMaintenanceActivity("unavailable_activity");
             
             // Test expected elements
             MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "4... 5... 6...");
@@ -125,7 +125,7 @@ public class MaintenanceActivityRepoTest
      * @Result The activity selected is correctly deleted.
      */
     @Test
-    public void testQueryDeleteExistentMaintenanceActivity()
+    public void testDeleteExistentMaintenanceActivity()
     {
         try
         {
@@ -133,7 +133,7 @@ public class MaintenanceActivityRepoTest
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             
             // Deletes activity1
-            instance.queryDeleteMaintenanceActivity("activity1");
+            instance.deleteMaintenanceActivity("activity1");
             
             // Checks element was correctly deleted
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryAllMaintenanceActivity();
@@ -156,7 +156,7 @@ public class MaintenanceActivityRepoTest
      * @throws SQLException 
      */
     @Test
-    public void testQueryDeleteOnNonExistentMaintenanceActivity() throws SQLException
+    public void testDeleteOnNonExistentMaintenanceActivity() throws SQLException
     {
         try
         {            
@@ -164,7 +164,7 @@ public class MaintenanceActivityRepoTest
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             
             // Deletes no activity
-            instance.queryDeleteMaintenanceActivity("unavailable_activity");
+            instance.deleteMaintenanceActivity("unavailable_activity");
         }
         catch(ClassNotFoundException | IOException ex)
         {

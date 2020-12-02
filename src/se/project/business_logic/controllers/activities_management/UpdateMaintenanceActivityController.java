@@ -181,7 +181,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
                 } 
             }
            String oldActivityName = this.activityNameList.get(row);
-           maintenanceActivityRepo.queryUpdateMaintenanceActivity(maintenanceActivity, oldActivityName);
+           maintenanceActivityRepo.updateMaintenanceActivity(maintenanceActivity, oldActivityName);
            String updatedMessage = UPDATED_MESSAGE.replaceAll("activity_name_param", activityName);
            JOptionPane.showMessageDialog(null, updatedMessage);
         }

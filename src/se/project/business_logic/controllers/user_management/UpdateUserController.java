@@ -155,7 +155,7 @@ public class UpdateUserController extends AbstractController
                 user = new Planner(username, email, name, surname, password, role);
             }
             String oldUsername = this.usernameList.get(row);
-            userRepo.queryUpdateUser(user, oldUsername);
+            userRepo.updateUser(user, oldUsername);
             String updatedMessage = UPDATED_MESSAGE.replaceAll("username_param", username);
             JOptionPane.showMessageDialog(null, updatedMessage);
         } 

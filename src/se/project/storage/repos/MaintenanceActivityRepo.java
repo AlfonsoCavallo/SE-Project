@@ -54,7 +54,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
      * @throws SQLException 
      */
     @Override
-    public LinkedList<MaintenanceActivity> queryViewOneMaintenanceActivity(String activityName) throws IOException, SQLException
+    public LinkedList<MaintenanceActivity> queryOneMaintenanceActivity(String activityName) throws IOException, SQLException
     {
         // Return a specific maintenance activity
         String query = getStringFromFile(QUERY_VIEW_ONE_MAINTENANCE_ACTIVITY_PATH);
@@ -70,7 +70,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
      * @throws SQLException 
      */
     @Override
-    public void queryDeleteMaintenanceActivity(String activityName) throws IOException, SQLException
+    public void deleteMaintenanceActivity(String activityName) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH);
         query = query.replaceAll("activity_name_param", activityName);
@@ -85,7 +85,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
      * @throws SQLException 
      */
     @Override
-    public void queryAddMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException
+    public void addMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_ADD_MAINTENANCE_ACTIVITY_PATH);
         
@@ -120,7 +120,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
      * @throws SQLException 
      */
     @Override
-    public void queryUpdateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException
+    public void updateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH);
         

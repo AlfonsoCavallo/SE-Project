@@ -48,7 +48,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public LinkedList<User> queryViewOneUser(String username) throws IOException, SQLException
+    public LinkedList<User> queryOneUser(String username) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_VIEW_ONE_USER_PATH);
         query = query.replaceAll("username_param", username);
@@ -61,7 +61,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryDeleteUser(String username) throws IOException, SQLException
+    public void deleteUser(String username) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_DELETE_USER_PATH);
         query = query.replaceAll("username_param", username);
@@ -74,7 +74,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryAddUser(User user) throws IOException, SQLException
+    public void addUser(User user) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_ADD_USER_PATH);
         String username = user.getUsername();
@@ -99,7 +99,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
      * @throws IOException
      * @throws SQLException 
      */
-    public void queryUpdateUser(User user, String userToUpdate) throws IOException, SQLException
+    public void updateUser(User user, String userToUpdate) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_UPDATE_USER_PATH);
         String username = user.getUsername();

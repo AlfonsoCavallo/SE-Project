@@ -127,7 +127,7 @@ public class AddUserController extends AbstractController
         }
         try
         {
-            userRepo.queryAddUser(user);
+            userRepo.addUser(user);
             String addedMessage = ADDED_MESSAGE.replaceAll("username_param", username);
             JOptionPane.showMessageDialog(null, addedMessage);
         } 
