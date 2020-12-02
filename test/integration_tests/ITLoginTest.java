@@ -1,26 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package integration_tests;
 
-import java.sql.Connection;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
-import se.project.business_logic.controllers.LoginController;
 import se.project.presentation.views.LoginView;
 
-/**
- *
- * @author Utente
- */
+
 public class ITLoginTest
 {
     
