@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repos;
 
 import java.sql.Connection;
@@ -13,36 +7,52 @@ import java.sql.SQLException;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.repos.interfaces.RepoInterface;
 
-/**
- *
- * @author Utente
- */
+
 public abstract class AbstractRepo implements RepoInterface
 {   
     private final Connection connection;
     
+    /**
+     * 
+     * @param connection is the current connection
+     */
     public AbstractRepo(Connection connection)
     {
         this.connection = connection;
     }
     
+    /**
+     * 
+     * @param query is the query to execute
+     * @return a ResultSet with the result of the query on the database
+     * @throws SQLException 
+     */
     @Override
     public ResultSet queryDatabase(String query) throws SQLException
     {
-        // Returns the result of a query on the database
         PreparedStatement preparedStatement = getConnection().prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet;
     }
     
+    /**
+     * 
+     * @param statement is the statement that has to be execute
+     * @return true if the statement is execute successfully, false otherwise
+     * @throws SQLException 
+     */
     @Override
     public boolean executeStatement(String statement) throws SQLException
     {
-        // Executes a statement on the database
         PreparedStatement preparedStatement = getConnection().prepareStatement(getTransaction(statement));
         return preparedStatement.execute();
     }
     
+    /**
+     * 
+     * @param query is the query that has to be execute during the transaction
+     * @return a String containing the instructions for the transaction
+     */
     private String getTransaction(String query)
     {
         String output = "begin;\n" +

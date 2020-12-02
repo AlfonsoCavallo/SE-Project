@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.activities_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,18 +6,16 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.MaintenanceActivityView;
-import se.project.presentation.views.ViewMaintenanceActivityView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
+import se.project.presentation.views.activities_management.ViewMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-/**
- *
- * @author delso
- */
+
 public class ViewMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get maintenance activities from database.";
@@ -33,15 +26,22 @@ public class ViewMaintenanceActivityController extends AbstractController
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
     
-    public ViewMaintenanceActivityController(ViewMaintenanceActivityView viewMaintenanceActivityView)
+    /**
+     * 
+     * Creates a new ViewMaintenanceActivityController
+     */
+    public ViewMaintenanceActivityController()
     {
-        this.view = viewMaintenanceActivityView;
-        this.viewMaintenanceActivityView = viewMaintenanceActivityView;
+        this.viewMaintenanceActivityView = new ViewMaintenanceActivityView();
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();
         viewMaintenanceActivities();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of viewMaintenanceActivityView
+     */
     public void initListeners()
     {
         viewMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -97,13 +97,18 @@ public class ViewMaintenanceActivityController extends AbstractController
         
     }
     
-    public static JFrame goBackMaintenanceActivityPage()
+    /**
+     * 
+     * Opens the maintenance activity page using its controller
+     */
+    public static void goBackMaintenanceActivityPage()
     {
-        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
-        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        return maintenanceActivityView;
+        new MaintenanceActivityController();
     }
     
+    /**
+     * Updates the table in the page inserting the all the maintenance activities or a specific one
+     */
     public void viewMaintenanceActivities()
     {
         DefaultTableModel tableModel = viewMaintenanceActivityView.getTableModel();
@@ -142,6 +147,10 @@ public class ViewMaintenanceActivityController extends AbstractController
         }
     }
     
+    /**
+     * 
+     * Deletes the selected maintenance activity
+     */
     public void deleteMaintenanceActivity()
     {
         try

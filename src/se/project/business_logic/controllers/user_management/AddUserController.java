@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import se.project.business_logic.controllers.AbstractController;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
-import se.project.presentation.views.AddUserView;
-import se.project.presentation.views.UserInfoView;
+import se.project.presentation.views.user_management.AddUserView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
@@ -20,10 +15,7 @@ import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-/**
- *
- * @author Giorgio
- */
+
 public class AddUserController extends AbstractController
 {
     private final String QUERY_ADD_FAILED_MESSAGE = "Could not add user in database.";
@@ -33,15 +25,22 @@ public class AddUserController extends AbstractController
     private final AddUserView addUserView;
     private UserRepoInterface userRepo = null;
     
-    public AddUserController(AddUserView addUserView)
+    /**
+     * 
+     * Creates a new AddUserController
+     */
+    public AddUserController()
     {
-        this.view = addUserView;
-        this.addUserView = addUserView;
+        this.addUserView = new AddUserView();
         this.userRepo = new UserRepo(getConnection());
         clearFields();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of addUserView
+     */
     private void initListeners()
     {
         addUserView.getjAddPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -96,13 +95,19 @@ public class AddUserController extends AbstractController
         });
     }
     
-    public static JFrame goBackUserInfoPage()
+    /**
+     * 
+     * Opens the user info page using its controller
+     */
+    public static void goBackUserInfoPage()
     {
-        UserInfoView userInfoView = new UserInfoView();
-        UserInfoController userInfoController = new UserInfoController(userInfoView);
-        return userInfoView;
+        new UserInfoController();
     }
     
+    /**
+     * 
+     * Add a new user using data from the page and method from the repo
+     */
     public void addUser()
     {
         String username = addUserView.getUsername();
@@ -137,6 +142,10 @@ public class AddUserController extends AbstractController
         
     }
     
+    /**
+     * 
+     * Clears aòò the fields in the page
+     */
     public void clearFields()
     {
         addUserView.resetjUsernameTextField();

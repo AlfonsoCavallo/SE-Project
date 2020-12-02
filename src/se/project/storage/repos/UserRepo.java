@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.storage.repos;
 
 import java.io.IOException;
@@ -16,10 +11,7 @@ import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-/**
- *
- * @author Giorgio
- */
+
 public class UserRepo extends AbstractRepo implements UserRepoInterface
 {
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
@@ -29,8 +21,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     private final String QUERY_UPDATE_USER_PATH = "/se/project/assets/query/QueryUpdateUser.sql";
 
     /**
-     * Constructor
-     * @param connection 
+     * Creates a new UserRepo
+     * @param connection is the current connection
      */
     public UserRepo(Connection connection)
     {
@@ -64,7 +56,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * Execute the query that delete user on database
+     * Execute the statement that delete user on database
      * @param username is the username of the user that has to be deleted
      * @throws IOException
      * @throws SQLException 
@@ -77,7 +69,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * Execute the query that add user on database
+     * Execute the statement that add a user on database
      * @param user is the user that has to be added to the database
      * @throws IOException
      * @throws SQLException 
@@ -101,7 +93,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * Execute the update query on the database
+     * Execute the update of a user on the database
      * @param user is the user that has to be updated in the database
      * @param userToUpdate is the original username of user
      * @throws IOException
@@ -135,7 +127,6 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
      */
     private LinkedList<User> queryUserList(String query) throws SQLException
     {
-        // Query a filtered list of Users
         ResultSet resultSet = super.queryDatabase(query);
 
         // Model's construction

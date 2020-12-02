@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,18 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.UserInfoView;
-import se.project.presentation.views.ViewUsersView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
+import se.project.presentation.views.user_management.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-/**
- *
- * @author Giorgio
- */
+
 public class ViewUsersController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get users from database.";
@@ -35,15 +28,22 @@ public class ViewUsersController extends AbstractController
     private final ViewUsersView viewUsersView;
     private UserRepoInterface userRepo = null;
     
-    public ViewUsersController(ViewUsersView viewUsersView)
+    /**
+     * 
+     * Creates a new ViewUsersController
+     */
+    public ViewUsersController()
     {
-        this.view = viewUsersView;
-        this.viewUsersView = viewUsersView;
+        this.viewUsersView = new ViewUsersView();
         this.userRepo = new UserRepo(getConnection());
         viewUsers();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of viewMaintenanceActivityView
+     */
     private void initListeners()
     {
         viewUsersView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -98,13 +98,18 @@ public class ViewUsersController extends AbstractController
         });
     }
     
-    public static JFrame goBackUserInfoPage()
+    /**
+     * 
+     * Opens the user info page using its controller
+     */
+    public static void goBackUserInfoPage()
     {
-       UserInfoView userInfoView = new UserInfoView();
-       UserInfoController userInfoController = new UserInfoController(userInfoView);
-       return userInfoView;
+       new UserInfoController();
     }
     
+    /**
+     * Updates the table in the page inserting the all the users or a specific one
+     */
     public void viewUsers()
     {
         DefaultTableModel tableModel = viewUsersView.getTableModel();
@@ -143,6 +148,10 @@ public class ViewUsersController extends AbstractController
         }
     }
     
+    /**
+     * 
+     * Deletes the selected user
+     */
     public void deleteUser()
     {
         try

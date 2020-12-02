@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.presentation.views;
+package se.project.presentation.views.activities_management;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import se.project.presentation.views.AbstractView;
 
-/**
- *
- * @author Giacomo
- */
+
 public class AddMaintenanceActivityView extends AbstractView
 {
 
@@ -26,136 +19,230 @@ public class AddMaintenanceActivityView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JPanel representing the add maintenance activity button
+     */
     public JPanel getjAddPanel()
     {
         return jAddPanel;
     }
 
+    /**
+     * 
+     * @return a JPanel representing the clear button
+     */
     public JPanel getjClearPanel()
     {
         return jClearPanel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
 
+    /**
+     * 
+     * @return a String containing the text in the description text area
+     */
     public String getStringDescriptionTextArea()
     {
         return this.jDescriptionTextArea.getText();
     }
 
+    /**
+     * 
+     * @return a String containing the selected value in the EWO Combo Box
+     */
     public String getIsEWOValue()
     {
         return this.jEWOComboBox.getSelectedItem().toString();
     }
 
+    /**
+     * 
+     * @return the EWO Combo Box
+     */
     public JComboBox<String> getjEWOComboBox()
     {
         return jEWOComboBox;
     }
     
+    /**
+     * 
+     * @return a String containing the selected value in the Interruptible Combo Box
+     */
     public String getStringInterruptibleComboBox()
     {
         return this.jInterruptibleComboBox.getSelectedItem().toString();
     }
 
+    /**
+     * 
+     * @return a String containing the text in the name text field
+     */
     public String getStringNameTextField()
     {
         return this.jNameTextField.getText();
     }
 
+    /**
+     * 
+     * @return a String containing the selected value in the Planned Combo Box
+     */
     public String getIsPlannedValue()
     {
         return this.jPlannedComboBox.getSelectedItem().toString();
     }
 
+    /**
+     * 
+     * @return the Planned Combo Box
+     */
     public JComboBox<String> getjPlannedComboBox()
     {
         return jPlannedComboBox;
     }
     
+    /**
+     * 
+     * @return the String containing the text in the standard procedure text field
+     */
     public String getStringStandardProcedureTextField()
     {
         return this.jStandardProcedureTextField.getText();
     }
 
+    /**
+     * 
+     * @return the JTextField containing the standard procedure
+     */
     public JTextField getjStandardProcedureTextField()
     {
         return jStandardProcedureTextField;
     }
     
+    /**
+     * 
+     * @return a String containing the text in the time text field
+     */
     public String getStringTimeTextField()
     {
         return this.jTimeTextField.getText();
     }
 
+    /**
+     * 
+     * @return a String containing the selected valure in the typology combo box
+     */
     public String getStringTypologyComboBox()
     {
         return this.jTypologyComboBox.getSelectedItem().toString();
     }
 
+    /**
+     * 
+     * @return a String containing the selected value in the week combo box
+     */
     public String getStringWeekComboBox()
     {
         return this.jWeekComboBox.getSelectedItem().toString();
     }
 
+    /**
+     *  resets the description text area
+     */
     public void resetjDescriptionTextArea()
     {
         this.jDescriptionTextArea.setText("");
     }
 
+    /**
+     *  resets the name text field
+     */
     public void resetjNameTextField()
     {
         this.jNameTextField.setText("");
     }
 
+    /**
+     *  resets the standard procedure text field
+     */
     public void resetjStandardProcedureTextField()
     {
         this.jStandardProcedureTextField.setText("");
     }
 
+    /**
+     *  resets the time text field
+     */
     public void resetjTimeTextField()
     {
         this.jTimeTextField.setText("");
     }
 
+    /**
+     *  resets the EWO combo box
+     */
     public void resetjEWOComboBox()
     {
         this.jEWOComboBox.setSelectedIndex(0);
     }
 
+    /**
+     *  resets the Interruptible combo box
+     */
     public void resetjInterruptibleComboBox()
     {
         this.jInterruptibleComboBox.setSelectedIndex(0);
     }
 
+    /**
+     *  resets the planned combo box
+     */
     public void resetjPlannedComboBox()
     {
         this.jPlannedComboBox.setSelectedIndex(0);
     }
 
+    /**
+     *  resets the typology combo box
+     */
     public void resetjTypologyComboBox()
     {
         this.jTypologyComboBox.setSelectedIndex(0);
     }
 
+    /**
+     *  resets the week combo box
+     */
     public void resetjWeekComboBox()
     {
         this.jWeekComboBox.setSelectedIndex(0);
     }
-
     
     /**
      * This method is called from within the constructor to initialize the form.

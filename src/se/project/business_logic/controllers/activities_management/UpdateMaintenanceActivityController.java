@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.activities_management;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
@@ -12,8 +7,9 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.MaintenanceActivityView;
-import se.project.presentation.views.UpdateMaintenanceActivityView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
+import se.project.presentation.views.activities_management.UpdateMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.EWO;
@@ -24,10 +20,7 @@ import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-/**
- *
- * @author delso
- */
+
 public class UpdateMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update maintenance activity in database.";
@@ -41,10 +34,13 @@ public class UpdateMaintenanceActivityController extends AbstractController
     private LinkedList<String> activityNameList;
     private int columnNumber;
     
-    public UpdateMaintenanceActivityController(UpdateMaintenanceActivityView updateMaintenanceActivityView)
+    /**
+     * 
+     * Creates a new UpdateMaintenanceActivityController
+     */
+    public UpdateMaintenanceActivityController()
     {
-        this.view = updateMaintenanceActivityView;
-        this.updateMaintenanceActivityView = updateMaintenanceActivityView;
+        this.updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         this.activityNameList = new LinkedList<>();
         this.columnNumber = this.updateMaintenanceActivityView.getjTable().getColumnCount();
@@ -52,6 +48,10 @@ public class UpdateMaintenanceActivityController extends AbstractController
         viewMaintenanceActivity();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of updateMaintenanceActivityView
+     */
     public void initListeners()
     {
         updateMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -99,13 +99,19 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
     }
     
-    public static JFrame goBackMaintenanceActivityPage()
+    /**
+     * 
+     * Opens the maintenance activity page using its controller
+     */
+    public static void goBackMaintenanceActivityPage()
     {
-        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
-        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        return maintenanceActivityView;
+        new MaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Updates the selected maintenance activity 
+     */
     public void updateMaintenanceActivity()
     {
         MaintenanceActivity maintenanceActivity = null;
@@ -192,6 +198,10 @@ public class UpdateMaintenanceActivityController extends AbstractController
         }   
     }
     
+    /**
+     * 
+     * Shows in the table all the maintenance activities
+     */
     public void viewMaintenanceActivity(){
         DefaultTableModel tableModel = updateMaintenanceActivityView.getDefaultTableModel();
         try

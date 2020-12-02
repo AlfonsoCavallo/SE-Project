@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repos.interfaces;
 
 import java.io.IOException;
@@ -11,15 +5,21 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import se.project.storage.models.SystemUser;
 
-/**
- *
- * @author Utente
- */
+
 public interface SystemUserRepoInterface
 {
+    /**
+     * 
+     * @return a SystemUser (that's the model of the current user)
+     * @throws SQLException
+     * @throws IOException 
+     */
     public SystemUser queryCurrentUser() throws SQLException, IOException;
-    // Return a model of the current user
     
+    /**
+     * 
+     * @return a LinkedList of SystemUser that are in the system
+     * @throws IOException 
+     */
     public LinkedList<SystemUser> queryAllUsers() throws IOException;
-    // Return all the users to the system
 }

@@ -1,33 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
+import se.project.business_logic.controllers.user_management.UserInfoController;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.presentation.views.SAHomepageView;
-import se.project.presentation.views.UserAccessesView;
-import se.project.presentation.views.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-/**
- *
- * @author Giacomo
- */
+
 public class SAHomepageController extends AbstractController
 {
     private final SAHomepageView saHomepageView;
     
-    public SAHomepageController(SAHomepageView saHomepageView)
+    /**
+     * 
+     * Creates a new SAHomepageController
+     */
+    public SAHomepageController()
     {
-        this.view = saHomepageView;
-        this.saHomepageView = saHomepageView;
+        this.saHomepageView = new SAHomepageView();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of saHomepageView
+     */
     private void initListeners()
     {
         saHomepageView.getjUserInfoPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -75,17 +72,22 @@ public class SAHomepageController extends AbstractController
         });
     }
     
-    public static JFrame openUserInfoPage()
+    /**
+     * 
+     * Opens the user info page using its controller
+     */
+    public void openUserInfoPage()
     {
-        UserInfoView userInfoView = new UserInfoView();
-        UserInfoController userInfoController = new UserInfoController(userInfoView);
-        return userInfoView;
+        new UserInfoController();
     }
     
-    public static JFrame openRecordAccessPage()
+    /**
+     * 
+     * Opens the user access records page using its controller
+     */
+    public void openRecordAccessPage()
     {
-        UserAccessesView userAccessesView = new UserAccessesView();
-        UserAccessesController userAccessesController = new UserAccessesController(userAccessesView);
-        return userAccessesView;
+        new UserAccessesController();
     }
+    
 }

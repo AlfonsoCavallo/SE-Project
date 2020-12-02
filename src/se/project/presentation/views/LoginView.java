@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.presentation.views;
 
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Utente
- */
+
 public class LoginView extends AbstractView
 {
     
@@ -26,31 +17,55 @@ public class LoginView extends AbstractView
         this.setVisible(true);
     }
     
+    /**
+     * 
+     * @return a String with the text in the username text field
+     */
     public String getUsername()
     {
         return jUsernameTextField.getText();
     }
     
+    /**
+     * 
+     * @return a char[] with the password in the password field
+     */
     public char[] getPassword()
     {
         return jPasswordField.getPassword();
     }
 
+    /**
+     * 
+     * @return the JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return the JLabel representing the login button
+     */
     public JLabel getjLoginLabel()
     {
         return jLoginLabel;
     }
 
+    /**
+     * 
+     * @return the JPasswordField
+     */
     public JPasswordField getjPasswordField()
     {
         return jPasswordField;
     }
 
+    /**
+     * 
+     * @return the username text field
+     */
     public JTextField getjUsernameTextField()
     {
         return jUsernameTextField;

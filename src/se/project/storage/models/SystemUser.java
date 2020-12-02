@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.models;
 
 import java.util.Arrays;
 import java.util.Objects;
 
-/**
- *
- * @author Utente
- */
+
 public class SystemUser 
 {
     private Role role;
@@ -26,17 +17,32 @@ public class SystemUser
         
         private String role;
         
+        /**
+         * 
+         * @param role is the role to assign to the system user
+         */
         Role(String role)
         {
             this.role = role;
         }
         
+        /**
+         * 
+         * @return role's value
+         */
         public String getValue()
         {
             return role;
         }
     }
     
+    /**
+     * 
+     * Creates a new system user
+     * @param role is the role of the system user
+     * @param username is the username of the system user
+     * @param password is the password of the system user
+     */
     public SystemUser(Role role, String username, char[] password)
     {
         this.role = role;
@@ -44,24 +50,38 @@ public class SystemUser
         this.password = password;
     }
     
+    /**
+     * 
+     * @return the Role of the system user
+     */
     public Role getRole()
     {
-        // Returns the role of the SystemUser
         return role;
     }
     
+    /**
+     * 
+     * @return a String representing the system user's username
+     */
     public String getUsername()
     {
-        // Returns username
         return username;
     }
     
+    /**
+     * 
+     * @return a char vector representing the system user's password
+     */
     public char[] getPassword()
     {
-        // Returns password
         return password;
     }
     
+    /**
+     * 
+     * @param obj is the object to compare
+     * @return true if the compared objects are equals, otherwise false
+     */
     @Override
     public boolean equals(Object obj)
     {

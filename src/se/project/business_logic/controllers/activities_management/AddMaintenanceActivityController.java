@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.activities_management;
 
 import java.awt.event.ItemEvent;
 import java.io.IOException;
@@ -11,8 +6,9 @@ import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import se.project.presentation.views.AddMaintenanceActivityView;
-import se.project.presentation.views.MaintenanceActivityView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
+import se.project.presentation.views.activities_management.AddMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.EWO;
@@ -23,10 +19,7 @@ import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-/**
- *
- * @author delso
- */
+
 public class AddMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not add maintenance activity in database.";
@@ -36,15 +29,22 @@ public class AddMaintenanceActivityController extends AbstractController
     private final AddMaintenanceActivityView addMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
             
-    public AddMaintenanceActivityController(AddMaintenanceActivityView addMaintenanceActivityView)
+    /**
+     * 
+     * Crates a new AddMaintenanceActivityController
+     */
+    public AddMaintenanceActivityController()
     {
-        this.view = addMaintenanceActivityView;
-        this.addMaintenanceActivityView = addMaintenanceActivityView;
+        this.addMaintenanceActivityView = new AddMaintenanceActivityView();
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         clearFields();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of addMaintenanceActivityView
+     */
     public void initListeners()
     {
         addMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -123,13 +123,19 @@ public class AddMaintenanceActivityController extends AbstractController
 
     }
     
-    public static JFrame goBackMaintenanceActivityPage()
+    /**
+     * 
+     * Opens the maintenance activity page using its controller
+     */
+    public static void goBackMaintenanceActivityPage()
     {
-        MaintenanceActivityView maintenanceActivityView = new MaintenanceActivityView();
-        MaintenanceActivityController maintenanceActivityController = new MaintenanceActivityController(maintenanceActivityView);
-        return maintenanceActivityView;
+        new MaintenanceActivityController();
     }
     
+    /**
+     * 
+     * Add a new maintenanance activity using data from the page and method from the repo
+     */
     public void addMaintenanceActivity()
     {
         MaintenanceActivity maintenanceActivity = null;
@@ -144,16 +150,7 @@ public class AddMaintenanceActivityController extends AbstractController
         String ewo = addMaintenanceActivityView.getIsEWOValue();
         String standardProcedure = addMaintenanceActivityView.getStringStandardProcedureTextField();
         
-        boolean interruptible;
-        
-        if(interruptibleString.equals("yes"))
-        {
-            interruptible = true;
-        }
-        else
-        {
-            interruptible = false;
-        }    
+        boolean interruptible = interruptibleString.equals("yes");    
         
         if(planned.equals("yes"))
         {
@@ -190,6 +187,10 @@ public class AddMaintenanceActivityController extends AbstractController
         }
     } 
     
+    /**
+     * 
+     * Clears all the fields in the page
+     */
     public void clearFields()
     {
         addMaintenanceActivityView.resetjDescriptionTextArea();

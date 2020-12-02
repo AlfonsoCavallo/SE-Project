@@ -1,4 +1,4 @@
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -6,9 +6,9 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import se.project.business_logic.controllers.AbstractController;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
-import se.project.presentation.views.UpdateUserView;
-import se.project.presentation.views.UserInfoView;
+import se.project.presentation.views.user_management.UpdateUserView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
@@ -17,10 +17,7 @@ import se.project.storage.models.User;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-/**
- *
- * @author Giorgio
- */
+
 public class UpdateUserController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update user in database.";
@@ -35,13 +32,12 @@ public class UpdateUserController extends AbstractController
     private int columnNumber;
 
     /**
-     * Constructor
-     * @param updateUserView 
+     * 
+     * Creates a new UpdateUserController
      */
-    public UpdateUserController(UpdateUserView updateUserView)
+    public UpdateUserController()
     {
-        this.view = updateUserView;
-        this.updateUserView = updateUserView;
+        this.updateUserView = new UpdateUserView();
         this.userRepo = new UserRepo(getConnection());
         this.usernameList = new LinkedList<>();
         this.columnNumber = this.updateUserView.getTable().getColumnCount();
@@ -50,7 +46,8 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
-     *  initializes the listeners of updateUserView
+     * 
+     *  Initializes the listeners of updateUserView
      */
     private void initListeners()
     {
@@ -108,16 +105,15 @@ public class UpdateUserController extends AbstractController
     
     /**
      * 
-     * @return a JFrame representing the userInfoView
+     * Opens the user info page using its controller
      */
-    public static JFrame goBackUserInfoPage()
+    public static void goBackUserInfoPage()
     {
-       UserInfoView userInfoView = new UserInfoView();
-       UserInfoController userInfoController = new UserInfoController(userInfoView);
-       return userInfoView;
+       new UserInfoController();
     }
     
     /**
+     * 
      *  Executes the update of the selected user
      */
     public void updateUser()
@@ -177,9 +173,8 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
-     * 
+     * This method shows in a table the users in the database 
      * @param showPassword indicates if the passwords must be shown
-     * This method shows in a table the users in the database
      */
     public void viewUsers(boolean showPassword)
     {
@@ -221,7 +216,7 @@ public class UpdateUserController extends AbstractController
     }
     
     /**
-     *  This method changes the show password button and modify the View
+     * This method changes the show password button and modify the View
      */
     public void showPassword()
     {

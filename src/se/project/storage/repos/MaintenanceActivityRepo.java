@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.storage.repos;
 
 import java.io.IOException;
@@ -19,10 +14,7 @@ import static se.project.storage.models.maintenance_activity.MaintenanceActivity
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-/**
- *
- * @author delso
- */
+
 public class MaintenanceActivityRepo extends AbstractRepo implements MaintenanceActivityRepoInterface     
 {
     private final String QUERY_ALL_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAllMaintenanceActivity.sql";
@@ -31,36 +23,67 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     private final String QUERY_ADD_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAddMaintenanceActivity.sql";
     private final String QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryUpdateMaintenanceActivity.sql";
 
+    /**
+     * 
+     * Creates a new MaintenanceActivityRepo
+     * @param connection is the current connection
+     */
     public MaintenanceActivityRepo(Connection connection)
     {
         super(connection);
     }
     
+    /**
+     * 
+     * @return a LinkedList of the MaintenanceActivity in the system
+     * @throws IOException
+     * @throws SQLException 
+     */
     @Override
     public LinkedList<MaintenanceActivity> queryAllMaintenanceActivity() throws IOException, SQLException
     {
-        // Return all the maintenance activities in the system
         String query = getStringFromFile(QUERY_ALL_MAINTENANCE_ACTIVITY_PATH);
         return queryMaintenanceActivityList(query);
     }
 
+    /**
+     * 
+     * @param activityName is the name of the activity that has to be shown
+     * @return a LinkedList of the MaintenanceActivity in which there is a specific maintenance activity
+     * @throws IOException
+     * @throws SQLException 
+     */
     @Override
-    public LinkedList<MaintenanceActivity> queryViewOneMaintenanceActivity(String activity_name) throws IOException, SQLException
+    public LinkedList<MaintenanceActivity> queryViewOneMaintenanceActivity(String activityName) throws IOException, SQLException
     {
         // Return a specific maintenance activity
         String query = getStringFromFile(QUERY_VIEW_ONE_MAINTENANCE_ACTIVITY_PATH);
-        query = query.replaceAll("activity_name_param", activity_name);
+        query = query.replaceAll("activity_name_param", activityName);
         return queryMaintenanceActivityList(query);
     }
     
+    /**
+     * 
+     * Delete a specific maintenance activity
+     * @param activityName is the name of the activity that has to be deleted
+     * @throws IOException
+     * @throws SQLException 
+     */
     @Override
-    public void queryDeleteMaintenanceActivity(String activity_name) throws IOException, SQLException
+    public void queryDeleteMaintenanceActivity(String activityName) throws IOException, SQLException
     {
         String query = getStringFromFile(QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH);
-        query = query.replaceAll("activity_name_param", activity_name);
+        query = query.replaceAll("activity_name_param", activityName);
         executeStatement(query);
     }
     
+    /**
+     * 
+     * Add a new maintenance activity
+     * @param maintenanceActivity is the maintenance activity that has to be added
+     * @throws IOException
+     * @throws SQLException 
+     */
     @Override
     public void queryAddMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException
     {
@@ -88,6 +111,14 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         executeStatement(query);
     }
     
+    /**
+     * 
+     * Update a specific maintenance activity
+     * @param maintenanceActivity is the maintenance activity that has to be updated
+     * @param activityToUpdate is the previous name of the activity that has to be updated
+     * @throws IOException
+     * @throws SQLException 
+     */
     @Override
     public void queryUpdateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException
     {
@@ -117,6 +148,12 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         executeStatement(query);
     }
     
+    /**
+     * 
+     * @param query is the query from which to extract data to build the model
+     * @return a LinkedList of User that are in the database
+     * @throws SQLException 
+     */
     private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException
     {
         ResultSet resultSet = super.queryDatabase(query);

@@ -1,34 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.activities_management;
 
 import java.sql.SQLException;
-import javax.swing.JFrame;
-import se.project.presentation.views.AddMaintenanceActivityView;
-import se.project.presentation.views.MaintenanceActivityView;
-import se.project.presentation.views.PlannerHomepageView;
-import se.project.presentation.views.UpdateMaintenanceActivityView;
-import se.project.presentation.views.ViewMaintenanceActivityView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.MainController;
+import se.project.business_logic.controllers.PlannerHomepageController;
+import se.project.presentation.views.activities_management.MaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-/**
- *
- * @author delso
- */
+
 public class MaintenanceActivityController extends AbstractController
 {
     private final MaintenanceActivityView maintenanceActivityView;
     
-    public MaintenanceActivityController(MaintenanceActivityView maintenanceActivityView)
+    /**
+     * 
+     * Creates a new MaintenanceActivityController
+     */
+    public MaintenanceActivityController()
     {
-       this.view = maintenanceActivityView;
-       this.maintenanceActivityView = maintenanceActivityView;
+       this.maintenanceActivityView = new MaintenanceActivityView();
        initListeners();
     }  
     
+    /**
+     * 
+     *  Initializes the listeners of addMaintenanceActivityView
+     */
     private void initListeners()
     {
         maintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -95,31 +92,39 @@ public class MaintenanceActivityController extends AbstractController
                 
     }        
     
-    public static JFrame openAddMaintenanceActivityPage()
+    /**
+     * 
+     * Opens the add maintenance activity page using its controller
+     */
+    public static void openAddMaintenanceActivityPage()
     {
-        AddMaintenanceActivityView addMaintenanceActivityView = new AddMaintenanceActivityView();
-        AddMaintenanceActivityController addMaintenanceActivityController = new AddMaintenanceActivityController(addMaintenanceActivityView);
-        return addMaintenanceActivityView;
+        new AddMaintenanceActivityController();
     }
     
-    public static JFrame openUpdateMaintenanceActivityPage()
+    /**
+     * 
+     * Opens the update maintenance activity page using its controller
+     */
+    public static void openUpdateMaintenanceActivityPage()
     {
-        UpdateMaintenanceActivityView updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
-        UpdateMaintenanceActivityController updateMaintenanceActivityController = new UpdateMaintenanceActivityController(updateMaintenanceActivityView);
-        return updateMaintenanceActivityView;
+        new UpdateMaintenanceActivityController();
     }
     
-    public static JFrame openViewMaintenanceActivityPage()
+    /**
+     * 
+     * Opens the view and delete maintenance activity page using its controller
+     */
+    public static void openViewMaintenanceActivityPage()
     {
-        ViewMaintenanceActivityView viewMaintenanceActivityView = new ViewMaintenanceActivityView();
-        ViewMaintenanceActivityController viewMaintenanceActivityController = new ViewMaintenanceActivityController(viewMaintenanceActivityView);
-        return viewMaintenanceActivityView;
+        new ViewMaintenanceActivityController();
     }
     
-    public static JFrame goBackPlannerHomepage()
+    /**
+     * 
+     * Opens the planner homepage using its controller
+     */
+    public static void goBackPlannerHomepage()
     {
-        PlannerHomepageView plannerHomepageView = new PlannerHomepageView();
-        PlannerHomepageController plannerHomepageController = new PlannerHomepageController(plannerHomepageView);
-        return plannerHomepageView;
+        new PlannerHomepageController();
     }
 }

@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.storage.models.maintenance_activity;
 
 import java.util.Objects;
 
-/**
- *
- * @author delso
- */
+
 public abstract class MaintenanceActivity
 {
     private int IDActivity = -1;
@@ -35,11 +27,20 @@ public abstract class MaintenanceActivity
             this.typology = typology;
         }
         
+        /**
+         * 
+         * @return a String containing the value of the typology
+         */
         public String getValue()
         {
             return typology;
         }
         
+        /**
+         * 
+         * @param string is the string from which regain the Typology
+         * @return the Typology corresponding to string
+         */
         public static Typology fromString(String string)
         {
             for(Typology typology : Typology.values())
@@ -52,6 +53,17 @@ public abstract class MaintenanceActivity
        
     }
 
+    /**
+     * 
+     * Creates a new MaintenanceActivity
+     * @param IDActivity is the ID of the Maintenance Activity
+     * @param activityName is the name of the Maintenance Activity
+     * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
+     * @param typology is the typology of the Maintenance Activity
+     * @param activityDescription is the description of the Maintenance Activity
+     * @param week is the week in which the Maintenance Activity must be done
+     */
     public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
@@ -64,6 +76,16 @@ public abstract class MaintenanceActivity
         this.week = week;
     }
     
+    /**
+     * 
+     * Creates a new MaintenanceActivity without considering the ID
+     * @param activityName is the name of the Maintenance Activity
+     * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
+     * @param typology is the typology of the Maintenance Activity
+     * @param activityDescription is the description of the Maintenance Activity
+     * @param week is the week in which the Maintenance Activity must be done
+     */
     public MaintenanceActivity(String activityName, int timeNeeded, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
@@ -75,21 +97,37 @@ public abstract class MaintenanceActivity
         this.week = week;
     }
     
+    /**
+     * 
+     * @return an int representing the ID activity
+     */
    public int getIdActivity()
    {
        return IDActivity;
    }
    
+   /**
+    * 
+    * @return a String representing the name of the maintenance activity
+    */
    public String getActivityName()
    {
        return activityName;
    }
    
+   /**
+    * 
+    * @return an int representing the time needed for the maintenance activity
+    */
    public int getTimeNeeded()
    {
        return timeNeeded;
    }        
    
+   /**
+    * 
+    * @return a String, it's "yes" if interruptible is true, "no" otherwise
+    */
    public String isInterruptible()
    {
        String output;
@@ -101,34 +139,72 @@ public abstract class MaintenanceActivity
        return output;
    }        
    
+   /**
+    * 
+    * @return the Typology of the maintenance activity
+    */
    public Typology getTypology()
    {
        return typology;
    }
    
+   /**
+    * 
+    * @return a String representing the description of the maintenance activity
+    */
    public String getActivityDescription()
    {
        return activityDescription;
    }        
-           
+   
+   /**
+    * 
+    * @return an int corresponding to the week in which the maintenance activity must be done
+    */
    public int getWeek()
    {
        return week;
    }
    
+   /**
+    * 
+    * @return "yes" if the maintenance activity is planned, "no" otherwise (must be implemented in the sub-classes)
+    */
    public abstract String isPlanned();
    
+   /**
+    * 
+    * @return "yes" if the maintenance activity is an EWO, "no" otherwise (must be implemented in the sub-classes)
+    */
    public abstract String isEWO();
    
+   /**
+    * 
+    * @return a String representing the standard procedure of the maintenance activity (must be implemented in the sub-classes)
+    */
    public abstract String getStandardProcedure();
    
+   /**
+    * 
+    * @return an Object array representing the data model of the maintenance activity (must be implemented in the sub-classes)
+    */
    public abstract Object[] getDataModel();
            
+   /**
+    * 
+    * @param week is the week in which the maintenance activity must be done
+    * @return true if week is a valid week, false otherwise
+    */
    public boolean isValidWeek(int week)
    {
        return week >= 1 && week <= 52; 
    }        
 
+    /**
+     * 
+     * @param obj is the object to compare
+     * @return true if the compared objects are equals, otherwise false
+     */
     @Override
     public boolean equals(Object obj)
     {

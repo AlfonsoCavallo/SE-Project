@@ -1,92 +1,84 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.presentation.views;
-
+package se.project.presentation.views.activities_management;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.AbstractView;
 
-/**
- *
- * @author Giacomo
- */
-public class ViewMaintenanceActivityView extends AbstractView
+
+public class UpdateMaintenanceActivityView extends AbstractView
 {
-    private DefaultTableModel defaultTableModel;
+     private DefaultTableModel defaultTableModel;
 
-    public ViewMaintenanceActivityView()
+    /**
+     * Creates new form UpdateMaintenanceActivityView
+     */
+    public UpdateMaintenanceActivityView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel()
-        {
-           @Override
-           public boolean isCellEditable(int row, int column)
-           {
-               return false; // So all cells are be not editable
-           }        
-        };
+        this.defaultTableModel = new DefaultTableModel();       
         Object columns[] = {"ID", "Name", "Time Needed", "Interruptible", "Typology", "Description", 
                             "Week", "Planned", "EWO", "Standard Procedure"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
         this.setVisible(true);
     }
-    
-    public String getName()
-    {
-        return this.jNameTextField.getText();
-    } 
-    
-    public void resetNameField()
-    {
-        this.jNameTextField.setText("");
-    }        
 
-    public JLabel getjCloseConnectionLabel()
-    {
-        return jCloseConnectionLabel;
-    }
-
+    /**
+     * 
+     * @return JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
 
-    public JLabel getjSearchLabel()
+    /**
+     * 
+     * @return JPanel representing the button to open update maintenance activity page
+     */
+    public JPanel getjUpdateMaintenanceProcedurePanel()
     {
-        return jSearchLabel;
-    }
-    
-    public JLabel getjDeleteLabel()
-    {
-        return jDeleteLabel;
+        return jUpdateMaintenanceProcedurePanel;
     }
 
-    public DefaultTableModel getTableModel()
+    /**
+     * 
+     * @return JLabel representing the close connection button
+     */
+    public JLabel getjCloseConnectionLabel()
     {
-        return defaultTableModel;
+        return jCloseConnectionLabel;
     }
-    
+
+    /**
+     * 
+     * @return the DefaultTableModel of the table that is in the page
+     */
+    public DefaultTableModel getDefaultTableModel()
+    {
+        return this.defaultTableModel;
+    }
+
+    /**
+     * 
+     * @return the JTable that is in the page
+     */
     public JTable getjTable()
     {
-        return jTable;
+        return this.jTable;
     }
-
-    public JTextField getjNameTextField()
-    {
-        return jNameTextField;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,13 +93,12 @@ public class ViewMaintenanceActivityView extends AbstractView
         jCloseConnectionLabel = new javax.swing.JLabel();
         jGoBackLabel = new javax.swing.JLabel();
         jExitLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jNameTextField = new javax.swing.JTextField();
+        jUpdateMaintenanceProcedurePanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jSearchLabel = new javax.swing.JLabel();
-        jDeleteLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -122,6 +113,10 @@ public class ViewMaintenanceActivityView extends AbstractView
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Update Maintenance Activity ");
 
         jTable.setBackground(new java.awt.Color(188, 180, 169));
         jTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -140,81 +135,79 @@ public class ViewMaintenanceActivityView extends AbstractView
         ));
         jScrollPane1.setViewportView(jTable);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("View Maintenance Activities ");
+        jUpdateMaintenanceProcedurePanel.setBackground(new java.awt.Color(188, 180, 169));
+        jUpdateMaintenanceProcedurePanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jUpdateMaintenanceProcedurePanel.setPreferredSize(new java.awt.Dimension(251, 52));
 
-        jNameTextField.setBackground(new java.awt.Color(188, 180, 169));
-        jNameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_restart_30px.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setText("Search by Name");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Update Maintenance Activity ");
 
-        jSearchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_search_50px.png"))); // NOI18N
-        jSearchLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jDeleteLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_waste_50px.png"))); // NOI18N
-        jDeleteLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        javax.swing.GroupLayout jUpdateMaintenanceProcedurePanelLayout = new javax.swing.GroupLayout(jUpdateMaintenanceProcedurePanel);
+        jUpdateMaintenanceProcedurePanel.setLayout(jUpdateMaintenanceProcedurePanelLayout);
+        jUpdateMaintenanceProcedurePanelLayout.setHorizontalGroup(
+            jUpdateMaintenanceProcedurePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jUpdateMaintenanceProcedurePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jUpdateMaintenanceProcedurePanelLayout.setVerticalGroup(
+            jUpdateMaintenanceProcedurePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jUpdateMaintenanceProcedurePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jUpdateMaintenanceProcedurePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jCloseConnectionLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jGoBackLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jExitLabel))
+                        .addComponent(jExitLabel)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 338, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(293, 293, 293))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSearchLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDeleteLabel)))
-                        .addGap(0, 10, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(327, 327, 327))
+                        .addGap(453, 453, 453)
+                        .addComponent(jUpdateMaintenanceProcedurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 991, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jGoBackLabel)
-                            .addComponent(jCloseConnectionLabel)
-                            .addComponent(jExitLabel)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel1)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSearchLabel)
-                            .addComponent(jNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(jGoBackLabel)
+                    .addComponent(jCloseConnectionLabel)
+                    .addComponent(jExitLabel))
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(54, 54, 54)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(jUpdateMaintenanceProcedurePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,16 +247,16 @@ public class ViewMaintenanceActivityView extends AbstractView
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(ViewMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(ViewMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(ViewMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(ViewMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateMaintenanceActivityView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -272,22 +265,21 @@ public class ViewMaintenanceActivityView extends AbstractView
         {
             public void run()
             {
-                new ViewMaintenanceActivityView().setVisible(true);
+                new UpdateMaintenanceActivityView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jCloseConnectionLabel;
-    private javax.swing.JLabel jDeleteLabel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jNameTextField;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jSearchLabel;
     private javax.swing.JTable jTable;
+    private javax.swing.JPanel jUpdateMaintenanceProcedurePanel;
     // End of variables declaration//GEN-END:variables
 }

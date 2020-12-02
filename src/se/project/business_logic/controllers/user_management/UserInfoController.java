@@ -1,35 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.business_logic.controllers;
+package se.project.business_logic.controllers.user_management;
 
 import java.sql.SQLException;
-import javax.swing.JFrame;
-import se.project.presentation.views.AddUserView;
-import se.project.presentation.views.SAHomepageView;
-import se.project.presentation.views.UpdateUserView;
-import se.project.presentation.views.UserInfoView;
-import se.project.presentation.views.ViewUsersView;
+import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.SAHomepageController;
+import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 
-/**
- *
- * @author Giorgio
- */
+
 public class UserInfoController  extends AbstractController
 {
     private final UserInfoView userInfoView;
     
-    public UserInfoController(UserInfoView userInfoView)
+    /**
+     * 
+     * Creates a new UserInfoController
+     */
+    public UserInfoController()
     {
-        this.view = userInfoView;
-        this.userInfoView = userInfoView;
+        this.userInfoView = new UserInfoView();
         initListeners();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of viewMaintenanceActivityView
+     */
     private void initListeners()
     {
         userInfoView.getjAddUserPanel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -94,31 +90,39 @@ public class UserInfoController  extends AbstractController
         });
     }
     
-    public static JFrame openAddUserPage()
+    /**
+     * 
+     * Opens the add user page using its controller
+     */
+    public static void openAddUserPage()
     {
-        AddUserView addUserView = new AddUserView();
-        AddUserController addUserController = new AddUserController(addUserView);
-        return addUserView;
+        new AddUserController();
     }
     
-    public static JFrame openViewUserPage()
+    /**
+     * 
+     * Opens the view and delete user page using its controller
+     */
+    public static void openViewUserPage()
     {
-        ViewUsersView viewUserView = new ViewUsersView();
-        ViewUsersController viewUsersController = new ViewUsersController(viewUserView);
-        return viewUserView;
+        new ViewUsersController();
     }
     
-    public static JFrame openUpdateUserPage()
+    /**
+     * 
+     * Opens the update user page using its controller
+     */
+    public static void openUpdateUserPage()
     {
-        UpdateUserView updateUserView = new UpdateUserView();
-        UpdateUserController updateUserController = new UpdateUserController(updateUserView);
-        return updateUserView;
+        new UpdateUserController();
     }
     
-    public static JFrame goBackSystemAdministratorHomepage()
+    /**
+     * 
+     * Opens the system administrator homepage using its controller
+     */
+    public static void goBackSystemAdministratorHomepage()
     {
-        SAHomepageView saHomepageView = new SAHomepageView();
-        SAHomepageController saHomepageController = new SAHomepageController(saHomepageView);
-        return saHomepageView;
+        new SAHomepageController();
     }
 }

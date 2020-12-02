@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package se.project.presentation.views;
+package se.project.presentation.views.activities_management;
 
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import se.project.presentation.views.AbstractView;
 
 
-/**
- *
- * @author Giacomo
- */
 public class MaintenanceActivityView extends AbstractView
 {
     
@@ -26,31 +18,55 @@ public class MaintenanceActivityView extends AbstractView
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the add maintenance activity page
+     */
     public JPanel getjAddMaintenancePanel()
     {
         return jAddMaintenancePanel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing close connection button
+     */
     public JLabel getjCloseConnectionLabel()
     {
         return jCloseConnectionLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the exit button
+     */
     public JLabel getjExitLabel()
     {
         return jExitLabel;
     }
 
+    /**
+     * 
+     * @return a JLabel representing the go back button
+     */
     public JLabel getjGoBackLabel()
     {
         return jGoBackLabel;
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the update maintenance activity page
+     */
     public JPanel getjUpdateMaintenancePanel()
     {
         return jUpdateMaintenancePanel;
     }
 
+    /**
+     * 
+     * @return a JPanel representing the button to open the view and delete maintenance activity page
+     */
     public JPanel getjViewMaintenancePanel()
     {
         return jViewDeleteMaintenancePanel;
@@ -150,7 +166,7 @@ public class MaintenanceActivityView extends AbstractView
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         jUpdateMaintenancePanelLayout.setVerticalGroup(
             jUpdateMaintenancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +206,7 @@ public class MaintenanceActivityView extends AbstractView
             .addGroup(jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel4)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jViewDeleteMaintenancePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel8)

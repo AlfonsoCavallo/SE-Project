@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.project.business_logic.controllers;
 
 import java.io.IOException;
@@ -11,17 +6,13 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import se.project.presentation.views.SAHomepageView;
 import se.project.presentation.views.UserAccessesView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
-/**
- *
- * @author Utente
- */
+
 public class UserAccessesController extends AbstractController
 {
 
@@ -31,14 +22,21 @@ public class UserAccessesController extends AbstractController
     private final UserAccessesView userAccessesView;
     private UserAccessRepoInterface userAccessesRepo = null;
 
-    public UserAccessesController(UserAccessesView userAccessesView)
+    /**
+     * 
+     * Creates a new UserAccessesController
+     */
+    public UserAccessesController()
     {
-        this.view = userAccessesView;
-        this.userAccessesView = userAccessesView;
+        this.userAccessesView = new UserAccessesView();
         initListeners();
         updateAccesses();
     }
     
+    /**
+     * 
+     *  Initializes the listeners of saHomepageView
+     */
     private void initListeners()
     {
         userAccessesView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
@@ -53,7 +51,7 @@ public class UserAccessesController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                backToHomepage();
+                goBackSystemAdministratorHomepage();
                 userAccessesView.dispose();
             }
         });
@@ -84,6 +82,9 @@ public class UserAccessesController extends AbstractController
         });
     }
 
+    /**
+     * Update the table in the page inserting the accesses of all the users or those of a specific user
+     */
     public void updateAccesses()
     {
         LinkedList<UserAccess> userAccesses;
@@ -124,10 +125,12 @@ public class UserAccessesController extends AbstractController
         }
     }
     
-    public SAHomepageView backToHomepage()
+    /**
+     * 
+     * Opens the system administrator page using its controller
+     */
+    public void goBackSystemAdministratorHomepage()
     {
-        SAHomepageView saHomepageView = new SAHomepageView();
-        SAHomepageController saHomepageController = new SAHomepageController(saHomepageView);
-        return saHomepageView;        
+        new SAHomepageController();      
     }
 }
