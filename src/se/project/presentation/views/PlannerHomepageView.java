@@ -33,15 +33,6 @@ public class PlannerHomepageView extends AbstractView
     {
         return jExitLabel;
     }
-
-    /**
-     * 
-     * @return a JLabel representing the go back button
-     */
-    public JLabel getjGoBackLabel()
-    {
-        return jGoBackLabel;
-    }
     
     /**
      * 
@@ -64,7 +55,6 @@ public class PlannerHomepageView extends AbstractView
 
         jPanel1 = new javax.swing.JPanel();
         jCloseConnectionLabel = new javax.swing.JLabel();
-        jGoBackLabel = new javax.swing.JLabel();
         jExitLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -79,9 +69,6 @@ public class PlannerHomepageView extends AbstractView
 
         jCloseConnectionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_shutdown_30px.png"))); // NOI18N
         jCloseConnectionLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jGoBackLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_back_to_30px.png"))); // NOI18N
-        jGoBackLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jExitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/project/assets/icons/icons8_cancel_30px.png"))); // NOI18N
         jExitLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -135,8 +122,6 @@ public class PlannerHomepageView extends AbstractView
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jGoBackLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jExitLabel)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -160,7 +145,6 @@ public class PlannerHomepageView extends AbstractView
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jExitLabel)
-                            .addComponent(jGoBackLabel)
                             .addComponent(jCloseConnectionLabel))
                         .addGap(53, 53, 53)
                         .addComponent(jLabel2)
@@ -235,7 +219,6 @@ public class PlannerHomepageView extends AbstractView
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jCloseConnectionLabel;
     private javax.swing.JLabel jExitLabel;
-    private javax.swing.JLabel jGoBackLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
