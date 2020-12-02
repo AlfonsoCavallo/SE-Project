@@ -37,35 +37,50 @@ public class FileUtilitiesTest
     {
     }
 
-    // TEST FOR READING FROM FILE
     
+    /**
+     * Try to find a file in a wrong path.
+     * @Result Path is not found and exceptions are thrown.
+     * @throws IOException 
+     */
     @Test(expected = NullPointerException.class)
     public void testFileNotFound() throws IOException
     {
-        // try to find a file in a wrong path
         String text = getStringFromFile("wrong/path.txt");
     }
     
+    /**
+     * Get a string from a one-line file.
+     * @Result The string in the path is correctly found and checked.
+     * @throws IOException 
+     */
     @Test
     public void testReadingFromOneLineFile() throws IOException
     {
-        // test getStringFromFile from a one-line file
         String text = getStringFromFile("/se/project/business_logic/utilities/test_files/testOneLineFile.sql");
         assertEquals("create user group;\n", text);
     }
     
+    /**
+     * Get a string from a more-line file.
+     * @Result The string in the path is correctly found and checked.
+     * @throws IOException 
+     */
     @Test
     public void testReadingFromMoreLineFile() throws IOException
     {
-        // test getStringFromFile from a more-line file
         String text = getStringFromFile("/se/project/business_logic/utilities/test_files/testMoreLineFile.sql");
         assertEquals("create user;\ndelete table;\ncascade;\n", text);
     }
     
+    /**
+     * Get a string from a void file.
+     * @Result The empty string in the path is correctly found and checked.
+     * @throws IOException 
+     */
     @Test
     public void testVoidFile() throws IOException
     {
-        // test getStringFromFile from a void file
         String text = getStringFromFile("/se/project/business_logic/utilities/test_files/testVoidFile.sql");
         assertEquals("", text);
     }

@@ -16,6 +16,12 @@ public class ITLoginTest
     {
     }
     
+    /**
+     * Mock inizialization.
+     * @param username is user's username necessary to log.
+     * @param password is user's password necessary to log.
+     * @return a simulated LoginView.
+     */
     private static LoginView simulateView(String username, char[] password)
     {
         // Initializes Mock
@@ -76,8 +82,5 @@ public class ITLoginTest
         // Test for wrong username and correct password
     }
     */
-    
-    
-    
-    
+       
 }
