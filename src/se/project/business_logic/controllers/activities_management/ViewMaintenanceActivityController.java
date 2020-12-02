@@ -115,7 +115,7 @@ public class ViewMaintenanceActivityController extends AbstractController
         LinkedList<MaintenanceActivity> maintenanceActivities;
         try
         {
-            String nameToSearch = viewMaintenanceActivityView.getName();
+            String nameToSearch = viewMaintenanceActivityView.getActivityName();
             if(!nameToSearch.equals(""))
             {
                 maintenanceActivities = maintenanceActivityRepo.queryViewOneMaintenanceActivity(nameToSearch);

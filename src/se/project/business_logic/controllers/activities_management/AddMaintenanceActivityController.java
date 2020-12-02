@@ -140,15 +140,15 @@ public class AddMaintenanceActivityController extends AbstractController
     {
         MaintenanceActivity maintenanceActivity = null;
         
-        String activityName = addMaintenanceActivityView.getStringNameTextField();
-        String timeNeeded = addMaintenanceActivityView.getStringTimeTextField();
-        String interruptibleString = addMaintenanceActivityView.getStringInterruptibleComboBox();
-        String typology = addMaintenanceActivityView.getStringTypologyComboBox();
-        String activityDescription = addMaintenanceActivityView.getStringDescriptionTextArea();
-        String week = addMaintenanceActivityView.getStringWeekComboBox();
+        String activityName = addMaintenanceActivityView.getStringActivityName();
+        String timeNeeded = addMaintenanceActivityView.getStringTimeNeeded();
+        String interruptibleString = addMaintenanceActivityView.getIsInterruptibleValue();
+        String typology = addMaintenanceActivityView.getStringTypology();
+        String activityDescription = addMaintenanceActivityView.getStringActivityDescription();
+        String week = addMaintenanceActivityView.getStringWeek();
         String planned = addMaintenanceActivityView.getIsPlannedValue();
         String ewo = addMaintenanceActivityView.getIsEWOValue();
-        String standardProcedure = addMaintenanceActivityView.getStringStandardProcedureTextField();
+        String standardProcedure = addMaintenanceActivityView.getStringStandardProcedure();
         
         boolean interruptible = interruptibleString.equals("yes");    
         

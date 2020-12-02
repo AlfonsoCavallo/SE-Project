@@ -37,7 +37,7 @@ public class ViewMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the text in the name text field
      */
-    public String getName()
+    public String getActivityName()
     {
         return this.jNameTextField.getText();
     } 

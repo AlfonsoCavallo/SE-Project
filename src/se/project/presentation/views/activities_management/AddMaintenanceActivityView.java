@@ -68,7 +68,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the text in the description text area
      */
-    public String getStringDescriptionTextArea()
+    public String getStringActivityDescription()
     {
         return this.jDescriptionTextArea.getText();
     }
@@ -95,7 +95,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the selected value in the Interruptible Combo Box
      */
-    public String getStringInterruptibleComboBox()
+    public String getIsInterruptibleValue()
     {
         return this.jInterruptibleComboBox.getSelectedItem().toString();
     }
@@ -104,7 +104,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the text in the name text field
      */
-    public String getStringNameTextField()
+    public String getStringActivityName()
     {
         return this.jNameTextField.getText();
     }
@@ -131,7 +131,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return the String containing the text in the standard procedure text field
      */
-    public String getStringStandardProcedureTextField()
+    public String getStringStandardProcedure()
     {
         return this.jStandardProcedureTextField.getText();
     }
@@ -149,7 +149,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the text in the time text field
      */
-    public String getStringTimeTextField()
+    public String getStringTimeNeeded()
     {
         return this.jTimeTextField.getText();
     }
@@ -158,7 +158,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the selected valure in the typology combo box
      */
-    public String getStringTypologyComboBox()
+    public String getStringTypology()
     {
         return this.jTypologyComboBox.getSelectedItem().toString();
     }
@@ -167,7 +167,7 @@ public class AddMaintenanceActivityView extends AbstractView
      * 
      * @return a String containing the selected value in the week combo box
      */
-    public String getStringWeekComboBox()
+    public String getStringWeek()
     {
         return this.jWeekComboBox.getSelectedItem().toString();
     }
