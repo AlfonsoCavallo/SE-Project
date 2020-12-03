@@ -177,7 +177,7 @@ public class ViewMaintenanceActivityView extends AbstractView
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("View Maintenance Activities ");
+        jLabel1.setText("View & Delete Maintenance Activities ");
 
         jNameTextField.setBackground(new java.awt.Color(188, 180, 169));
         jNameTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -219,24 +219,22 @@ public class ViewMaintenanceActivityView extends AbstractView
                                 .addComponent(jDeleteLabel)))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(236, 236, 236)
                 .addComponent(jLabel1)
-                .addGap(327, 327, 327))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jGoBackLabel)
-                            .addComponent(jCloseConnectionLabel)
-                            .addComponent(jExitLabel)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel1)))
+                    .addComponent(jGoBackLabel)
+                    .addComponent(jCloseConnectionLabel)
+                    .addComponent(jExitLabel))
+                .addGap(9, 9, 9)
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
