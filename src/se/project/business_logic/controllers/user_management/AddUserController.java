@@ -111,7 +111,7 @@ public class AddUserController extends AbstractController
     public void addUser()
     {
         String username = addUserView.getUsername();
-        String name = addUserView.getName();
+        String name = addUserView.getNameUser();
         String surname = addUserView.getSurname();
         String email = addUserView.getEmail();
         String role = addUserView.getRole();
