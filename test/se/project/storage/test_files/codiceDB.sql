@@ -1,3 +1,6 @@
+-- create user test_admin with password 'test_admin';
+-- grant postgres to test_admin;
+
 drop table if exists maintenance_system.user_access cascade;
 drop table if exists maintenance_system.afferent cascade;
 drop table if exists maintenance_system.competence cascade;
@@ -8,6 +11,7 @@ drop table if exists maintenance_system.materials cascade;
 drop table if exists maintenance_system.site cascade;
 drop table if exists maintenance_system.user_competence cascade;
 drop table if exists maintenance_system.user_data cascade;
+drop table if exists maintenance_system.workshift cascade;
 
 /*==============================================================*/
 /* table: user_access                                           */
@@ -111,7 +115,7 @@ create table maintenance_system.site (
 /*==============================================================*/
 create table maintenance_system.user_competence (
    competence_name_ref      varchar(30)          not null,
-   username_ref          varchar(30)          not null,
+   username_ref             varchar(30)          not null,
    constraint pk_user_competence primary key (competence_name_ref, username_ref)
 );
 
@@ -132,6 +136,25 @@ create table maintenance_system.user_data (
    constraint ak_email_user_data unique (email)
 );
 
+/*==============================================================*/
+/* table: workshift                                             */
+/*==============================================================*/
+create table maintenance_system.workshift (
+   worker_username      varchar(30)          not null,
+   day_of_week          varchar(10)          not null,
+   "8_9"                smallint             not null,
+   "9_10"               smallint             not null,
+   "10_11"              smallint             not null,
+   "11_12"              smallint             not null,
+   "14_15"              smallint             not null,
+   "15_16"              smallint             not null,
+   "16_17"              smallint             not null,
+   check (day_of_week in ('Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')),
+   check ((("8_9" <= 60)  and ("8_9" >= 0)) and (("9_10" <= 60) and ("9_10" >= 0 )) and (("10_11" <= 60) and ("10_11" >= 0))
+		  and (("11_12" <= 60) and ("11_12" >= 0)) and (("14_15" <= 60) and ("14_15" >= 0)) and (("15_16" <= 60) and ("15_16" >= 0)) 
+		  and (("16_17" <= 60) and ("16_17" >= 0))),
+   constraint pk_workshift primary key (worker_username, day_of_week)
+);
 
 alter table maintenance_system.user_access
    add constraint fk_access_login_user_data foreign key (username_access_ref)
@@ -178,6 +201,11 @@ alter table maintenance_system.user_competence
       references maintenance_system.user_data (username)
       on delete restrict on update restrict;
 
+alter table maintenance_system.workshift
+   add constraint fk_workshif_work_userdata foreign key (worker_username)
+      references maintenance_system.user_data (username)
+      on delete restrict on update restrict;
+
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('finneas','finneas@finneas.it','finneas','fin','neas','system_administrator');
 
@@ -202,13 +230,38 @@ grant usage, select on sequence maintenance_system.user_access_id_access_seq to 
 grant all privileges on all tables in schema maintenance_system to jon;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to jon;
 grant usage, select on sequence maintenance_system.maintenance_activity_id_activity_seq to jon;
+
+insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
+values('gio','gio@gio.it','gio','gio','fal','maintainer');
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Monday', 15, 0, 60, 30, 30, 50, 10);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Tuesday', 0, 0, 60, 10, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Wednesday', 25, 0, 60, 0, 30, 50, 15);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Thursday', 15, 0, 60, 30, 0, 50, 15);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Friday', 0, 0, 60, 30, 20, 50, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Saturday', 40, 0, 20, 40, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Sunday', 25, 0, 60, 30, 45, 0, 60);
+
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
+-- select * from maintenance_system.workshift;
 
--- create user test_admin with password 'test_admin';
--- grant postgres to test_admin;
 
-/* testing maintenance_activity*/
+/* testing maintenance_activity */
+
 -- the following three queries don't generate errors
 --insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
 --values ('attività', 45, 'yes', 'electrical', 'riparazione turbina 3', 2, 'yes', null, '1... 2... 3...');
@@ -226,3 +279,26 @@ grant usage, select on sequence maintenance_system.maintenance_activity_id_activ
 
 --insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
 --values ('attività2', 45, 'yes', 'electrical', 'riparazione turbina 2', 2, 'yes', 'yes', '1... 2... 3...');
+
+
+/* testing workshift */
+
+-- raise an error because the primary key already exists
+--insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+--values ('gio', 'Sunday', 25, 0, 60, 30, 45, 0, 60);
+
+-- raise an error because the value March is not acceptable
+--insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+--values ('gio', 'March', 25, 0, 60, 30, 45, 0, 60);
+
+-- raise an error because the value 75 is not acceptable
+--insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+--values ('gio', 'Saturday', 25, 0, 60, 30, 75, 0, 60);
+
+-- raise an error because the value -10 is not acceptable
+--insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+--values ('gio', 'Saturday', 25, 0, 60, 30, -10, 0, 60);
+
+-- raise an error because the foreign key Luca doesn't exists
+--insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+--values ('Luca', 'Saturday', 25, 0, 60, 30, 10, 0, 60);
