@@ -255,6 +255,54 @@ values ('gio', 'Saturday', 40, 0, 20, 40, 30, 50, 60);
 insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
 values ('gio', 'Sunday', 25, 0, 60, 30, 45, 0, 60);
 
+insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
+values('phil','phil@phil.com','phil','phil','lips','maintainer');
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Monday', 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Tuesday', 0, 0, 60, 10, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Wednesday', 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Thursday', 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Friday', 0, 0, 60, 30, 20, 50, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Saturday', 40, 0, 20, 40, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Sunday', 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
+values('donald','don@ald.com','donald','donald','McDonald','maintainer');
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Monday', 60, 60, 60, 60, 60, 60, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Tuesday', 60, 60, 60, 60, 60, 60, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Wednesday', 60, 60, 60, 60, 60, 60, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Thursday', 60, 60, 60, 60, 60, 60, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Friday', 60, 60, 60, 60, 60, 60, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Saturday', 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Sunday', 0, 0, 0, 0, 0, 0, 0);
+
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 -- select * from maintenance_system.workshift;
