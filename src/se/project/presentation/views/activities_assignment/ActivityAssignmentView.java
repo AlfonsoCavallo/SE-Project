@@ -1,4 +1,4 @@
-package se.project.presentation.views.activities_management;
+package se.project.presentation.views.activities_assignment;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
