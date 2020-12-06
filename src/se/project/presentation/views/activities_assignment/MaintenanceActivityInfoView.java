@@ -1,5 +1,9 @@
 package se.project.presentation.views.activities_assignment;
 
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class MaintenanceActivityInfoView extends javax.swing.JFrame
 {
@@ -13,6 +17,96 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @return JLabel representing the "Close Connection" button.
+     */
+    public JLabel getjCloseConnectionLabel()
+    {
+        return jCloseConnectionLabel;
+    }
+
+    /**
+     * 
+     * @return JLabel representing the "Exit" button.
+     */
+    public JLabel getjExitLabel()
+    {
+        return jExitLabel;
+    }
+
+    /**
+     * 
+     * @return JPanel representing the "Forward" button.
+     */
+    public JPanel getjForwardPanel()
+    {
+        return jForwardPanel;
+    }
+
+    /**
+     * 
+     * @return JLabel representing the "Go Back" button.
+     */
+    public JLabel getjGoBackLabel()
+    {
+        return jGoBackLabel;
+    }
+
+    /**
+     * 
+     * @return JList representing the list of skills needed.
+     */
+    public JList<String> getjList()
+    {
+        return jList;
+    }
+
+    /**
+     * 
+     * @return JTextArea representing the Workspace Notes.
+     */
+    public JTextArea getjWorkspaceNotesTextArea()
+    {
+        return jWorkspaceNotesTextArea;
+    }
+
+    /**
+     * 
+     * @return JLabel representing the info of the Activity to assing.
+     */
+    public JLabel getjInfoLabel()
+    {
+        return jInfoLabel;
+    }
+    
+    /**
+     * 
+     * @return JTextArea representing the Intervention Description.
+     */
+    public JTextArea getjInterventionDescriptionTextArea()
+    {
+        return jInterventionDescriptionTextArea;
+    }
+
+    /**
+     * 
+     * @return JTextArea representing the Standard Maintenance Procedure.
+     */
+    public JTextArea getjSMPTextArea()
+    {
+        return jSMPTextArea;
+    }
+
+    /**
+     * 
+     * @return JLabel representing the Week.
+     */
+    public JLabel getjWeekLabel()
+    {
+        return jWeekLabel;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,11 +125,11 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jWeekNumberLabel = new javax.swing.JLabel();
+        jWeekLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jActivityToAssignLabel = new javax.swing.JLabel();
+        jInfoLabel = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -100,8 +194,8 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
 
         jPanel3.setBackground(new java.awt.Color(188, 180, 169));
 
-        jWeekNumberLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jWeekNumberLabel.setText("00");
+        jWeekLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jWeekLabel.setText("00");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -109,14 +203,14 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jWeekNumberLabel)
+                .addComponent(jWeekLabel)
                 .addGap(19, 19, 19))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jWeekNumberLabel)
+                .addComponent(jWeekLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,7 +226,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +238,8 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
 
         jPanel5.setBackground(new java.awt.Color(188, 180, 169));
 
-        jActivityToAssignLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jActivityToAssignLabel.setText("0 - Site - Typology - 00'");
+        jInfoLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jInfoLabel.setText("0 - Site - Typology - 00'");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -153,14 +247,14 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jActivityToAssignLabel)
+                .addComponent(jInfoLabel)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jActivityToAssignLabel)
+                .addComponent(jInfoLabel)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -270,12 +364,6 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jList.setModel(new javax.swing.AbstractListModel<String>()
-        {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane5.setViewportView(jList);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -349,7 +437,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             jForwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jForwardPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jForwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jForwardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addContainerGap())
@@ -478,11 +566,11 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jActivityToAssignLabel;
     private javax.swing.JLabel jCloseConnectionLabel;
     private javax.swing.JLabel jExitLabel;
     private javax.swing.JPanel jForwardPanel;
     private javax.swing.JLabel jGoBackLabel;
+    private javax.swing.JLabel jInfoLabel;
     private javax.swing.JTextArea jInterventionDescriptionTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -509,7 +597,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JLabel jWeekNumberLabel;
+    private javax.swing.JLabel jWeekLabel;
     private javax.swing.JTextArea jWorkspaceNotesTextArea;
     // End of variables declaration//GEN-END:variables
 }
