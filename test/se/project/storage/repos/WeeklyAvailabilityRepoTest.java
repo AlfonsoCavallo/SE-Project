@@ -6,16 +6,18 @@
 
 package se.project.storage.repos;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static se.project.storage.DatabaseConnection.closeConnection;
+import static se.project.storage.DatabaseConnection.*;
+import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
-import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 
 /**
@@ -62,34 +64,64 @@ public class WeeklyAvailabilityRepoTest
      * Test of queryMaintainerAvailability method, of class WeeklyAvailabilityRepo.
      */
     @Test
-    public void testQueryMaintainerAvailability_String_int() throws Exception
+    public void testQueryMaintainerAvailability_String_int()
     {
-        System.out.println("queryMaintainerAvailability");
-        String username = "";
-        int week = 0;
-        WeeklyAvailabilityRepo instance = null;
-        WeeklyAvailability expResult = null;
-        WeeklyAvailability result = instance.queryMaintainerAvailability(username, week);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try
+        {
+            connect(getTestUser());
+            WeeklyAvailabilityRepo instance = new WeeklyAvailabilityRepo(getConnection());
+            
+            WeeklyAvailability weeklyAvailability = instance.queryMaintainerAvailability("gio", 1);
+            
+            // Check on correct availability acquisition
+            
+            // Minutes
+            assertEquals(15, weeklyAvailability.getMinutesAvailable(DayOfWeek.MONDAY, WeeklyAvailability.WorkTurn.H8));
+            assertEquals(0, weeklyAvailability.getMinutesAvailable(DayOfWeek.TUESDAY, WeeklyAvailability.WorkTurn.H9));
+            assertEquals(60, weeklyAvailability.getMinutesAvailable(DayOfWeek.WEDNESDAY, WeeklyAvailability.WorkTurn.H10));
+            // Percentages
+            assertEquals(46, weeklyAvailability.getPercentageAvailability(DayOfWeek.MONDAY));
+            
+            // Check on values without a correspondence on database
+            weeklyAvailability = instance.queryMaintainerAvailability("donald", 1);      
+            assertEquals(0, weeklyAvailability.getMinutesAvailable(DayOfWeek.SATURDAY, WeeklyAvailability.WorkTurn.H8));
+            assertEquals(0, weeklyAvailability.getPercentageAvailability(DayOfWeek.SUNDAY));
+        }
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
     }
 
+    
     /**
      * Test of queryMaintainerAvailability method, of class WeeklyAvailabilityRepo.
      */
     @Test
     public void testQueryMaintainerAvailability_Maintainer_int() throws Exception
     {
-        System.out.println("queryMaintainerAvailability");
-        Maintainer maintainer = null;
-        int week = 0;
-        WeeklyAvailabilityRepo instance = null;
-        WeeklyAvailability expResult = null;
-        WeeklyAvailability result = instance.queryMaintainerAvailability(maintainer, week);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // TO implement
     }
     
+    /**
+     * Test of queryMaintainerAvailability on an unavailable user
+     */
+    @Test
+    public void testQueryMaintainerAvailabilityUnavailableUser()
+    {
+        try
+        {
+            connect(getTestUser());
+            WeeklyAvailabilityRepo instance = new WeeklyAvailabilityRepo(getConnection());
+            
+            WeeklyAvailability weeklyAvailability = instance.queryMaintainerAvailability("unavailable_user", 1);
+            assertEquals(null, weeklyAvailability);
+            
+            closeConnection();
+        }
+        catch (ClassNotFoundException | IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+        }
+    }
 }

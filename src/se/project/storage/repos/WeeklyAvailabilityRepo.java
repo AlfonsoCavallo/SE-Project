@@ -8,7 +8,10 @@ package se.project.storage.repos;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import static se.project.business_logic.utilities.FileUtilities.getStringFromFile;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
@@ -19,6 +22,8 @@ import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
  */
 public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvailabilityRepoInterface
 {
+    
+    private final String QUERY_ONE_WEEKLY_AVAILABILITY = "/se/project/assets/query/QueryOneWeeklyAvailability.sql";
 
     /**
      * 
@@ -34,28 +39,52 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
      * Gets an instance with infos about the availability of a certain Maintainer
      * @param username is the username of the Maintainer you want to search
      * @param week is the week to check the availability
-     * @return an Availability object with all the informations about the Maintainer work
+     * @return an Availability object with all the informations about the Maintainer work (null if there are no infos)
      * @throws IOException
      * @throws SQLException 
      */
     @Override
     public WeeklyAvailability queryMaintainerAvailability(String username, int week) throws IOException, SQLException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = getStringFromFile(QUERY_ONE_WEEKLY_AVAILABILITY);
+        query = query.replaceAll("username_param", username);
+        
+        ResultSet result = super.queryDatabase(query);
+        
+        WeeklyAvailability weeklyAvailability = null;
+        
+        while(result.next())
+        {
+            if(weeklyAvailability == null)
+            {
+                weeklyAvailability = new WeeklyAvailability();
+            }
+            
+            DayOfWeek day = DayOfWeek.valueOf(result.getString("day_of_week").toUpperCase());
+            int h8 = result.getInt("8_9");
+            int h9 = result.getInt("9_10");
+            int h10 = result.getInt("10_11");
+            int h11 = result.getInt("11_12");
+            int h14 = result.getInt("14_15");
+            int h15 = result.getInt("15_16");
+            int h16 = result.getInt("16_17");
+            weeklyAvailability.setAvailabilities(day, h8, h9, h10, h11, h14, h15, h16);
+        }
+        
+        return weeklyAvailability;
     }
 
     /***
      * Gets an instance with infos about the availability of a certain Maintainer
      * @param maintainer is the Maintainer you want to search
      * @param week is the week to check the availability
-     * @return an Availability object with all the informations about the Maintainer work
+     * @return an Availability object with all the informations about the Maintainer work (null if there are no infos)
      * @throws IOException
      * @throws SQLException 
      */
     @Override
     public WeeklyAvailability queryMaintainerAvailability(Maintainer maintainer, int week) throws IOException, SQLException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return queryMaintainerAvailability(maintainer.getUsername(), week); 
     }
-    
 }

@@ -297,12 +297,6 @@ values ('donald', 'Thursday', 60, 60, 60, 60, 60, 60, 60);
 insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
 values ('donald', 'Friday', 60, 60, 60, 60, 60, 60, 60);
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Saturday', 0, 0, 0, 0, 0, 0, 0);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Sunday', 0, 0, 0, 0, 0, 0, 0);
-
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 -- select * from maintenance_system.workshift;
