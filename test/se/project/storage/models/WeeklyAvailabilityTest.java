@@ -81,7 +81,7 @@ public class WeeklyAvailabilityTest
      */
     private WeeklyAvailability generateInstance()
     {
-        WeeklyAvailability instance = new WeeklyAvailability();
+        WeeklyAvailability instance = new WeeklyAvailability("test_username");
         instance.setAvailabilities(DayOfWeek.MONDAY, 10, 20, 30, 40, 50, 60, 0);
         instance.setAvailabilities(DayOfWeek.TUESDAY, 60, 60, 60, 60, 60, 60, 60);
         instance.setAvailabilities(DayOfWeek.WEDNESDAY, 10, 20, 30, 40, 50, 60, 0);
