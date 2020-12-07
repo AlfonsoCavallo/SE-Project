@@ -105,7 +105,7 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         String condition = "";
         
         // Groups every maintainer with those competencies if there is any
-        if(competencies != null)
+        if(competencies != null && competencies.size() > 0)
         {
             for(String competence: competencies)
             {
