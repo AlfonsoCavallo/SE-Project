@@ -19,7 +19,7 @@ drop table if exists maintenance_system.workshift cascade;
 create table maintenance_system.user_access (
    id_access             serial               not null,
    username_access_ref   varchar(30)          not null,
-   access_time           timestamp          not null,
+   access_time           timestamp            not null,
    constraint pk_access primary key (id_access)
 );
 
@@ -297,10 +297,62 @@ values ('donald', 'Thursday', 60, 60, 60, 60, 60, 60, 60);
 insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
 values ('donald', 'Friday', 60, 60, 60, 60, 60, 60, 60);
 
+insert into maintenance_system.competence(competence_name)
+values ('PAV Certification'),
+       ('Electrical Maintenance'),
+       ('Knowledge of Cable Types'),
+       ('Xyz-Type Robot Knowledge'),
+       ('Knowledge of Workstation 23'),
+       ('Knowledge of Workstation 09'),
+       ('Knowledge of Workstation 35'),
+       ('Knowledge of Hydraulic Tools'),
+       ('English Knowledge'),
+       ('German Knowledge');
+	   
+insert into maintenance_system.site(branch_office, department)
+values ('Fisciano', 'Printing'),
+       ('Fisciano', 'Molding'),
+       ('Fisciano', 'Painting'),
+       ('Fisciano', 'Carpentry'),
+       ('Fisciano', 'Cleaning'),
+       ('Nusco', 'Printing'),
+       ('Nusco', 'Molding'),
+       ('Nusco', 'Painting'),
+       ('Nusco', 'Carpentry'),
+       ('Nusco', 'Cleaning'),
+       ('Lauria', 'Printing'),
+       ('Lauria', 'Molding'),
+       ('Morra', 'Painting'),
+       ('Morra', 'Carpentry'),
+       ('Morra', 'Cleaning'),
+       ('Montella', 'Printing'),
+       ('Montella', 'Molding'),
+       ('Torrione', 'Painting'),
+       ('Montella', 'Carpentry'),
+       ('Torrione', 'Cleaning'),
+       ('Montecorvino Rovella', 'Printing'),
+       ('Montecorvino Rovella', 'Molding'),
+       ('Montecorvino Rovella', 'Carpentry');
+	   
+insert into maintenance_system.user_competence (competence_name_ref, username_ref)
+values ('Knowledge of Cable Types', 'gio'),
+       ('Xyz-Type Robot Knowledge', 'gio'),
+       ('English Knowledge', 'gio'),
+       ('German Knowledge', 'gio'),
+       ('German Knowledge', 'phil'),
+       ('PAV Certification', 'phil'),
+       ('Electrical Maintenance', 'phil'),
+       ('Electrical Maintenance', 'donald'),
+       ('Knowledge of Workstation 09', 'donald'),
+       ('Knowledge of Workstation 35', 'donald');
+
+	   
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 -- select * from maintenance_system.workshift;
-
+-- select * from maintenance_system.site;
+-- select * from maintenance_system.competence;
+-- select * from maintenance_system.user_competence;
 
 /* testing maintenance_activity */
 
