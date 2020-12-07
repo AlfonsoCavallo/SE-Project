@@ -1,6 +1,7 @@
 package se.project.business_logic.controllers.activities_assignment;
 
 import java.sql.SQLException;
+import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
 import se.project.business_logic.controllers.PlannerHomepageController;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
@@ -8,7 +9,7 @@ import static se.project.storage.DatabaseConnection.closeConnection;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 
 
-public class SelectMaintenanceActivityController
+public class SelectMaintenanceActivityController extends AbstractController
 {
     private final SelectMaintenanceActivityView selectMaintenanceActivityView;
     private MaintenanceActivity maintenanceActivity; 
