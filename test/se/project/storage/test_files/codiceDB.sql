@@ -164,17 +164,17 @@ alter table maintenance_system.user_access
 alter table maintenance_system.afferent
    add constraint fk_afferent_afferent_maintena foreign key (id_activity_afferent_ref)
       references maintenance_system.maintenance_activity (id_activity)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.afferent
    add constraint fk_afferent_afferent2_site foreign key (branch_office_ref, department_ref)
       references maintenance_system.site (branch_office, department)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.competence_needed
    add constraint fk_competen_competenc_maintena foreign key (id_activity_competence_needed_ref)
       references maintenance_system.maintenance_activity (id_activity)
-      on delete cascade on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.competence_needed
    add constraint fk_competen_competenc_competen foreign key (competence_name_needed_ref)
@@ -194,17 +194,17 @@ alter table maintenance_system.material_needed
 alter table maintenance_system.user_competence
    add constraint fk_usercomp_usercompe_competen foreign key (competence_name_ref)
       references maintenance_system.competence (competence_name)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.user_competence
    add constraint fk_usercomp_usercompe_user_data foreign key (username_ref)
       references maintenance_system.user_data (username)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 alter table maintenance_system.workshift
    add constraint fk_workshif_work_userdata foreign key (worker_username)
       references maintenance_system.user_data (username)
-      on delete restrict on update restrict;
+      on delete cascade on update cascade;
 
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('finneas','finneas@finneas.it','finneas','fin','neas','system_administrator');
