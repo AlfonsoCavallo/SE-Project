@@ -8,8 +8,9 @@ package se.project.storage.repos.interfaces;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import se.project.storage.models.WeeklyAvailability;
+import java.util.List;
 import se.project.storage.models.Maintainer;
+import se.project.storage.models.WeeklyAvailability;
 
 /**
  *
@@ -36,4 +37,13 @@ public interface WeeklyAvailabilityRepoInterface
      * @throws SQLException 
      */
     public WeeklyAvailability queryMaintainerAvailability(Maintainer maintainer, int week) throws IOException, SQLException;
+    
+    /***
+     * Get a list of availability for a certain list of required competencies
+     * @param competencies are the required competencies
+     * @return a list of availability of Maintainers
+     * @throws IOException
+     * @throws SQLException 
+     */
+    public List<WeeklyAvailability> queryAllWeeklyAvailabilities(List<String> competencies, int week) throws IOException, SQLException;
 }

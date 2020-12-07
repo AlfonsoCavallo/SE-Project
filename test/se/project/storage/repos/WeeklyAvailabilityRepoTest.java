@@ -9,6 +9,8 @@ package se.project.storage.repos;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -90,6 +92,7 @@ public class WeeklyAvailabilityRepoTest
         catch (ClassNotFoundException | SQLException | IOException ex)
         {
             System.err.println(ex.getMessage());
+            fail();
         }
     }
 
@@ -122,6 +125,51 @@ public class WeeklyAvailabilityRepoTest
         catch (ClassNotFoundException | IOException | SQLException ex)
         {
             System.err.println(ex.getMessage());
+            fail();
+        }
+    }
+    
+    /**
+     * Test of queryAllWeeklyAvailabilities on an unavailable user
+     */
+    @Test
+    public void testQueryAllWeeklyAvailabilities()
+    {
+        try
+        {
+            connect(getTestUser());
+            WeeklyAvailabilityRepo instance = new WeeklyAvailabilityRepo(getConnection());
+            
+            List<String> testCompetencies = new ArrayList<>();
+            testCompetencies.add("English Knowledge");
+            testCompetencies.add("German Knowledge");
+            
+            // Test case with specific competencies
+            List<WeeklyAvailability> weeklyAvailabilities = instance.queryAllWeeklyAvailabilities(testCompetencies, 1);
+            assertEquals(19, weeklyAvailabilities.size());
+            
+            assertEquals("gio", weeklyAvailabilities.get(0).getUsername());            
+            assertEquals(2, weeklyAvailabilities.get(0).getNumberOfCompetences());
+            
+            assertEquals("donald", weeklyAvailabilities.get(weeklyAvailabilities.size() -1).getUsername());
+            assertEquals(0, weeklyAvailabilities.get((weeklyAvailabilities.size() -1)).getNumberOfCompetences());
+            
+            // Test case with no competencies
+            weeklyAvailabilities = instance.queryAllWeeklyAvailabilities(null, 1);            
+            assertEquals(19, weeklyAvailabilities.size());
+            
+            assertEquals("gio", weeklyAvailabilities.get(0).getUsername());            
+            assertEquals(4, weeklyAvailabilities.get(0).getNumberOfCompetences());
+            
+            assertEquals("phil", weeklyAvailabilities.get(weeklyAvailabilities.size() -1).getUsername());
+            assertEquals(3, weeklyAvailabilities.get((weeklyAvailabilities.size() -1)).getNumberOfCompetences());
+            
+            closeConnection();
+        }
+        catch (ClassNotFoundException | IOException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
         }
     }
 }

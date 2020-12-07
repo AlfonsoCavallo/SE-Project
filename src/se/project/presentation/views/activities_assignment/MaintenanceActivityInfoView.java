@@ -57,9 +57,9 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
      * 
      * @return JList representing the list of skills needed.
      */
-    public JList<String> getjList()
+    public JList<String> getjSkillsList()
     {
-        return jList;
+        return jSkillsList;
     }
 
     /**
@@ -146,7 +146,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         jPanel10 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList = new javax.swing.JList<>();
+        jSkillsList = new javax.swing.JList<>();
         jForwardPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -194,7 +194,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
 
         jPanel3.setBackground(new java.awt.Color(188, 180, 169));
 
-        jWeekLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jWeekLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jWeekLabel.setText("00");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -217,7 +217,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         jPanel4.setBackground(new java.awt.Color(188, 180, 169));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Activity to assign");
+        jLabel4.setText("Activity To Assign");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -226,7 +226,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel4)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +238,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
 
         jPanel5.setBackground(new java.awt.Color(188, 180, 169));
 
-        jInfoLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jInfoLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jInfoLabel.setText("0 - Site - Typology - 00'");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -264,7 +264,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         jPanel6.setPreferredSize(new java.awt.Dimension(123, 55));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Workspace notes");
+        jLabel3.setText("Workspace Notes");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -273,7 +273,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel3)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +295,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         jPanel7.setPreferredSize(new java.awt.Dimension(123, 55));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Intervention description");
+        jLabel5.setText("Intervention Description");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -304,7 +304,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +345,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
         jPanel10.setPreferredSize(new java.awt.Dimension(123, 55));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Skills needed");
+        jLabel7.setText("Skills Needed");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -354,7 +354,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel7)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +364,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jScrollPane5.setViewportView(jList);
+        jScrollPane5.setViewportView(jSkillsList);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -463,16 +463,16 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
                                 .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(189, 189, 189)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(86, 86, 86)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 19, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -490,17 +490,18 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
                     .addComponent(jExitLabel))
                 .addGap(8, 8, 8)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jForwardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jForwardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -581,7 +582,6 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -597,6 +597,7 @@ public class MaintenanceActivityInfoView extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JList<String> jSkillsList;
     private javax.swing.JLabel jWeekLabel;
     private javax.swing.JTextArea jWorkspaceNotesTextArea;
     // End of variables declaration//GEN-END:variables
