@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class WeeklyAvailability
 {
     private List<int[]> availabilityPercentage = new ArrayList<>(7);
+    private String username;
+    private int numberOfCompetences = 0;
     
     /***
      * HX -> Work hour starting at X:00
@@ -28,12 +30,29 @@ public class WeeklyAvailability
         H16;
     }
     
-    public WeeklyAvailability()
+    public WeeklyAvailability(String username)
     {
+        this.username = username;
+        
         for(int i = 0; i < 7; i++)
         {
             availabilityPercentage.add(null);
         }
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public int getNumberOfCompetences()
+    {
+        return numberOfCompetences;
+    }
+
+    public void setNumberOfCompetences(int numberOfCompetences)
+    {
+        this.numberOfCompetences = numberOfCompetences;
     }
     
     /***
