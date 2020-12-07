@@ -299,15 +299,15 @@ values ('donald', 'Friday', 60, 60, 60, 60, 60, 60, 60);
 
 insert into maintenance_system.competence(competence_name)
 values ('PAV Certification'),
-       ('Electrical Maintenance'),
-       ('Knowledge of Cable Types'),
-       ('Xyz-Type Robot Knowledge'),
-       ('Knowledge of Workstation 23'),
-       ('Knowledge of Workstation 09'),
-       ('Knowledge of Workstation 35'),
-       ('Knowledge of Hydraulic Tools'),
-       ('English Knowledge'),
-       ('German Knowledge');
+	('Electrical Maintenance'),
+	('Knowledge of Cable Types'),
+	('Xyz-Type Robot Knowledge'),
+	('Knowledge of Workstation 23'),
+	('Knowledge of Workstation 09'),
+	('Knowledge of Workstation 35'),
+	('Knowledge of Hydraulic Tools'),
+	('English Knowledge'),
+	('German Knowledge');
 	   
 insert into maintenance_system.site(branch_office, department)
 values ('Fisciano', 'Printing'),
@@ -346,13 +346,30 @@ values ('Knowledge of Cable Types', 'gio'),
        ('Knowledge of Workstation 09', 'donald'),
        ('Knowledge of Workstation 35', 'donald');
 
-	   
+insert into maintenance_system.afferent (id_activity_afferent_ref, branch_office_ref, department_ref)
+values (1, 'Lauria', 'Molding'),
+       (1, 'Lauria', 'Printing'),
+       (2, 'Fisciano', 'Printing'),
+       (2, 'Fisciano', 'Cleaning');
+
+insert into maintenance_system.competence_needed (id_activity_competence_needed_ref, competence_name_needed_ref)
+values (1, 'Electrical Maintenance'),
+       (1, 'Knowledge of Workstation 23'),
+       (1, 'Knowledge of Workstation 35'),
+       (1, 'English Knowledge'),
+       (2, 'Electrical Maintenance'),
+       (2, 'Knowledge of Workstation 23'),
+       (2, 'Knowledge of Workstation 35'),
+       (2, 'English Knowledge');
+	
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 -- select * from maintenance_system.workshift;
 -- select * from maintenance_system.site;
 -- select * from maintenance_system.competence;
 -- select * from maintenance_system.user_competence;
+-- select * from maintenance_system.afferent;
+-- select * from maintenance_system.competence_needed;
 
 /* testing maintenance_activity */
 
