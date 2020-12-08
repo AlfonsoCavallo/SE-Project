@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package se.project.storage.repos;
 
@@ -10,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -73,8 +70,7 @@ public class WeeklyAvailabilityRepoTest
             connect(getTestUser());
             WeeklyAvailabilityRepo instance = new WeeklyAvailabilityRepo(getConnection());
             
-            WeeklyAvailability weeklyAvailability = instance.queryMaintainerAvailability("gio", 1);
-            
+            WeeklyAvailability weeklyAvailability = instance.queryMaintainerAvailability("gio", 1);            
             // Check on correct availability acquisition
             
             // Minutes
@@ -117,8 +113,13 @@ public class WeeklyAvailabilityRepoTest
             connect(getTestUser());
             WeeklyAvailabilityRepo instance = new WeeklyAvailabilityRepo(getConnection());
             
+            // With unavailable user
             WeeklyAvailability weeklyAvailability = instance.queryMaintainerAvailability("unavailable_user", 1);
-            assertEquals(null, weeklyAvailability);
+            assertNull(weeklyAvailability);
+            
+            // With non-maintainer user
+            weeklyAvailability = instance.queryMaintainerAvailability("finneas", 1);
+            assertNull(weeklyAvailability);
             
             closeConnection();
         }
@@ -163,6 +164,10 @@ public class WeeklyAvailabilityRepoTest
             
             assertEquals("phil", weeklyAvailabilities.get(weeklyAvailabilities.size() -1).getUsername());
             assertEquals(3, weeklyAvailabilities.get((weeklyAvailabilities.size() -1)).getNumberOfCompetences());
+            
+            // Test with the same method with empty list parameter
+            List<WeeklyAvailability> expectedWithEmptyList = instance.queryAllWeeklyAvailabilities(new LinkedList<String>(), 1);
+            assertEquals(expectedWithEmptyList, weeklyAvailabilities);
             
             closeConnection();
         }

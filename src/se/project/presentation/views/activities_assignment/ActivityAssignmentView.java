@@ -132,7 +132,7 @@ public class ActivityAssignmentView extends AbstractView
         jScrollPane2 = new javax.swing.JScrollPane();
         jMaintainerAvailabilityTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jSkillsNeededList = new javax.swing.JList<>();
+        jSkillsNeededList = new javax.swing.JList<String>();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -339,7 +339,7 @@ public class ActivityAssignmentView extends AbstractView
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
