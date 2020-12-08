@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repos;
 
 import java.io.IOException;
@@ -18,10 +12,7 @@ import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
-/**
- *
- * @author Utente
- */
+
 public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvailabilityRepoInterface
 {
     
@@ -38,7 +29,8 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         super(connection);
     }
 
-    /***
+    /**
+     * 
      * Gets an instance with infos about the availability of a certain Maintainer
      * @param username is the username of the Maintainer you want to search
      * @param week is the week to check the availability
@@ -77,7 +69,8 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         return weeklyAvailability;
     }
 
-    /***
+    /**
+     * 
      * Gets an instance with infos about the availability of a certain Maintainer
      * @param maintainer is the Maintainer you want to search
      * @param week is the week to check the availability
@@ -91,7 +84,8 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         return queryMaintainerAvailability(maintainer.getUsername(), week); 
     }
 
-    /***
+    /**
+     * 
      * Get a list of availability for a certain list of required competencies
      * @param competencies are the required competencies (can be null or empty)
      * @return a list of availability of Maintainers

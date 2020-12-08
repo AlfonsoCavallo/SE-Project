@@ -1,11 +1,10 @@
-
 package se.project.storage.models;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
 
 public class WeeklyAvailability
 {
@@ -27,8 +26,8 @@ public class WeeklyAvailability
         H16;
     }
     
-    /***
-     * Construct a WeeklyAvailability instance..
+    /**
+     * Construct a WeeklyAvailability instance.
      * @param username is the username of the Maintainer associated to the availability
      */
     public WeeklyAvailability(String username)
@@ -41,7 +40,7 @@ public class WeeklyAvailability
         }
     }
 
-    /***
+    /**
      * 
      * @return the username of the Maintainer 
      */
@@ -50,7 +49,7 @@ public class WeeklyAvailability
         return username;
     }
 
-    /***
+    /**
      * 
      * @return the number of competences of the Maintainer among the desired ones
      */
@@ -59,7 +58,7 @@ public class WeeklyAvailability
         return numberOfCompetences;
     }
 
-    /***
+    /**
      * 
      * @param numberOfCompetences the number of competences owned by the Maintainer. 
      */
@@ -68,7 +67,8 @@ public class WeeklyAvailability
         this.numberOfCompetences = numberOfCompetences;
     }
     
-    /***
+    /**
+     * 
      * Sets the minutes of availability in a specific day
      * @param day is the day whose availability are going to be setted
      * @param h8 are the minutes available between 8:00 and 9:00
@@ -87,7 +87,8 @@ public class WeeklyAvailability
         availabilityPercentage.set(day.ordinal(), availability);        
     }
     
-    /***
+    /**
+     * 
      * Return the minutes available for one turn
      * @param day is the day to check
      * @param turn is the turn to check for availabile minutes
@@ -102,7 +103,8 @@ public class WeeklyAvailability
         return availabilityPercentage.get(day.ordinal())[turn.ordinal()];
     }
     
-    /***
+    /**
+     * 
      * Return the percentage of availability in a day of the week
      * @param day is the day to check
      * @return a percentage of how much availability proportioned to a full work day

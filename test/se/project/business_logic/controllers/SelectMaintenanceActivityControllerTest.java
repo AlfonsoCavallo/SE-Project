@@ -67,10 +67,10 @@ public class SelectMaintenanceActivityControllerTest
         return mock;
     }
     
-    /*@Test
+    @Test
     public void testSelectMaintenanceActivity()
     {
-        try
+        /*try
         {
             connect(getTestUser());
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController();
@@ -83,7 +83,7 @@ public class SelectMaintenanceActivityControllerTest
         {
             System.err.println(ex.getMessage());
             fail();
-        }
-    }*/
+        }*/
+    }
     
 }

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.models;
 
 import java.time.DayOfWeek;
@@ -14,10 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Utente
- */
+
 public class WeeklyAvailabilityTest
 {
     
@@ -46,6 +37,7 @@ public class WeeklyAvailabilityTest
     }
 
     /**
+     * 
      * Test of getMinutesAvailable method, of class WeeklyAvailability.
      */
     @Test
@@ -61,6 +53,7 @@ public class WeeklyAvailabilityTest
     }
     
     /**
+     * 
      * Test of getAvailabilityPercentage method, of class WeeklyAvailability.
      */
     @Test
@@ -75,7 +68,8 @@ public class WeeklyAvailabilityTest
         
     }
     
-    /***
+    /**
+     * 
      * Generates a test instance
      * @return a test instance
      */

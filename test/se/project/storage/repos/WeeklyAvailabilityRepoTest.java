@@ -1,5 +1,3 @@
-
-
 package se.project.storage.repos;
 
 import java.io.IOException;
@@ -19,10 +17,7 @@ import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
 import se.project.storage.models.WeeklyAvailability;
 
-/**
- *
- * @author Utente
- */
+
 public class WeeklyAvailabilityRepoTest
 {
     
@@ -51,6 +46,7 @@ public class WeeklyAvailabilityRepoTest
     {
         try
         {
+            resetDatabase();
             closeConnection();
         }
         catch (SQLException ex)
@@ -60,6 +56,7 @@ public class WeeklyAvailabilityRepoTest
     }
 
     /**
+     * 
      * Test of queryMaintainerAvailability method, of class WeeklyAvailabilityRepo.
      */
     @Test
@@ -94,6 +91,7 @@ public class WeeklyAvailabilityRepoTest
 
     
     /**
+     * 
      * Test of queryMaintainerAvailability method, of class WeeklyAvailabilityRepo.
      */
     @Test
@@ -103,6 +101,7 @@ public class WeeklyAvailabilityRepoTest
     }
     
     /**
+     * 
      * Test of queryMaintainerAvailability on an unavailable user
      */
     @Test
@@ -131,6 +130,7 @@ public class WeeklyAvailabilityRepoTest
     }
     
     /**
+     * 
      * Test of queryAllWeeklyAvailabilities on an unavailable user
      */
     @Test
