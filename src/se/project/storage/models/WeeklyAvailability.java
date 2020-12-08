@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package se.project.storage.models;
 
-import java.util.List;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class WeeklyAvailability
 {
@@ -30,6 +27,10 @@ public class WeeklyAvailability
         H16;
     }
     
+    /***
+     * Construct a WeeklyAvailability instance..
+     * @param username is the username of the Maintainer associated to the availability
+     */
     public WeeklyAvailability(String username)
     {
         this.username = username;
@@ -40,16 +41,28 @@ public class WeeklyAvailability
         }
     }
 
+    /***
+     * 
+     * @return the username of the Maintainer 
+     */
     public String getUsername()
     {
         return username;
     }
 
+    /***
+     * 
+     * @return the number of competences of the Maintainer among the desired ones
+     */
     public int getNumberOfCompetences()
     {
         return numberOfCompetences;
     }
 
+    /***
+     * 
+     * @param numberOfCompetences the number of competences owned by the Maintainer. 
+     */
     public void setNumberOfCompetences(int numberOfCompetences)
     {
         this.numberOfCompetences = numberOfCompetences;
@@ -112,5 +125,58 @@ public class WeeklyAvailability
         output = (output * 100)  / (availabilityMinutes.length * 60);
         
         return output;
-    }   
+    }
+
+    /**
+     * 
+     * @param obj is the object to compare
+     * @return true if the compared objects are equals, otherwise false
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final WeeklyAvailability other = (WeeklyAvailability) obj;
+        if(true)
+        {
+            for(int i = 0; i < availabilityPercentage.size(); i++)
+            {
+                if(availabilityPercentage.get(i) == null || other.availabilityPercentage.get(i) == null)
+                {
+                    if(!(availabilityPercentage.get(i) == null && other.availabilityPercentage.get(i) == null))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    for(int j = 0; j < availabilityPercentage.get(i).length; j++)
+                    {
+                        if(availabilityPercentage.get(i)[j] != other.availabilityPercentage.get(i)[j])
+                        {
+                           return false;
+                        }
+                    }
+                }
+            }
+        }
+        if (!Objects.equals(this.username, other.username))
+        {
+            return false;
+        }
+        if (this.numberOfCompetences != other.numberOfCompetences)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
