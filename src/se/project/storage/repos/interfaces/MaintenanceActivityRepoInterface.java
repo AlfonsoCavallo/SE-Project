@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
+import se.project.storage.models.maintenance_activity.PlannedActivity;
 
 
 public interface MaintenanceActivityRepoInterface
@@ -53,4 +54,12 @@ public interface MaintenanceActivityRepoInterface
      */
     public void updateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException;
     
+    /**
+     * 
+     * @param weekSearched is the week in which to search activities
+     * @return a LinkedList of PlannedActivity containing the activities in a specific week
+     * @throws IOException
+     * @throws SQLException 
+     */
+    public LinkedList<PlannedActivity> queryMaintenanceActivityInWeek(int weekSearched) throws IOException, SQLException;
 }

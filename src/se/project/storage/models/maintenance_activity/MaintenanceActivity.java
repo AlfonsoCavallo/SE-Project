@@ -1,5 +1,6 @@
 package se.project.storage.models.maintenance_activity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -12,6 +13,9 @@ public abstract class MaintenanceActivity
     private Typology typology;
     private String activityDescription;
     private int week;
+    private String brachOffice;
+    private String department;
+    private ArrayList<String>  skills;
     
     public enum Typology
     {
@@ -96,6 +100,36 @@ public abstract class MaintenanceActivity
         this.activityDescription = activityDescription;
         this.week = week;
     }
+
+    /**
+     * 
+     * Creates a new MaintenanceActivity with with the skills needed and the afferent site
+     * @param IDActivity is the IDActivity of the Planned Activity
+     * @param activityName is the name of the Planned Activity
+     * @param timeNeeded is the time needed for the Planned Activity
+     * @param interruptible is the type of the Planned Activity
+     * @param typology is the typology of the Planned Activity
+     * @param activityDescription is the activity description of the Planned Activity
+     * @param week is the week dedicated to the Planned Activity
+     * @param brachOffice is the brach office in which the acrivity must be done
+     * @param department is the department in which the acrivity must be done
+     * @param skills is an array of skills needed fot that activity
+     */
+    public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, 
+            boolean interruptible, Typology typology, String activityDescription, int week, 
+            String brachOffice, String department, ArrayList<String> skills)
+    {
+        this.IDActivity = IDActivity;
+        this.activityName = activityName;
+        this.timeNeeded = timeNeeded;
+        this.interruptible = interruptible;
+        this.typology = typology;
+        this.activityDescription = activityDescription;
+        this.week = week;
+        this.brachOffice = brachOffice;
+        this.department = department;
+        this.skills = skills;
+    }
     
     /**
      * 
@@ -165,6 +199,33 @@ public abstract class MaintenanceActivity
    {
        return week;
    }
+
+   /**
+    * 
+    * @return a String containing the branch office
+    */
+    public String getBrachOffice()
+    {
+        return brachOffice;
+    }
+
+    /**
+     * 
+     * @return a String containing the department
+     */
+    public String getDepartment()
+    {
+        return department;
+    }
+
+    /**
+     * 
+     * @return an ArrayList of String containing all the skills needed for a specific activity
+     */
+    public ArrayList<String> getSkills()
+    {
+        return skills;
+    }
    
    /**
     * 
@@ -200,6 +261,13 @@ public abstract class MaintenanceActivity
        return week >= 1 && week <= 52; 
    }        
 
+   /**
+    * 
+    * @return an Object array representing the data model of the maintenance activity
+    * with util info for the assignment (must be implemented in the sub-classes) 
+    */
+   public abstract Object[] getDataForAssignment();
+   
     /**
      * 
      * @param obj is the object to compare

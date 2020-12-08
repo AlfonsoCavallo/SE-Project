@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.*;
 import se.project.storage.models.maintenance_activity.EWO;
@@ -22,7 +23,9 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     private final String QUERY_DELETE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryDeleteMaintenanceActivity.sql";
     private final String QUERY_ADD_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAddMaintenanceActivity.sql";
     private final String QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryUpdateMaintenanceActivity.sql";
-
+    private final String QUERY_MAINTENANCE_ACTIVITY_IN_WEEK_PATH = "/se/project/assets/query/QueryMaintenanceActivityInWeek.sql";
+    private final String QUERY_SKILLS_NEEDED_PATH = "/se/project/assets/query/QuerySkillsNeeded.sql";
+    
     /**
      * 
      * Creates a new MaintenanceActivityRepo
@@ -151,7 +154,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     /**
      * 
      * @param query is the query from which to extract data to build the model
-     * @return a LinkedList of User that are in the database
+     * @return a LinkedList of MaintenanceActivity that are in the database
      * @throws SQLException 
      */
     private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException
@@ -183,5 +186,77 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
                             typology, activityDescription, week));
         }
         return output;
-    }        
+    } 
+    
+    /**
+     * 
+     * @param weekSearched is the week in which to search activities
+     * @return a LinkedList of PlannedActivity containing the activities in a specific week
+     * @throws IOException
+     * @throws SQLException 
+     */
+    @Override
+    public LinkedList<PlannedActivity> queryMaintenanceActivityInWeek(int weekSearched) throws IOException, SQLException
+    {
+        String query = getStringFromFile(QUERY_MAINTENANCE_ACTIVITY_IN_WEEK_PATH);
+        query = query.replaceAll("week_param", String.valueOf(weekSearched));
+        return queryMaintenanceActivityListWithSite(query);
+    }
+    
+    /**
+     * 
+     * @param query is the query from which to extract data to build the model
+     * @return a LinkedList of PlannedActivity that are in the database in a specific week
+     * @throws SQLException
+     * @throws IOException 
+     */
+    private LinkedList<PlannedActivity> queryMaintenanceActivityListWithSite(String query) throws SQLException, IOException
+    {
+        ResultSet resultSet = super.queryDatabase(query);
+        LinkedList<PlannedActivity> output = new LinkedList<>();
+        
+        while(resultSet.next())
+        {
+            int IDActivity = resultSet.getInt("id_activity");
+            String activityName = resultSet.getString("activity_name");
+            int timeNeeded = resultSet.getInt("time_needed");
+            boolean interruptible = resultSet.getBoolean("interruptible");
+            Typology typology = fromString(resultSet.getString("typology"));
+            String activityDescription = resultSet.getString("activity_description");
+            int week = resultSet.getInt("week");
+            String planned = resultSet.getString("planned");
+            String ewo = resultSet.getString("ewo");
+            String standardProcedure = resultSet.getString("standard_procedure");
+            String branchOffice = resultSet.getString("branch_office_ref");
+            String department = resultSet.getString("department_ref");
+            ArrayList<String> skills = querySkillsNeeded(IDActivity);
+            
+            
+            output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, interruptible, 
+                        typology, activityDescription, week, branchOffice, department, skills, standardProcedure));
+            
+        }
+        return output;
+    }
+    
+    /**
+     * 
+     * @param IDActivity is the id of the searched activity
+     * @return an ArrayList contining the skills needed fot that activity
+     * @throws IOException
+     * @throws SQLException
+     * @throws NullPointerException 
+     */
+    public ArrayList<String> querySkillsNeeded(int IDActivity) throws IOException, SQLException, NullPointerException
+    {
+        String query = getStringFromFile(QUERY_SKILLS_NEEDED_PATH);
+        query = query.replaceAll("id_param", String.valueOf(IDActivity));
+        ResultSet resultSet = super.queryDatabase(query);
+        ArrayList<String> skills = new ArrayList<>();
+        while(resultSet.next())
+        {
+            skills.add(resultSet.getString("competence_name_needed_ref"));
+        }
+        return skills;
+    }
 }

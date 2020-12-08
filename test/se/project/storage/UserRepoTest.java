@@ -108,7 +108,7 @@ public class UserRepoTest
             
             // Tests unvailable user
             String unvailableUsername = "unvailable";
-            user = instance.queryOneUser("unavailable_username");
+            user = instance.queryOneUser(unvailableUsername);
             assertEquals(0, user.size());
             
             closeConnection();
@@ -143,7 +143,7 @@ public class UserRepoTest
             
             // Tests an unavailable username
             String unvailableUsername = "unvailable";
-            instance.deleteUser("unavailableUsername");
+            instance.deleteUser(unvailableUsername);
             usersAfterDelete = instance.queryAllUsers();
             assertEquals(newUsersSize, usersAfterDelete.size());
             
@@ -356,7 +356,6 @@ public class UserRepoTest
             
             // Test updating a Planner attribute (email)
             user = new Planner("jonathan", "newEmail@jon.com", "jon", "athan", "jon", "planner");
-            oldUsername = "jonathan";
             instance.queryOneUser(username);
             username = user.getUsername();
             String email = user.getEmail();

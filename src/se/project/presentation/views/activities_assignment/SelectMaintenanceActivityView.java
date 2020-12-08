@@ -86,9 +86,22 @@ public class SelectMaintenanceActivityView extends javax.swing.JFrame
         return jTable;
     }
 
+    /**
+     * 
+     * @return the JPanel representing the button to open the activity info page
+     */
     public JPanel getjViewInfoPanel()
     {
         return jViewInfoPanel;
+    }
+
+    /**
+     * 
+     * @return the JComboBox that allows to select the week
+     */
+    public JComboBox<Integer> getjComboBox()
+    {
+        return jComboBox;
     }
     
     

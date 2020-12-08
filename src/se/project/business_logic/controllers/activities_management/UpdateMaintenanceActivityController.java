@@ -27,7 +27,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String UPDATED_MESSAGE = "Maintenance activity \"activity_name_param\" has been updated successfully!";
     private final String QUERY_NULL_POINTER_MESSAGE = "All the fields must be filled!";
-    private final String SELECT_ACTIVITY_MESSAGE = "Please, select a  before updating!";
+    private final String SELECT_ACTIVITY_MESSAGE = "Please, select an element before updating!";
     
     private final UpdateMaintenanceActivityView updateMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo;

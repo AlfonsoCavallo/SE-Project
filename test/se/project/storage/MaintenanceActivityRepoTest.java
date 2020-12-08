@@ -2,6 +2,8 @@ package se.project.storage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -48,6 +50,7 @@ public class MaintenanceActivityRepoTest
     {
         try
         {
+            resetDatabase();
             closeConnection();
         }
         catch (SQLException ex)
@@ -150,6 +153,7 @@ public class MaintenanceActivityRepoTest
             fail();
         }
     }
+    
     /**
      * Try deleting a non-existent maintenance activity.
      * @Result Throws an exception.
@@ -172,5 +176,74 @@ public class MaintenanceActivityRepoTest
             fail();
         }
     }
+    
+    /**
+     * 
+     * Verify the presence of all maintenance activities in the system in a specific week.
+     * @Result The two maintenance activities recorded in the system in the third week are both correctly checked.
+     */
+    @Test
+    public void testQueryMaintenanceActivityInWeek()
+    {
+        try
+        {
+            // Gets all (two) the maintenance activities in the system in the week 3 in different sites
+            connect(getTestUser());
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
+            LinkedList<PlannedActivity> maintenanceActivities = instance.queryMaintenanceActivityInWeek(3);
+            
+            // Tests expected elements
+            assertEquals(2, maintenanceActivities.size());
+            
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3,"Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            assertEquals(expectedFirstElement, maintenanceActivities.getFirst());
+            
+            MaintenanceActivity expectedSecondElement = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3,"Fisciano", "Cleaning", expectedSkills, "4... 5... 6...");
+            assertEquals(expectedSecondElement, maintenanceActivities.get(1));
+            
+            closeConnection();
+        }
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+    }
+    
+    /**
+     * 
+     * Verify the presence of all the skills needed for a specific activity in the system.
+     * @Result The four skills recorded for activity 2 are correctly checked.
+     */
+    @Test
+    public void testQuerySkillsNeeded()
+    {
+        try
+        {
+            // Gets all the skills needed for a specific activity in the system
+            connect(getTestUser());
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
+            ArrayList<String> skillsNeeded = instance.querySkillsNeeded(2);
+            
+            // Tests expected elements
+            assertEquals(4, skillsNeeded.size());
+            
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            assertEquals(expectedSkills, skillsNeeded);
+            
+            String expectedSecondElement =  "Knowledge of Workstation 23";
+            assertEquals(expectedSecondElement, skillsNeeded.get(1));
+            
+            closeConnection();
+        }
+        catch (ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+    }
+    
+    
 
 }

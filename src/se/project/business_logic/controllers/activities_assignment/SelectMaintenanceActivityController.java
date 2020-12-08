@@ -1,18 +1,33 @@
 package se.project.business_logic.controllers.activities_assignment;
 
+import java.awt.event.ItemEvent;
+import java.io.IOException;
+import java.util.LinkedList;
 import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
 import se.project.business_logic.controllers.PlannerHomepageController;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
-import se.project.storage.models.maintenance_activity.MaintenanceActivity;
+import static se.project.storage.DatabaseConnection.getConnection;
+import se.project.storage.models.maintenance_activity.PlannedActivity;
+import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 
 public class SelectMaintenanceActivityController extends AbstractController
 {
+    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get users from database.";
+    private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
+    private final String SELECT_ACTIVITY_MESSAGE = "Please, select an element to view its info!";
+    
     private final SelectMaintenanceActivityView selectMaintenanceActivityView;
-    private MaintenanceActivity maintenanceActivity; 
+    private PlannedActivity plannedActivity = null; 
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
+    private LinkedList<PlannedActivity> plannedActivities;
     
     /**
      * 
@@ -21,7 +36,9 @@ public class SelectMaintenanceActivityController extends AbstractController
     public SelectMaintenanceActivityController()
     {
         this.selectMaintenanceActivityView = new SelectMaintenanceActivityView();
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();
+        viewActivities();
     }
     
     /**
@@ -68,8 +85,24 @@ public class SelectMaintenanceActivityController extends AbstractController
        {
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
-               openMaintenanceActivityInfoView();
+               boolean open = selectMaintenaceActivity();
+               if(open)
+               {
+                  openMaintenanceActivityInfoView();
+                  selectMaintenanceActivityView.dispose(); 
+               }
            }        
+       });
+       
+       selectMaintenanceActivityView.getjComboBox().addItemListener(new java.awt.event.ItemListener()
+       {
+           public void itemStateChanged(java.awt.event.ItemEvent evt)
+           {
+               if (evt.getStateChange() == ItemEvent.SELECTED)
+               {
+                   viewActivities();
+               }
+           }
        });
         
     }
@@ -89,6 +122,60 @@ public class SelectMaintenanceActivityController extends AbstractController
      */
     public void openMaintenanceActivityInfoView()
     {
-        new MaintenanceActivityInfoController(this.maintenanceActivity);
+        new MaintenanceActivityInfoController(this.plannedActivity);
+    }
+    
+    /**
+     * Updates the table in the page inserting the all the planned activities in a specific week
+     */
+    public void viewActivities()
+    {
+        DefaultTableModel tableModel = selectMaintenanceActivityView.getDefaultTableModel();
+        
+        try
+        {
+            int weekSearched =  selectMaintenanceActivityView.getWeek();
+            this.plannedActivities = maintenanceActivityRepo.queryMaintenanceActivityInWeek(weekSearched);
+            
+            // Clears the model
+            while(tableModel.getRowCount() > 0)
+            {
+                tableModel.removeRow(0);
+            }
+            
+            // Iterates over maintenance activities
+            for(PlannedActivity activity : plannedActivities)
+            {
+                tableModel.addRow(activity.getDataForAssignment());
+            }
+        }
+        catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
+        } 
+        catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
+        }
+    }
+    
+    /**
+     * 
+     * Sets plannedActivity to the activity selected in the table
+     */
+    public boolean selectMaintenaceActivity()
+    {
+        int row;
+        try
+        {
+            row = selectMaintenanceActivityView.getjTable().getSelectedRow();
+            this.plannedActivity = this.plannedActivities.get(row);
+        }
+        catch (IndexOutOfBoundsException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), SELECT_ACTIVITY_MESSAGE);
+            return false;
+        }
+        return true;
     }
 }

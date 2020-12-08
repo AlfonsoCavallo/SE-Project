@@ -1,0 +1,3 @@
+select competence_name_needed_ref  
+from maintenance_system.competence_needed
+where id_activity_competence_needed_ref = id_param;
