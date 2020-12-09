@@ -229,10 +229,10 @@ public class MaintenanceActivityRepoTest
             // Tests expected elements
             assertEquals(4, skillsNeeded.size());
             
-            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
             assertEquals(expectedSkills, skillsNeeded);
             
-            String expectedSecondElement =  "Knowledge of Workstation 23";
+            String expectedSecondElement =  "Knowledge of Workstation 09";
             assertEquals(expectedSecondElement, skillsNeeded.get(1));
             
             closeConnection();

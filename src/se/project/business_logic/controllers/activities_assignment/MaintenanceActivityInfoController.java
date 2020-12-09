@@ -68,7 +68,7 @@ public class MaintenanceActivityInfoController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                openActivityAssignmentPage();
+                openActivityAssignmentPage(maintenanceActivity);
                 maintenanceActivityInfoView.dispose();
             }        
         });                       
@@ -78,9 +78,9 @@ public class MaintenanceActivityInfoController extends AbstractController
      * 
      * Opens the Activity Assignment page using its controller
      */
-    public static void openActivityAssignmentPage()
+    public static void openActivityAssignmentPage(MaintenanceActivity maintenanceActivity)
     {
-        new ActivityAssignmentController();
+        new ActivityAssignmentController(maintenanceActivity);
     }
     
     /**

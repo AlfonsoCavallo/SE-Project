@@ -358,7 +358,7 @@ values (1, 'Electrical Maintenance'),
        (1, 'Knowledge of Workstation 35'),
        (1, 'English Knowledge'),
        (2, 'Electrical Maintenance'),
-       (2, 'Knowledge of Workstation 23'),
+       (2, 'Knowledge of Workstation 09'),
        (2, 'Knowledge of Workstation 35'),
        (2, 'English Knowledge');
 	
