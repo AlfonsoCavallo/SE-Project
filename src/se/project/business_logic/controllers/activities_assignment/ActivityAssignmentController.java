@@ -98,6 +98,13 @@ public class ActivityAssignmentController extends AbstractController
         new MaintenanceActivityInfoController(maintenanceActivity);
     }
     
+    /*
+    public static void goToSeletectAvailabilityTimePage()
+    {
+        new SeletectAvailabilityTime();
+    }        
+    */
+    
     public void viewAvailability(MaintenanceActivity maintenanceActivity)
     {
         DefaultTableModel tableModel = activityAssignmentView.getDefaultTableModelAvailability();
@@ -140,9 +147,8 @@ public class ActivityAssignmentController extends AbstractController
             
             // Iterates over maintenance activities
             for(WeeklyAvailability availability : weeklyAvailabilities)
-            {
-                //for (int i : dayOfWeek.ordinal())    
-                tableModel.addRow(availability.getDataForAssignment(dayOfWeek.MONDAY));
+            {    
+                tableModel.addRow(availability.getDataForAssignment());
             }    
         }
         catch (IOException ex)

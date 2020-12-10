@@ -2,6 +2,9 @@ package se.project.storage.models;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -180,9 +183,18 @@ public class WeeklyAvailability
         return true;
     }
     
-    public Object[] getDataForAssignment(DayOfWeek day)
+    public Object[] getDataForAssignment()
     {
-        return new Object[]{getUsername(), getNumberOfCompetences(), getPercentageAvailability(day)};
+        EnumSet<DayOfWeek> daysOfWeek = EnumSet.allOf(DayOfWeek.class);
+        
+        LinkedList<Object> output = new LinkedList<>(Arrays.asList(getUsername(), getNumberOfCompetences()));
+        
+        for(DayOfWeek day : daysOfWeek)
+        {
+            output.add(getPercentageAvailability(day));
+        }    
+        
+        return output.toArray();
     }        
     
     
