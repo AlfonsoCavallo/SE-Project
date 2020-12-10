@@ -1,27 +1,29 @@
 package se.project.business_logic.controllers.activities_assignment;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.activities_assignment.MaintenanceActivityInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
-import se.project.storage.models.maintenance_activity.MaintenanceActivity;
+import se.project.storage.models.maintenance_activity.PlannedActivity;
 
 
 public class MaintenanceActivityInfoController extends AbstractController
 {
     private final MaintenanceActivityInfoView maintenanceActivityInfoView;
-    private MaintenanceActivity maintenanceActivity;
+    private PlannedActivity plannedActivity;
 
     /**
      * 
      * Creates a new MaintenanceActivityInfoController
      */
-    public MaintenanceActivityInfoController(MaintenanceActivity maintenanceActivity)
+    public MaintenanceActivityInfoController(PlannedActivity plannedActivity)
     {
         this.maintenanceActivityInfoView = new MaintenanceActivityInfoView();
-        this.maintenanceActivity = maintenanceActivity;
+        this.plannedActivity = plannedActivity;
         initListeners();
+        viewInfo();
     }
     
     /**
@@ -80,7 +82,7 @@ public class MaintenanceActivityInfoController extends AbstractController
      */
     public static void openActivityAssignmentPage()
     {
-        new ActivityAssignmentController();
+        new ActivityAssignmentController(/*this.plannedActivity*/);
     }
     
     /**
@@ -90,6 +92,28 @@ public class MaintenanceActivityInfoController extends AbstractController
     public static void goBackSelectMaintenanceActivityView()
     {
         new SelectMaintenanceActivityController();
+    }
+    
+    public void viewInfo()
+    {
+        int week = this.plannedActivity.getWeek();
+        String activityToAssign = String.valueOf(this.plannedActivity.getIdActivity()) + " - " + 
+                                  this.plannedActivity.getBrachOffice() + " , " +
+                                  this.plannedActivity.getDepartment() + " - " +
+                                  this.plannedActivity.getTypology().getValue() + " - " +
+                                  String.valueOf(this.plannedActivity.getTimeNeeded()) + "'";
+        String description = this.plannedActivity.getActivityDescription();
+        String SMP = this.plannedActivity.getStandardProcedure();
+        ArrayList<String> skills = this.plannedActivity.getSkills();
+        
+        this.maintenanceActivityInfoView.getjWeekLabel().setText(String.valueOf(week));
+        this.maintenanceActivityInfoView.getjInfoLabel().setText(activityToAssign);
+        this.maintenanceActivityInfoView.getjSMPTextArea().setText(SMP);
+        this.maintenanceActivityInfoView.getjInterventionDescriptionTextArea().setText(description);
+        for(String skill : skills)
+        {
+            this.maintenanceActivityInfoView.getDefaultListModel().addElement(skill);
+        }
     }
 }
 
