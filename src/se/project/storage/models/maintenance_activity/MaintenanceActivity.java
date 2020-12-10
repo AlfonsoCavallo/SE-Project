@@ -313,6 +313,14 @@ public abstract class MaintenanceActivity
         {
             return false;
         }
+        if (!Objects.equals(this.brachOffice, other.brachOffice))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.department, other.department))
+        {
+            return false;
+        }
         return true;
     }
    

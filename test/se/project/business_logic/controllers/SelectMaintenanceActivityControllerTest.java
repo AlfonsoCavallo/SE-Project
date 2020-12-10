@@ -3,6 +3,7 @@ package se.project.business_logic.controllers;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import junit.framework.AssertionFailedError;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,7 +41,6 @@ public class SelectMaintenanceActivityControllerTest
     @Before
     public void setUp()
     {
-        resetDatabase();
     }
     
     @After
@@ -48,7 +48,6 @@ public class SelectMaintenanceActivityControllerTest
     {
         try
         {
-            resetDatabase();
             closeConnection();
         }
         catch (SQLException ex)
@@ -58,32 +57,125 @@ public class SelectMaintenanceActivityControllerTest
         
     }
 
-    private static SelectMaintenanceActivityView simulateView()
+    /**
+     * 
+     * Initializes Mock
+     * @return a SelectMaintenanceActivityView representig a mock of a real view
+     */
+    private SelectMaintenanceActivityView simulateView()
     {
-        // Initializes Mock
-        SelectMaintenanceActivityView mock = mock(SelectMaintenanceActivityView.class);
+        SelectMaintenanceActivityView mock = mock(SelectMaintenanceActivityView.class, RETURNS_DEEP_STUBS);
         when(mock.getWeek()).thenReturn(3);
         when(mock.getjTable().getSelectedRow()).thenReturn(0);
         return mock;
     }
     
+    /**
+     * 
+     * Check if the activity in the first row of the table in the third week is equal to the aspected one.
+     * @Result The two planned activities are correctly checked.
+     */
     @Test
     public void testSelectMaintenanceActivity()
     {
-        /*try
+        try
         {
             connect(getTestUser());
-            SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController();
+        
+            SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3,"Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            boolean open = controller.selectMaintenaceActivity();
+            assertEquals(expectedActivity, controller.getPlannedActivity());
+            assertTrue(open);
             
-            
+            closeConnection();
         } 
         catch (ClassNotFoundException | SQLException ex)
         {
             System.err.println(ex.getMessage());
             fail();
-        }*/
+        }
     }
     
+    /**
+     * Check if the activity in the first row of the table in the third week is equal to an actvity with another department.
+     * @Result The check on the two planned activities fails and exceptions are thrown.
+     * @throws AssertionError 
+     */
+    @Test(expected = AssertionError.class)
+    public void testSelectMaintenanceActivityWrongDepartment()
+    {
+        try
+        {
+            connect(getTestUser());
+        
+            SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Cleaning", expectedSkills, "4... 5... 6...");
+            controller.selectMaintenaceActivity();
+            assertEquals(expectedActivity, controller.getPlannedActivity());
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+    }
+    
+    /**
+     * Check if the activity in the first row of the table in the third week is equal to an actvity with another week.
+     * @Result The check on the two planned activities fails and exceptions are thrown.
+     * @throws AssertionError 
+     */
+    @Test(expected = AssertionError.class)
+    public void testSelectMaintenanceActivityWrongWeek()
+    {
+        try
+        {
+            connect(getTestUser());
+        
+            SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 2, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            controller.selectMaintenaceActivity();
+            assertEquals(expectedActivity, controller.getPlannedActivity());
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+    }
+    
+    /**
+     * Check if the activity in the first row of the table in the third week is equal to an actvity with another ID.
+     * @Result The check on the two planned activities fails and exceptions are thrown.
+     * @throws AssertionError 
+     */
+    @Test(expected = AssertionError.class)
+    public void testSelectMaintenanceActivityWrongID()
+    {
+        try
+        {
+            connect(getTestUser());
+        
+            SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedActivity = new PlannedActivity(1, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            controller.selectMaintenaceActivity();
+            assertEquals(expectedActivity, controller.getPlannedActivity());
+            
+            closeConnection();
+        } 
+        catch (ClassNotFoundException | SQLException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();
+        }
+    }
 }
