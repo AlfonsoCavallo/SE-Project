@@ -43,6 +43,19 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
+     * Creates a new ViewMaintenanceActivityController (used for tests)
+     * @param selectMaintenanceActivityView
+     */
+    public SelectMaintenanceActivityController(SelectMaintenanceActivityView selectMaintenanceActivityView)
+    {
+        this.selectMaintenanceActivityView = selectMaintenanceActivityView;
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
+        initListeners();
+        viewActivities();
+    }
+    
+    /**
+     * 
      *  Initializes the listeners of selectMaintenanceActivityView
      */
     public void initListeners()
@@ -126,6 +139,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     }
     
     /**
+     * 
      * Updates the table in the page inserting the all the planned activities in a specific week
      */
     public void viewActivities()
@@ -162,6 +176,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     /**
      * 
      * Sets plannedActivity to the activity selected in the table
+     * @return a boolean indicating if an element has been selected from the table
      */
     public boolean selectMaintenaceActivity()
     {
@@ -177,5 +192,14 @@ public class SelectMaintenanceActivityController extends AbstractController
             return false;
         }
         return true;
+    }
+
+    /**
+     * 
+     * @return a PlannedActivity representing the plannedActivity of the class
+     */
+    public PlannedActivity getPlannedActivity()
+    {
+        return this.plannedActivity;
     }
 }
