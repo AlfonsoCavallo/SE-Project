@@ -147,9 +147,9 @@ public class WeeklyAvailabilityRepoTest
             
             // Test case with specific competencies
             List<WeeklyAvailability> weeklyAvailabilities = instance.queryAllWeeklyAvailabilities(testCompetencies, 1);
-            assertEquals(19, weeklyAvailabilities.size());
+            assertEquals(3, weeklyAvailabilities.size());
             
-            assertEquals("gio", weeklyAvailabilities.get(0).getUsername());            
+            assertEquals("gio", weeklyAvailabilities.get(0).getUsername());
             assertEquals(2, weeklyAvailabilities.get(0).getNumberOfCompetences());
             
             assertEquals("donald", weeklyAvailabilities.get(weeklyAvailabilities.size() -1).getUsername());
@@ -157,7 +157,7 @@ public class WeeklyAvailabilityRepoTest
             
             // Test case with no competencies
             weeklyAvailabilities = instance.queryAllWeeklyAvailabilities(null, 1);            
-            assertEquals(19, weeklyAvailabilities.size());
+            assertEquals(3, weeklyAvailabilities.size());
             
             assertEquals("gio", weeklyAvailabilities.get(0).getUsername());            
             assertEquals(4, weeklyAvailabilities.get(0).getNumberOfCompetences());
