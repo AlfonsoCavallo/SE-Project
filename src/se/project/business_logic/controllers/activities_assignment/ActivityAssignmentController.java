@@ -17,6 +17,7 @@ import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
+import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.WeeklyAvailabilityRepo;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
@@ -27,7 +28,7 @@ public class ActivityAssignmentController extends AbstractController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     
     private final ActivityAssignmentView activityAssignmentView;
-    private MaintenanceActivity maintenanceActivity;
+    private PlannedActivity plannedActivity;
     private ArrayList<String>  skillsNeeded;
     private List<WeeklyAvailability> weeklyAvailabilities;
     private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
@@ -36,14 +37,14 @@ public class ActivityAssignmentController extends AbstractController
     /**
      * Creates a new ActivityAssignmentController
      */
-    public ActivityAssignmentController(MaintenanceActivity maintenanceActivity)
+    public ActivityAssignmentController(PlannedActivity plannedActivity)
     {
         this.activityAssignmentView = new ActivityAssignmentView();
-        this.maintenanceActivity = maintenanceActivity;
-        this.skillsNeeded = maintenanceActivity.getSkills();
+        this.plannedActivity = plannedActivity;
+        this.skillsNeeded = plannedActivity.getSkills();
         this.weeklyAvailabilityRepo = new WeeklyAvailabilityRepo(getConnection());
         initListeners();
-        viewAvailability(maintenanceActivity);
+        viewAvailability(plannedActivity);
     }
     
     /**
@@ -80,7 +81,7 @@ public class ActivityAssignmentController extends AbstractController
        {
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
-               goBackMaintenanceActivityInfoPage(maintenanceActivity);
+               goBackMaintenanceActivityInfoPage(plannedActivity);
                activityAssignmentView.dispose();
            }        
        });
@@ -93,10 +94,17 @@ public class ActivityAssignmentController extends AbstractController
      * 
      * @param maintenanceActivity 
      */
-    public static void goBackMaintenanceActivityInfoPage(MaintenanceActivity maintenanceActivity)
+    public static void goBackMaintenanceActivityInfoPage(PlannedActivity plannedActivity)
     {
-        new MaintenanceActivityInfoController(maintenanceActivity);
+        new MaintenanceActivityInfoController(plannedActivity);
     }
+    
+    /*
+    public static void goToSeletectAvailabilityTimePage()
+    {
+        new SeletectAvailabilityTime();
+    }        
+    */
     
     public void viewAvailability(MaintenanceActivity maintenanceActivity)
     {
@@ -140,9 +148,8 @@ public class ActivityAssignmentController extends AbstractController
             
             // Iterates over maintenance activities
             for(WeeklyAvailability availability : weeklyAvailabilities)
-            {
-                //for (int i : dayOfWeek.ordinal())    
-                tableModel.addRow(availability.getDataForAssignment(dayOfWeek.MONDAY));
+            {    
+                tableModel.addRow(availability.getDataForAssignment());
             }    
         }
         catch (IOException ex)
