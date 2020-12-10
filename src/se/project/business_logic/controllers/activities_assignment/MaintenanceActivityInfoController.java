@@ -28,6 +28,18 @@ public class MaintenanceActivityInfoController extends AbstractController
     
     /**
      * 
+     * Creates a new MaintenanceActivityInfoController
+     */
+    public MaintenanceActivityInfoController(PlannedActivity plannedActivity, MaintenanceActivityInfoView maintenanceActivityInfoView)
+    {
+        this.maintenanceActivityInfoView = maintenanceActivityInfoView;
+        this.plannedActivity = plannedActivity;
+        initListeners();
+        /* viewInfo(); Used for tests */
+    }
+    
+    /**
+     * 
      * Initializes the listeners of MaintenanceActivityInfoView
      */
     private void initListeners()
@@ -82,7 +94,7 @@ public class MaintenanceActivityInfoController extends AbstractController
      */
     public static void openActivityAssignmentPage()
     {
-        // new ActivityAssignmentController(this.plannedActivity);
+        new ActivityAssignmentController(this.plannedActivity);
     }
     
     /**
@@ -114,6 +126,15 @@ public class MaintenanceActivityInfoController extends AbstractController
         {
             this.maintenanceActivityInfoView.getDefaultListModel().addElement(skill);
         }
+    }
+
+    /**
+     * 
+     * @return the PlannedActivity representing the "PlannedActivity".
+     */
+    public PlannedActivity getPlannedActivity()
+    {
+        return plannedActivity;
     }
 }
 
