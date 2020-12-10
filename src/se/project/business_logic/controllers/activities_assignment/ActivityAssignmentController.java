@@ -28,7 +28,7 @@ public class ActivityAssignmentController extends AbstractController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     
     private final ActivityAssignmentView activityAssignmentView;
-    private PlannedActivity plannedActivity;
+    private PlannedActivity plannedActivity = null;
     private ArrayList<String>  skillsNeeded;
     private List<WeeklyAvailability> weeklyAvailabilities;
     private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
@@ -81,7 +81,7 @@ public class ActivityAssignmentController extends AbstractController
        {
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
-               goBackMaintenanceActivityInfoPage(plannedActivity);
+               goBackMaintenanceActivityInfoPage();
                activityAssignmentView.dispose();
            }        
        });
@@ -92,11 +92,11 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * 
-     * @param maintenanceActivity 
+     * 
      */
-    public static void goBackMaintenanceActivityInfoPage(PlannedActivity plannedActivity)
+    public void goBackMaintenanceActivityInfoPage()
     {
-        new MaintenanceActivityInfoController(plannedActivity);
+        new MaintenanceActivityInfoController(this.plannedActivity);
     }
     
     /*

@@ -92,7 +92,7 @@ public class MaintenanceActivityInfoController extends AbstractController
      * 
      * Opens the Activity Assignment page using its controller
      */
-    public static void openActivityAssignmentPage()
+    public void openActivityAssignmentPage()
     {
         new ActivityAssignmentController(this.plannedActivity);
     }
