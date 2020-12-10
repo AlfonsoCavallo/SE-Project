@@ -1,5 +1,6 @@
 package se.project.presentation.views.activities_assignment;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTable;
@@ -10,13 +11,15 @@ import se.project.presentation.views.AbstractView;
 public class ActivityAssignmentView extends AbstractView
 {
     private DefaultTableModel defaultTableModelAvailability;
+    private DefaultListModel defaultListModelSkills;
 
     /**
      * Creates new form ActivityAssignmentView
      */
     public ActivityAssignmentView()
     {
-        initComponents();     
+        initComponents();
+        this.defaultListModelSkills = new DefaultListModel();
         this.defaultTableModelAvailability = new DefaultTableModel()
         {
             @Override
@@ -29,10 +32,21 @@ public class ActivityAssignmentView extends AbstractView
         Object availabilityColumns[] = {"Maintainer", "Skills", "Monday", "Tuesday", "Wednesday", 
                                         "Thursday", "Friday", "Saturday", "Sunday"};
         this.defaultTableModelAvailability.setColumnIdentifiers(availabilityColumns);
+        this.jSkillsNeededList.setModel(this.defaultListModelSkills);
         this.jMaintainerAvailabilityTable.setModel(this.defaultTableModelAvailability);
         this.setVisible(true);        
     }
 
+    
+    /**
+     * 
+     * @return the DefaultListModel for the list representing the "Skills Needed". 
+     */
+    public DefaultListModel getDefaultListModelSkills()
+    {
+        return defaultListModelSkills;
+    }
+    
     /**
      * 
      * @return JList representing the list of the skills needed.
@@ -132,7 +146,7 @@ public class ActivityAssignmentView extends AbstractView
         jScrollPane2 = new javax.swing.JScrollPane();
         jMaintainerAvailabilityTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jSkillsNeededList = new javax.swing.JList<String>();
+        jSkillsNeededList = new javax.swing.JList<>();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -233,9 +247,9 @@ public class ActivityAssignmentView extends AbstractView
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addContainerGap()
                 .addComponent(jActivityToAssignLabel)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +323,7 @@ public class ActivityAssignmentView extends AbstractView
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -333,13 +347,13 @@ public class ActivityAssignmentView extends AbstractView
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

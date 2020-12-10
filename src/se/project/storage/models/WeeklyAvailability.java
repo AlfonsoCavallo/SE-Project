@@ -180,5 +180,10 @@ public class WeeklyAvailability
         return true;
     }
     
+    public Object[] getDataForAssignment(DayOfWeek day)
+    {
+        return new Object[]{getUsername(), getNumberOfCompetences(), getPercentageAvailability(day)};
+    }        
+    
     
 }
