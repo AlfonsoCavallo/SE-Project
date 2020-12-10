@@ -20,7 +20,7 @@ import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 public class SelectMaintenanceActivityController extends AbstractController
 {
-    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get users from database.";
+    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get activities from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String SELECT_ACTIVITY_MESSAGE = "Please, select an element to view its info!";
     
@@ -44,13 +44,13 @@ public class SelectMaintenanceActivityController extends AbstractController
     /**
      * 
      * Creates a new ViewMaintenanceActivityController (used for tests)
-     * @param selectMaintenanceActivityView
+     * @param selectMaintenanceActivityView is the view to open
      */
     public SelectMaintenanceActivityController(SelectMaintenanceActivityView selectMaintenanceActivityView)
     {
         this.selectMaintenanceActivityView = selectMaintenanceActivityView;
         this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
-        initListeners();
+        //initListeners();
         viewActivities();
     }
     
