@@ -120,13 +120,18 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         
         ResultSet result = super.queryDatabase(query);
         
-        List<WeeklyAvailability> weeklyAvailabilities = new LinkedList<>();
+        LinkedList<WeeklyAvailability> weeklyAvailabilities = new LinkedList<>();        
         
         while(result.next())
-        {
-            WeeklyAvailability weeklyAvailability = new WeeklyAvailability(result.getString("worker_username"));
+        {            
+            String username = result.getString("worker_username");
             
-            weeklyAvailability.setNumberOfCompetences(result.getInt("competencies"));
+            if(weeklyAvailabilities.size() == 0 || !weeklyAvailabilities.getLast().getUsername().equals(username))
+            {
+                weeklyAvailabilities.add(new WeeklyAvailability(username));
+            }
+                
+            weeklyAvailabilities.getLast().setNumberOfCompetences(result.getInt("competencies"));
             DayOfWeek day = DayOfWeek.valueOf(result.getString("day_of_week").toUpperCase());
             int h8 = result.getInt("8_9");
             int h9 = result.getInt("9_10");
@@ -135,9 +140,7 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
             int h14 = result.getInt("14_15");
             int h15 = result.getInt("15_16");
             int h16 = result.getInt("16_17");
-            weeklyAvailability.setAvailabilities(day, h8, h9, h10, h11, h14, h15, h16);
-            
-            weeklyAvailabilities.add(weeklyAvailability);
+            weeklyAvailabilities.getLast().setAvailabilities(day, h8, h9, h10, h11, h14, h15, h16);
         }
         
         return weeklyAvailabilities;
