@@ -100,6 +100,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         int week = maintenanceActivity.getWeek();
         String planned = maintenanceActivity.isPlanned();
         String ewo = maintenanceActivity.isEWO();
+        String branchOffice = maintenanceActivity.getBrachOffice();
+        String department = maintenanceActivity.getDepartment();
         String standardProcedure = maintenanceActivity.getStandardProcedure();
         
         query = query.replaceAll("activity_name_param", activityName);
@@ -110,6 +112,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         query = query.replaceAll("week_param", String.valueOf(week));
         query = query.replaceAll("planned_param", planned);
         query = query.replaceAll("ewo_param", ewo);
+        query = query.replaceAll("office_param", branchOffice);
+        query = query.replaceAll("department_param", department);
         query = query.replaceAll("standard_param", standardProcedure);
         executeStatement(query);
     }
@@ -167,6 +171,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             int IDActivity = resultSet.getInt("id_activity");
             String activityName = resultSet.getString("activity_name");
             int timeNeeded = resultSet.getInt("time_needed");
+            int remainingTime = resultSet.getInt("remaining_time");
             boolean interruptible = resultSet.getBoolean("interruptible");
             Typology typology = fromString(resultSet.getString("typology"));
             String activityDescription = resultSet.getString("activity_description");
@@ -176,13 +181,13 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String standardProcedure = resultSet.getString("standard_procedure");
             
             if(planned.equals("yes"))
-                output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, interruptible, 
+                output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                             typology, activityDescription, week, standardProcedure));
             else if(ewo.equals("yes"))
-                output.add(new EWO(IDActivity, activityName, timeNeeded, interruptible, 
+                output.add(new EWO(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                             typology, activityDescription, week));
             else if(ewo.equals("no"))
-                output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, interruptible, 
+                output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                             typology, activityDescription, week));
         }
         return output;
@@ -220,6 +225,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             int IDActivity = resultSet.getInt("id_activity");
             String activityName = resultSet.getString("activity_name");
             int timeNeeded = resultSet.getInt("time_needed");
+            int remainingTime = resultSet.getInt("remaining_time");
             boolean interruptible = resultSet.getBoolean("interruptible");
             Typology typology = fromString(resultSet.getString("typology"));
             String activityDescription = resultSet.getString("activity_description");
@@ -227,12 +233,12 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String planned = resultSet.getString("planned");
             String ewo = resultSet.getString("ewo");
             String standardProcedure = resultSet.getString("standard_procedure");
-            String branchOffice = resultSet.getString("branch_office_ref");
-            String department = resultSet.getString("department_ref");
+            String branchOffice = resultSet.getString("activity_branch_office");
+            String department = resultSet.getString("activity_department");
             ArrayList<String> skills = querySkillsNeeded(IDActivity);
             
             
-            output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, interruptible, 
+            output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                         typology, activityDescription, week, branchOffice, department, skills, standardProcedure));
             
         }

@@ -1,5 +1,8 @@
 package se.project.presentation.views.activities_assignment;
 
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,6 +32,7 @@ public class SelectMaintenanceActivityView extends javax.swing.JFrame
         Object columns[] = {"ID", "AREA", "TYPE", "Estimated intervention time [min]"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
+        this.jComboBox.setSelectedItem(LocalDate.now().get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear()));
         this.setVisible(true);
     }
 

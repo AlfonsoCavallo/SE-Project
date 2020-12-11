@@ -9,13 +9,14 @@ public abstract class MaintenanceActivity
     private int IDActivity = -1;
     private String activityName;
     private int timeNeeded;
+    private int remainingTime;
     private boolean interruptible;
     private Typology typology;
     private String activityDescription;
     private int week;
     private String brachOffice;
     private String department;
-    private ArrayList<String>  skills;
+    private ArrayList<String> skills;
     
     public enum Typology
     {
@@ -63,17 +64,19 @@ public abstract class MaintenanceActivity
      * @param IDActivity is the ID of the Maintenance Activity
      * @param activityName is the name of the Maintenance Activity
      * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
      * @param typology is the typology of the Maintenance Activity
      * @param activityDescription is the description of the Maintenance Activity
      * @param week is the week in which the Maintenance Activity must be done
      */
-    public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
+    public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
         this.IDActivity = IDActivity;
         this.activityName = activityName;
         this.timeNeeded = timeNeeded;
+        this.remainingTime = remainingTime;
         this.interruptible = interruptible;
         this.typology = typology;
         this.activityDescription = activityDescription;
@@ -85,17 +88,19 @@ public abstract class MaintenanceActivity
      * Creates a new MaintenanceActivity without considering the ID
      * @param activityName is the name of the Maintenance Activity
      * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
      * @param typology is the typology of the Maintenance Activity
      * @param activityDescription is the description of the Maintenance Activity
      * @param week is the week in which the Maintenance Activity must be done
      */
-    public MaintenanceActivity(String activityName, int timeNeeded, boolean interruptible, 
+    public MaintenanceActivity(String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
         this.activityName = activityName;
         this.timeNeeded = timeNeeded;
         this.interruptible = interruptible;
+        this.remainingTime = remainingTime;
         this.typology = typology;
         this.activityDescription = activityDescription;
         this.week = week;
@@ -103,10 +108,11 @@ public abstract class MaintenanceActivity
 
     /**
      * 
-     * Creates a new MaintenanceActivity with with the skills needed and the afferent site
+     * Creates a new MaintenanceActivity with the skills needed and the afferent site
      * @param IDActivity is the IDActivity of the Planned Activity
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the Planned Activity
      * @param typology is the typology of the Planned Activity
      * @param activityDescription is the activity description of the Planned Activity
@@ -115,13 +121,14 @@ public abstract class MaintenanceActivity
      * @param department is the department in which the acrivity must be done
      * @param skills is an array of skills needed fot that activity
      */
-    public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, 
+    public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime,
             boolean interruptible, Typology typology, String activityDescription, int week, 
             String brachOffice, String department, ArrayList<String> skills)
     {
         this.IDActivity = IDActivity;
         this.activityName = activityName;
         this.timeNeeded = timeNeeded;
+        this.remainingTime = remainingTime;
         this.interruptible = interruptible;
         this.typology = typology;
         this.activityDescription = activityDescription;
@@ -157,6 +164,16 @@ public abstract class MaintenanceActivity
    {
        return timeNeeded;
    }        
+   
+   /***
+    * 
+    * @return an int representing the time remained for the maintenance activity completition
+    */
+   public int getRemainingTime()
+   {
+       return remainingTime;
+   }
+   
    
    /**
     * 
@@ -294,6 +311,10 @@ public abstract class MaintenanceActivity
             return false;
         }
         if (this.timeNeeded != other.timeNeeded)
+        {
+            return false;
+        }
+        if (this.remainingTime != other.remainingTime)
         {
             return false;
         }

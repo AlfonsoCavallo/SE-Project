@@ -16,15 +16,16 @@ public class EWO extends UnplannedActivity
      * @param IDActivity is the IDActivity of the EWO
      * @param activityName is the name of the EWO
      * @param timeNeeded is the time needed for the EWO
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the EWO
      * @param typology is the typology of the EWO
      * @param activityDescription is the activity description of the EWO
      * @param week is the week dedicated to the EWO
      */
-    public EWO(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
+    public EWO(int IDActivity, String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "yes";
@@ -35,15 +36,16 @@ public class EWO extends UnplannedActivity
      * Creates a new EWO  without considering the ID
      * @param activityName is the name of the EWO
      * @param timeNeeded is the time needed for the EWO
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the EWO
      * @param typology is the typology of the EWO
      * @param activityDescription is the activity description of the EWO
      * @param week is the week dedicated to the EWO
      */
-    public EWO(String activityName, int timeNeeded, boolean interruptible, 
+    public EWO(String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        super(activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "yes";
@@ -55,6 +57,7 @@ public class EWO extends UnplannedActivity
      * @param IDActivity is the IDActivity of the Planned Activity
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the Planned Activity
      * @param typology is the typology of the Planned Activity
      * @param activityDescription is the activity description of the Planned Activity
@@ -63,11 +66,11 @@ public class EWO extends UnplannedActivity
      * @param department is the department in which the acrivity must be done
      * @param skills is an array of skills needed fot that activity
      */
-    public EWO(int IDActivity, String activityName, int timeNeeded, 
+    public EWO(int IDActivity, String activityName, int timeNeeded, int remainingTime,
             boolean interruptible, Typology typology, String activityDescription, int week, 
             String brachOffice, String department, ArrayList<String> skills)
     {
-        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week, brachOffice, department, skills);
+        super(IDActivity, activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week, brachOffice, department, skills);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "yes";

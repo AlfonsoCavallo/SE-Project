@@ -43,6 +43,7 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
     {
         String query = getStringFromFile(QUERY_ONE_WEEKLY_AVAILABILITY);
         query = query.replaceAll("username_param", username);
+        query = query.replaceAll("week_param", String.valueOf(week));
         
         ResultSet result = super.queryDatabase(query);
         
@@ -117,6 +118,7 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         }
         
         query = query.replaceAll("condition_param", condition);
+        query = query.replaceAll("week_param", String.valueOf(week));
         
         ResultSet result = super.queryDatabase(query);
         
