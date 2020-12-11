@@ -100,6 +100,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         int week = maintenanceActivity.getWeek();
         String planned = maintenanceActivity.isPlanned();
         String ewo = maintenanceActivity.isEWO();
+        String branchOffice = maintenanceActivity.getBrachOffice();
+        String department = maintenanceActivity.getDepartment();
         String standardProcedure = maintenanceActivity.getStandardProcedure();
         
         query = query.replaceAll("activity_name_param", activityName);
@@ -110,6 +112,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         query = query.replaceAll("week_param", String.valueOf(week));
         query = query.replaceAll("planned_param", planned);
         query = query.replaceAll("ewo_param", ewo);
+        query = query.replaceAll("office_param", branchOffice);
+        query = query.replaceAll("department_param", department);
         query = query.replaceAll("standard_param", standardProcedure);
         executeStatement(query);
     }

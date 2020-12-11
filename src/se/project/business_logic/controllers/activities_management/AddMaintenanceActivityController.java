@@ -4,6 +4,7 @@ import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import se.project.business_logic.controllers.AbstractController;
@@ -25,6 +26,8 @@ public class AddMaintenanceActivityController extends AbstractController
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not add maintenance activity in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String ADDED_MESSAGE = "Maintenance activity \"activity_name_param\" has been added successfully!";
+    private final String INSERT_NUMBER_MESSAGE = "Time needed must be a number!";
+    private final String NULL_FIELD_MESSAGE = "Please, fill all the fields.";
     
     private final AddMaintenanceActivityView addMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
@@ -85,8 +88,11 @@ public class AddMaintenanceActivityController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                addMaintenanceActivity();
-                clearFields();
+                boolean clear = addMaintenanceActivity();
+                if (clear)
+                {
+                    clearFields();
+                }
             }        
         });
 
@@ -106,14 +112,11 @@ public class AddMaintenanceActivityController extends AbstractController
                 {
                     if(addMaintenanceActivityView.getIsPlannedValue().equals("no"))
                     {
-                        addMaintenanceActivityView.getjEWOComboBox().setEnabled(true);
                         addMaintenanceActivityView.getjStandardProcedureTextField().setText("-");
                         addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(false);
                     }
                     else
                     {
-                        addMaintenanceActivityView.getjEWOComboBox().setEnabled(false);
-                        addMaintenanceActivityView.resetjEWOComboBox();
                         addMaintenanceActivityView.resetjStandardProcedureTextField();
                         addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(true);
                     }
@@ -136,7 +139,7 @@ public class AddMaintenanceActivityController extends AbstractController
      * 
      * Add a new maintenanance activity using data from the page and method from the repo
      */
-    public void addMaintenanceActivity()
+    public boolean addMaintenanceActivity()
     {
         MaintenanceActivity maintenanceActivity = null;
         
@@ -147,34 +150,36 @@ public class AddMaintenanceActivityController extends AbstractController
         String activityDescription = addMaintenanceActivityView.getStringActivityDescription();
         String week = addMaintenanceActivityView.getStringWeek();
         String planned = addMaintenanceActivityView.getIsPlannedValue();
-        String ewo = addMaintenanceActivityView.getIsEWOValue();
+        String branchOffice = addMaintenanceActivityView.getBranchOffice();
+        String department = addMaintenanceActivityView.getDepartment();
         String standardProcedure = addMaintenanceActivityView.getStringStandardProcedure();
         
-        boolean interruptible = interruptibleString.equals("yes");    
-        
-        if(planned.equals("yes"))
+        boolean interruptible = interruptibleString.equals("yes");   
+   
+        try
         {
-            maintenanceActivity = new PlannedActivity(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
-            fromString(typology), activityDescription, parseInt(week), standardProcedure);
-        }
-        else
-        {
-            if(ewo.equals("yes"))
+            if(activityName.equals("") || timeNeeded.equals("") || activityDescription.equals("") || standardProcedure.equals(""))
             {
-                maintenanceActivity = new EWO(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
-                fromString(typology), activityDescription, parseInt(week));
+                JOptionPane.showMessageDialog(null, NULL_FIELD_MESSAGE);
             }
             else
             {
-                maintenanceActivity = new ExtraActivity(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
-                fromString(typology), activityDescription, parseInt(week));
-            } 
-        }
-        try
-        {
-            maintenanceActivityRepo.addMaintenanceActivity(maintenanceActivity);
-            String addedMessage = ADDED_MESSAGE.replaceAll("activity_name_param", activityName);
-            JOptionPane.showMessageDialog(null, addedMessage);
+                if(planned.equals("yes"))
+                {
+                    maintenanceActivity = new PlannedActivity(-1, activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
+                    fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>(), standardProcedure);
+                }
+                else
+                {
+                    maintenanceActivity = new ExtraActivity(-1, activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
+                    fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>());
+                }
+  
+                maintenanceActivityRepo.addMaintenanceActivity(maintenanceActivity);
+                String addedMessage = ADDED_MESSAGE.replaceAll("activity_name_param", activityName);
+                JOptionPane.showMessageDialog(null, addedMessage);
+                return true;
+            }
         }
         catch (IOException ex)
         {
@@ -185,6 +190,11 @@ public class AddMaintenanceActivityController extends AbstractController
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
             System.err.println(ex.getMessage());
         }
+        catch (NumberFormatException ex)
+        {
+            JOptionPane.showMessageDialog(null, INSERT_NUMBER_MESSAGE);
+        }
+        return false;
     } 
     
     /**
@@ -194,7 +204,7 @@ public class AddMaintenanceActivityController extends AbstractController
     public void clearFields()
     {
         addMaintenanceActivityView.resetjDescriptionTextArea();
-        addMaintenanceActivityView.resetjEWOComboBox();
+        addMaintenanceActivityView.resetjBranchOfficeComboBox();
         addMaintenanceActivityView.resetjInterruptibleComboBox();
         addMaintenanceActivityView.resetjNameTextField();
         addMaintenanceActivityView.resetjPlannedComboBox();
@@ -202,6 +212,7 @@ public class AddMaintenanceActivityController extends AbstractController
         addMaintenanceActivityView.resetjTimeTextField();
         addMaintenanceActivityView.resetjTypologyComboBox();
         addMaintenanceActivityView.resetjWeekComboBox();
+        addMaintenanceActivityView.resetjDepartmentComboBox();
     }        
     
 }

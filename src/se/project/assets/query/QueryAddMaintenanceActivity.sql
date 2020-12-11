@@ -1,2 +1,2 @@
-insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
-values('activity_name_param', time_needed_param, 'interruptible_param', 'typology_param', 'activity_description_param', week_param, 'planned_param', 'ewo_param', 'standard_param');
+insert into maintenance_system.maintenance_activity(activity_name, time_needed, remaining_time, interruptible, typology, activity_description, week, planned, ewo, activity_branch_office, activity_department, standard_procedure)
+values('activity_name_param', time_needed_param, time_needed_param, 'interruptible_param', 'typology_param', 'activity_description_param', week_param, 'planned_param', 'ewo_param', 'office_param', 'department_param', 'standard_param');
