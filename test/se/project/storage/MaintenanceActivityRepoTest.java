@@ -193,14 +193,11 @@ public class MaintenanceActivityRepoTest
             LinkedList<PlannedActivity> maintenanceActivities = instance.queryMaintenanceActivityInWeek(3);
             
             // Tests expected elements
-            assertEquals(2, maintenanceActivities.size());
+            assertEquals(1, maintenanceActivities.size());
             
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             assertEquals(expectedFirstElement, maintenanceActivities.getFirst());
-            
-            MaintenanceActivity expectedSecondElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Cleaning", expectedSkills, "4... 5... 6...");
-            assertEquals(expectedSecondElement, maintenanceActivities.get(1));
             
             closeConnection();
         }

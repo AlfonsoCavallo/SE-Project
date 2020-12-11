@@ -229,8 +229,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String planned = resultSet.getString("planned");
             String ewo = resultSet.getString("ewo");
             String standardProcedure = resultSet.getString("standard_procedure");
-            String branchOffice = resultSet.getString("branch_office_ref");
-            String department = resultSet.getString("department_ref");
+            String branchOffice = resultSet.getString("activity_branch_office");
+            String department = resultSet.getString("activity_department");
             ArrayList<String> skills = querySkillsNeeded(IDActivity);
             
             
