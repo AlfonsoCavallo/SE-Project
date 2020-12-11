@@ -21,6 +21,7 @@ public class AddUserController extends AbstractController
     private final String QUERY_ADD_FAILED_MESSAGE = "Could not add user in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String ADDED_MESSAGE = "User \"username_param\" has been added successfully!";
+    private final String NULL_FIELD_MESSAGE = "Please, fill all the fields.";
     
     private final AddUserView addUserView;
     private UserRepoInterface userRepo = null;
@@ -47,8 +48,11 @@ public class AddUserController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                addUser();
-                clearFields();
+                boolean clear = addUser();
+                if(clear)
+                {
+                   clearFields(); 
+                } 
             }
         });
         
@@ -107,8 +111,9 @@ public class AddUserController extends AbstractController
     /**
      * 
      * Add a new user using data from the page and method from the repo
+     * @return true if the addition has been succesfull, false otherwise
      */
-    public void addUser()
+    public boolean addUser()
     {
         String username = addUserView.getUsername();
         String name = addUserView.getNameUser();
@@ -117,20 +122,29 @@ public class AddUserController extends AbstractController
         String role = addUserView.getRole();
         String password = String.valueOf(addUserView.getPassword());
         User user = null;
-        if(role.equals("system_administrator"))
-        {
-            user = new SystemAdministrator(username, email, name, surname, password, role);
-        }
-        else if(role.equals("planner"))
-        {
-            user = new Planner(username, email, name, surname, password, role);
-        }
+        
         try
         {
-            userRepo.addUser(user);
-            String addedMessage = ADDED_MESSAGE.replaceAll("username_param", username);
-            JOptionPane.showMessageDialog(null, addedMessage);
-        } 
+            if(username.equals("") || name.equals("") || surname.equals("") || email.equals("") || password.equals(""))
+            {
+                JOptionPane.showMessageDialog(null, NULL_FIELD_MESSAGE);
+            }
+            else
+            {
+                if(role.equals("system_administrator"))
+                {
+                    user = new SystemAdministrator(username, email, name, surname, password, role);
+                }
+                else if(role.equals("planner"))
+                {
+                    user = new Planner(username, email, name, surname, password, role);
+                }
+                userRepo.addUser(user);
+                String addedMessage = ADDED_MESSAGE.replaceAll("username_param", username);
+                JOptionPane.showMessageDialog(null, addedMessage);
+                return true;
+            } 
+        }
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
@@ -139,7 +153,7 @@ public class AddUserController extends AbstractController
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ADD_FAILED_MESSAGE);
         }
-        
+        return false;
     }
     
     /**
