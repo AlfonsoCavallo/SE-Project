@@ -12,6 +12,19 @@ drop table if exists maintenance_system.site cascade;
 drop table if exists maintenance_system.user_competence cascade;
 drop table if exists maintenance_system.user_data cascade;
 drop table if exists maintenance_system.workshift cascade;
+drop table if exists maintenance_system.assignment cascade;
+
+/*==============================================================*/
+/* table: assignment                                            */
+/*==============================================================*/
+create table maintenance_system.assignment (
+   assignment_id_activity    int                  not null,
+   assignment_username       varchar(30)          not null,
+   assignment_day            varchar(10)          not null,
+   assignment_time           varchar(10)          not null,
+   constraint pk_assignment primary key (assignment_id_activity, assignment_username)
+);
+
 
 /*==============================================================*/
 /* table: user_access                                           */
@@ -21,17 +34,6 @@ create table maintenance_system.user_access (
    username_access_ref   varchar(30)          not null,
    access_time           timestamp            not null,
    constraint pk_access primary key (id_access)
-);
-
-
-/*==============================================================*/
-/* table: afferent                                              */
-/*==============================================================*/
-create table maintenance_system.afferent (
-   id_activity_afferent_ref    int                  not null,
-   branch_office_ref           varchar(30)          not null,
-   department_ref              varchar(30)          not null,
-   constraint pk_afferent primary key (id_activity_afferent_ref, branch_office_ref, department_ref)
 );
 
 
@@ -61,6 +63,7 @@ create table maintenance_system.maintenance_activity (
    id_activity           serial               not null,
    activity_name         varchar(30)          not null,
    time_needed           int                  not null,
+   remaining_time        int                  not null,
    interruptible         varchar(3)           not null,
    typology              varchar(30)          not null,
    activity_description  varchar(200)         not null,
@@ -69,6 +72,8 @@ create table maintenance_system.maintenance_activity (
    -- if ewo is 'yes', tha maintenance activity is an EWO, else if it's 'no', it's an extra activity
    ewo                   varchar(3)           null,
    standard_procedure    varchar(100)         null,
+   activity_branch_office         varchar(30)          not null,
+   activity_department            varchar(30)          not null,
    check (planned in ('yes','no')),
    check (interruptible in ('yes','no')),
    check (typology in ('electrical','electronic', 'hydraulic', 'mechanical')),
@@ -76,6 +81,7 @@ create table maintenance_system.maintenance_activity (
           (planned='yes' and standard_procedure is not null and ewo = 'no')),
    check (ewo in ('yes','no')),
    check ((week >= 1) and (week <= 52)),
+   check (remaining_time <= time_needed),
    constraint pk_maintenance_activity primary key (id_activity),
    constraint ak_activity_name_maintena unique (activity_name)
 );
@@ -142,6 +148,7 @@ create table maintenance_system.user_data (
 create table maintenance_system.workshift (
    worker_username      varchar(30)          not null,
    day_of_week          varchar(10)          not null,
+   week_workshift        int                  not null,	
    "8_9"                smallint             not null,
    "9_10"               smallint             not null,
    "10_11"              smallint             not null,
@@ -153,22 +160,23 @@ create table maintenance_system.workshift (
    check ((("8_9" <= 60)  and ("8_9" >= 0)) and (("9_10" <= 60) and ("9_10" >= 0 )) and (("10_11" <= 60) and ("10_11" >= 0))
 		  and (("11_12" <= 60) and ("11_12" >= 0)) and (("14_15" <= 60) and ("14_15" >= 0)) and (("15_16" <= 60) and ("15_16" >= 0)) 
 		  and (("16_17" <= 60) and ("16_17" >= 0))),
-   constraint pk_workshift primary key (worker_username, day_of_week)
+   check ((week_workshift >= 1) and (week_workshift <= 52)),
+   constraint pk_workshift primary key (worker_username, day_of_week, week_workshift)
 );
 
-alter table maintenance_system.user_access
-   add constraint fk_access_login_user_data foreign key (username_access_ref)
+alter table maintenance_system.assignment
+   add constraint fk_assignme_assignmen_userdata foreign key (assignment_username)
       references maintenance_system.user_data (username)
       on delete cascade on update cascade;
 
-alter table maintenance_system.afferent
-   add constraint fk_afferent_afferent_maintena foreign key (id_activity_afferent_ref)
+alter table maintenance_system.assignment
+   add constraint fk_assignme_assignmen_maintena foreign key (assignment_id_activity)
       references maintenance_system.maintenance_activity (id_activity)
       on delete cascade on update cascade;
-
-alter table maintenance_system.afferent
-   add constraint fk_afferent_afferent2_site foreign key (branch_office_ref, department_ref)
-      references maintenance_system.site (branch_office, department)
+	  
+alter table maintenance_system.user_access
+   add constraint fk_access_login_user_data foreign key (username_access_ref)
+      references maintenance_system.user_data (username)
       on delete cascade on update cascade;
 
 alter table maintenance_system.competence_needed
@@ -205,6 +213,11 @@ alter table maintenance_system.workshift
    add constraint fk_workshif_work_userdata foreign key (worker_username)
       references maintenance_system.user_data (username)
       on delete cascade on update cascade;
+	  
+alter table maintenance_system.maintenance_activity
+   add constraint fk_maintena_afferent_site foreign key (activity_branch_office, activity_department)
+      references maintenance_system.site (branch_office, department)
+      on delete cascade on update cascade;
 
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('finneas','finneas@finneas.it','finneas','fin','neas','system_administrator');
@@ -218,12 +231,6 @@ values('finneas', '2020-11-26 15:30:02');
 insert into maintenance_system.user_access(username_access_ref, access_time)
 values('jon', '2020-11-25 15:00:00');
 
-insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
-values('activity1', 45, 'yes', 'electrical', 'riparazione turbina 3', 2, 'yes', null, '1... 2... 3...');
-
-insert into maintenance_system.maintenance_activity(activity_name, time_needed, interruptible, typology, activity_description, week, planned, ewo, standard_procedure)
-values('activity2', 30, 'yes', 'hydraulic', 'riparazione turbina 5', 3, 'yes', null, '4... 5... 6...');
-
 grant all privileges on all tables in schema maintenance_system to finneas;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to finneas;
 
@@ -231,72 +238,83 @@ grant all privileges on all tables in schema maintenance_system to jon;
 grant usage, select on sequence maintenance_system.user_access_id_access_seq to jon;
 grant usage, select on sequence maintenance_system.maintenance_activity_id_activity_seq to jon;
 
+-- creating some maintainers
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('gio','gio@gio.it','gio','gio','fal','maintainer');
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Monday', 15, 0, 60, 30, 30, 50, 10);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Tuesday', 0, 0, 60, 10, 30, 50, 60);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Wednesday', 25, 0, 60, 0, 30, 50, 15);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Thursday', 15, 0, 60, 30, 0, 50, 15);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Friday', 0, 0, 60, 30, 20, 50, 0);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Saturday', 40, 0, 20, 40, 30, 50, 60);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('gio', 'Sunday', 25, 0, 60, 30, 45, 0, 60);
 
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('phil','phil@phil.com','phil','phil','lips','maintainer');
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Monday', 0, 0, 0, 0, 0, 0, 0);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Tuesday', 0, 0, 60, 10, 30, 50, 60);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Wednesday', 0, 0, 0, 0, 0, 0, 0);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Thursday', 0, 0, 0, 0, 0, 0, 0);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Friday', 0, 0, 60, 30, 20, 50, 0);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Saturday', 40, 0, 20, 40, 30, 50, 60);
-
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('phil', 'Sunday', 0, 0, 0, 0, 0, 0, 0);
-
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('donald','don@ald.com','donald','donald','McDonald','maintainer');
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Monday', 60, 60, 60, 60, 60, 60, 60);
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Tuesday', 60, 60, 60, 60, 60, 60, 60);
+-- creating all weekly workshifts
+do $$
+begin
+for r in 1..52 loop
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Monday', r, 60, 60, 60, 60, 60, 60, 60);
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Wednesday', 60, 60, 60, 60, 60, 60, 60);
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Tuesday', r, 60, 60, 60, 60, 60, 60, 60);
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Thursday', 60, 60, 60, 60, 60, 60, 60);
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Wednesday', r, 60, 60, 60, 60, 60, 60, 60);
 
-insert into maintenance_system.workshift(worker_username, day_of_week, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
-values ('donald', 'Friday', 60, 60, 60, 60, 60, 60, 60);
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Thursday', r, 60, 60, 60, 60, 60, 60, 60);
 
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('donald', 'Friday', r, 60, 60, 60, 60, 60, 60, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Monday', r, 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Tuesday', r, 0, 0, 60, 10, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Wednesday', r, 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Thursday', r, 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Friday', r, 0, 0, 60, 30, 20, 50, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Saturday', r, 40, 0, 20, 40, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('phil', 'Sunday', r, 0, 0, 0, 0, 0, 0, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Monday', r, 15, 0, 60, 30, 30, 50, 10);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Tuesday', r, 0, 0, 60, 10, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Wednesday', r, 25, 0, 60, 0, 30, 50, 15);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Thursday', r, 15, 0, 60, 30, 0, 50, 15);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Friday', r, 0, 0, 60, 30, 20, 50, 0);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Saturday', r, 40, 0, 20, 40, 30, 50, 60);
+
+insert into maintenance_system.workshift(worker_username, day_of_week, week_workshift, "8_9", "9_10", "10_11", "11_12", "14_15", "15_16", "16_17")
+values ('gio', 'Sunday', r, 25, 0, 60, 30, 45, 0, 60);
+end loop;
+end;
+$$;
+
+
+-- creating some competences
 insert into maintenance_system.competence(competence_name)
 values ('PAV Certification'),
 	('Electrical Maintenance'),
@@ -308,7 +326,8 @@ values ('PAV Certification'),
 	('Knowledge of Hydraulic Tools'),
 	('English Knowledge'),
 	('German Knowledge');
-	   
+
+-- creating some sites
 insert into maintenance_system.site(branch_office, department)
 values ('Fisciano', 'Printing'),
        ('Fisciano', 'Molding'),
@@ -333,7 +352,8 @@ values ('Fisciano', 'Printing'),
        ('Montecorvino Rovella', 'Printing'),
        ('Montecorvino Rovella', 'Molding'),
        ('Montecorvino Rovella', 'Carpentry');
-	   
+
+-- assigning competences to the maintainers
 insert into maintenance_system.user_competence (competence_name_ref, username_ref)
 values ('Knowledge of Cable Types', 'gio'),
        ('Xyz-Type Robot Knowledge', 'gio'),
@@ -346,11 +366,13 @@ values ('Knowledge of Cable Types', 'gio'),
        ('Knowledge of Workstation 09', 'donald'),
        ('Knowledge of Workstation 35', 'donald');
 
-insert into maintenance_system.afferent (id_activity_afferent_ref, branch_office_ref, department_ref)
-values (1, 'Lauria', 'Molding'),
-       (1, 'Lauria', 'Printing'),
-       (2, 'Fisciano', 'Printing'),
-       (2, 'Fisciano', 'Cleaning');
+
+insert into maintenance_system.maintenance_activity(activity_name, time_needed, remaining_time, interruptible, typology, activity_description, week, planned, ewo, activity_branch_office, activity_department, standard_procedure)
+values('activity1', 45, 45, 'yes', 'electrical', 'riparazione turbina 3', 2, 'yes', null, 'Fisciano', 'Printing', '1... 2... 3...');
+
+insert into maintenance_system.maintenance_activity(activity_name, time_needed, remaining_time, interruptible, typology, activity_description, week, planned, ewo, activity_branch_office, activity_department, standard_procedure)
+values('activity2', 30, 30, 'yes', 'hydraulic', 'riparazione turbina 5', 3, 'yes', null, 'Lauria', 'Molding', '4... 5... 6...');
+
 
 insert into maintenance_system.competence_needed (id_activity_competence_needed_ref, competence_name_needed_ref)
 values (1, 'Electrical Maintenance'),
@@ -370,6 +392,8 @@ values (1, 'Electrical Maintenance'),
 -- select * from maintenance_system.user_competence;
 -- select * from maintenance_system.afferent;
 -- select * from maintenance_system.competence_needed;
+-- select * from maintenance_system.workshift;
+-- select * from maintenance_system.maintenance_activity;
 
 /* testing maintenance_activity */
 
