@@ -1,6 +1,5 @@
 package se.project.business_logic.controllers.activities_assignment;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -183,16 +182,48 @@ public class ActivityAssignmentController extends AbstractController
     }        
     
     /*
-    public void setAvailabilityColour()
+    public void setAvailabilityColour(JTable table, int row, int column)
     {
-        int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
-        int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
+        //int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        //int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
         
         int per = parseInt(activityAssignmentView.getjMaintainerAvailabilityTable().getValueAt(row, column).toString());
         if (per == 100)
         {
             activityAssignmentView.getjMaintainerAvailabilityTable().setSelectionBackground(Color.yellow);
         }    
-    }        
+    }
+    
+    
+    public void setAvailabilityColour(JTable table, int row, int column)
+    {
+        //int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        //int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
+        table.getCellEditor().getTableCellEditorComponent(table, this, true, row, row).setBackground(Color.yellow);
+         
+    } 
+    
+     public class MyTableCellRenderer extends DefaultTableCellRenderer {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                   boolean hasFocus, int row, int column){
+        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        
+        if(row%2==0){
+            this.setBackground(Color.lightGray);
+        }else{
+            this.setBackground(Color.WHITE);
+        }
+        String str=value.toString();
+        if(column==3 && !(str.toUpperCase().equals("Ciao"))){
+            this.setBackground(Color.RED);
+            //this.setForeground(Color.RED);
+        } else {
+            //this.setForeground(null);
+            this.setBackground(Color.WHITE);
+        }
+        return this;
+    }
+    }
     */
 }

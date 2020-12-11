@@ -1,6 +1,6 @@
-/*
 package se.project.business_logic.controllers;
 
+import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,6 +8,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import se.project.business_logic.controllers.activities_assignment.ActivityAssignmentController;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import se.project.presentation.views.activities_assignment.ActivityAssignmentView;
+import static se.project.storage.DatabaseConnection.closeConnection;
 
 
 public class ActivityAssignmentControllerTest
@@ -35,33 +40,21 @@ public class ActivityAssignmentControllerTest
     @After
     public void tearDown()
     {
+        try
+        {
+            closeConnection();
+        }
+        catch (SQLException ex)
+        {
+            
+        }        
     }
 
-    /**
-     * Test of initListeners method, of class ActivityAssignmentController.
-     *-/
-    @Test
-    public void testInitListeners()
+    private ActivityAssignmentView simulateView()
     {
-        System.out.println("initListeners");
-        ActivityAssignmentController instance = new ActivityAssignmentController();
-        instance.initListeners();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of goBackMaintenanceActivityInfoPage method, of class ActivityAssignmentController.
-     *-/
-    @Test
-    public void testGoBackMaintenanceActivityInfoPage()
-    {
-        System.out.println("goBackMaintenanceActivityInfoPage");
-        ActivityAssignmentController.goBackMaintenanceActivityInfoPage();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        ActivityAssignmentView mock = mock(ActivityAssignmentView.class, RETURNS_DEEP_STUBS);
+        when(mock.getjMaintainerAvailabilityTable().getSelectedRow()).thenReturn(0);
+        return mock;
+    }        
     
 }
-
-*/
