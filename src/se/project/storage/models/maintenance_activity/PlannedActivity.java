@@ -17,16 +17,17 @@ public class PlannedActivity extends MaintenanceActivity
      * @param IDActivity is the IDActivity of the Planned Activity
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the Planned Activity
      * @param typology is the typology of the Planned Activity
      * @param activityDescription is the activity description of the Planned Activity
      * @param week is the week dedicated to the Planned Activity
      * @param standardProcedure is the standard procedure
      */
-    public PlannedActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
+    public PlannedActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week, String standardProcedure)
     {
-        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week);
         this.standardProcedure = standardProcedure;
         this.planned = "yes";
         this.ewo = "no";
@@ -37,16 +38,17 @@ public class PlannedActivity extends MaintenanceActivity
      * Creates a new PlannedActivity without considering the ID
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the Planned Activity
      * @param typology is the typology of the Planned Activity
      * @param activityDescription is the activity description of the Planned Activity
      * @param week is the week dedicated to the Planned Activity
      * @param standardProcedure is the standard procedure
      */
-    public PlannedActivity(String activityName, int timeNeeded, boolean interruptible, 
+    public PlannedActivity(String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week, String standardProcedure)
     {
-        super(activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        super(activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week);
         this.standardProcedure = standardProcedure;
         this.planned = "yes";
         this.ewo = "no";
@@ -58,6 +60,7 @@ public class PlannedActivity extends MaintenanceActivity
      * @param IDActivity is the IDActivity of the Planned Activity
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the Planned Activity
      * @param typology is the typology of the Planned Activity
      * @param activityDescription is the activity description of the Planned Activity
@@ -67,11 +70,11 @@ public class PlannedActivity extends MaintenanceActivity
      * @param skills is an array of skills needed fot that activity
      * @param standardProcedure is the standard procedure
      */
-    public PlannedActivity(int IDActivity, String activityName, int timeNeeded, 
+    public PlannedActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime, 
             boolean interruptible, Typology typology, String activityDescription, int week, 
             String brachOffice, String department, ArrayList<String> skills, String standardProcedure)
     {
-        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week, brachOffice, department,skills);
+        super(IDActivity, activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week, brachOffice, department,skills);
         this.standardProcedure = standardProcedure;
         this.planned = "yes";
         this.ewo = "no";

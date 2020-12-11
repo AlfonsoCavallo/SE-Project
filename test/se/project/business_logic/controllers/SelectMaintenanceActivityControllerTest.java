@@ -84,7 +84,7 @@ public class SelectMaintenanceActivityControllerTest
         
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
             boolean open = controller.selectMaintenaceActivity();
             assertEquals(expectedActivity, controller.getPlannedActivity());
             assertTrue(open);
@@ -112,7 +112,7 @@ public class SelectMaintenanceActivityControllerTest
         
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Cleaning", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Cleaning", expectedSkills, "4... 5... 6...");
             controller.selectMaintenaceActivity();
             assertEquals(expectedActivity, controller.getPlannedActivity());
             
@@ -139,7 +139,7 @@ public class SelectMaintenanceActivityControllerTest
         
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 2, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 2, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
             controller.selectMaintenaceActivity();
             assertEquals(expectedActivity, controller.getPlannedActivity());
             
@@ -166,7 +166,7 @@ public class SelectMaintenanceActivityControllerTest
         
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedActivity = new PlannedActivity(1, "activity2", 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedActivity = new PlannedActivity(1, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Fisciano", "Printing", expectedSkills, "4... 5... 6...");
             controller.selectMaintenaceActivity();
             assertEquals(expectedActivity, controller.getPlannedActivity());
             

@@ -16,15 +16,16 @@ public class ExtraActivity extends UnplannedActivity
      * @param IDActivity is the ID of the Maintenance Activity
      * @param activityName is the name of the Maintenance Activity
      * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
      * @param typology is the typology of the Maintenance Activity
      * @param activityDescription is the description of the Maintenance Activity
      * @param week is the week in which the Maintenance Activity must be done
      */
-    public ExtraActivity(int IDActivity, String activityName, int timeNeeded, boolean interruptible, 
+    public ExtraActivity(int IDActivity, String activityName, int timeNeeded,int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        super(IDActivity, activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "no";
@@ -35,15 +36,16 @@ public class ExtraActivity extends UnplannedActivity
      * Creates a new ExtraActivity without considering the ID
      * @param activityName is the name of the Maintenance Activity
      * @param timeNeeded is the time needed for the Maintenance Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
      * @param typology is the typology of the Maintenance Activity
      * @param activityDescription is the description of the Maintenance Activity
      * @param week is the week in which the Maintenance Activity must be done
      */
-    public ExtraActivity(String activityName, int timeNeeded, boolean interruptible, 
+    public ExtraActivity(String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
     {
-        super(activityName, timeNeeded, interruptible, typology, activityDescription, week);
+        super(activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "no";
@@ -55,6 +57,7 @@ public class ExtraActivity extends UnplannedActivity
      * @param IDActivity is the IDActivity of the Planned Activity
      * @param activityName is the name of the Planned Activity
      * @param timeNeeded is the time needed for the Planned Activity
+     * @param remainingTime is the time remained for the completition of the Activity
      * @param interruptible is the type of the Planned Activity
      * @param typology is the typology of the Planned Activity
      * @param activityDescription is the activity description of the Planned Activity
@@ -63,11 +66,11 @@ public class ExtraActivity extends UnplannedActivity
      * @param department is the department in which the acrivity must be done
      * @param skills is an array of skills needed fot that activity
      */
-    public ExtraActivity(int IDActivity, String activityName, int timeNeeded, 
+    public ExtraActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime, 
             boolean interruptible, Typology typology, String activityDescription, int week, 
             String brachOffice, String department, ArrayList<String> skills)
     {
-        super(IDActivity, activityName, timeNeeded, interruptible, typology, activityDescription, week, brachOffice, department,skills);
+        super(IDActivity, activityName, timeNeeded, remainingTime, interruptible, typology, activityDescription, week, brachOffice, department,skills);
         this.standardProcedure = "-";
         this.planned = "no";
         this.ewo = "no";

@@ -154,19 +154,19 @@ public class AddMaintenanceActivityController extends AbstractController
         
         if(planned.equals("yes"))
         {
-            maintenanceActivity = new PlannedActivity(activityName, parseInt(timeNeeded), interruptible, 
+            maintenanceActivity = new PlannedActivity(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
             fromString(typology), activityDescription, parseInt(week), standardProcedure);
         }
         else
         {
             if(ewo.equals("yes"))
             {
-                maintenanceActivity = new EWO(activityName, parseInt(timeNeeded), interruptible, 
+                maintenanceActivity = new EWO(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
                 fromString(typology), activityDescription, parseInt(week));
             }
             else
             {
-                maintenanceActivity = new ExtraActivity(activityName, parseInt(timeNeeded), interruptible, 
+                maintenanceActivity = new ExtraActivity(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
                 fromString(typology), activityDescription, parseInt(week));
             } 
         }

@@ -167,6 +167,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             int IDActivity = resultSet.getInt("id_activity");
             String activityName = resultSet.getString("activity_name");
             int timeNeeded = resultSet.getInt("time_needed");
+            int remainingTime = resultSet.getInt("remaining_time");
             boolean interruptible = resultSet.getBoolean("interruptible");
             Typology typology = fromString(resultSet.getString("typology"));
             String activityDescription = resultSet.getString("activity_description");
@@ -176,13 +177,13 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String standardProcedure = resultSet.getString("standard_procedure");
             
             if(planned.equals("yes"))
-                output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, interruptible, 
+                output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                             typology, activityDescription, week, standardProcedure));
             else if(ewo.equals("yes"))
-                output.add(new EWO(IDActivity, activityName, timeNeeded, interruptible, 
+                output.add(new EWO(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                             typology, activityDescription, week));
             else if(ewo.equals("no"))
-                output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, interruptible, 
+                output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                             typology, activityDescription, week));
         }
         return output;
@@ -220,6 +221,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             int IDActivity = resultSet.getInt("id_activity");
             String activityName = resultSet.getString("activity_name");
             int timeNeeded = resultSet.getInt("time_needed");
+            int remainingTime = resultSet.getInt("remaining_time");
             boolean interruptible = resultSet.getBoolean("interruptible");
             Typology typology = fromString(resultSet.getString("typology"));
             String activityDescription = resultSet.getString("activity_description");
@@ -232,7 +234,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             ArrayList<String> skills = querySkillsNeeded(IDActivity);
             
             
-            output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, interruptible, 
+            output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
                         typology, activityDescription, week, branchOffice, department, skills, standardProcedure));
             
         }
