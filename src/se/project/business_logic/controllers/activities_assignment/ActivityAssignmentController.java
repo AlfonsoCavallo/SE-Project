@@ -1,5 +1,6 @@
 package se.project.business_logic.controllers.activities_assignment;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -15,7 +16,6 @@ import se.project.presentation.views.activities_assignment.ActivityAssignmentVie
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.WeeklyAvailability;
-import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.WeeklyAvailabilityRepo;
@@ -92,7 +92,7 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * 
-     * 
+     * Opens the Maintenance Activity Info view using its controller
      */
     public void goBackMaintenanceActivityInfoPage()
     {
@@ -106,20 +106,20 @@ public class ActivityAssignmentController extends AbstractController
     }        
     */
     
-    public void viewAvailability(MaintenanceActivity maintenanceActivity)
+    public void viewAvailability(PlannedActivity plannedActivity)
     {
         DefaultTableModel tableModel = activityAssignmentView.getDefaultTableModelAvailability();
         DefaultListModel listModel = activityAssignmentView.getDefaultListModelSkills();
         
         try
         {
-            List<String> competenciesSerched = maintenanceActivity.getSkills();
-            int weekSearched = maintenanceActivity.getWeek();
-            int IDActivity = maintenanceActivity.getIdActivity();
-            String branchOffice = maintenanceActivity.getBrachOffice();
-            String department = maintenanceActivity.getDepartment();
-            Typology typology = maintenanceActivity.getTypology();
-            int timeNeeded = maintenanceActivity.getTimeNeeded();
+            List<String> competenciesSerched = plannedActivity.getSkills();
+            int weekSearched = plannedActivity.getWeek();
+            int IDActivity = plannedActivity.getIdActivity();
+            String branchOffice = plannedActivity.getBrachOffice();
+            String department = plannedActivity.getDepartment();
+            Typology typology = plannedActivity.getTypology();
+            int timeNeeded = plannedActivity.getTimeNeeded();
             
             this.weeklyAvailabilities = weeklyAvailabilityRepo.queryAllWeeklyAvailabilities(competenciesSerched, weekSearched);
             
@@ -148,9 +148,16 @@ public class ActivityAssignmentController extends AbstractController
             
             // Iterates over maintenance activities
             for(WeeklyAvailability availability : weeklyAvailabilities)
-            {    
-                tableModel.addRow(availability.getDataForAssignment());
-            }    
+            {   
+                Object[] model;
+                
+                model = UpdateDataModel(availability.getDataForAssignment());
+                
+                tableModel.addRow(model);
+            }
+            
+            //activityAssignmentView.getjMaintainerAvailabilityTable().getCellRenderer(2, 2).getTableCellRendererComponent(activityAssignmentView.getjMaintainerAvailabilityTable(), this, true, true, 2, 2).setBackground(Color.yellow);
+            //activityAssignmentView.getjMaintainerAvailabilityTable().getCellRenderer(1, 3).getTableCellRendererComponent(activityAssignmentView.getjMaintainerAvailabilityTable(), this, true, true, 1, 3).setBackground(Color.green);
         }
         catch (IOException ex)
         {
@@ -160,6 +167,32 @@ public class ActivityAssignmentController extends AbstractController
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }
+    } 
+    
+    public Object[] UpdateDataModel(Object[] dataModel)
+    {
+        int maxSkills = this.plannedActivity.getSkills().size();
+        
+        dataModel[1] = dataModel[1] + "/" + maxSkills;
+        for(int i= 2; i<=8; i++)
+        {
+          dataModel[i] = dataModel[i] + "%";  
+        }    
+        
+        return dataModel;
     }        
     
+    /*
+    public void setAvailabilityColour()
+    {
+        int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
+        
+        int per = parseInt(activityAssignmentView.getjMaintainerAvailabilityTable().getValueAt(row, column).toString());
+        if (per == 100)
+        {
+            activityAssignmentView.getjMaintainerAvailabilityTable().setSelectionBackground(Color.yellow);
+        }    
+    }        
+    */
 }
