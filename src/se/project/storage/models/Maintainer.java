@@ -5,6 +5,16 @@ public class Maintainer extends User
 {
     private String role;
     
+    /**
+     * 
+     * Creates a new Maintainer
+     * @param username is the username of the Maintainer
+     * @param email is the email of the Maintainer
+     * @param name is the name of the Maintainer
+     * @param surname is the surname of the Maintainer
+     * @param password is the password of the Maintainer
+     * @param role is the role
+     */
     public Maintainer(String username, String email, String name, String surname, String password, String role)
     {
         super(username, email, name, surname, password);
