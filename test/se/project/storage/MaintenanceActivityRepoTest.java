@@ -2,6 +2,7 @@ package se.project.storage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -16,10 +17,14 @@ import static se.project.storage.DatabaseConnection.connect;
 import static se.project.storage.DatabaseConnection.getConnection;
 import static se.project.storage.DatabaseTesting.getTestUser;
 import static se.project.storage.DatabaseTesting.resetDatabase;
+import se.project.storage.models.Maintainer;
+import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.*;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repos.WeeklyAvailabilityRepo;
+import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
 
 public class MaintenanceActivityRepoTest
@@ -238,13 +243,93 @@ public class MaintenanceActivityRepoTest
             
             closeConnection();
         }
-        catch (ClassNotFoundException | SQLException | IOException ex)
+        catch(ClassNotFoundException | SQLException | IOException ex)
         {
             System.err.println(ex.getMessage());
             fail();
         }
     }
     
-    
-
+    /**
+     * 
+     * Verify the correct assignment of a Maintenance Activity to a Maintainer
+     * @Result The activity is correctly assigned
+     */
+    @Test
+    public void testMaintenanceActivityAssignment()
+    {
+        try
+        {
+            connect(getTestUser());
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
+            WeeklyAvailabilityRepoInterface weeklyAvailabiltiyRepo = new WeeklyAvailabilityRepo(getConnection());
+            
+            // Definition of the activity
+            ArrayList<String> skills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
+            PlannedActivity activity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", skills, "4... 5... 6...");
+            
+            // Definition of the maintainer
+            Maintainer maintainer = new Maintainer("donald", "don@ald.com", "donald", "McDonald", "donald", "maintainer");
+            instance.assignMaintenanceActivity(activity, maintainer, DayOfWeek.TUESDAY, WeeklyAvailability.WorkTurn.H8, 60);
+            
+            // Check if the activity has been filtered as "already assigned"
+            assertFalse(instance.queryMaintenanceActivityInWeek(3).contains(activity));
+            
+            // Check remaining time is 0
+            assertEquals(0, instance.queryOneMaintenanceActivity("activity2").getFirst().getRemainingTime());
+            
+            // Check maintainer's free time has been reduced
+            assertEquals(30, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 3).getMinutesAvailable(DayOfWeek.TUESDAY, WeeklyAvailability.WorkTurn.H8));
+            
+            // Check if time reduction is valid only for that specific week
+            assertEquals(60, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 2).getMinutesAvailable(DayOfWeek.TUESDAY, WeeklyAvailability.WorkTurn.H8));
+        }
+        catch(ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();            
+        }
+    }
+        
+     /**
+     * 
+     * Verify the correct assignment of a Maintenance Activity to a Maintainer
+     * @Result The activity is correctly partially assigned with a remaining time still to be assigned
+     */
+    @Test
+    public void testMaintenanceActivityPartialAssignment()
+    {
+        try
+        {
+            connect(getTestUser());
+            MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
+            WeeklyAvailabilityRepoInterface weeklyAvailabiltiyRepo = new WeeklyAvailabilityRepo(getConnection());
+            
+            // Definition of the activity
+            ArrayList<String> skills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
+            PlannedActivity activity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", skills, "4... 5... 6...");
+            
+            // Definition of the maintainer
+            Maintainer maintainer = new Maintainer("phil", "phil@phil.com", "phil", "phil", "lips", "maintainer");
+            instance.assignMaintenanceActivity(activity, maintainer, DayOfWeek.FRIDAY, WeeklyAvailability.WorkTurn.H14, 20);
+            
+            // Check if the activity is still in the list of the activities "to be assigned"
+            PlannedActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", skills, "4... 5... 6...");
+            assertTrue(instance.queryMaintenanceActivityInWeek(3).contains(expectedActivity));
+            
+            // Check remaining time is 10
+            assertEquals(10, instance.queryOneMaintenanceActivity("activity2").getFirst().getRemainingTime());
+            
+            // Check maintainer's free time has been reduced
+            assertEquals(0, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 3).getMinutesAvailable(DayOfWeek.FRIDAY, WeeklyAvailability.WorkTurn.H14));
+            
+            // Check if time reduction is valid only for that specific week
+            assertEquals(20, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 2).getMinutesAvailable(DayOfWeek.FRIDAY, WeeklyAvailability.WorkTurn.H14));
+        }
+        catch(ClassNotFoundException | SQLException | IOException ex)
+        {
+            System.err.println(ex.getMessage());
+            fail();            
+        }
+    }
 }

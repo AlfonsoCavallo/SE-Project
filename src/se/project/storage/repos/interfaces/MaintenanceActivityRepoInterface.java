@@ -2,7 +2,10 @@ package se.project.storage.repos.interfaces;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.util.LinkedList;
+import se.project.storage.models.Maintainer;
+import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 
@@ -62,4 +65,16 @@ public interface MaintenanceActivityRepoInterface
      * @throws SQLException 
      */
     public LinkedList<PlannedActivity> queryMaintenanceActivityInWeek(int weekSearched) throws IOException, SQLException;
+    
+    /**
+     * Assign a Maintenance activity to a maintainer
+     * @param maintenanceActivity is the activity to be assigned
+     * @param maintainer is the maintainer who'll work on the activity
+     * @param day is the day in which the Maintainer will work on that task
+     * @param turn is the turn in which the Maintainer will work on that task
+     * @throws IOException
+     * @throws SQLException
+     */
+    public void assignMaintenanceActivity(MaintenanceActivity maintenanceActivity, Maintainer maintainer, 
+            DayOfWeek day, WeeklyAvailability.WorkTurn turn, int minutesAvailable) throws IOException, SQLException;
 }
