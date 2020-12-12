@@ -139,6 +139,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         int week = maintenanceActivity.getWeek();
         String planned = maintenanceActivity.isPlanned();
         String ewo = maintenanceActivity.isEWO();
+        String branchOffice = maintenanceActivity.getBrachOffice();
+        String department = maintenanceActivity.getDepartment();
         String standardProcedure = maintenanceActivity.getStandardProcedure();
         String oldActivityName = activityToUpdate;
         
@@ -150,6 +152,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         query = query.replaceAll("week_param", String.valueOf(week));
         query = query.replaceAll("planned_param", planned);
         query = query.replaceAll("ewo_param", ewo);
+        query = query.replaceAll("office_param", branchOffice);
+        query = query.replaceAll("department_param", department);
         query = query.replaceAll("standard_param", standardProcedure);
         query = query.replaceAll("activity_param", oldActivityName);
         executeStatement(query);
@@ -177,18 +181,20 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String activityDescription = resultSet.getString("activity_description");
             int week = resultSet.getInt("week");
             String planned = resultSet.getString("planned");
-            String ewo = resultSet.getString("ewo");
+            String branchOffice = resultSet.getString("activity_branch_office");
+            String department = resultSet.getString("activity_department");
             String standardProcedure = resultSet.getString("standard_procedure");
             
             if(planned.equals("yes"))
+            {
                 output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week, standardProcedure));
-            else if(ewo.equals("yes"))
-                output.add(new EWO(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week));
-            else if(ewo.equals("no"))
+                            typology, activityDescription, week, branchOffice, department, new ArrayList<>(), standardProcedure));
+            }
+            else
+            {
                 output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week));
+                            typology, activityDescription, week, branchOffice, department, new ArrayList<>()));
+            }
         }
         return output;
     } 
