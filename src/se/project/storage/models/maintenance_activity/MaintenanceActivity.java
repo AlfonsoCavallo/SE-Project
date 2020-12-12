@@ -266,7 +266,11 @@ public abstract class MaintenanceActivity
     * 
     * @return an Object array representing the data model of the maintenance activity (must be implemented in the sub-classes)
     */
-   public abstract Object[] getDataModel();
+   public Object[] getDataModel()
+   {
+       return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(), getRemainingTime(),
+            isInterruptible(), getTypology().getValue(), getActivityDescription(), getWeek(), getBrachOffice(), getDepartment(), getStandardProcedure(), isPlanned()};
+   }
            
    /**
     * 

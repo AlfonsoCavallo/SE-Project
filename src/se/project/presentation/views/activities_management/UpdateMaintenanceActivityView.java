@@ -18,8 +18,8 @@ public class UpdateMaintenanceActivityView extends AbstractView
     {
         initComponents();
         this.defaultTableModel = new DefaultTableModel();       
-        Object columns[] = {"ID", "Name", "Time Needed", "Interruptible", "Typology", "Description", 
-                            "Week", "Planned", "EWO", "Standard Procedure"};
+        Object columns[] = {"ID", "Name", "Time Needed", "Remaining Time", "Interruptible", "Typology", "Description", 
+                            "Week", "Branch office", "Department", "Standard Procedure", "Planned"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
         this.setVisible(true);
