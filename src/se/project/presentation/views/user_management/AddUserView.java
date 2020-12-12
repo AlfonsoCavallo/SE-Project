@@ -287,7 +287,7 @@ public class AddUserView extends AbstractView
 
         jRoleComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jRoleComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "system_administrator", "planner" }));
+        jRoleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "system_administrator", "planner", "maintainer" }));
 
         jClearPanel.setBackground(new java.awt.Color(188, 180, 169));
         jClearPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -307,7 +307,7 @@ public class AddUserView extends AbstractView
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jClearPanelLayout.setVerticalGroup(
             jClearPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
