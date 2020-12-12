@@ -9,6 +9,7 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.user_management.AddUserView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
+import se.project.storage.models.Maintainer;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
@@ -138,6 +139,10 @@ public class AddUserController extends AbstractController
                 else if(role.equals("planner"))
                 {
                     user = new Planner(username, email, name, surname, password, role);
+                }
+                else if(role.equals("maintainer"))
+                {
+                    user = new Maintainer(username, email, name, surname, password, role);
                 }
                 userRepo.addUser(user);
                 String addedMessage = ADDED_MESSAGE.replaceAll("username_param", username);
