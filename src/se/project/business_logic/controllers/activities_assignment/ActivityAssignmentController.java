@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
@@ -90,8 +91,11 @@ public class ActivityAssignmentController extends AbstractController
        {
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
-               openActivityForwardingPage();
-               activityAssignmentView.dispose();
+               boolean open = openActivityForwardingPage();
+               if(open)
+               {    
+                    activityAssignmentView.dispose();
+               }
            }        
        });
                
@@ -106,25 +110,28 @@ public class ActivityAssignmentController extends AbstractController
         new MaintenanceActivityInfoController(this.plannedActivity);
     }
     
-    public void openActivityForwardingPage()
+    /**
+     * Opens the Activity Forwarding view using its controller
+     * @return true if the selected maintainer is confirmed in the "Confirm Message" window, false otherwise 
+     */
+    public boolean openActivityForwardingPage()
     {
         int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
         String maintainerName = this.weeklyAvailabilities.get(row).getUsername();
         String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
-        int input = JOptionPane.showConfirmDialog(null, confirmMessage);
+        int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
         if(input == 0)
         {
             new ActivityForwardingController(this.plannedActivity);
-        }      
+            return true;
+        }
+        return false;
     }        
     
-    /*
-    public static void goToSeletectAvailabilityTimePage()
-    {
-        new SeletectAvailabilityTime();
-    }        
-    */
-    
+    /**
+     * Updates the table in the page inserting all the availabilities in the specified week
+     * @param plannedActivity is the planned activity from which you obtain the informations to check the weekly availability
+     */
     public void viewAvailability(PlannedActivity plannedActivity)
     {
         DefaultTableModel tableModel = activityAssignmentView.getDefaultTableModelAvailability();
@@ -173,10 +180,7 @@ public class ActivityAssignmentController extends AbstractController
                 model = UpdateDataModel(availability.getDataForAssignment());
                 
                 tableModel.addRow(model);
-            }
-            
-            //activityAssignmentView.getjMaintainerAvailabilityTable().getCellRenderer(2, 2).getTableCellRendererComponent(activityAssignmentView.getjMaintainerAvailabilityTable(), this, true, true, 2, 2).setBackground(Color.yellow);
-            //activityAssignmentView.getjMaintainerAvailabilityTable().getCellRenderer(1, 3).getTableCellRendererComponent(activityAssignmentView.getjMaintainerAvailabilityTable(), this, true, true, 1, 3).setBackground(Color.green);
+            }  
         }
         catch (IOException ex)
         {
@@ -188,6 +192,11 @@ public class ActivityAssignmentController extends AbstractController
         }
     } 
     
+    /**
+     * Updates the DataModel adding more informations and some new strings
+     * @param dataModel is the DataModel that you want to update
+     * @return the updated DataModel with the new adds
+     */
     public Object[] UpdateDataModel(Object[] dataModel)
     {
         int maxSkills = this.plannedActivity.getSkills().size();
@@ -201,49 +210,4 @@ public class ActivityAssignmentController extends AbstractController
         return dataModel;
     }        
     
-    /*
-    public void setAvailabilityColour(JTable table, int row, int column)
-    {
-        //int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
-        //int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
-        
-        int per = parseInt(activityAssignmentView.getjMaintainerAvailabilityTable().getValueAt(row, column).toString());
-        if (per == 100)
-        {
-            activityAssignmentView.getjMaintainerAvailabilityTable().setSelectionBackground(Color.yellow);
-        }    
-    }
-    
-    
-    public void setAvailabilityColour(JTable table, int row, int column)
-    {
-        //int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
-        //int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
-        table.getCellEditor().getTableCellEditorComponent(table, this, true, row, row).setBackground(Color.yellow);
-         
-    } 
-    
-     public class MyTableCellRenderer extends DefaultTableCellRenderer {
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                                                   boolean hasFocus, int row, int column){
-        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
-        if(row%2==0){
-            this.setBackground(Color.lightGray);
-        }else{
-            this.setBackground(Color.WHITE);
-        }
-        String str=value.toString();
-        if(column==3 && !(str.toUpperCase().equals("Ciao"))){
-            this.setBackground(Color.RED);
-            //this.setForeground(Color.RED);
-        } else {
-            //this.setForeground(null);
-            this.setBackground(Color.WHITE);
-        }
-        return this;
-    }
-    }
-    */
 }
