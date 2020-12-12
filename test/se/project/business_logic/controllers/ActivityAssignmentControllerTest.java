@@ -1,4 +1,4 @@
-package se.project.business_logic.controllers;
+/*package se.project.business_logic.controllers;
 
 import java.sql.SQLException;
 import org.junit.After;
@@ -58,3 +58,4 @@ public class ActivityAssignmentControllerTest
     }        
     
 }
+*/

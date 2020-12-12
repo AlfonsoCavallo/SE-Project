@@ -25,6 +25,7 @@ public class ActivityAssignmentController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get weekly availabilities from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
+    private final String CONFIRM_ASSIGNMENT_MESSAGE = "Are you sure to assign this activity to the maintainer \" maintainer_name_param \"?";
     
     private final ActivityAssignmentView activityAssignmentView;
     private PlannedActivity plannedActivity = null;
@@ -85,8 +86,15 @@ public class ActivityAssignmentController extends AbstractController
            }        
        });
        
-       
-        
+       activityAssignmentView.getjMaintainerAvailabilityTable().addMouseListener(new java.awt.event.MouseAdapter()        
+       {
+           public void mouseClicked(java.awt.event.MouseEvent evt)
+           {
+               openActivityForwardingPage();
+               activityAssignmentView.dispose();
+           }        
+       });
+               
     }        
     
     /**
@@ -97,6 +105,18 @@ public class ActivityAssignmentController extends AbstractController
     {
         new MaintenanceActivityInfoController(this.plannedActivity);
     }
+    
+    public void openActivityForwardingPage()
+    {
+        int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        String maintainerName = this.weeklyAvailabilities.get(row).getUsername();
+        String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
+        int input = JOptionPane.showConfirmDialog(null, confirmMessage);
+        if(input == 0)
+        {
+            new ActivityForwardingController(this.plannedActivity);
+        }      
+    }        
     
     /*
     public static void goToSeletectAvailabilityTimePage()
