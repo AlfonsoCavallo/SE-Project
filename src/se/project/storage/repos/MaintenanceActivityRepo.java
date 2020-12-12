@@ -295,6 +295,12 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         int newRemainingTime = maintenanceActivity.getRemainingTime();
         int newAvailableMinutes = 0;
         
+        // No assignment for 0 minutes 
+        if(minutes == 0)
+        {
+            return;
+        }
+        
         // Update the values of availability for maintainer and remaining time for activity
         if(remainingTime >= minutes)
         {
