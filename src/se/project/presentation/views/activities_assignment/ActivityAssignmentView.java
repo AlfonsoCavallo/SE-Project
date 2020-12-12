@@ -272,8 +272,10 @@ public class ActivityAssignmentView extends AbstractView
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jMaintainerAvailabilityTable.setCellSelectionEnabled(true);
         jMaintainerAvailabilityTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMaintainerAvailabilityTable.setRowHeight(50);
+        jMaintainerAvailabilityTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jMaintainerAvailabilityTable);
 
         jSkillsNeededList.setName("Skills Needed"); // NOI18N

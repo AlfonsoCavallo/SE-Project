@@ -353,6 +353,13 @@ public class AddMaintenanceActivityView extends AbstractView
         jInterruptibleComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jInterruptibleComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jInterruptibleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
+        jInterruptibleComboBox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jInterruptibleComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -390,11 +397,11 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jEWOLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jEWOLabel.setForeground(new java.awt.Color(204, 204, 204));
-        jEWOLabel.setText("Branch office");
+        jEWOLabel.setText("Branch Office");
 
         jBranchOfficeComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jBranchOfficeComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jBranchOfficeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fisciano", "Nusco", "Lauria", "Morra", "Montella", "Torrione", "Montecorvino Rovella" }));
+        jBranchOfficeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fisciano", "Lauria", "Montecorvino Rovella", "Montella", "Morra", "Nusco", "Torrione" }));
 
         jStandardProcedureTextField.setBackground(new java.awt.Color(188, 180, 169));
         jStandardProcedureTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -461,8 +468,9 @@ public class AddMaintenanceActivityView extends AbstractView
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jDepartmentComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jDepartmentComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jDepartmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Printing", "Molding", "Painting", "Carpentry", "Cleaning" }));
+        jDepartmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carpentry", "Cleaning", "Molding", "Painting", "Printing", " " }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
@@ -512,15 +520,15 @@ public class AddMaintenanceActivityView extends AbstractView
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel8)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel4)
                                                 .addGap(63, 63, 63)
                                                 .addComponent(jLabel7))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jInterruptibleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(108, 108, 108)
-                                                .addComponent(jWeekComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jInterruptibleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(83, 83, 83)
+                                                .addComponent(jWeekComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addComponent(jEWOLabel)
                                             .addComponent(jBranchOfficeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jStandardProcedureLabel))))
@@ -579,12 +587,10 @@ public class AddMaintenanceActivityView extends AbstractView
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jTypologyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBranchOfficeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                                .addComponent(jBranchOfficeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jStandardProcedureLabel)
@@ -619,6 +625,11 @@ public class AddMaintenanceActivityView extends AbstractView
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jInterruptibleComboBoxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jInterruptibleComboBoxActionPerformed
+    {//GEN-HEADEREND:event_jInterruptibleComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jInterruptibleComboBoxActionPerformed
 
     /**
      * @param args the command line arguments

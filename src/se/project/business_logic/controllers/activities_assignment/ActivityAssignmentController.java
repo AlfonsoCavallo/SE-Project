@@ -1,6 +1,5 @@
 package se.project.business_logic.controllers.activities_assignment;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -26,6 +25,7 @@ public class ActivityAssignmentController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get weekly availabilities from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
+    private final String CONFIRM_ASSIGNMENT_MESSAGE = "Are you sure to assign this activity to the maintainer \" maintainer_name_param \"?";
     
     private final ActivityAssignmentView activityAssignmentView;
     private PlannedActivity plannedActivity = null;
@@ -86,8 +86,15 @@ public class ActivityAssignmentController extends AbstractController
            }        
        });
        
-       
-        
+       activityAssignmentView.getjMaintainerAvailabilityTable().addMouseListener(new java.awt.event.MouseAdapter()        
+       {
+           public void mouseClicked(java.awt.event.MouseEvent evt)
+           {
+               openActivityForwardingPage();
+               activityAssignmentView.dispose();
+           }        
+       });
+               
     }        
     
     /**
@@ -98,6 +105,18 @@ public class ActivityAssignmentController extends AbstractController
     {
         new MaintenanceActivityInfoController(this.plannedActivity);
     }
+    
+    public void openActivityForwardingPage()
+    {
+        int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        String maintainerName = this.weeklyAvailabilities.get(row).getUsername();
+        String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
+        int input = JOptionPane.showConfirmDialog(null, confirmMessage);
+        if(input == 0)
+        {
+            new ActivityForwardingController(this.plannedActivity);
+        }      
+    }        
     
     /*
     public static void goToSeletectAvailabilityTimePage()
@@ -183,16 +202,48 @@ public class ActivityAssignmentController extends AbstractController
     }        
     
     /*
-    public void setAvailabilityColour()
+    public void setAvailabilityColour(JTable table, int row, int column)
     {
-        int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
-        int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
+        //int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        //int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
         
         int per = parseInt(activityAssignmentView.getjMaintainerAvailabilityTable().getValueAt(row, column).toString());
         if (per == 100)
         {
             activityAssignmentView.getjMaintainerAvailabilityTable().setSelectionBackground(Color.yellow);
         }    
-    }        
+    }
+    
+    
+    public void setAvailabilityColour(JTable table, int row, int column)
+    {
+        //int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        //int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
+        table.getCellEditor().getTableCellEditorComponent(table, this, true, row, row).setBackground(Color.yellow);
+         
+    } 
+    
+     public class MyTableCellRenderer extends DefaultTableCellRenderer {
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                   boolean hasFocus, int row, int column){
+        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        
+        if(row%2==0){
+            this.setBackground(Color.lightGray);
+        }else{
+            this.setBackground(Color.WHITE);
+        }
+        String str=value.toString();
+        if(column==3 && !(str.toUpperCase().equals("Ciao"))){
+            this.setBackground(Color.RED);
+            //this.setForeground(Color.RED);
+        } else {
+            //this.setForeground(null);
+            this.setBackground(Color.WHITE);
+        }
+        return this;
+    }
+    }
     */
 }
