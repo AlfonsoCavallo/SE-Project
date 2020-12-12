@@ -17,9 +17,23 @@ public class UpdateMaintenanceActivityView extends AbstractView
     public UpdateMaintenanceActivityView()
     {
         initComponents();
-        this.defaultTableModel = new DefaultTableModel();       
-        Object columns[] = {"ID", "Name", "Time Needed", "Interruptible", "Typology", "Description", 
-                            "Week", "Planned", "EWO", "Standard Procedure"};
+        this.defaultTableModel = new DefaultTableModel()
+        {
+           @Override
+           public boolean isCellEditable(int row, int column)
+           {
+               if(column == 0 && column == 11)
+               {
+                   return false;
+               }
+               else
+               {
+                   return true;
+               }
+           }       
+        };
+        Object columns[] = {"ID", "Name", "Time Needed", "Remaining Time", "Interruptible", "Typology", "Description", 
+                            "Week", "Branch office", "Department", "Standard Procedure", "Planned"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
         this.setVisible(true);

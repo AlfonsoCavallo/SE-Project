@@ -3,6 +3,7 @@ package se.project.business_logic.controllers.activities_management;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -119,12 +120,14 @@ public class UpdateMaintenanceActivityController extends AbstractController
         int row = -1;
         String activityName = null;
         String timeNeeded = null;
+        String remainingTime = null;
         String interruptibleString = null;
         String typology = null;
         String activityDescription = null;
         String week = null;
         String planned = null;
-        String ewo = null;
+        String branchOffice = null;
+        String department = null;
         String standardProcedure = null;
         
         try
@@ -132,13 +135,15 @@ public class UpdateMaintenanceActivityController extends AbstractController
             row = updateMaintenanceActivityView.getjTable().getSelectedRow();
             activityName = updateMaintenanceActivityView.getjTable().getValueAt(row, 1).toString();
             timeNeeded = updateMaintenanceActivityView.getjTable().getValueAt(row, 2).toString();
-            interruptibleString = updateMaintenanceActivityView.getjTable().getValueAt(row, 3).toString();
-            typology = updateMaintenanceActivityView.getjTable().getValueAt(row, 4).toString();
-            activityDescription = updateMaintenanceActivityView.getjTable().getValueAt(row, 5).toString();
-            week = updateMaintenanceActivityView.getjTable().getValueAt(row, 6).toString();
-            planned = updateMaintenanceActivityView.getjTable().getValueAt(row, 7).toString();
-            ewo = updateMaintenanceActivityView.getjTable().getValueAt(row, 8).toString();
-            standardProcedure = updateMaintenanceActivityView.getjTable().getValueAt(row, 9).toString();
+            remainingTime = updateMaintenanceActivityView.getjTable().getValueAt(row, 3).toString();
+            interruptibleString = updateMaintenanceActivityView.getjTable().getValueAt(row, 4).toString();
+            typology = updateMaintenanceActivityView.getjTable().getValueAt(row, 5).toString();
+            activityDescription = updateMaintenanceActivityView.getjTable().getValueAt(row, 6).toString();
+            week = updateMaintenanceActivityView.getjTable().getValueAt(row, 7).toString();
+            branchOffice = updateMaintenanceActivityView.getjTable().getValueAt(row, 8).toString();
+            department = updateMaintenanceActivityView.getjTable().getValueAt(row, 9).toString();
+            standardProcedure = updateMaintenanceActivityView.getjTable().getValueAt(row, 10).toString();
+            planned = updateMaintenanceActivityView.getjTable().getValueAt(row, 11).toString();
         }    
         catch (NullPointerException ex)
         {
@@ -151,34 +156,19 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
         boolean interruptible;
         
-        if(interruptibleString.equals("yes"))
-        {
-            interruptible = true;
-        }
-        else
-        {
-            interruptible = false;
-        }
+        interruptible = interruptibleString.equals("yes");
         
         try
         {
             if(planned.equals("yes"))
             {
-                maintenanceActivity = new PlannedActivity(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
-                fromString(typology), activityDescription, parseInt(week), standardProcedure);
+                maintenanceActivity = new PlannedActivity(-1, activityName, parseInt(timeNeeded), parseInt(remainingTime), interruptible, 
+                fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>(), standardProcedure);
             }
             else
             {
-                if(ewo.equals("yes"))
-                {
-                    maintenanceActivity = new EWO(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
-                    fromString(typology), activityDescription, parseInt(week));
-                }
-                else
-                {
-                    maintenanceActivity = new ExtraActivity(activityName, parseInt(timeNeeded), parseInt(timeNeeded), interruptible, 
-                    fromString(typology), activityDescription, parseInt(week));
-                } 
+                maintenanceActivity = new ExtraActivity(-1, activityName, parseInt(timeNeeded), parseInt(remainingTime), interruptible, 
+                fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>()); 
             }
            String oldActivityName = this.activityNameList.get(row);
            maintenanceActivityRepo.updateMaintenanceActivity(maintenanceActivity, oldActivityName);

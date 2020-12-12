@@ -1,39 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.models;
 
-/**
- *
- * @author Utente
- */
+
 public class Maintainer extends User
 {
-
-    public Maintainer(String username, String email, String name, String surname, String password)
+    private String role;
+    
+    /**
+     * 
+     * Creates a new Maintainer
+     * @param username is the username of the Maintainer
+     * @param email is the email of the Maintainer
+     * @param name is the name of the Maintainer
+     * @param surname is the surname of the Maintainer
+     * @param password is the password of the Maintainer
+     * @param role is the role
+     */
+    public Maintainer(String username, String email, String name, String surname, String password, String role)
     {
         super(username, email, name, surname, password);
+        this.role = role;
     }
 
-    @Override
+    /**
+     * 
+     * @return a String containing the role of this user
+     */
     public String getRole()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.role;
     }
 
-    @Override
+    /**
+     * 
+     * @return the data model of a maintainer
+     */
     public Object[] getDataModel()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole()};
     }
 
-    @Override
+    /**
+     * 
+     * @return the data model of a maintainer including the password
+     */
     public Object[] getDataPasswordModel()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole(), getPassword()};
     }
     
 }

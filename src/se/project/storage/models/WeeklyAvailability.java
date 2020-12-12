@@ -27,6 +27,21 @@ public class WeeklyAvailability
         H14,
         H15,
         H16;
+        
+        public static String getValue(WorkTurn turn)
+        {
+            switch(turn)
+            {
+                case H8: return "8_9";
+                case H9: return "9_10";
+                case H10: return "10_11";
+                case H11: return "11_12";
+                case H14: return "14_15";
+                case H15: return "15_16";
+                case H16: return "16_17";
+            }
+            return null;
+        }
     }
     
     /**

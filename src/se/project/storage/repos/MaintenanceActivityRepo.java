@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.*;
-import se.project.storage.models.maintenance_activity.EWO;
+import se.project.storage.models.Maintainer;
+import se.project.storage.models.WeeklyAvailability;
+import se.project.storage.models.WeeklyAvailability.WorkTurn;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
@@ -25,6 +28,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     private final String QUERY_UPDATE_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryUpdateMaintenanceActivity.sql";
     private final String QUERY_MAINTENANCE_ACTIVITY_IN_WEEK_PATH = "/se/project/assets/query/QueryMaintenanceActivityInWeek.sql";
     private final String QUERY_SKILLS_NEEDED_PATH = "/se/project/assets/query/QuerySkillsNeeded.sql";
+    private final String QUERY_ASSIGN_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAssignMaintenanceActivity.sql";
     
     /**
      * 
@@ -139,6 +143,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         int week = maintenanceActivity.getWeek();
         String planned = maintenanceActivity.isPlanned();
         String ewo = maintenanceActivity.isEWO();
+        String branchOffice = maintenanceActivity.getBrachOffice();
+        String department = maintenanceActivity.getDepartment();
         String standardProcedure = maintenanceActivity.getStandardProcedure();
         String oldActivityName = activityToUpdate;
         
@@ -150,18 +156,20 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         query = query.replaceAll("week_param", String.valueOf(week));
         query = query.replaceAll("planned_param", planned);
         query = query.replaceAll("ewo_param", ewo);
+        query = query.replaceAll("office_param", branchOffice);
+        query = query.replaceAll("department_param", department);
         query = query.replaceAll("standard_param", standardProcedure);
         query = query.replaceAll("activity_param", oldActivityName);
         executeStatement(query);
     }
     
     /**
-     * 
-     * @param query is the query from which to extract data to build the model
+     * Query a list of maintenance activities
+     * @param query is the statement from which to extract data to build the model
      * @return a LinkedList of MaintenanceActivity that are in the database
      * @throws SQLException 
      */
-    private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException
+    private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException, IOException
     {
         ResultSet resultSet = super.queryDatabase(query);
         LinkedList<MaintenanceActivity> output = new LinkedList<>();
@@ -177,24 +185,26 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             String activityDescription = resultSet.getString("activity_description");
             int week = resultSet.getInt("week");
             String planned = resultSet.getString("planned");
-            String ewo = resultSet.getString("ewo");
+            String branchOffice = resultSet.getString("activity_branch_office");
+            String department = resultSet.getString("activity_department");
             String standardProcedure = resultSet.getString("standard_procedure");
             
             if(planned.equals("yes"))
+            {
                 output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week, standardProcedure));
-            else if(ewo.equals("yes"))
-                output.add(new EWO(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week));
-            else if(ewo.equals("no"))
+                            typology, activityDescription, week, branchOffice, department, querySkillsNeeded(IDActivity), standardProcedure));
+            }
+            else
+            {
                 output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week));
+                            typology, activityDescription, week, branchOffice, department, querySkillsNeeded(IDActivity)));
+            }
         }
         return output;
     } 
     
     /**
-     * 
+     * Query a maintenance activity to be assigned during the week
      * @param weekSearched is the week in which to search activities
      * @return a LinkedList of PlannedActivity containing the activities in a specific week
      * @throws IOException
@@ -209,8 +219,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     }
     
     /**
-     * 
-     * @param query is the query from which to extract data to build the model
+     * Query a planned activity list with site informations
+     * @param query is the statement from which to extract data to build the model
      * @return a LinkedList of PlannedActivity that are in the database in a specific week
      * @throws SQLException
      * @throws IOException 
@@ -246,7 +256,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     }
     
     /**
-     * 
+     * Query the sills needed for an activity
      * @param IDActivity is the id of the searched activity
      * @return an ArrayList contining the skills needed fot that activity
      * @throws IOException
@@ -264,5 +274,64 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             skills.add(resultSet.getString("competence_name_needed_ref"));
         }
         return skills;
+    }
+    
+    /**
+     * Assign a Maintenance activity to a maintainer
+     * @param maintenanceActivity is the activity to be assigned
+     * @param maintainer is the maintainer who'll work on the activity
+     * @param day is the day in which the Maintainer will work on that task
+     * @param turn is the turn in which the Maintainer will work on that task
+     * @param minutes are the number of minutes the maintainer is available
+     * @throws IOException
+     * @throws SQLException
+     */
+    public void assignMaintenanceActivity(MaintenanceActivity maintenanceActivity, Maintainer maintainer, DayOfWeek day, WeeklyAvailability.WorkTurn turn, int minutes) throws IOException, SQLException
+    {
+        String statement = getStringFromFile(QUERY_ASSIGN_MAINTENANCE_ACTIVITY_PATH);
+        
+        int remainingTime = maintenanceActivity.getRemainingTime();
+        
+        int newRemainingTime = maintenanceActivity.getRemainingTime();
+        int newAvailableMinutes = 0;
+        
+        // No assignment for 0 minutes 
+        if(minutes == 0)
+        {
+            return;
+        }
+        
+        // Update the values of availability for maintainer and remaining time for activity
+        if(remainingTime >= minutes)
+        {
+            newRemainingTime -= minutes;
+        }
+        else
+        {
+            newRemainingTime = 0;
+            newAvailableMinutes = minutes - remainingTime;
+        }
+        
+        // Edits the statement
+        statement = statement.replaceAll("id_param", String.valueOf(maintenanceActivity.getIdActivity()));
+        statement = statement.replaceAll("assignment_username_param", maintainer.getUsername());
+        
+        String dayName = day.name().substring(0, 1) + day.name().substring(1).toLowerCase();
+        String turnName = WorkTurn.getValue(turn);
+        
+        // Create a new assignment entity
+        statement = statement.replaceAll("assignment_day_param", dayName);
+        statement = statement.replaceAll("assignment_time_param", turnName);
+        statement = statement.replaceAll("assignment_turn_param", turnName);
+        
+        // Update workshift for that user
+        statement = statement.replaceAll("turn_param", String.valueOf("\"" + turnName + "\""));
+        statement = statement.replaceAll("new_turn_value_param", String.valueOf(newAvailableMinutes));
+        statement = statement.replaceAll("week_param", String.valueOf(maintenanceActivity.getWeek()));
+        
+        // Update maintenance activity remaining time
+        statement = statement.replaceAll("new_remaining_time_param", String.valueOf(newRemainingTime));
+        
+        super.executeStatement(statement);        
     }
 }

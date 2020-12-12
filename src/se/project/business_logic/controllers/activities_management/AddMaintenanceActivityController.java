@@ -138,6 +138,7 @@ public class AddMaintenanceActivityController extends AbstractController
     /**
      * 
      * Add a new maintenanance activity using data from the page and method from the repo
+     * @return true if the addition has been succesfull, false otherwise
      */
     public boolean addMaintenanceActivity()
     {
