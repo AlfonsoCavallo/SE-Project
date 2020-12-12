@@ -77,10 +77,12 @@ public class MaintenanceActivityRepoTest
             // Tests expected elements
             assertEquals(2, maintenanceActivities.size());
             
-            MaintenanceActivity expectedFirstElement = new PlannedActivity(1, "activity1", 45, 45, true, ELECTRICAL, "riparazione turbina 3", 2, "1... 2... 3...");
+            ArrayList<String> expectedSkillsFirstElement = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedFirstElement = new PlannedActivity(1, "activity1", 45, 45, true, ELECTRICAL, "riparazione turbina 3", 2, "Fisciano", "Printing", expectedSkillsFirstElement,"1... 2... 3...");
             assertEquals(expectedFirstElement, maintenanceActivities.getFirst());
             
-            MaintenanceActivity expectedSecondElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "4... 5... 6...");
+            ArrayList<String> expectedSkillsSecondElement = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedSecondElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkillsSecondElement, "4... 5... 6...");
             assertEquals(expectedSecondElement, maintenanceActivities.get(1));
             
             closeConnection();
@@ -108,7 +110,8 @@ public class MaintenanceActivityRepoTest
             LinkedList<MaintenanceActivity> noActivity = instance.queryOneMaintenanceActivity("unavailable_activity");
             
             // Test expected elements
-            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "4... 5... 6...");
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             assertEquals(expectedElement, maintenanceActivities.getFirst());
             assertEquals(1, maintenanceActivities.size());
             
@@ -140,7 +143,8 @@ public class MaintenanceActivityRepoTest
             
             // Checks element was correctly deleted
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryAllMaintenanceActivity();
-            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "4... 5... 6...");
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
+            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills,"4... 5... 6...");
             
             assertEquals(1, maintenanceActivities.size());
             assertEquals(expectedElement, maintenanceActivities.getFirst());
@@ -195,7 +199,7 @@ public class MaintenanceActivityRepoTest
             // Tests expected elements
             assertEquals(1, maintenanceActivities.size());
             
-            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
             MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             assertEquals(expectedFirstElement, maintenanceActivities.getFirst());
             

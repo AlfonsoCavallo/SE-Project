@@ -3,7 +3,6 @@ package se.project.business_logic.controllers;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import junit.framework.AssertionFailedError;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,6 +40,7 @@ public class SelectMaintenanceActivityControllerTest
     @Before
     public void setUp()
     {
+        resetDatabase();
     }
     
     @After
@@ -48,6 +48,7 @@ public class SelectMaintenanceActivityControllerTest
     {
         try
         {
+            resetDatabase();
             closeConnection();
         }
         catch (SQLException ex)
@@ -83,7 +84,7 @@ public class SelectMaintenanceActivityControllerTest
             connect(getTestUser());
         
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
-            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
             MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             boolean open = controller.selectMaintenaceActivity();
             assertEquals(expectedActivity, controller.getPlannedActivity());

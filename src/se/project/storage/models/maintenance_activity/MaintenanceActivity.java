@@ -346,6 +346,10 @@ public abstract class MaintenanceActivity
         {
             return false;
         }
+        if (!Objects.equals(this.skills, other.skills))
+        {
+            return false;
+        }
         return true;
     }
    

@@ -165,7 +165,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
      * @return a LinkedList of MaintenanceActivity that are in the database
      * @throws SQLException 
      */
-    private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException
+    private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException, IOException
     {
         ResultSet resultSet = super.queryDatabase(query);
         LinkedList<MaintenanceActivity> output = new LinkedList<>();
@@ -188,12 +188,12 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
             if(planned.equals("yes"))
             {
                 output.add(new PlannedActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week, branchOffice, department, new ArrayList<>(), standardProcedure));
+                            typology, activityDescription, week, branchOffice, department, querySkillsNeeded(IDActivity), standardProcedure));
             }
             else
             {
                 output.add(new ExtraActivity(IDActivity, activityName, timeNeeded, remainingTime, interruptible, 
-                            typology, activityDescription, week, branchOffice, department, new ArrayList<>()));
+                            typology, activityDescription, week, branchOffice, department, querySkillsNeeded(IDActivity)));
             }
         }
         return output;
