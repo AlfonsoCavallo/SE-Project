@@ -1,0 +1,17 @@
+<div style="background-color:rgb(33,33,35);color:rgb(204,204,204); padding:20px; margin-right:50%;">
+    <h1 style="color:rgb(22,10,200)"> Notify a new Activity Assignement </h1>
+
+    <div> Dear username_param, <br/>
+        you have been assigned to a new management activity! <br/>
+        <br/>
+        <bold> Activity ID: </bold> id_param <br/>
+        <bold> Activity Name: </bold> activity_name_param <br/>
+        <bold> Site: </bold> site_param <br/>
+        <bold> Week: </bold> week_param <br/>
+        <bold> Day: </bold> day_param <br/>
+        <bold> Time: </bold> time_param <br/>
+    </div>
+
+    <h2> Thanks for your commitment! </h2>
+    <h3> Group 8 </h3>
+</div>
