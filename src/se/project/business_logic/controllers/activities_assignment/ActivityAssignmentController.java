@@ -1,7 +1,6 @@
 package se.project.business_logic.controllers.activities_assignment;
 
 import java.io.IOException;
-import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class ActivityAssignmentController extends AbstractController
     
     private final ActivityAssignmentView activityAssignmentView;
     private PlannedActivity plannedActivity = null;
-    private ArrayList<String>  skillsNeeded;
+    private ArrayList<String> skillsNeeded;
     private List<WeeklyAvailability> weeklyAvailabilities;
     private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
     

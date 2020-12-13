@@ -33,6 +33,7 @@ public class ActivityForwardingController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get time availabily from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
+    private final String SELECT_ACTIVITY_MESSAGE = "Please, select a turn first!";
     
     private final ActivityForwardingView activityForwardingView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
@@ -189,16 +190,20 @@ public class ActivityForwardingController extends AbstractController
             String minutesSelected = activityForwardingView.getjMaintainerTimeAvailabilityTable().getValueAt(row, column).toString();
             String[] minutes = minutesSelected.split(" ");
             
-            this.maintenanceActivityRepo.assignMaintenanceActivity(plannedActivity, (Maintainer) maintainer.getFirst(), day, fromString(workTurn), parseInt(minutes[0]));
+            this.maintenanceActivityRepo.assignMaintenanceActivity(plannedActivity, (Maintainer) maintainer.get(0), day, fromString(workTurn), parseInt(minutes[0]));
             
         } 
         catch (IOException ex)
         {
-            Logger.getLogger(ActivityForwardingController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
         } 
         catch (SQLException ex)
         {
-            Logger.getLogger(ActivityForwardingController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
+        }
+        catch (ArrayIndexOutOfBoundsException ex)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), SELECT_ACTIVITY_MESSAGE);
         }
         
     }        
