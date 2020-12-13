@@ -13,11 +13,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import static se.project.business_logic.utilities.FileUtilities.getStringFromFile;
+import se.project.business_logic.utilities.interfaces.MailSenderInterface;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 
 
-public class MailSender
+public class MailSender implements MailSenderInterface
 {
     private final String MAIL_TEXT_PATH = "/se/project/assets/files/MailText.txt";
     private MaintenanceActivity maintenanceActivity;
