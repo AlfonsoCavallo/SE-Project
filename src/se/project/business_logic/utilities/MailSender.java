@@ -2,8 +2,6 @@ package se.project.business_logic.utilities;
 
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -76,12 +74,11 @@ public class MailSender implements MailSenderInterface
         
         //Trasport from the java and sending the message
         Transport.send(message, myAccountEmail, password);
-        System.out.println("Message sent successfully");
-        
+        System.out.println("Message sent successfully");        
     }
 
     /**
-     * 
+     * Prepares the message to be sent.
      * @param session is the session variable.
      * @param myAccountEmail is the email of the sender.
      * @param emailRecipient is the email of the recipient.
@@ -96,7 +93,9 @@ public class MailSender implements MailSenderInterface
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(emailRecipient));
             message.setSubject("Maintenance Application - GROUP 8");
+            
             String htmlCode = getStringFromFile(MAIL_TEXT_PATH);
+            
             htmlCode = htmlCode.replaceAll("username_param", usernameRecipient);
             htmlCode = htmlCode.replaceAll("id_param", String.valueOf(this.maintenanceActivity.getIdActivity()));
             htmlCode = htmlCode.replaceAll("activity_name_param", this.maintenanceActivity.getActivityName());
@@ -109,11 +108,10 @@ public class MailSender implements MailSenderInterface
             message.setContent(htmlCode, "text/html");
             return message;
         }
-        catch (MessagingException ex)
+        catch(MessagingException ex)
         {
-            Logger.getLogger(MailSender.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         return null;
-    }
-    
+    }    
 }
