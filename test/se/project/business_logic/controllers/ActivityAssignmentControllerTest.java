@@ -75,7 +75,7 @@ public class ActivityAssignmentControllerTest
             Object[] modelUpdated = istance.updateDataModel(availabilityModel);
             
             Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "100%", "100%", "100%", "100%", "100%", "0%", "0%"};
-            assertEquals(expectedUpdatedModel, modelUpdated);
+            assertTrue(Arrays.equals(expectedUpdatedModel, modelUpdated));
             
             closeConnection();
             

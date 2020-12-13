@@ -23,16 +23,16 @@ public class ActivityForwardingController extends AbstractController
     private PlannedActivity plannedActivity = null;
     private WeeklyAvailability weeklyAvailability = null;
     private String dayOfWeek;
-    private int maxSkills;
+    private int dayOfMonth;
     private String maintainerPercentage;
     
-    public ActivityForwardingController(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, String maintainerPercentage, int maxSkills)
+    public ActivityForwardingController(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, int dayOfMonth, String maintainerPercentage)
     {
         this.activityForwardingView = new ActivityForwardingView();
         this.plannedActivity = plannedActivity;
         this.weeklyAvailability = weeklyAvailability;
         this.dayOfWeek = dayOfWeek;
-        this.maxSkills = maxSkills;
+        this.dayOfMonth = dayOfMonth;
         this.maintainerPercentage = maintainerPercentage;
         initListeners();
         viewTimeAvailability(plannedActivity, weeklyAvailability);
@@ -101,12 +101,13 @@ public class ActivityForwardingController extends AbstractController
             Typology typology = plannedActivity.getTypology();
             int timeNeeded = plannedActivity.getTimeNeeded();
             String dayOfWeek = this.dayOfWeek;
-            int maxSkills = this.maxSkills;
+            int dayOfMonth = this.dayOfMonth;
             String maintainerName = weeklyAvailability.getUsername();
             String maintainerPercentage = this.maintainerPercentage;
             
             activityForwardingView.getjWeekNumberLabel().setText(String.valueOf(weekSelected));
             activityForwardingView.getjDayOfWeekLabel().setText(dayOfWeek);
+            activityForwardingView.getjDayOfWeekNumberLabel().setText(String.valueOf(dayOfMonth));
             activityForwardingView.getjActivityToAssignLabel().setText(String.valueOf(IDActivity) + " - " + 
                                    branchOffice + " " + department + " - " + typology.getValue() + " - " + 
                                    String.valueOf(timeNeeded));
@@ -119,6 +120,7 @@ public class ActivityForwardingController extends AbstractController
                 tableModel.removeRow(0);
             }
             
+            // Adds the DataModel to the table
             Object[] model = updateDataModel(weeklyAvailability.getDataForForwarding(dayOfWeek));
             tableModel.addRow(model);
             

@@ -3,7 +3,9 @@ package se.project.business_logic.controllers.activities_assignment;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -117,26 +119,23 @@ public class ActivityAssignmentController extends AbstractController
     {
         int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
         int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
+        
         String maintainerName = this.weeklyAvailabilities.get(row).getUsername();
         String maintainerPercentage = activityAssignmentView.getjMaintainerAvailabilityTable().getValueAt(row, column).toString();
-        String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
-        int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
         WeeklyAvailability selectedAvailability = this.weeklyAvailabilities.get(row);
         String selectedDayOfWeek = activityAssignmentView.getjMaintainerAvailabilityTable().getColumnName(column);
-        int maxSkills = this.plannedActivity.getSkills().size();
-        /*
-        Calendar c = Calendar.getInstance();
-        //c.setTime(yourDate);
-        c.setWeekDate(2020, 22, Calendar.FRIDAY);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        LocalDate date = new ;
-        //= c.getTime();
-        Object ddd = date.clone();
-        */
+        
+        DayOfWeek selectedDay = DayOfWeek.valueOf(selectedDayOfWeek.toUpperCase());
+        Calendar calendarDate = Calendar.getInstance();
+        calendarDate.setWeekDate(2020, this.plannedActivity.getWeek(), selectedDay.getValue());
+        int dayOfMonth = calendarDate.get(Calendar.DAY_OF_MONTH) + 1;
+
+        String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
+        int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
         
         if(input == 0)
         {
-            new ActivityForwardingController(this.plannedActivity, selectedAvailability, selectedDayOfWeek, maintainerPercentage, maxSkills);
+            new ActivityForwardingController(this.plannedActivity, selectedAvailability, selectedDayOfWeek, dayOfMonth, maintainerPercentage);
             return true;
         }
         return false;
