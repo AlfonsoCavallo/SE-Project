@@ -1,8 +1,8 @@
 package se.project.business_logic.controllers.activities_assignment;
 
 import java.io.IOException;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -33,7 +33,6 @@ public class ActivityAssignmentController extends AbstractController
     private ArrayList<String>  skillsNeeded;
     private List<WeeklyAvailability> weeklyAvailabilities;
     private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
-    private DayOfWeek dayOfWeek;
     
     /**
      * Creates a new ActivityAssignmentController
@@ -117,12 +116,27 @@ public class ActivityAssignmentController extends AbstractController
     public boolean openActivityForwardingPage()
     {
         int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
+        int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
         String maintainerName = this.weeklyAvailabilities.get(row).getUsername();
+        String maintainerPercentage = activityAssignmentView.getjMaintainerAvailabilityTable().getValueAt(row, column).toString();
         String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
         int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
+        WeeklyAvailability selectedAvailability = this.weeklyAvailabilities.get(row);
+        String selectedDayOfWeek = activityAssignmentView.getjMaintainerAvailabilityTable().getColumnName(column);
+        int maxSkills = this.plannedActivity.getSkills().size();
+        /*
+        Calendar c = Calendar.getInstance();
+        //c.setTime(yourDate);
+        c.setWeekDate(2020, 22, Calendar.FRIDAY);
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        LocalDate date = new ;
+        //= c.getTime();
+        Object ddd = date.clone();
+        */
+        
         if(input == 0)
         {
-            new ActivityForwardingController(this.plannedActivity);
+            new ActivityForwardingController(this.plannedActivity, selectedAvailability, selectedDayOfWeek, maintainerPercentage, maxSkills);
             return true;
         }
         return false;
@@ -175,10 +189,7 @@ public class ActivityAssignmentController extends AbstractController
             // Iterates over maintenance activities
             for(WeeklyAvailability availability : weeklyAvailabilities)
             {   
-                Object[] model;
-                
-                model = UpdateDataModel(availability.getDataForAssignment());
-                
+                Object[] model = updateDataModel(availability.getDataForAssignment());
                 tableModel.addRow(model);
             }  
         }
@@ -197,7 +208,7 @@ public class ActivityAssignmentController extends AbstractController
      * @param dataModel is the DataModel that you want to update
      * @return the updated DataModel with the new adds
      */
-    public Object[] UpdateDataModel(Object[] dataModel)
+    public Object[] updateDataModel(Object[] dataModel)
     {
         int maxSkills = this.plannedActivity.getSkills().size();
         

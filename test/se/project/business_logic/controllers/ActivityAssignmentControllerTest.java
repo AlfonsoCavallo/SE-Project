@@ -72,7 +72,7 @@ public class ActivityAssignmentControllerTest
             ActivityAssignmentController istance = new ActivityAssignmentController(plannedActivity);
             
             Object[] availabilityModel = weeklyAvailability.getDataForAssignment();
-            Object[] modelUpdated = istance.UpdateDataModel(availabilityModel);
+            Object[] modelUpdated = istance.updateDataModel(availabilityModel);
             
             Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "100%", "100%", "100%", "100%", "100%", "0%", "0%"};
             assertEquals(expectedUpdatedModel, modelUpdated);

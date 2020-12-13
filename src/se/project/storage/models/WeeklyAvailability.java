@@ -1,6 +1,7 @@
 package se.project.storage.models;
 
 import java.time.DayOfWeek;
+import static java.time.DayOfWeek.FRIDAY;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -208,6 +209,22 @@ public class WeeklyAvailability
         {
             output.add(getPercentageAvailability(day));
         }    
+        
+        return output.toArray();
+    }
+    
+    public Object[] getDataForForwarding(String dayOfWeek)
+    {
+        EnumSet<WorkTurn> workTurns = EnumSet.allOf(WorkTurn.class);
+        
+        LinkedList<Object> output = new LinkedList<>(Arrays.asList(getUsername(), getNumberOfCompetences()));
+        
+        DayOfWeek selectedDay = DayOfWeek.valueOf(dayOfWeek.toUpperCase());
+        
+        for(WorkTurn workTurn : workTurns)
+        {
+            output.add(getMinutesAvailable(selectedDay, workTurn));
+        }
         
         return output.toArray();
     }        
