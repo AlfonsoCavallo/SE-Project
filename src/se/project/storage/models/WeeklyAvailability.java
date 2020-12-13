@@ -21,14 +21,26 @@ public class WeeklyAvailability
      */
     public enum WorkTurn
     {
-        H8,
-        H9,
-        H10,
-        H11,
-        H14,
-        H15,
-        H16;
+        H8 ("08:00 - 09:00"),
+        H9 ("09:00 - 10:00"),
+        H10 ("10:00 - 11:00"),
+        H11 ("11:00 - 12:00"),
+        H14 ("14:00 - 15:00"),
+        H15 ("15:00 - 16:00"),
+        H16 ("16:00 - 17:00");
         
+        private String workTurn;
+        
+        WorkTurn(String workTurn)
+        {
+            this.workTurn = workTurn;
+        }        
+        
+        /**
+         * 
+         * @param turn is the turn from which regain its corresponding string
+         * @return the string corresponding to the given turn
+         */
         public static String getValue(WorkTurn turn)
         {
             switch(turn)
@@ -43,6 +55,24 @@ public class WeeklyAvailability
             }
             return null;
         }
+        
+        /**
+         * 
+         * @param string is the string from which regain the WorkTurn
+         * @return the WorkTurn corresponding to the given string
+         */
+        public static WorkTurn fromString(String string)
+        {
+            for(WorkTurn workTurn : WorkTurn.values())
+            {
+                if(workTurn.workTurn.equalsIgnoreCase(string))
+                {
+                    return workTurn;
+                }    
+            }
+            return null;
+        }        
+        
     }
     
     /**
