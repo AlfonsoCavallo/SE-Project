@@ -218,6 +218,7 @@ public class ActivityAssignmentController extends AbstractController
         }    
         
         return dataModel;
-    }        
+    }
+    
     
 }
