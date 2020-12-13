@@ -82,6 +82,7 @@ public class MailSender implements MailSenderInterface
 
     /**
      * 
+     * Prepare the email that has to be sent.
      * @param session is the session variable.
      * @param myAccountEmail is the email of the sender.
      * @param emailRecipient is the email of the recipient.
