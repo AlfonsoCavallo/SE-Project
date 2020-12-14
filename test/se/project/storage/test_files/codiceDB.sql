@@ -22,7 +22,7 @@ create table maintenance_system.assignment (
    assignment_username       varchar(30)          not null,
    assignment_day            varchar(10)          not null,
    assignment_time           varchar(10)          not null,
-   constraint pk_assignment primary key (assignment_id_activity, assignment_username)
+   constraint pk_assignment primary key (assignment_id_activity, assignment_username, assignment_day, assignment_time)
 );
 
 
@@ -393,6 +393,9 @@ values (1, 'Electrical Maintenance'),
        (2, 'Knowledge of Workstation 35'),
        (2, 'English Knowledge');
 	
+insert into maintenance_system.assignment (assignment_id_activity, assignment_username, assignment_day, assignment_time)
+values (2, 'phil', 'Friday', '11_12');
+
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;
 -- select * from maintenance_system.workshift;
