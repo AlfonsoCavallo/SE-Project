@@ -33,6 +33,7 @@ public class DatabaseTesting
             
             PreparedStatement preparedStatement = getConnection().prepareStatement(reset);
             preparedStatement.execute();
+            getConnection().commit();
             
             closeConnection();
             return true;
