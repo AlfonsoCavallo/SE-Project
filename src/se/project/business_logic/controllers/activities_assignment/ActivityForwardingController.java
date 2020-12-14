@@ -62,7 +62,7 @@ public class ActivityForwardingController extends AbstractController
         } 
         catch (IOException | SQLException ex)
         {
-            Logger.getLogger(ActivityForwardingController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
         initListeners();
         viewTimeAvailability(plannedActivity, weeklyAvailability);
@@ -172,11 +172,9 @@ public class ActivityForwardingController extends AbstractController
             String department = plannedActivity.getDepartment();
             Typology typology = plannedActivity.getTypology();
             int timeNeeded = plannedActivity.getRemainingTime();
-            String dayOfWeek = this.dayOfWeek;
-            int dayOfMonth = this.dayOfMonth;
             String maintainerName = weeklyAvailability.getUsername();
-            String maintainerPercentage = this.maintainerPercentage;
             
+            // Represents the informations on the view
             activityForwardingView.getjWeekNumberLabel().setText(String.valueOf(weekSelected));
             activityForwardingView.getjDayOfWeekLabel().setText(dayOfWeek);
             activityForwardingView.getjDayOfWeekNumberLabel().setText(String.valueOf(dayOfMonth));
@@ -220,8 +218,7 @@ public class ActivityForwardingController extends AbstractController
         }
         
         return dataModel;
-     
-    }
+     }
      
     /**
      * Assigns and forwards the maintenance activity to the maintainer in the selected day and turn
