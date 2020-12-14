@@ -36,7 +36,7 @@ import se.project.storage.repos.interfaces.UserRepoInterface;
 public class ActivityForwardingController extends AbstractController
 {
     private final String NOT_VALID_MESSAGE = "At this time the maintainer is not available for the current activity!";
-    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get the maintenance activity from database.";
+    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not execute the statement on database";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String SELECT_TURN_MESSAGE = "Please, select a turn first!";
     
@@ -135,7 +135,7 @@ public class ActivityForwardingController extends AbstractController
                 } 
                 catch (Exception ex)
                 {
-                    Logger.getLogger(ActivityForwardingController.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 }
             }        
         });        
