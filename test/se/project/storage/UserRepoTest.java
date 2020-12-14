@@ -75,8 +75,8 @@ public class UserRepoTest
             User expectedFirstElement = new SystemAdministrator("finneas", "finneas@finneas.it", "fin", "neas", null, "system_administrator");
             assertEquals(users.getFirst(), expectedFirstElement);
             
-            User expectedLastElement = new Planner("jon", "jon@jon.it", "jon", "athan", null, "planner");
-            assertEquals(users.getLast(), expectedLastElement);
+            User expectedSecondElement = new Planner("jon", "jon@jon.it", "jon", "athan", null, "planner");
+            assertEquals(users.get(1), expectedSecondElement);
             
             closeConnection();
         } 

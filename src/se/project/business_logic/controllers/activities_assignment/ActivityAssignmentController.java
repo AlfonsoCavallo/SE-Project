@@ -26,6 +26,7 @@ import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 public class ActivityAssignmentController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get weekly availabilities from database.";
+    private final String NOT_VALID_MESSAGE = "In this day the maintainer is not available for the current activity!";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String CONFIRM_ASSIGNMENT_MESSAGE = "Are you sure to assign this activity to the maintainer \" maintainer_name_param \"?";
     
@@ -128,6 +129,12 @@ public class ActivityAssignmentController extends AbstractController
         Calendar calendarDate = Calendar.getInstance();
         calendarDate.setWeekDate(2020, this.plannedActivity.getWeek(), selectedDay.getValue());
         int dayOfMonth = calendarDate.get(Calendar.DAY_OF_MONTH) + 1;
+        
+        if(maintainerPercentage.equals("0%"))
+        {
+            JOptionPane.showMessageDialog(null, NOT_VALID_MESSAGE);
+            return false;
+        }    
 
         String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
         int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
@@ -157,14 +164,14 @@ public class ActivityAssignmentController extends AbstractController
             String branchOffice = plannedActivity.getBrachOffice();
             String department = plannedActivity.getDepartment();
             Typology typology = plannedActivity.getTypology();
-            int timeNeeded = plannedActivity.getTimeNeeded();
+            int timeNeeded = plannedActivity.getRemainingTime();
             
             this.weeklyAvailabilities = weeklyAvailabilityRepo.queryAllWeeklyAvailabilities(competenciesSerched, weekSearched);
             
             activityAssignmentView.getjWeekNumberLabel().setText(String.valueOf(weekSearched));
             activityAssignmentView.getjActivityToAssignLabel().setText(String.valueOf(IDActivity) + " - " + 
                                    branchOffice + " " + department + " - " + typology.getValue() + " - " + 
-                                   String.valueOf(timeNeeded));
+                                   String.valueOf(timeNeeded) + "'");
             
             // Clears the list model
             while(!listModel.isEmpty())
@@ -218,6 +225,15 @@ public class ActivityAssignmentController extends AbstractController
         
         return dataModel;
     }
-    
+
+    /**
+     * Getter used for tests
+     * @return the ActivityAssignmentView
+     */
+    public ActivityAssignmentView getActivityAssignmentView()
+    {
+        this.activityAssignmentView.dispose();
+        return activityAssignmentView;
+    }
     
 }

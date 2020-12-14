@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
+import se.project.business_logic.controllers.PlannerHomepageController;
+import se.project.business_logic.utilities.MailSender;
 import se.project.presentation.views.activities_assignment.ActivityForwardingView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -19,8 +21,6 @@ import static se.project.storage.models.WeeklyAvailability.WorkTurn.fromString;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.User;
 import se.project.storage.models.WeeklyAvailability;
-import se.project.storage.models.WeeklyAvailability.WorkTurn;
-import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
@@ -31,9 +31,10 @@ import se.project.storage.repos.interfaces.UserRepoInterface;
 
 public class ActivityForwardingController extends AbstractController
 {
-    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get time availabily from database.";
+    private final String NOT_VALID_MESSAGE = "At this time the maintainer is not available for the current activity!";
+    private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get the maintenance activity from database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
-    private final String SELECT_ACTIVITY_MESSAGE = "Please, select a turn first!";
+    private final String SELECT_TURN_MESSAGE = "Please, select a turn first!";
     
     private final ActivityForwardingView activityForwardingView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
@@ -43,6 +44,7 @@ public class ActivityForwardingController extends AbstractController
     private String dayOfWeek;
     private int dayOfMonth;
     private String maintainerPercentage;
+    private LinkedList<User> maintainer;
     
     public ActivityForwardingController(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, int dayOfMonth, String maintainerPercentage)
     {
@@ -54,6 +56,14 @@ public class ActivityForwardingController extends AbstractController
         this.dayOfWeek = dayOfWeek;
         this.dayOfMonth = dayOfMonth;
         this.maintainerPercentage = maintainerPercentage;
+        try
+        {
+            this.maintainer = this.userRepo.queryOneUser(this.weeklyAvailability.getUsername());
+        } 
+        catch (IOException | SQLException ex)
+        {
+            Logger.getLogger(ActivityForwardingController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initListeners();
         viewTimeAvailability(plannedActivity, weeklyAvailability);
     }
@@ -101,7 +111,28 @@ public class ActivityForwardingController extends AbstractController
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                forwardActivity(plannedActivity, weeklyAvailability);
+                try
+                {
+                    int column = activityForwardingView.getjMaintainerTimeAvailabilityTable().getSelectedColumn();
+                    boolean added = forwardActivity(plannedActivity, weeklyAvailability);
+                    if(added)
+                    {
+                        MailSender mailSender = new MailSender(plannedActivity, dayOfWeek + " " + String.valueOf(dayOfMonth),
+                                                activityForwardingView.getjMaintainerTimeAvailabilityTable().getColumnName(column));
+                        mailSender.notifyMaintainerActivity((Maintainer) maintainer.get(0));
+                        int input = JOptionPane.showConfirmDialog(null ,"The activity has been assigned and the e-mail has been sent!", "E-mail correctly sent.", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+                        if(input == 0)
+                        {
+                            goBackPlannerHomepage();
+                            activityForwardingView.dispose();
+                        } 
+                    }    
+                       
+                } 
+                catch (Exception ex)
+                {
+                    Logger.getLogger(ActivityForwardingController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }        
         });        
 
@@ -116,18 +147,31 @@ public class ActivityForwardingController extends AbstractController
         new ActivityAssignmentController(this.plannedActivity);
     }
     
+    /**
+     * Opens the Planner Homepage view using its controller
+     */
+    public void goBackPlannerHomepage()
+    {
+        new PlannerHomepageController();
+    }        
+    
+    /**
+     * Updates the table in the page inserting the time availability of the maintainer
+     * @param plannedActivity is the planned activity to assign
+     * @param weeklyAvailability is the weekly availability of the maintainer
+     */
     public void viewTimeAvailability(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability)
     {
         DefaultTableModel tableModel = activityForwardingView.getDefaultTableModelTimeAvailability();
         
-        //try
-        //{
+        try
+        {
             int weekSelected = plannedActivity.getWeek();
             int IDActivity = plannedActivity.getIdActivity();
             String branchOffice = plannedActivity.getBrachOffice();;
             String department = plannedActivity.getDepartment();
             Typology typology = plannedActivity.getTypology();
-            int timeNeeded = plannedActivity.getTimeNeeded();
+            int timeNeeded = plannedActivity.getRemainingTime();
             String dayOfWeek = this.dayOfWeek;
             int dayOfMonth = this.dayOfMonth;
             String maintainerName = weeklyAvailability.getUsername();
@@ -138,7 +182,7 @@ public class ActivityForwardingController extends AbstractController
             activityForwardingView.getjDayOfWeekNumberLabel().setText(String.valueOf(dayOfMonth));
             activityForwardingView.getjActivityToAssignLabel().setText(String.valueOf(IDActivity) + " - " + 
                                    branchOffice + " " + department + " - " + typology.getValue() + " - " + 
-                                   String.valueOf(timeNeeded));
+                                   String.valueOf(timeNeeded) + "'");
             activityForwardingView.getjMaintainerNameAvailabilityLabel().setText("Availability " + maintainerName + 
                                     " : " + maintainerPercentage);
             
@@ -151,18 +195,20 @@ public class ActivityForwardingController extends AbstractController
             // Adds the DataModel to the table
             Object[] model = updateDataModel(weeklyAvailability.getDataForForwarding(dayOfWeek));
             tableModel.addRow(model);
-        /*    
+            
         }
-        catch (IOException ex)
+        catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
         } 
-        catch (SQLException ex)
-        {
-            JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
-        }*/
+        
     }
     
+    /**
+     * Updates the DataModel adding more informations and some new strings
+     * @param dataModel is the DataModel that you want to update
+     * @return the updated DataModel with the new adds
+     */
     public Object[] updateDataModel(Object[] dataModel)
     {
         int maxSkills = this.plannedActivity.getSkills().size();
@@ -177,12 +223,17 @@ public class ActivityForwardingController extends AbstractController
      
     }
      
-    public void forwardActivity(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability)
+    /**
+     * Assigns and forwards the maintenance activity to the maintainer in the selected day and turn
+     * @param plannedActivity is the planned activity to assign
+     * @param weeklyAvailability is the weekly availability of the maintainer
+     * @return true if the maintainer is available in the specified turn, false otherwise
+     */
+    public boolean forwardActivity(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability)
     {
         try
         {
             DayOfWeek day = DayOfWeek.valueOf(this.dayOfWeek.toUpperCase());
-            LinkedList<User> maintainer = this.userRepo.queryOneUser(weeklyAvailability.getUsername());
             
             int row = activityForwardingView.getjMaintainerTimeAvailabilityTable().getSelectedRow();
             int column = activityForwardingView.getjMaintainerTimeAvailabilityTable().getSelectedColumn();
@@ -190,8 +241,14 @@ public class ActivityForwardingController extends AbstractController
             String minutesSelected = activityForwardingView.getjMaintainerTimeAvailabilityTable().getValueAt(row, column).toString();
             String[] minutes = minutesSelected.split(" ");
             
-            this.maintenanceActivityRepo.assignMaintenanceActivity(plannedActivity, (Maintainer) maintainer.get(0), day, fromString(workTurn), parseInt(minutes[0]));
+            if(minutesSelected.equals("0 min"))
+            {
+                JOptionPane.showMessageDialog(null, NOT_VALID_MESSAGE);
+                return false;
+            }    
+            this.maintenanceActivityRepo.assignMaintenanceActivity(plannedActivity, (Maintainer) this.maintainer.get(0), day, fromString(workTurn), parseInt(minutes[0]));
             
+            return true;
         } 
         catch (IOException ex)
         {
@@ -203,9 +260,19 @@ public class ActivityForwardingController extends AbstractController
         }
         catch (ArrayIndexOutOfBoundsException ex)
         {
-            JOptionPane.showMessageDialog(new JFrame(), SELECT_ACTIVITY_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), SELECT_TURN_MESSAGE);
         }
-        
-    }        
+        return false;
+    } 
+
+    /**
+     * Getter used for tests
+     * @return the ActivityForwardingView
+     */
+    public ActivityForwardingView getActivityForwardingView()
+    {
+        this.activityForwardingView.dispose();
+        return activityForwardingView;
+    }
     
 }

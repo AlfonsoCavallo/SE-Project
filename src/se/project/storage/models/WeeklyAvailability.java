@@ -1,7 +1,6 @@
 package se.project.storage.models;
 
 import java.time.DayOfWeek;
-import static java.time.DayOfWeek.FRIDAY;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -229,6 +228,10 @@ public class WeeklyAvailability
         return true;
     }
     
+    /**
+     * 
+     * @return the data model to assign a WeeklyAvailability
+     */
     public Object[] getDataForAssignment()
     {
         EnumSet<DayOfWeek> daysOfWeek = EnumSet.allOf(DayOfWeek.class);
@@ -243,6 +246,11 @@ public class WeeklyAvailability
         return output.toArray();
     }
     
+    /**
+     * 
+     * @param dayOfWeek is the day of the week in which the maintainer has to work to the assigned activity
+     * @return the data model to forward a WeeklyAvailability
+     */
     public Object[] getDataForForwarding(String dayOfWeek)
     {
         EnumSet<WorkTurn> workTurns = EnumSet.allOf(WorkTurn.class);

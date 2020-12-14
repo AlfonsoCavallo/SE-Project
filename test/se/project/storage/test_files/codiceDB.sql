@@ -240,7 +240,7 @@ grant usage, select on sequence maintenance_system.maintenance_activity_id_activ
 
 -- creating some maintainers
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
-values('gio','gio@gio.it','gio','gio','fal','maintainer');
+values('gio','gruppo8se@gmail.com','gio','gio','fal','maintainer');
 
 insert into maintenance_system.user_data(username, email, pass, name_user, surname, user_role)
 values('phil','phil@phil.com','phil','phil','lips','maintainer');

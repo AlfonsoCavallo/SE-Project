@@ -101,7 +101,7 @@ public class MaintenanceActivityInfoController extends AbstractController
                                   this.plannedActivity.getBrachOffice() + " , " +
                                   this.plannedActivity.getDepartment() + " - " +
                                   this.plannedActivity.getTypology().getValue() + " - " +
-                                  String.valueOf(this.plannedActivity.getTimeNeeded()) + "'";
+                                  String.valueOf(this.plannedActivity.getRemainingTime()) + "'";
         String description = this.plannedActivity.getActivityDescription();
         String SMP = this.plannedActivity.getStandardProcedure();
         ArrayList<String> skills = this.plannedActivity.getSkills();

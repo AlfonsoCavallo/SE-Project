@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import static se.project.business_logic.utilities.FileUtilities.getStringFromFile;
+import se.project.storage.models.Maintainer;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
@@ -144,6 +145,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
                 output.add(new SystemAdministrator(username, email, name, surname, password, role));
             else if(role.equals("planner"))
                 output.add(new Planner(username, email, name, surname, password, role));
+            else if(role.equals("maintainer"))
+                output.add(new Maintainer(username, email, name, surname, password, role));
         }
         
         return output;        

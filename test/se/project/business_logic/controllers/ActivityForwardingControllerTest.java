@@ -9,8 +9,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import se.project.business_logic.controllers.activities_assignment.ActivityAssignmentController;
 import static org.junit.Assert.*;
+import se.project.business_logic.controllers.activities_assignment.ActivityForwardingController;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
 import static se.project.storage.DatabaseTesting.getTestUser;
@@ -20,10 +20,10 @@ import static se.project.storage.models.maintenance_activity.MaintenanceActivity
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 
 
-public class ActivityAssignmentControllerTest
+public class ActivityForwardingControllerTest
 {
     
-    public ActivityAssignmentControllerTest()
+    public ActivityForwardingControllerTest()
     {
     }
     
@@ -54,11 +54,12 @@ public class ActivityAssignmentControllerTest
         catch (SQLException ex)
         {
             
-        }        
+        } 
     }
 
+    
     @Test
-    public void testUpdateDataModel()
+    public void testUpdateDataModel() 
     {
         try
         {
@@ -69,6 +70,10 @@ public class ActivityAssignmentControllerTest
             PlannedActivity plannedActivity = new PlannedActivity(2, "activity2", 30, 30, true, 
                                                   HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             
+            String dayOfWeek = "Friday";
+            int dayOfMonth = 17;
+            String maintainerPercentage = "100%";
+            
             WeeklyAvailability weeklyAvailability = new WeeklyAvailability(username);
             weeklyAvailability.setNumberOfCompetences(3);
             weeklyAvailability.setAvailabilities(DayOfWeek.SUNDAY, 0, 0, 0, 0, 0, 0, 0);
@@ -78,23 +83,24 @@ public class ActivityAssignmentControllerTest
             weeklyAvailability.setAvailabilities(DayOfWeek.THURSDAY, 60, 60, 60, 60, 60, 60, 60);
             weeklyAvailability.setAvailabilities(DayOfWeek.FRIDAY, 60, 60, 60, 60, 60, 60, 60);
             weeklyAvailability.setAvailabilities(DayOfWeek.SATURDAY, 0, 0, 0, 0, 0, 0, 0);
-            ActivityAssignmentController istance = new ActivityAssignmentController(plannedActivity);
-            istance.getActivityAssignmentView();
             
-            Object[] availabilityModel = weeklyAvailability.getDataForAssignment();
+            ActivityForwardingController istance = new ActivityForwardingController(plannedActivity, weeklyAvailability, dayOfWeek, dayOfMonth, maintainerPercentage);
+            istance.getActivityForwardingView();
+            
+            Object[] availabilityModel = weeklyAvailability.getDataForForwarding(dayOfWeek);
             Object[] modelUpdated = istance.updateDataModel(availabilityModel);
             
-            Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "100%", "100%", "100%", "100%", "100%", "0%", "0%"};
+            Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "60 min", "60 min", "60 min", "60 min", "60 min", "60 min", "60 min"};
             assertEquals(expectedUpdatedModel, modelUpdated);
             
             closeConnection();
             
-        } 
+        }
         catch (ClassNotFoundException | SQLException ex)
         {
             System.err.println(ex.getMessage());
             fail();
         } 
-    }        
-    
+        
+    }
 }
