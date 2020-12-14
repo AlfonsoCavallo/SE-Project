@@ -1,9 +1,11 @@
 package se.project.presentation.views.activities_assignment;
 
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.AbstractView;
 
@@ -33,9 +35,24 @@ public class ActivityAssignmentView extends AbstractView
         this.defaultTableModelAvailability.setColumnIdentifiers(availabilityColumns);
         this.jSkillsNeededList.setModel(this.defaultListModelSkills);
         this.jMaintainerAvailabilityTable.setModel(this.defaultTableModelAvailability);
+        
+        jMaintainerAvailabilityTable.setDefaultRenderer(Object.class, new MyTableCellRenderer());
+        
         this.setVisible(true);        
     }
 
+    class MyTableCellRenderer extends DefaultTableCellRenderer {
+
+        /**
+         * 
+         * @return the color of the cell's background.
+         */
+        @Override
+        public Color getBackground()
+        {
+            return super.getBackground();
+        }
+    }
     
     /**
      * 
