@@ -1,5 +1,7 @@
 package se.project.business_logic.controllers.activities_assignment;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -10,6 +12,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
@@ -218,9 +222,10 @@ public class ActivityAssignmentController extends AbstractController
         int maxSkills = this.plannedActivity.getSkills().size();
         
         dataModel[1] = dataModel[1] + "/" + maxSkills;
-        for(int i= 2; i<=8; i++)
+        for(int i = 2; i < activityAssignmentView.getjMaintainerAvailabilityTable().getColumnCount(); i++)
         {
-          dataModel[i] = dataModel[i] + "%";  
+            this.changeTable(activityAssignmentView.getjMaintainerAvailabilityTable(), i);
+            dataModel[i] = dataModel[i] + "%";
         }    
         
         return dataModel;
@@ -234,6 +239,42 @@ public class ActivityAssignmentController extends AbstractController
     {
         this.activityAssignmentView.dispose();
         return activityAssignmentView;
+    }
+    
+    /**
+     * 
+     * Change the color of the cell in the table according to their values.
+     * @param table is the table in the page.
+     * @param column is a specific column of the table.
+     */
+    public void changeTable(JTable table, int column)
+    {
+            table.getColumnModel().getColumn(column).setCellRenderer(new DefaultTableCellRenderer()
+            {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+                {
+                    final Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    int cellValue = Integer.parseInt(table.getValueAt(row, column).toString().split("%")[0]);
+                    if ((cellValue <= 100) && (cellValue >= 70))
+                    {
+                        component.setBackground(Color.green);
+                    }
+                    else if (cellValue == 0)
+                    {
+                        component.setBackground(Color.red);
+                    }
+                    else if ((cellValue > 0) && (cellValue <= 20))
+                    {
+                        component.setBackground(Color.orange);
+                    }
+                    else
+                    {
+                        component.setBackground(Color.yellow);
+                    }
+                    return component;
+                }
+            });
     }
     
 }

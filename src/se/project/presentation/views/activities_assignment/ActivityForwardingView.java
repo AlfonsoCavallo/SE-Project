@@ -1,9 +1,11 @@
 package se.project.presentation.views.activities_assignment;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import se.project.presentation.views.AbstractView;
 
@@ -31,7 +33,23 @@ public class ActivityForwardingView extends AbstractView
                                      "11:00 - 12:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00"};
         this.defaultTableModelTimeAvailability.setColumnIdentifiers(timeAvailability);
         this.jMaintainerTimeAvailabilityTable.setModel(this.defaultTableModelTimeAvailability);
+        
+        jMaintainerTimeAvailabilityTable.setDefaultRenderer(Object.class, new ActivityForwardingView.MyTableCellRenderer());
+        
         this.setVisible(true);
+    }
+    
+    class MyTableCellRenderer extends DefaultTableCellRenderer {
+
+        /**
+         * 
+         * @return the color of the cell's background.
+         */
+        @Override
+        public Color getBackground()
+        {
+            return super.getBackground();
+        }
     }
 
     /**

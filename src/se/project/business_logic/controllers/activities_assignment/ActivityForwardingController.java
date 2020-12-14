@@ -1,5 +1,7 @@
 package se.project.business_logic.controllers.activities_assignment;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
@@ -9,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.MainController;
@@ -212,11 +216,11 @@ public class ActivityForwardingController extends AbstractController
         int maxSkills = this.plannedActivity.getSkills().size();
          
         dataModel[1] = dataModel[1] + "/" + maxSkills;
-        for(int i= 2; i<=8; i++)
+        for(int i= 2; i < activityForwardingView.getjMaintainerTimeAvailabilityTable().getColumnCount(); i++)
         {
+            this.changeTable(activityForwardingView.getjMaintainerTimeAvailabilityTable(), i);
             dataModel[i] = dataModel[i] + " min";  
         }
-        
         return dataModel;
      }
      
@@ -270,6 +274,42 @@ public class ActivityForwardingController extends AbstractController
     {
         this.activityForwardingView.dispose();
         return activityForwardingView;
+    }
+    
+    /**
+     * 
+     * Change the color of the cell in the table according to their values.
+     * @param table is the table in the page.
+     * @param column is a specific column of the table.
+     */
+    public void changeTable(JTable table, int column)
+    {
+            table.getColumnModel().getColumn(column).setCellRenderer(new DefaultTableCellRenderer()
+            {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+                {
+                    final Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    int cellValue = Integer.parseInt(table.getValueAt(row, column).toString().split(" ")[0]);
+                    if ((cellValue <= 60) && (cellValue >= 50))
+                    {
+                        component.setBackground(Color.green);
+                    }
+                    else if (cellValue == 0)
+                    {
+                        component.setBackground(Color.red);
+                    }
+                    else if ((cellValue > 0) && (cellValue <= 15))
+                    {
+                        component.setBackground(Color.orange);
+                    }
+                    else
+                    {
+                        component.setBackground(Color.yellow);
+                    }
+                    return component;
+                }
+            });
     }
     
 }
