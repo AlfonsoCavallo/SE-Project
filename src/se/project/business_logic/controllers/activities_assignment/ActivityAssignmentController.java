@@ -41,7 +41,9 @@ public class ActivityAssignmentController extends AbstractController
     private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
     
     /**
+     * 
      * Creates a new ActivityAssignmentController
+     * @param plannedActivity is tha activity that has to be assigned
      */
     public ActivityAssignmentController(PlannedActivity plannedActivity)
     {
@@ -54,6 +56,7 @@ public class ActivityAssignmentController extends AbstractController
     }
     
     /**
+     * 
      * Initializes the listeners of ActivityAssignmentView
      */
     public void initListeners()
@@ -152,6 +155,7 @@ public class ActivityAssignmentController extends AbstractController
     }        
     
     /**
+     * 
      * Updates the table in the page inserting all the availabilities in the specified week
      * @param plannedActivity is the planned activity from which you obtain the informations to check the weekly availability
      */

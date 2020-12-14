@@ -50,6 +50,15 @@ public class ActivityForwardingController extends AbstractController
     private String maintainerPercentage;
     private LinkedList<User> maintainer;
     
+    /**
+     * 
+     * Creates a new ActivityForwardingController
+     * @param plannedActivity is the activity that has to be assigned
+     * @param weeklyAvailability is the weekly availability of a maintainer
+     * @param dayOfWeek is the day in the week in which the activity has to be assigned
+     * @param dayOfMonth is the day in the month in which the activity has to be assigned
+     * @param maintainerPercentage is the percentage of availability of the maintainer in the day in which the activity has to be assigned
+     */ 
     public ActivityForwardingController(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, int dayOfMonth, String maintainerPercentage)
     {
         this.activityForwardingView = new ActivityForwardingView();
