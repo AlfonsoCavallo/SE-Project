@@ -100,7 +100,6 @@ public class ActivityForwardingControllerTest
         {
             System.err.println(ex.getMessage());
             fail();
-        } 
-        
+        }         
     }
 }
