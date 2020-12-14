@@ -37,7 +37,7 @@ public class ActivityAssignmentController extends AbstractController
     private final ActivityAssignmentView activityAssignmentView;
     private PlannedActivity plannedActivity = null;
     private ArrayList<String> skillsNeeded;
-    private List<WeeklyAvailability> weeklyAvailabilities;
+    private List<WeeklyAvailability> weeklyAvailabilities = null;
     private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
     
     /**
@@ -162,7 +162,7 @@ public class ActivityAssignmentController extends AbstractController
         
         try
         {
-            List<String> competenciesSerched = plannedActivity.getSkills();
+            List<String> competenciesSearched = plannedActivity.getSkills();
             int weekSearched = plannedActivity.getWeek();
             int IDActivity = plannedActivity.getIdActivity();
             String branchOffice = plannedActivity.getBrachOffice();
@@ -170,7 +170,7 @@ public class ActivityAssignmentController extends AbstractController
             Typology typology = plannedActivity.getTypology();
             int timeNeeded = plannedActivity.getRemainingTime();
             
-            this.weeklyAvailabilities = weeklyAvailabilityRepo.queryAllWeeklyAvailabilities(competenciesSerched, weekSearched);
+            this.weeklyAvailabilities = weeklyAvailabilityRepo.queryAllWeeklyAvailabilities(competenciesSearched, weekSearched);
             
             activityAssignmentView.getjWeekNumberLabel().setText(String.valueOf(weekSearched));
             activityAssignmentView.getjActivityToAssignLabel().setText(String.valueOf(IDActivity) + " - " + 
@@ -205,10 +205,13 @@ public class ActivityAssignmentController extends AbstractController
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
+            System.err.println(ex.getMessage());
         } 
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
+            System.err.println(ex.getMessage());
+            
         }
     } 
     

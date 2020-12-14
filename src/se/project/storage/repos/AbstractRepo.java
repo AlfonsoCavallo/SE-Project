@@ -31,7 +31,20 @@ public abstract class AbstractRepo implements RepoInterface
     public ResultSet queryDatabase(String query) throws SQLException
     {
         PreparedStatement preparedStatement = getConnection().prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet;        
+           
+        try
+        {           
+            resultSet = preparedStatement.executeQuery();
+            getConnection().commit();
+        }
+        catch(SQLException ex)
+        {
+            preparedStatement.cancel();
+            getConnection().rollback();
+            throw ex;
+        }
+        
         return resultSet;
     }
     
@@ -44,8 +57,20 @@ public abstract class AbstractRepo implements RepoInterface
     @Override
     public boolean executeStatement(String statement) throws SQLException
     {
-        PreparedStatement preparedStatement = getConnection().prepareStatement(getTransaction(statement));
-        return preparedStatement.execute();
+        PreparedStatement preparedStatement = getConnection().prepareStatement(statement);
+        
+        try
+        {           
+            preparedStatement.execute();
+            getConnection().commit();
+        }
+        catch(SQLException ex)
+        {
+            preparedStatement.cancel();
+            getConnection().rollback();
+            throw ex;
+        }        
+        return true;
     }
     
     /**

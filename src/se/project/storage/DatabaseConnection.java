@@ -38,6 +38,7 @@ public class DatabaseConnection
         // Open the connection to PostreSQL Database
         Class.forName("org.postgresql.Driver");
         connection = DriverManager.getConnection(DATABASE_URL, username, String.valueOf(password));
+        connection.setAutoCommit(false);
         return connection;
     }
     
