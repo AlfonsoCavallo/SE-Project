@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.LinkedList;
@@ -19,10 +21,12 @@ import se.project.business_logic.utilities.MailSender;
 import se.project.presentation.views.activities_assignment.ActivityForwardingView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
-import static se.project.storage.models.WeeklyAvailability.WorkTurn.fromString;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.User;
 import se.project.storage.models.WeeklyAvailability;
+import static se.project.storage.models.WeeklyAvailability.WorkTurn.fromString;
+import se.project.storage.models.adapters.WeeklyAvailabilityForAssignment;
+import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
@@ -221,9 +225,16 @@ public class ActivityForwardingController extends AbstractController
             }
             
             // Adds the DataModel to the table
-            Object[] model = updateDataModel(weeklyAvailability.getDataForForwarding(dayOfWeek));
-            tableModel.addRow(model);
+            int maxSkills = this.plannedActivity.getSkills().size();
+            RepresentableWeeklyAvailability adapter = new WeeklyAvailabilityForAssignment(weeklyAvailability, maxSkills);
             
+            Object[] model = adapter.getMinutesAvailableDataModel(dayOfWeek);
+            
+            for(int i= 2; i < activityForwardingView.getjMaintainerTimeAvailabilityTable().getColumnCount(); i++)
+            {
+                this.colorTable(activityForwardingView.getjMaintainerTimeAvailabilityTable(), i);
+            }
+            tableModel.addRow(model);            
         }
         catch (NullPointerException ex)
         {
@@ -244,8 +255,7 @@ public class ActivityForwardingController extends AbstractController
         dataModel[1] = dataModel[1] + "/" + maxSkills;
         for(int i= 2; i < activityForwardingView.getjMaintainerTimeAvailabilityTable().getColumnCount(); i++)
         {
-            this.changeTable(activityForwardingView.getjMaintainerTimeAvailabilityTable(), i);
-            dataModel[i] = dataModel[i] + " min";  
+            this.colorTable(activityForwardingView.getjMaintainerTimeAvailabilityTable(), i);
         }
         return dataModel;
      }
@@ -308,7 +318,7 @@ public class ActivityForwardingController extends AbstractController
      * @param table is the table in the page.
      * @param column is a specific column of the table.
      */
-    public void changeTable(JTable table, int column)
+    public void colorTable(JTable table, int column)
     {
             table.getColumnModel().getColumn(column).setCellRenderer(new DefaultTableCellRenderer()
             {

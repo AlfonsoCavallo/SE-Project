@@ -21,6 +21,8 @@ import se.project.presentation.views.activities_assignment.ActivityAssignmentVie
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.WeeklyAvailability;
+import se.project.storage.models.adapters.WeeklyAvailabilityForAssignment;
+import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.WeeklyAvailabilityRepo;
@@ -222,8 +224,17 @@ public class ActivityAssignmentController extends AbstractController
             // Iterates over maintenance activities
             for(WeeklyAvailability availability : weeklyAvailabilities)
             {   
-                Object[] model = updateDataModel(availability.getDataForAssignment());
-                tableModel.addRow(model);
+                int maxSkills = this.plannedActivity.getSkills().size();
+                RepresentableWeeklyAvailability adapter = new WeeklyAvailabilityForAssignment(availability, maxSkills);
+                
+                // Colors Table
+                for(int i = 2; i < activityAssignmentView.getjMaintainerAvailabilityTable().getColumnCount(); i++)
+                {
+                    this.colorTable(activityAssignmentView.getjMaintainerAvailabilityTable(), i);
+                }    
+                
+                Object[] model = adapter.getPercentageDataModel();
+                tableModel.addRow(model);                
             }  
         }
         catch (IOException ex)
@@ -237,25 +248,6 @@ public class ActivityAssignmentController extends AbstractController
             System.err.println(ex.getMessage());
             
         }
-    } 
-    
-    /**
-     * Updates the DataModel adding more informations and some new strings
-     * @param dataModel is the DataModel that you want to update
-     * @return the updated DataModel with the new adds
-     */
-    public Object[] updateDataModel(Object[] dataModel)
-    {
-        int maxSkills = this.plannedActivity.getSkills().size();
-        
-        dataModel[1] = dataModel[1] + "/" + maxSkills;
-        for(int i = 2; i < activityAssignmentView.getjMaintainerAvailabilityTable().getColumnCount(); i++)
-        {
-            this.changeTable(activityAssignmentView.getjMaintainerAvailabilityTable(), i);
-            dataModel[i] = dataModel[i] + "%";
-        }    
-        
-        return dataModel;
     }
 
     /**
@@ -274,7 +266,7 @@ public class ActivityAssignmentController extends AbstractController
      * @param table is the table in the page.
      * @param column is a specific column of the table.
      */
-    public void changeTable(JTable table, int column)
+    public void colorTable(JTable table, int column)
     {
             table.getColumnModel().getColumn(column).setCellRenderer(new DefaultTableCellRenderer()
             {

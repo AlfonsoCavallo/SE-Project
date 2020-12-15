@@ -82,7 +82,7 @@ public class ActivityAssignmentControllerTest
             instance.setPlannedActivityModel(plannedActivity);
             instance.getActivityAssignmentView();
             
-            Object[] availabilityModel = weeklyAvailability.getDataForAssignment();
+            Object[] availabilityModel = weeklyAvailability.getPercentageDataModel();
             Object[] modelUpdated = instance.updateDataModel(availabilityModel);
             
             Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "100%", "100%", "100%", "100%", "100%", "0%", "0%"};

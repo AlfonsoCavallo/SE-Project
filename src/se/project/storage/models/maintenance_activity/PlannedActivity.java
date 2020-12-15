@@ -92,16 +92,6 @@ public class PlannedActivity extends MaintenanceActivity
     
     /**
      * 
-     * @return the data model of the Planned Activity
-     */
-    @Override
-    public Object[] getDataModel()
-    {
-        return super.getDataModel();
-    }
-    
-    /**
-     * 
      * @return a String corresponding to the attribute planned
      */
     @Override

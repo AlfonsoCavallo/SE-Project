@@ -89,7 +89,7 @@ public class ActivityForwardingControllerTest
             
             instance.getActivityForwardingView();
             
-            Object[] availabilityModel = weeklyAvailability.getDataForForwarding(dayOfWeek);
+            Object[] availabilityModel = weeklyAvailability.getMinutesAvailableDataModel(dayOfWeek);
             Object[] modelUpdated = instance.updateDataModel(availabilityModel);
             
             Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "60 min", "60 min", "60 min", "60 min", "60 min", "60 min", "60 min"};

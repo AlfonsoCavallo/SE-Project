@@ -78,16 +78,6 @@ public class EWO extends UnplannedActivity
     
     /**
      * 
-     * @return an Object array representing the data model of the maintenance activity
-     */
-    @Override
-    public Object[] getDataModel()
-    {
-        return super.getDataModel();
-    }
-    
-    /**
-     * 
      * @return a String corresponding to the attribute planned
      */
     @Override

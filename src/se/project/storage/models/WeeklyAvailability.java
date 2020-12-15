@@ -7,9 +7,10 @@ import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 
 
-public class WeeklyAvailability
+public class WeeklyAvailability implements RepresentableWeeklyAvailability
 {
     private List<int[]> availabilityPercentage = new ArrayList<>(7);
     private String username;
@@ -232,7 +233,8 @@ public class WeeklyAvailability
      * 
      * @return the data model to assign a WeeklyAvailability
      */
-    public Object[] getDataForAssignment()
+    @Override
+    public Object[] getPercentageDataModel()
     {
         EnumSet<DayOfWeek> daysOfWeek = EnumSet.allOf(DayOfWeek.class);
         
@@ -241,7 +243,7 @@ public class WeeklyAvailability
         for(DayOfWeek day : daysOfWeek)
         {
             output.add(getPercentageAvailability(day));
-        }    
+        }
         
         return output.toArray();
     }
@@ -251,7 +253,8 @@ public class WeeklyAvailability
      * @param dayOfWeek is the day of the week in which the maintainer has to work to the assigned activity
      * @return the data model to forward a WeeklyAvailability
      */
-    public Object[] getDataForForwarding(String dayOfWeek)
+    @Override
+    public Object[] getMinutesAvailableDataModel(String dayOfWeek)
     {
         EnumSet<WorkTurn> workTurns = EnumSet.allOf(WorkTurn.class);
         
