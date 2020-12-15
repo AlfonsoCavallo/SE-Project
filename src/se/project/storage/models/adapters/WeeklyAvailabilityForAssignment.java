@@ -40,7 +40,7 @@ public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvail
     @Override
     public Object[] getMinutesAvailableDataModel(String day)
     {
-        Object[] dataModel = adaptee.getPercentageDataModel();
+        Object[] dataModel = adaptee.getMinutesAvailableDataModel(day);
          
         dataModel[1] = dataModel[1] + "/" + maxSkills;
         for(int i= 2; i < dataModel.length; i++)

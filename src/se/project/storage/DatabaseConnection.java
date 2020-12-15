@@ -31,7 +31,7 @@ public class DatabaseConnection implements Connection
     Connection connection;
     
     static private final String DATABASE_URL = "jdbc:postgresql://localhost/gruppo8_se"; 
-    static private String ALREADY_CONNECTED_MESSAGE = "Connection already established. Close connection before establishing another one.";
+    private static final String ALREADY_CONNECTED_MESSAGE = "Connection already established. Close connection before establishing another one.";
     
     /**
      * 
