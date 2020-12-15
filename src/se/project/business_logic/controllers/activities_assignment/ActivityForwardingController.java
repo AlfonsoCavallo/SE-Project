@@ -38,7 +38,7 @@ public class ActivityForwardingController extends AbstractController
     private final String NOT_VALID_MESSAGE = "At this time the maintainer is not available for the current activity!";
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not execute the statement on database";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
-    private final String SELECT_TURN_MESSAGE = "Please, select a turn first!";
+    private final String SELECT_TURN_MESSAGE = "Please, select a turn!";
     
     private final ActivityForwardingView activityForwardingView;
     private final MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
@@ -157,7 +157,7 @@ public class ActivityForwardingController extends AbstractController
                 } 
                 catch (Exception ex)
                 {
-                    System.out.println(ex.getMessage());
+                    JOptionPane.showMessageDialog(new JFrame(), SELECT_TURN_MESSAGE);
                 }
             }        
         });        
@@ -261,7 +261,7 @@ public class ActivityForwardingController extends AbstractController
             this.maintenanceActivityRepo.assignMaintenanceActivity(plannedActivity, (Maintainer) this.maintainer.get(0), day, fromString(workTurn), parseInt(minutes[0]));
             
             return true;
-        } 
+        }
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
@@ -295,32 +295,32 @@ public class ActivityForwardingController extends AbstractController
      */
     public void colorTable(JTable table, int column)
     {
-            table.getColumnModel().getColumn(column).setCellRenderer(new DefaultTableCellRenderer()
+        table.getColumnModel().getColumn(column).setCellRenderer(new DefaultTableCellRenderer()
+        {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
             {
-                @Override
-                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)
+                final Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                int cellValue = Integer.parseInt(table.getValueAt(row, column).toString().split(" ")[0]);
+                if ((cellValue <= 60) && (cellValue >= 50))
                 {
-                    final Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                    int cellValue = Integer.parseInt(table.getValueAt(row, column).toString().split(" ")[0]);
-                    if ((cellValue <= 60) && (cellValue >= 50))
-                    {
-                        component.setBackground(Color.green);
-                    }
-                    else if (cellValue == 0)
-                    {
-                        component.setBackground(Color.red);
-                    }
-                    else if ((cellValue > 0) && (cellValue <= 15))
-                    {
-                        component.setBackground(Color.orange);
-                    }
-                    else
-                    {
-                        component.setBackground(Color.yellow);
-                    }
-                    return component;
+                    component.setBackground(Color.green);
                 }
-            });
+                else if (cellValue == 0)
+                {
+                    component.setBackground(Color.red);
+                }
+                else if ((cellValue > 0) && (cellValue <= 15))
+                {
+                    component.setBackground(Color.orange);
+                }
+                else
+                {
+                    component.setBackground(Color.yellow);
+                }
+                return component;
+            }
+        });
     }
     
 }

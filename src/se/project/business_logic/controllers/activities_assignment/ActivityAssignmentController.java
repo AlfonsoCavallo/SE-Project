@@ -35,6 +35,7 @@ public class ActivityAssignmentController extends AbstractController
     private final String NOT_VALID_MESSAGE = "In this day the maintainer is not available for the current activity!";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     private final String CONFIRM_ASSIGNMENT_MESSAGE = "Are you sure to assign this activity to the maintainer \" maintainer_name_param \"?";
+    private final String SELECT_TURN_MESSAGE = "Please, select a turn!";
     
     private final ActivityAssignmentView activityAssignmentView;
     private PlannedActivity plannedActivity = null;
@@ -117,11 +118,18 @@ public class ActivityAssignmentController extends AbstractController
        {
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
-               boolean open = executeTransitionToForwardingPage();
-               if(open)
-               {    
-                    activityAssignmentView.dispose();
+               try
+               {
+                   boolean open = executeTransitionToForwardingPage();
+                   if(open)
+                   {
+                       activityAssignmentView.dispose();
+                   } 
                }
+               catch (IllegalArgumentException ex)
+               {
+                   JOptionPane.showMessageDialog(new JFrame(), SELECT_TURN_MESSAGE);
+               }     
            }        
        });
                
@@ -256,12 +264,10 @@ public class ActivityAssignmentController extends AbstractController
         catch (IOException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), CANNOT_READ_FILE_MESSAGE);
-            System.err.println(ex.getMessage());
         } 
         catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
-            System.err.println(ex.getMessage());
             
         }
     }
