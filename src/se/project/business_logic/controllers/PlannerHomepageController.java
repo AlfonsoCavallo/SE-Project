@@ -1,11 +1,12 @@
 package se.project.business_logic.controllers;
 
-import se.project.business_logic.controllers.activities_management.MaintenanceActivityController;
 import java.sql.SQLException;
-import se.project.presentation.views.PlannerHomepageView;
-import static se.project.storage.DatabaseConnection.closeConnection;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.activities_assignment.SelectMaintenanceActivityController;
+import se.project.business_logic.controllers.activities_management.MaintenanceActivityController;
+import se.project.presentation.views.PlannerHomepageView;
+import static se.project.storage.DatabaseConnection.closeConnection;
 
 
 public class PlannerHomepageController extends AbstractController
@@ -20,6 +21,16 @@ public class PlannerHomepageController extends AbstractController
     {
         this.plannerHomepageView = new PlannerHomepageView();
         initListeners();
+    }
+    
+    /***
+     * 
+     * @return plannerHomepageView
+     */
+    @Override
+    public PlannerHomepageView getView()
+    {
+        return plannerHomepageView;
     }
     
     /**
@@ -78,7 +89,7 @@ public class PlannerHomepageController extends AbstractController
      */
     public static void openMaintenanceActivityPage()
     {
-        new MaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.MAINTENANCE_ACTIVITY);
     }
 
     /**
@@ -87,6 +98,6 @@ public class PlannerHomepageController extends AbstractController
      */
     public static void openSelectMaintenanceActivityPage()
     {
-        new SelectMaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
     }
 }

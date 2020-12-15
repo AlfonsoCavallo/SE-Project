@@ -5,8 +5,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import se.project.presentation.views.AbstractView;
 
-public class MaintenanceActivityInfoView extends javax.swing.JFrame
+public class MaintenanceActivityInfoView extends AbstractView
 {
     private DefaultListModel defaultListModel;
 

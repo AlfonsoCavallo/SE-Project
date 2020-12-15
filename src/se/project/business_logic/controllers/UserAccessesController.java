@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.presentation.views.UserAccessesView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.UserAccess;
@@ -31,6 +32,16 @@ public class UserAccessesController extends AbstractController
         this.userAccessesView = new UserAccessesView();
         initListeners();
         updateAccesses();
+    }
+    
+    /***
+     * 
+     * @return userAccessesView
+     */
+    @Override
+    public UserAccessesView getView()
+    {
+        return userAccessesView;
     }
     
     /**
@@ -131,6 +142,6 @@ public class UserAccessesController extends AbstractController
      */
     public void goBackSystemAdministratorHomepage()
     {
-        new SAHomepageController();      
+        ControllerFactory.createController(ControllerType.SAHOMEPAGE);
     }
 }

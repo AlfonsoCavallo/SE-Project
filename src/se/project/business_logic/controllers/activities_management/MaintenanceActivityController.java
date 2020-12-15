@@ -2,6 +2,8 @@ package se.project.business_logic.controllers.activities_management;
 
 import java.sql.SQLException;
 import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.ControllerFactory;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
 import se.project.business_logic.controllers.PlannerHomepageController;
 import se.project.presentation.views.activities_management.MaintenanceActivityView;
@@ -20,7 +22,17 @@ public class MaintenanceActivityController extends AbstractController
     {
        this.maintenanceActivityView = new MaintenanceActivityView();
        initListeners();
-    }  
+    }
+    
+    /***
+     * 
+     * @return maintenanceActivityView
+     */
+    @Override
+    public MaintenanceActivityView getView()
+    {
+        return maintenanceActivityView;
+    }    
     
     /**
      * 
@@ -98,7 +110,7 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void openAddMaintenanceActivityPage()
     {
-        new AddMaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.ADD_MAINTENANCE_ACTIVITY);
     }
     
     /**
@@ -107,7 +119,7 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void openUpdateMaintenanceActivityPage()
     {
-        new UpdateMaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.UPDATE_MAINTENANCE_ACTIVITY);
     }
     
     /**
@@ -116,7 +128,7 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void openViewMaintenanceActivityPage()
     {
-        new ViewMaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.VIEW_MAINTENANCE_ACTIVITY);
     }
     
     /**
@@ -125,6 +137,6 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void goBackPlannerHomepage()
     {
-        new PlannerHomepageController();
+        ControllerFactory.createController(ControllerType.PLANNER_HOMEPAGE);
     }
 }

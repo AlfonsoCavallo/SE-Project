@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.presentation.views.LoginView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.SystemUser;
@@ -31,6 +32,16 @@ public class LoginController extends AbstractController
     {
         this.loginView = new LoginView();
         initListeners();
+    }
+    
+    /***
+     * 
+     * @return loginView 
+     */
+    @Override
+    public LoginView getView()
+    {
+        return loginView;
     }
     
     /**
@@ -118,11 +129,11 @@ public class LoginController extends AbstractController
             switch (role)
             {
                 case SYSTEM_ADMINISTRATOR:
-                    new SAHomepageController();
+                    ControllerFactory.createController(ControllerType.SAHOMEPAGE);
                     loginView.dispose();
                     break;
                 case PLANNER:
-                    new PlannerHomepageController();
+                    ControllerFactory.createController(ControllerType.PLANNER_HOMEPAGE);
                     loginView.dispose();
                     break;
                 default:

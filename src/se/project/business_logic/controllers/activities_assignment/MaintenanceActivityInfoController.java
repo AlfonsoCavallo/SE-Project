@@ -3,6 +3,8 @@ package se.project.business_logic.controllers.activities_assignment;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.ControllerFactory;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.activities_assignment.MaintenanceActivityInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
@@ -18,13 +20,31 @@ public class MaintenanceActivityInfoController extends AbstractController
      * 
      * Creates a new MaintenanceActivityInfoController
      */
-    public MaintenanceActivityInfoController(PlannedActivity plannedActivity)
+    public MaintenanceActivityInfoController()
     {
         this.maintenanceActivityInfoView = new MaintenanceActivityInfoView();
-        this.plannedActivity = plannedActivity;
         initListeners();
+    }
+    
+    /***
+     * Sets the model of PlannedActivity to display on the view
+     * @param plannedActivity is the activity with informations to display
+     */
+    public void setPlannedActivityModel(PlannedActivity plannedActivity)
+    {        
+        this.plannedActivity = plannedActivity;
         viewInfo();
     }
+    
+    /***
+     * 
+     * @return maintenanceActivityInfoView
+     */
+    @Override
+    public MaintenanceActivityInfoView getView()
+    {
+        return maintenanceActivityInfoView;
+    }    
     
     /**
      * 
@@ -82,7 +102,7 @@ public class MaintenanceActivityInfoController extends AbstractController
      */
     public void openActivityAssignmentPage()
     {
-        new ActivityAssignmentController(this.plannedActivity);
+        new ActivityAssignmentController().setPlannedActivityModel(this.plannedActivity);
     }
     
     /**
@@ -91,7 +111,7 @@ public class MaintenanceActivityInfoController extends AbstractController
      */
     public static void goBackSelectMaintenanceActivityView()
     {
-        new SelectMaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
     }
     
     public void viewInfo()

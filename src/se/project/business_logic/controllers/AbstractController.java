@@ -3,16 +3,12 @@ package se.project.business_logic.controllers;
 import se.project.presentation.views.AbstractView;
 
 
-public abstract class AbstractController
+public abstract class AbstractController implements Controller
 {
-    protected AbstractView view;
-
     /**
      * 
-     * @return an AbstractView
+     * @return an AbstractView linked to this controller
      */
-    public AbstractView getView()
-    {
-        return view;
-    }    
+    @Override
+    public abstract AbstractView getView();
 }

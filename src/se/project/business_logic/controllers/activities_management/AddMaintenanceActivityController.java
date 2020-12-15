@@ -3,16 +3,18 @@ package se.project.business_logic.controllers.activities_management;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.ControllerFactory;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.activities_management.AddMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
-import se.project.storage.models.maintenance_activity.EWO;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
@@ -43,6 +45,16 @@ public class AddMaintenanceActivityController extends AbstractController
         clearFields();
         initListeners();
     }
+    
+    /***
+     * 
+     * @return AddMaintenanceActivityView
+     */
+    @Override
+    public AddMaintenanceActivityView getView()
+    {
+        return addMaintenanceActivityView;
+    }    
     
     /**
      * 
@@ -132,7 +144,7 @@ public class AddMaintenanceActivityController extends AbstractController
      */
     public static void goBackMaintenanceActivityPage()
     {
-        new MaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.MAINTENANCE_ACTIVITY);
     }
     
     /**

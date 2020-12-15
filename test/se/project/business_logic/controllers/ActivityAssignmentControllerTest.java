@@ -78,11 +78,12 @@ public class ActivityAssignmentControllerTest
             weeklyAvailability.setAvailabilities(DayOfWeek.THURSDAY, 60, 60, 60, 60, 60, 60, 60);
             weeklyAvailability.setAvailabilities(DayOfWeek.FRIDAY, 60, 60, 60, 60, 60, 60, 60);
             weeklyAvailability.setAvailabilities(DayOfWeek.SATURDAY, 0, 0, 0, 0, 0, 0, 0);
-            ActivityAssignmentController istance = new ActivityAssignmentController(plannedActivity);
-            istance.getActivityAssignmentView();
+            ActivityAssignmentController instance = new ActivityAssignmentController();
+            instance.setPlannedActivityModel(plannedActivity);
+            instance.getActivityAssignmentView();
             
             Object[] availabilityModel = weeklyAvailability.getDataForAssignment();
-            Object[] modelUpdated = istance.updateDataModel(availabilityModel);
+            Object[] modelUpdated = instance.updateDataModel(availabilityModel);
             
             Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "100%", "100%", "100%", "100%", "100%", "0%", "0%"};
             assertEquals(expectedUpdatedModel, modelUpdated);

@@ -2,6 +2,8 @@ package se.project.business_logic.controllers.activities_management;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.ControllerFactory;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.activities_management.UpdateMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
@@ -48,6 +52,16 @@ public class UpdateMaintenanceActivityController extends AbstractController
         initListeners();
         viewMaintenanceActivity();
     }
+    
+    /***
+     * 
+     * @return updateMaintenanceActivityView
+     */
+    @Override
+    public UpdateMaintenanceActivityView getView()
+    {
+        return updateMaintenanceActivityView;
+    }  
     
     /**
      * 
@@ -106,7 +120,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
      */
     public static void goBackMaintenanceActivityPage()
     {
-        new MaintenanceActivityController();
+        ControllerFactory.createController(ControllerType.MAINTENANCE_ACTIVITY);
     }
     
     /**

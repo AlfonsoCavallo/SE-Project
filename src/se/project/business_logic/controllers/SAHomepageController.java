@@ -1,8 +1,9 @@
 package se.project.business_logic.controllers;
 
-import se.project.business_logic.controllers.user_management.UserInfoController;
 import java.sql.SQLException;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import se.project.business_logic.controllers.user_management.UserInfoController;
 import se.project.presentation.views.SAHomepageView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
@@ -19,6 +20,16 @@ public class SAHomepageController extends AbstractController
     {
         this.saHomepageView = new SAHomepageView();
         initListeners();
+    }
+    
+    /***
+     * 
+     * @return plannerHomepageView
+     */
+    @Override
+    public SAHomepageView getView()
+    {
+        return saHomepageView;
     }
     
     /**
@@ -78,7 +89,7 @@ public class SAHomepageController extends AbstractController
      */
     public void openUserInfoPage()
     {
-        new UserInfoController();
+        ControllerFactory.createController(ControllerType.USER_INFO);
     }
     
     /**
@@ -87,7 +98,7 @@ public class SAHomepageController extends AbstractController
      */
     public void openRecordAccessPage()
     {
-        new UserAccessesController();
+        ControllerFactory.createController(ControllerType.USER_ACCESSES);
     }
     
 }

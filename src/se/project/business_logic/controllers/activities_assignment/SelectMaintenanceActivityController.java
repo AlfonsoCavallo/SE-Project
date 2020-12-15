@@ -2,12 +2,14 @@ package se.project.business_logic.controllers.activities_assignment;
 
 import java.awt.event.ItemEvent;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.ControllerFactory;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
 import se.project.business_logic.controllers.PlannerHomepageController;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
@@ -40,6 +42,16 @@ public class SelectMaintenanceActivityController extends AbstractController
         initListeners();
         viewActivities();
     }
+    
+    /***
+     * 
+     * @return selectMaintenanceActivityView
+     */
+    @Override
+    public SelectMaintenanceActivityView getView()
+    {
+        return selectMaintenanceActivityView;
+    }    
     
     /**
      * 
@@ -126,7 +138,7 @@ public class SelectMaintenanceActivityController extends AbstractController
      */
     public static void goBackPlannerHomepage()
     {
-        new PlannerHomepageController();
+        ControllerFactory.createController(ControllerType.PLANNER_HOMEPAGE);
     }
     
     /**
@@ -135,7 +147,7 @@ public class SelectMaintenanceActivityController extends AbstractController
      */
     public void openMaintenanceActivityInfoView()
     {
-        new MaintenanceActivityInfoController(this.plannedActivity);
+        new MaintenanceActivityInfoController().setPlannedActivityModel(this.plannedActivity);
     }
     
     /**

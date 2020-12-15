@@ -40,6 +40,16 @@ public class ViewUsersController extends AbstractController
         initListeners();
     }
     
+    /***
+     * 
+     * @return viewUsersView
+     */
+    @Override
+    public ViewUsersView getView()
+    {
+        return viewUsersView;
+    } 
+    
     /**
      * 
      *  Initializes the listeners of viewMaintenanceActivityView

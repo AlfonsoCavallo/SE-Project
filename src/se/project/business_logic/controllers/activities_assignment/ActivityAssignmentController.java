@@ -43,16 +43,33 @@ public class ActivityAssignmentController extends AbstractController
     /**
      * 
      * Creates a new ActivityAssignmentController
-     * @param plannedActivity is tha activity that has to be assigned
      */
-    public ActivityAssignmentController(PlannedActivity plannedActivity)
+    public ActivityAssignmentController()
     {
         this.activityAssignmentView = new ActivityAssignmentView();
-        this.plannedActivity = plannedActivity;
-        this.skillsNeeded = plannedActivity.getSkills();
         this.weeklyAvailabilityRepo = new WeeklyAvailabilityRepo(getConnection());
         initListeners();
+    }
+    
+    /***
+     * Sets the model of PlannedActivity to display on the view
+     * @param plannedActivity is the activity with informations to display
+     */
+    public void setPlannedActivityModel(PlannedActivity plannedActivity)
+    {        
+        this.plannedActivity = plannedActivity;        
+        this.skillsNeeded = plannedActivity.getSkills();
         viewAvailability(plannedActivity);
+    }
+    
+    /***
+     * 
+     * @return activityAssignmentView
+     */
+    @Override
+    public ActivityAssignmentView getView()
+    {
+        return activityAssignmentView;
     }
     
     /**
@@ -115,7 +132,7 @@ public class ActivityAssignmentController extends AbstractController
      */
     public void goBackMaintenanceActivityInfoPage()
     {
-        new MaintenanceActivityInfoController(this.plannedActivity);
+        new MaintenanceActivityInfoController().setPlannedActivityModel(this.plannedActivity);
     }
     
     /**
@@ -148,7 +165,10 @@ public class ActivityAssignmentController extends AbstractController
         
         if(input == 0)
         {
-            new ActivityForwardingController(this.plannedActivity, selectedAvailability, selectedDayOfWeek, dayOfMonth, maintainerPercentage);
+            new ActivityForwardingController().
+                    setAvailabilityModels(this.plannedActivity, 
+                            selectedAvailability, selectedDayOfWeek, 
+                            dayOfMonth, maintainerPercentage);
             return true;
         }
         return false;

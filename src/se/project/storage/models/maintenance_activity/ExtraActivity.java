@@ -85,17 +85,6 @@ public class ExtraActivity extends UnplannedActivity
     {
         return super.getDataModel();
     }
-
-    /**
-    * 
-    * @return an Object array representing the data model of the maintenance activity
-    * with util info for the assignment (must be implemented in the sub-classes) 
-    */
-    @Override
-    public Object[] getDataForAssignment()
-    {
-        return new Object[]{getIdActivity(), getBrachOffice() + " " + getDepartment(), getTypology().getValue(), getTimeNeeded()};
-    }
     
     /**
     * 

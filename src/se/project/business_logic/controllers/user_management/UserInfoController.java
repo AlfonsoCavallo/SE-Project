@@ -2,10 +2,12 @@ package se.project.business_logic.controllers.user_management;
 
 import java.sql.SQLException;
 import se.project.business_logic.controllers.AbstractController;
+import se.project.business_logic.controllers.ControllerFactory;
+import se.project.business_logic.controllers.ControllerFactory.ControllerType;
+import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.SAHomepageController;
 import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
-import static se.project.business_logic.controllers.MainController.openLoginPage;
 
 
 public class UserInfoController  extends AbstractController
@@ -21,6 +23,16 @@ public class UserInfoController  extends AbstractController
         this.userInfoView = new UserInfoView();
         initListeners();
     }
+    
+    /***
+     * 
+     * @return userInfoView
+     */
+    @Override
+    public UserInfoView getView()
+    {
+        return userInfoView;
+    } 
     
     /**
      * 
@@ -96,7 +108,7 @@ public class UserInfoController  extends AbstractController
      */
     public static void openAddUserPage()
     {
-        new AddUserController();
+        ControllerFactory.createController(ControllerType.ADD_USER);
     }
     
     /**
@@ -105,7 +117,7 @@ public class UserInfoController  extends AbstractController
      */
     public static void openViewUserPage()
     {
-        new ViewUsersController();
+        ControllerFactory.createController(ControllerType.VIEW_USERS);
     }
     
     /**
@@ -114,7 +126,7 @@ public class UserInfoController  extends AbstractController
      */
     public static void openUpdateUserPage()
     {
-        new UpdateUserController();
+        ControllerFactory.createController(ControllerType.UPDATE_USER);
     }
     
     /**
@@ -123,6 +135,6 @@ public class UserInfoController  extends AbstractController
      */
     public static void goBackSystemAdministratorHomepage()
     {
-        new SAHomepageController();
+        ControllerFactory.createController(ControllerType.SAHOMEPAGE);
     }
 }

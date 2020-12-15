@@ -7,8 +7,6 @@ import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -53,17 +51,26 @@ public class ActivityForwardingController extends AbstractController
     /**
      * 
      * Creates a new ActivityForwardingController
+     */ 
+    public ActivityForwardingController()
+    {
+        this.activityForwardingView = new ActivityForwardingView();
+        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
+        this.userRepo = new UserRepo(getConnection());
+        
+        initListeners();
+    }
+    
+    /**
+     * Sets all the informations of models to display and on which work
      * @param plannedActivity is the activity that has to be assigned
      * @param weeklyAvailability is the weekly availability of a maintainer
      * @param dayOfWeek is the day in the week in which the activity has to be assigned
      * @param dayOfMonth is the day in the month in which the activity has to be assigned
      * @param maintainerPercentage is the percentage of availability of the maintainer in the day in which the activity has to be assigned
      */ 
-    public ActivityForwardingController(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, int dayOfMonth, String maintainerPercentage)
+    public void setAvailabilityModels(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, int dayOfMonth, String maintainerPercentage)
     {
-        this.activityForwardingView = new ActivityForwardingView();
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
-        this.userRepo = new UserRepo(getConnection());
         this.plannedActivity = plannedActivity;
         this.weeklyAvailability = weeklyAvailability;
         this.dayOfWeek = dayOfWeek;
@@ -77,9 +84,19 @@ public class ActivityForwardingController extends AbstractController
         {
             System.err.println(ex.getMessage());
         }
-        initListeners();
+        
         viewTimeAvailability(plannedActivity, weeklyAvailability);
     }
+    
+    /***
+     * 
+     * @return activityForwardingView
+     */
+    @Override
+    public ActivityForwardingView getView()
+    {
+        return activityForwardingView;
+    }    
     
     /**
      * Initializes the listeners of ActivityForwardingView
@@ -157,7 +174,7 @@ public class ActivityForwardingController extends AbstractController
      */
     public void goBackActivityAssignmentPage()
     {
-        new ActivityAssignmentController(this.plannedActivity);
+        new ActivityAssignmentController().setPlannedActivityModel(this.plannedActivity);
     }
     
     /**

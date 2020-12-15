@@ -6,11 +6,12 @@ import java.util.Locale;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import se.project.presentation.views.AbstractView;
 
 
-public class SelectMaintenanceActivityView extends javax.swing.JFrame
+public class SelectMaintenanceActivityView extends AbstractView
 {
 
     private DefaultTableModel defaultTableModel;

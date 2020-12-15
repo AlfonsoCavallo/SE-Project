@@ -84,11 +84,13 @@ public class ActivityForwardingControllerTest
             weeklyAvailability.setAvailabilities(DayOfWeek.FRIDAY, 60, 60, 60, 60, 60, 60, 60);
             weeklyAvailability.setAvailabilities(DayOfWeek.SATURDAY, 0, 0, 0, 0, 0, 0, 0);
             
-            ActivityForwardingController istance = new ActivityForwardingController(plannedActivity, weeklyAvailability, dayOfWeek, dayOfMonth, maintainerPercentage);
-            istance.getActivityForwardingView();
+            ActivityForwardingController instance = new ActivityForwardingController();
+            instance.setAvailabilityModels(plannedActivity, weeklyAvailability, dayOfWeek, dayOfMonth, maintainerPercentage);
+            
+            instance.getActivityForwardingView();
             
             Object[] availabilityModel = weeklyAvailability.getDataForForwarding(dayOfWeek);
-            Object[] modelUpdated = istance.updateDataModel(availabilityModel);
+            Object[] modelUpdated = instance.updateDataModel(availabilityModel);
             
             Object[] expectedUpdatedModel = new Object[]{"donald", "3/4", "60 min", "60 min", "60 min", "60 min", "60 min", "60 min", "60 min"};
             assertEquals(expectedUpdatedModel, modelUpdated);
