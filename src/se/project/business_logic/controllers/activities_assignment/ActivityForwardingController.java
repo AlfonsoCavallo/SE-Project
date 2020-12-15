@@ -150,11 +150,8 @@ public class ActivityForwardingController extends AbstractController
                                                 activityForwardingView.getjMaintainerTimeAvailabilityTable().getColumnName(column));
                         mailSender.notifyMaintainerActivity((Maintainer) maintainer.get(0));
                         int input = JOptionPane.showConfirmDialog(null ,"The activity has been assigned and the e-mail has been sent!", "E-mail correctly sent.", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
-                        if(input == 0)
-                        {
-                            goBackPlannerHomepage();
-                            activityForwardingView.dispose();
-                        } 
+                        goBackPlannerHomepage();
+                        activityForwardingView.dispose();
                     }    
                        
                 } 
