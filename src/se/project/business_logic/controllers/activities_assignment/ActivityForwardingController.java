@@ -242,23 +242,6 @@ public class ActivityForwardingController extends AbstractController
         } 
         
     }
-    
-    /**
-     * Updates the DataModel adding more informations and some new strings
-     * @param dataModel is the DataModel that you want to update
-     * @return the updated DataModel with the new adds
-     */
-    public Object[] updateDataModel(Object[] dataModel)
-    {
-        int maxSkills = this.plannedActivity.getSkills().size();
-         
-        dataModel[1] = dataModel[1] + "/" + maxSkills;
-        for(int i= 2; i < activityForwardingView.getjMaintainerTimeAvailabilityTable().getColumnCount(); i++)
-        {
-            this.colorTable(activityForwardingView.getjMaintainerTimeAvailabilityTable(), i);
-        }
-        return dataModel;
-     }
      
     /**
      * Assigns and forwards the maintenance activity to the maintainer in the selected day and turn
