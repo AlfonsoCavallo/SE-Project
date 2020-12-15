@@ -16,6 +16,7 @@ import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
+import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
@@ -29,7 +30,7 @@ public class UpdateUserController extends AbstractController
     private final String SELECT_USER_MESSAGE = "Please, select a user before updating!";
     
     private final UpdateUserView updateUserView;
-    private UserRepoInterface userRepo;
+    private UserRepoInterface userRepo = new UserProxyRepo(getConnection());
     private LinkedList<String> usernameList;
     private int columnNumber;
 
@@ -40,7 +41,6 @@ public class UpdateUserController extends AbstractController
     public UpdateUserController()
     {
         this.updateUserView = new UpdateUserView();
-        this.userRepo = new UserRepo(getConnection());
         this.usernameList = new LinkedList<>();
         this.columnNumber = this.updateUserView.getTable().getColumnCount();
         initListeners();

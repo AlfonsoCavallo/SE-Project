@@ -25,7 +25,7 @@ import se.project.storage.models.adapters.WeeklyAvailabilityForAssignment;
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
-import se.project.storage.repos.WeeklyAvailabilityRepo;
+import se.project.storage.repo_proxy.WeeklyAvailabilityProxyRepo;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
 
@@ -40,7 +40,7 @@ public class ActivityAssignmentController extends AbstractController
     private PlannedActivity plannedActivity = null;
     private ArrayList<String> skillsNeeded;
     private List<WeeklyAvailability> weeklyAvailabilities = null;
-    private WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = null;
+    private final WeeklyAvailabilityRepoInterface weeklyAvailabilityRepo = new WeeklyAvailabilityProxyRepo(getConnection());
     
     /**
      * 
@@ -49,7 +49,6 @@ public class ActivityAssignmentController extends AbstractController
     public ActivityAssignmentController()
     {
         this.activityAssignmentView = new ActivityAssignmentView();
-        this.weeklyAvailabilityRepo = new WeeklyAvailabilityRepo(getConnection());
         initListeners();
     }
     
@@ -118,7 +117,7 @@ public class ActivityAssignmentController extends AbstractController
        {
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
-               boolean open = openActivityForwardingPage();
+               boolean open = executeTransitionToForwardingPage();
                if(open)
                {    
                     activityAssignmentView.dispose();
@@ -139,9 +138,29 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * Opens the Activity Forwarding view using its controller
+     * @param plannedActivity is the planned Acvitity
+     * @param selectedAvailability is the selected Availability
+     * @param selectedDayOfTheWeek is the day to check availability
+     * @param dayOfMonth is the number of the day to check
+     * @param maintainerPercentage is the percentage of availability
      * @return true if the selected maintainer is confirmed in the "Confirm Message" window, false otherwise 
      */
-    public boolean openActivityForwardingPage()
+    private boolean openActivityForwardingPage(PlannedActivity plannedActivity, 
+            WeeklyAvailability selectedAvailability, String selectedDayOfWeek,
+            int dayOfMonth, String maintainerPercentage)
+    {
+        new ActivityForwardingController().
+                setAvailabilityModels(plannedActivity, 
+                        selectedAvailability, selectedDayOfWeek, 
+                        dayOfMonth, maintainerPercentage);
+        return true;
+    }
+    
+    /***
+     * Prepares the transition for forwarding page
+     * @return true if the transition has correctly occurred
+     */
+    private boolean executeTransitionToForwardingPage()
     {
         int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
         int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
@@ -167,14 +186,11 @@ public class ActivityAssignmentController extends AbstractController
         
         if(input == 0)
         {
-            new ActivityForwardingController().
-                    setAvailabilityModels(this.plannedActivity, 
-                            selectedAvailability, selectedDayOfWeek, 
-                            dayOfMonth, maintainerPercentage);
-            return true;
+            openActivityForwardingPage(plannedActivity, selectedAvailability, selectedDayOfWeek,
+                    dayOfMonth, maintainerPercentage);
         }
         return false;
-    }        
+    }
     
     /**
      * 

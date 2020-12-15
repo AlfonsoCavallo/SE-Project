@@ -13,7 +13,7 @@ import se.project.presentation.views.user_management.ViewUsersView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.User;
-import se.project.storage.repos.UserRepo;
+import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
 
@@ -26,7 +26,7 @@ public class ViewUsersController extends AbstractController
     private final String SELECT_USER_MESSAGE = "Please, select a user before deleting!";
     
     private final ViewUsersView viewUsersView;
-    private UserRepoInterface userRepo = null;
+    private final UserRepoInterface userRepo = new UserProxyRepo(getConnection());
     
     /**
      * 
@@ -35,7 +35,6 @@ public class ViewUsersController extends AbstractController
     public ViewUsersController()
     {
         this.viewUsersView = new ViewUsersView();
-        this.userRepo = new UserRepo(getConnection());
         viewUsers();
         initListeners();
     }

@@ -4,6 +4,7 @@ import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
+import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
@@ -32,7 +34,7 @@ public class AddMaintenanceActivityController extends AbstractController
     private final String NULL_FIELD_MESSAGE = "Please, fill all the fields.";
     
     private final AddMaintenanceActivityView addMaintenanceActivityView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
             
     /**
      * 
@@ -41,7 +43,6 @@ public class AddMaintenanceActivityController extends AbstractController
     public AddMaintenanceActivityController()
     {
         this.addMaintenanceActivityView = new AddMaintenanceActivityView();
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         clearFields();
         initListeners();
     }

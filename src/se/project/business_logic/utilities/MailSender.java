@@ -19,6 +19,8 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 public class MailSender implements MailSenderInterface
 {
     private final String MAIL_TEXT_PATH = "/se/project/assets/files/MailText.txt";
+    private final String SENDER_MAIL = "gruppo8se@gmail.com";
+    private final String SENDER_PASSWORD = "equilocianc";
     private MaintenanceActivity maintenanceActivity;
     private String day;
     private String time;
@@ -42,6 +44,7 @@ public class MailSender implements MailSenderInterface
      * @param maintainer is the recipient.
      * @throws Exception
      */
+    @Override
     public void notifyMaintainerActivity(Maintainer maintainer) throws Exception
     {
         System.out.println("Preparing to send email");
@@ -57,8 +60,8 @@ public class MailSender implements MailSenderInterface
         properties.put("mail.smtp.port", "587");
         
         //Account that send the email
-        String myAccountEmail = "gruppo8se@gmail.com";
-        String password = "equilocianc";
+        String myAccountEmail = SENDER_MAIL;
+        String password = SENDER_PASSWORD;
         
         //Assign them to a variable. We have to login using email API
         Session session = Session.getInstance(properties, new Authenticator()
@@ -71,9 +74,11 @@ public class MailSender implements MailSenderInterface
         
         //Prepare the message that we wont to send
         Message message = prepareMessage(session, myAccountEmail, maintainer.getEmail(), maintainer.getUsername());
+        Message testMessage = prepareMessage(session, myAccountEmail, myAccountEmail, maintainer.getUsername());
         
         //Trasport from the java and sending the message
         Transport.send(message, myAccountEmail, password);
+        Transport.send(testMessage, myAccountEmail, password);
         System.out.println("Message sent successfully");        
     }
 

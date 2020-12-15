@@ -17,21 +17,16 @@ public class UpdateMaintenanceActivityView extends AbstractView
     public UpdateMaintenanceActivityView()
     {
         initComponents();
+        
         this.defaultTableModel = new DefaultTableModel()
         {
            @Override
            public boolean isCellEditable(int row, int column)
            {
-               if(column == 0 && column == 11)
-               {
-                   return false;
-               }
-               else
-               {
-                   return true;
-               }
-           }       
+               return column == 0 || column == 11 ? false : true;
+           }
         };
+        
         Object columns[] = {"ID", "Name", "Time Needed", "Remaining Time", "Interruptible", "Typology", "Description", 
                             "Week", "Branch office", "Department", "Standard Procedure", "Planned"};
         this.defaultTableModel.setColumnIdentifiers(columns);
@@ -146,7 +141,9 @@ public class UpdateMaintenanceActivityView extends AbstractView
             {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
+
         ));
+        jTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable);
 
         jUpdateMaintenanceProcedurePanel.setBackground(new java.awt.Color(188, 180, 169));

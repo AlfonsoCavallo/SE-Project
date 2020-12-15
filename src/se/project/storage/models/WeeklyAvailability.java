@@ -17,7 +17,7 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     private int numberOfCompetences = 0;
     
     /***
-     * HX -> Work hour starting at X:00
+     * HX - Work hour starting at X:00
      */
     public enum WorkTurn
     {

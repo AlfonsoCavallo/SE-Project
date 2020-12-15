@@ -128,7 +128,7 @@ public class SelectMaintenanceActivityView extends AbstractView
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox = new javax.swing.JComboBox<>();
+        jComboBox = new javax.swing.JComboBox<Integer>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jViewInfoPanel = new javax.swing.JPanel();
@@ -197,6 +197,7 @@ public class SelectMaintenanceActivityView extends AbstractView
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable);
 
         jViewInfoPanel.setBackground(new java.awt.Color(188, 180, 169));
@@ -217,7 +218,7 @@ public class SelectMaintenanceActivityView extends AbstractView
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jViewInfoPanelLayout.setVerticalGroup(
             jViewInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

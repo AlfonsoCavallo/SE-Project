@@ -162,7 +162,7 @@ public class ActivityAssignmentView extends AbstractView
         jScrollPane2 = new javax.swing.JScrollPane();
         jMaintainerAvailabilityTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jSkillsNeededList = new javax.swing.JList<>();
+        jSkillsNeededList = new javax.swing.JList<String>();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -170,7 +170,6 @@ public class ActivityAssignmentView extends AbstractView
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1228, 701));
 
         jPanel1.setBackground(new java.awt.Color(33, 33, 35));
         jPanel1.setPreferredSize(new java.awt.Dimension(1228, 701));
@@ -267,7 +266,7 @@ public class ActivityAssignmentView extends AbstractView
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jActivityToAssignLabel)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,6 +293,7 @@ public class ActivityAssignmentView extends AbstractView
         jMaintainerAvailabilityTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMaintainerAvailabilityTable.setRowHeight(50);
         jMaintainerAvailabilityTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jMaintainerAvailabilityTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jMaintainerAvailabilityTable);
 
         jSkillsNeededList.setName("Skills Needed"); // NOI18N

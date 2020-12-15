@@ -16,6 +16,7 @@ import se.project.presentation.views.activities_assignment.SelectMaintenanceActi
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
+import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
@@ -28,7 +29,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     private final SelectMaintenanceActivityView selectMaintenanceActivityView;
     private PlannedActivity plannedActivity = null; 
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
     private LinkedList<PlannedActivity> plannedActivities;
     
     /**
@@ -38,7 +39,6 @@ public class SelectMaintenanceActivityController extends AbstractController
     public SelectMaintenanceActivityController()
     {
         this.selectMaintenanceActivityView = new SelectMaintenanceActivityView();
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();
         viewActivities();
     }

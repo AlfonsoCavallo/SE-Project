@@ -163,6 +163,7 @@ public class ViewUsersView extends AbstractView
             }
         )
     );
+    jTable.getTableHeader().setReorderingAllowed(false);
     jScrollPane1.setViewportView(jTable);
 
     jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N

@@ -14,6 +14,7 @@ import se.project.presentation.views.activities_management.ViewMaintenanceActivi
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
+import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
@@ -26,7 +27,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     private final String SELECT_DELETION_MESSAGE = "Please, select a maintenance activity before deleting!";
     
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
     
     /**
      * 
@@ -35,7 +36,6 @@ public class ViewMaintenanceActivityController extends AbstractController
     public ViewMaintenanceActivityController()
     {
         this.viewMaintenanceActivityView = new ViewMaintenanceActivityView();
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         initListeners();
         viewMaintenanceActivities();
     }

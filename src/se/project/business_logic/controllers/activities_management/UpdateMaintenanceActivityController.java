@@ -2,8 +2,6 @@ package se.project.business_logic.controllers.activities_management;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,12 +15,11 @@ import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.activities_management.UpdateMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
-import se.project.storage.models.maintenance_activity.EWO;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
-import se.project.storage.repos.MaintenanceActivityRepo;
+import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 
@@ -35,7 +32,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     private final String SELECT_ACTIVITY_MESSAGE = "Please, select an element before updating!";
     
     private final UpdateMaintenanceActivityView updateMaintenanceActivityView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo;
+    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
     private LinkedList<String> activityNameList;
     private int columnNumber;
     
@@ -46,7 +43,6 @@ public class UpdateMaintenanceActivityController extends AbstractController
     public UpdateMaintenanceActivityController()
     {
         this.updateMaintenanceActivityView = new UpdateMaintenanceActivityView();
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
         this.activityNameList = new LinkedList<>();
         this.columnNumber = this.updateMaintenanceActivityView.getjTable().getColumnCount();
         initListeners();

@@ -15,6 +15,7 @@ import se.project.storage.models.Maintainer;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
+import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
@@ -27,7 +28,7 @@ public class AddUserController extends AbstractController
     private final String NULL_FIELD_MESSAGE = "Please, fill all the fields.";
     
     private final AddUserView addUserView;
-    private UserRepoInterface userRepo = null;
+    private final UserRepoInterface userRepo = new UserProxyRepo(getConnection());
     
     /**
      * 
@@ -36,7 +37,6 @@ public class AddUserController extends AbstractController
     public AddUserController()
     {
         this.addUserView = new AddUserView();
-        this.userRepo = new UserRepo(getConnection());
         clearFields();
         initListeners();
     }

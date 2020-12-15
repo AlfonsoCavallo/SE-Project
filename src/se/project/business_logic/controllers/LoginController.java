@@ -8,8 +8,8 @@ import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.presentation.views.LoginView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.SystemUser;
-import se.project.storage.repos.SystemUserRepo;
-import se.project.storage.repos.UserAccessRepo;
+import se.project.storage.repo_proxy.SystemUserProxyRepo;
+import se.project.storage.repo_proxy.UserAccessProxyRepo;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
@@ -18,8 +18,8 @@ public class LoginController extends AbstractController
 {
 
     private final LoginView loginView;
-    private SystemUserRepoInterface userRepo;
-    private UserAccessRepoInterface userAccessRepo;
+    private final SystemUserRepoInterface userRepo = new SystemUserProxyRepo(getConnection());
+    private final UserAccessRepoInterface userAccessRepo = new UserAccessProxyRepo(getConnection());
 
     private final String LOGIN_FAILED_MESSAGE = "Login failed.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
@@ -91,9 +91,6 @@ public class LoginController extends AbstractController
     {
         String username = loginView.getUsername();
         char[] password = loginView.getPassword();
-
-        userRepo = new SystemUserRepo(getConnection());
-        userAccessRepo = new UserAccessRepo(getConnection());
         
         try
         {

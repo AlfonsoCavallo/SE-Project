@@ -390,6 +390,7 @@ public class ActivityForwardingView extends AbstractView
         jMaintainerTimeAvailabilityTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMaintainerTimeAvailabilityTable.setRowHeight(50);
         jMaintainerTimeAvailabilityTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jMaintainerTimeAvailabilityTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jMaintainerTimeAvailabilityTable);
 
         jMaintainerNameAvailabilityLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

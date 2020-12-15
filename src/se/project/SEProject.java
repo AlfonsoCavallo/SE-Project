@@ -15,10 +15,6 @@ import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.repos.SystemUserRepo;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 
-/**
- *
- * @author Utente
- */
 public class SEProject {
 
     /**

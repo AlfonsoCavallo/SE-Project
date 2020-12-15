@@ -8,10 +8,6 @@ package se.project.storage.models.adapters;
 
 import se.project.storage.models.interfaces.RepresentableMaintenanceActivity;
 
-/**
- *
- * @author Utente
- */
 public class MaintenanceActivityForAssignment implements RepresentableMaintenanceActivity
 {
     private RepresentableMaintenanceActivity adaptee;

@@ -8,10 +8,6 @@ package se.project.storage.models.adapters;
 
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 
-/**
- *
- * @author Utente
- */
 public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvailability
 {
     private RepresentableWeeklyAvailability adaptee;

@@ -148,6 +148,7 @@ public class UpdateUserView extends AbstractView
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable);
 
         jUpdateUserPanel.setBackground(new java.awt.Color(188, 180, 169));

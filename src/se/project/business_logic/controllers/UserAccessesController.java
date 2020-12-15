@@ -10,7 +10,7 @@ import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.presentation.views.UserAccessesView;
 import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.models.UserAccess;
-import se.project.storage.repos.UserAccessRepo;
+import se.project.storage.repo_proxy.UserAccessProxyRepo;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
 
@@ -21,7 +21,7 @@ public class UserAccessesController extends AbstractController
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
     
     private final UserAccessesView userAccessesView;
-    private UserAccessRepoInterface userAccessesRepo = null;
+    private final UserAccessRepoInterface userAccessesRepo = new UserAccessProxyRepo(getConnection());
 
     /**
      * 
@@ -100,7 +100,6 @@ public class UserAccessesController extends AbstractController
     {
         LinkedList<UserAccess> userAccesses;
         DefaultTableModel tableModel = userAccessesView.getTableModel();
-        this.userAccessesRepo = new UserAccessRepo(getConnection());
         
         try
         {

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.LinkedList;
@@ -29,8 +27,8 @@ import se.project.storage.models.adapters.WeeklyAvailabilityForAssignment;
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
-import se.project.storage.repos.MaintenanceActivityRepo;
-import se.project.storage.repos.UserRepo;
+import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
+import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
@@ -43,8 +41,8 @@ public class ActivityForwardingController extends AbstractController
     private final String SELECT_TURN_MESSAGE = "Please, select a turn first!";
     
     private final ActivityForwardingView activityForwardingView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = null;
-    private UserRepoInterface userRepo = null;
+    private final MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
+    private final UserRepoInterface userRepo = new UserProxyRepo(getConnection());
     private PlannedActivity plannedActivity = null;
     private WeeklyAvailability weeklyAvailability = null;
     private String dayOfWeek;
@@ -58,10 +56,7 @@ public class ActivityForwardingController extends AbstractController
      */ 
     public ActivityForwardingController()
     {
-        this.activityForwardingView = new ActivityForwardingView();
-        this.maintenanceActivityRepo = new MaintenanceActivityRepo(getConnection());
-        this.userRepo = new UserRepo(getConnection());
-        
+        this.activityForwardingView = new ActivityForwardingView();        
         initListeners();
     }
     
