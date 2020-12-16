@@ -25,7 +25,7 @@ public class WeeklyAvailabilityForAssignment extends AbstractWeeklyAvailabilityF
     @Override
     public Object[] getPercentageDataModel()
     {
-        Object[] dataModel = component.getPercentageDataModel();
+        Object[] dataModel = super.getPercentageDataModel();
         
         if(maxSkills > 0)
         {
@@ -46,7 +46,7 @@ public class WeeklyAvailabilityForAssignment extends AbstractWeeklyAvailabilityF
     @Override
     public Object[] getMinutesAvailableDataModel(String day)
     {
-        Object[] dataModel = component.getMinutesAvailableDataModel(day);
+        Object[] dataModel = super.getMinutesAvailableDataModel(day);
         
         if(maxSkills > 0)
         {

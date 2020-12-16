@@ -15,7 +15,7 @@ import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 public abstract class AbstractWeeklyAvailabilityForAssignment implements RepresentableWeeklyAvailability
 {
     
-    protected final RepresentableWeeklyAvailability component;
+    private final RepresentableWeeklyAvailability component;
     
     /**
     * Instantiate the a adapter.
@@ -27,8 +27,14 @@ public abstract class AbstractWeeklyAvailabilityForAssignment implements Represe
     }
     
     @Override
-    public abstract Object[] getPercentageDataModel();
+    public Object[] getPercentageDataModel()
+    {
+        return component.getPercentageDataModel();
+    }
 
     @Override
-    public abstract Object[] getMinutesAvailableDataModel(String day);
+    public Object[] getMinutesAvailableDataModel(String day)
+    {
+        return component.getMinutesAvailableDataModel(day);
+    }
 }

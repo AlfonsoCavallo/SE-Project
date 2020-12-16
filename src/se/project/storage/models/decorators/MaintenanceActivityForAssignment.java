@@ -22,7 +22,7 @@ public class MaintenanceActivityForAssignment extends AbstractMaintenanceActivit
     @Override
     public Object[] getDataModel()
     {
-        Object[] dataModel = component.getDataModel();        
+        Object[] dataModel = super.getDataModel();        
         return new Object[]{dataModel[0], dataModel[8] + " - " + dataModel[9], dataModel[5], dataModel[2]};
     }    
 }
