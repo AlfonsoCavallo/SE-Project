@@ -2,7 +2,6 @@ package se.project.business_logic.controllers.activities_management;
 
 import java.sql.SQLException;
 import se.project.business_logic.controllers.AbstractController;
-import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
 import se.project.business_logic.controllers.SingletonControllerFactory;

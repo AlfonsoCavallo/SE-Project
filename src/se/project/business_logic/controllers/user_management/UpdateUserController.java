@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import se.project.business_logic.controllers.AbstractController;
-import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
 import se.project.business_logic.controllers.SingletonControllerFactory;
