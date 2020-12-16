@@ -2,7 +2,6 @@ package se.project.business_logic.controllers.activities_management;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -38,9 +37,9 @@ public class UpdateMaintenanceActivityController extends AbstractController
     private final String FIELD_NOT_PROPERLY_FILLED_MESSAGE = "Fill proprely the fields.";
     
     private final UpdateMaintenanceActivityView updateMaintenanceActivityView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
-    private LinkedList<String> activityNameList;
-    private int columnNumber;
+    private final MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
+    private final LinkedList<String> activityNameList;
+    private final int columnNumber;
     
     /**
      * 
@@ -69,10 +68,11 @@ public class UpdateMaintenanceActivityController extends AbstractController
      * 
      *  Initializes the listeners of updateMaintenanceActivityView.
      */
-    public void initListeners()
+    private void initListeners()
     {
         updateMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -90,6 +90,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
         updateMaintenanceActivityView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackMaintenanceActivityPage();
@@ -99,6 +100,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
         updateMaintenanceActivityView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -107,6 +109,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
         updateMaintenanceActivityView.getjUpdateMaintenanceProcedurePanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+          @Override
           public void mouseClicked(java.awt.event.MouseEvent evt)
           {
               updateMaintenanceActivity();
@@ -220,7 +223,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
      * 
      * Shows in the table all the maintenance activities.
      */
-    public void viewMaintenanceActivity(){
+    private void viewMaintenanceActivity(){
         DefaultTableModel tableModel = updateMaintenanceActivityView.getDefaultTableModel();
         try
         {

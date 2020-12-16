@@ -15,7 +15,7 @@ import se.project.presentation.views.AbstractView;
  */
 public class ActivityAssignmentView extends AbstractView
 {
-    private DefaultTableModel defaultTableModelAvailability;
+    private final DefaultTableModel defaultTableModelAvailability;
     private DefaultListModel defaultListModelSkills;
 
     /**

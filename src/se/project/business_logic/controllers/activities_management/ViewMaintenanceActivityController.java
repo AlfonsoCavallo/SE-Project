@@ -29,7 +29,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     private final String SELECT_DELETION_MESSAGE = "Please, select a maintenance activity before deleting!";
     
     private final ViewMaintenanceActivityView viewMaintenanceActivityView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
+    private final MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
     
     /**
      * 
@@ -56,10 +56,11 @@ public class ViewMaintenanceActivityController extends AbstractController
      * 
      *  Initializes the listeners of viewMaintenanceActivityView.
      */
-    public void initListeners()
+    private void initListeners()
     {
         viewMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -77,6 +78,7 @@ public class ViewMaintenanceActivityController extends AbstractController
 
         viewMaintenanceActivityView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackMaintenanceActivityPage();
@@ -86,6 +88,7 @@ public class ViewMaintenanceActivityController extends AbstractController
 
        viewMaintenanceActivityView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
        {
+           @Override
            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -94,6 +97,7 @@ public class ViewMaintenanceActivityController extends AbstractController
        
        viewMaintenanceActivityView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
        {
+           @Override
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
                viewMaintenanceActivities();
@@ -102,6 +106,7 @@ public class ViewMaintenanceActivityController extends AbstractController
        
        viewMaintenanceActivityView.getjDeleteLabel().addMouseListener(new java.awt.event.MouseAdapter()
        {
+           @Override
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
                deleteMaintenanceActivity();
@@ -123,7 +128,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     /**
      * Updates the table in the page inserting the all the maintenance activities or a specific one
      */
-    public void viewMaintenanceActivities()
+    private void viewMaintenanceActivities()
     {
         DefaultTableModel tableModel = viewMaintenanceActivityView.getTableModel();
         LinkedList<MaintenanceActivity> maintenanceActivities;

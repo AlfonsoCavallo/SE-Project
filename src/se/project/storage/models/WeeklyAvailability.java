@@ -15,8 +15,8 @@ import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
  */
 public class WeeklyAvailability implements RepresentableWeeklyAvailability
 {
-    private List<int[]> availabilityPercentage = new ArrayList<>(7);
-    private String username;
+    private final List<int[]> availabilityPercentage = new ArrayList<>(7);
+    private final String username;
     private int numberOfCompetences = 0;
     
     /***
@@ -33,7 +33,7 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
         H15 ("15:00 - 16:00"),
         H16 ("16:00 - 17:00");
         
-        private String workTurn;
+        private final String workTurn;
         
         WorkTurn(String workTurn)
         {
@@ -231,6 +231,16 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.availabilityPercentage);
+        hash = 29 * hash + Objects.hashCode(this.username);
+        hash = 29 * hash + this.numberOfCompetences;
+        return hash;
     }
     
     /**

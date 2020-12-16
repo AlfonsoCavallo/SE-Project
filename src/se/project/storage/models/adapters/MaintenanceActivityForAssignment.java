@@ -8,7 +8,7 @@ import se.project.storage.models.interfaces.RepresentableMaintenanceActivity;
  */
 public class MaintenanceActivityForAssignment implements RepresentableMaintenanceActivity
 {
-    private RepresentableMaintenanceActivity adaptee;
+    private final RepresentableMaintenanceActivity adaptee;
     
     /**
     * Instantiate the a adapter.

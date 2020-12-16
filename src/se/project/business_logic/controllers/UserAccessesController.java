@@ -55,6 +55,7 @@ public class UserAccessesController extends AbstractController
     {
         userAccessesView.getjSearchLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 updateAccesses();
@@ -63,6 +64,7 @@ public class UserAccessesController extends AbstractController
         
         userAccessesView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackSystemAdministratorHomepage();
@@ -72,6 +74,7 @@ public class UserAccessesController extends AbstractController
         
         userAccessesView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -89,6 +92,7 @@ public class UserAccessesController extends AbstractController
         
         userAccessesView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -99,7 +103,7 @@ public class UserAccessesController extends AbstractController
     /**
      * Update the table in the page inserting the accesses of all the users or those of a specific user.
      */
-    public void updateAccesses()
+    private void updateAccesses()
     {
         LinkedList<UserAccess> userAccesses;
         DefaultTableModel tableModel = userAccessesView.getTableModel();

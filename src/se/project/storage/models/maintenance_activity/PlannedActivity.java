@@ -10,9 +10,9 @@ import java.util.Objects;
 public class PlannedActivity extends MaintenanceActivity
 {
     
-    private String standardProcedure;
-    private String planned;
-    private String ewo;
+    final private String standardProcedure;
+    final private String planned;
+    final private String ewo;
     
     /**
      * 
@@ -147,6 +147,16 @@ public class PlannedActivity extends MaintenanceActivity
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.standardProcedure);
+        hash = 53 * hash + Objects.hashCode(this.planned);
+        hash = 53 * hash + Objects.hashCode(this.ewo);
+        return hash;
     }
     
     

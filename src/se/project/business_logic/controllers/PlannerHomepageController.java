@@ -41,6 +41,7 @@ public class PlannerHomepageController extends AbstractController
     {
         plannerHomepageView.getjMaintenanceActivityPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openMaintenanceActivityPage();
@@ -50,6 +51,7 @@ public class PlannerHomepageController extends AbstractController
         
         plannerHomepageView.getjActivityAssigmentPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openSelectMaintenanceActivityPage();
@@ -59,6 +61,7 @@ public class PlannerHomepageController extends AbstractController
         
         plannerHomepageView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -76,6 +79,7 @@ public class PlannerHomepageController extends AbstractController
         
         plannerHomepageView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);

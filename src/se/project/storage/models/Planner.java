@@ -1,9 +1,12 @@
 package se.project.storage.models;
 
-
+/**
+ * A model with the informations about a Planner user.
+ * 
+ */
 public class Planner extends User
 {
-    private String role;
+    private final String role;
     
     /**
      * 
@@ -25,6 +28,7 @@ public class Planner extends User
      * 
      * @return a String containing the role of this user.
      */
+    @Override
     public String getRole()
     {
         return role;
@@ -34,6 +38,7 @@ public class Planner extends User
      * 
      * @return the data model of a planner.
      */
+    @Override
     public Object[] getDataModel()
     {
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole()};
@@ -43,6 +48,7 @@ public class Planner extends User
      * 
      * @return the data model of a planner including the password.
      */
+    @Override
     public Object[] getDataPasswordModel()
     {
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole(), getPassword()};

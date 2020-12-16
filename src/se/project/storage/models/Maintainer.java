@@ -6,7 +6,7 @@ package se.project.storage.models;
  */
 public class Maintainer extends User
 {
-    private String role;
+    private final String role;
     
     /**
      * 
@@ -28,6 +28,7 @@ public class Maintainer extends User
      * 
      * @return a String containing the role of this user.
      */
+    @Override
     public String getRole()
     {
         return this.role;
@@ -37,6 +38,7 @@ public class Maintainer extends User
      * 
      * @return the data model of a maintainer.
      */
+    @Override
     public Object[] getDataModel()
     {
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole()};
@@ -46,6 +48,7 @@ public class Maintainer extends User
      * 
      * @return the data model of a maintainer including the password.
      */
+    @Override
     public Object[] getDataPasswordModel()
     {
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole(), getPassword()};

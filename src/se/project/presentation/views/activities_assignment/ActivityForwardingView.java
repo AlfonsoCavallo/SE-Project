@@ -15,7 +15,7 @@ import se.project.presentation.views.AbstractView;
  */
 public class ActivityForwardingView extends AbstractView
 {
-    private DefaultTableModel defaultTableModelTimeAvailability;
+    private final DefaultTableModel defaultTableModelTimeAvailability;
 
     /**
      * Creates new form ActivityForwardingView.

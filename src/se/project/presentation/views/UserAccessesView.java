@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UserAccessesView extends AbstractView
 {
-    private DefaultTableModel tableModel;
+    private final DefaultTableModel tableModel;
 
     /**
      * Creates new form UserAccessesView.

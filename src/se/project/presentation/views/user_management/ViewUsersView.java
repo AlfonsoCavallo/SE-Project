@@ -12,7 +12,7 @@ import se.project.presentation.views.AbstractView;
  */
 public class ViewUsersView extends AbstractView
 {
-    private DefaultTableModel defaultTableModel;
+    private final DefaultTableModel defaultTableModel;
     
     /**
      * Creates new form ViewUsersView

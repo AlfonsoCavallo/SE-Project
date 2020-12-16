@@ -55,6 +55,7 @@ public class LoginController extends AbstractController
     {
         loginView.getjUsernameTextField().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 loginView.getjUsernameTextField().setText("");
@@ -63,6 +64,7 @@ public class LoginController extends AbstractController
         
         loginView.getjPasswordField().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 loginView.getjPasswordField().setText("");
@@ -71,6 +73,7 @@ public class LoginController extends AbstractController
         
         loginView.getjLoginLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 login();
@@ -79,6 +82,7 @@ public class LoginController extends AbstractController
         
         loginView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);

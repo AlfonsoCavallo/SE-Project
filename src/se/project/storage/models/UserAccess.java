@@ -10,8 +10,8 @@ import java.util.Objects;
 public class UserAccess
 {
     private int ID = -1; // null ID
-    private String username;
-    private LocalDateTime accessTime;
+    final private String username;
+    final private LocalDateTime accessTime;
 
     /**
      * 
@@ -105,6 +105,16 @@ public class UserAccess
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 61 * hash + this.ID;
+        hash = 61 * hash + Objects.hashCode(this.username);
+        hash = 61 * hash + Objects.hashCode(this.accessTime);
+        return hash;
     }
     
     

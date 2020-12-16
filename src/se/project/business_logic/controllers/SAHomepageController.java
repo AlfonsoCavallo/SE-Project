@@ -42,6 +42,7 @@ public class SAHomepageController extends AbstractController
     {
         saHomepageView.getjUserInfoPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openUserInfoPage();
@@ -51,6 +52,7 @@ public class SAHomepageController extends AbstractController
         
         saHomepageView.getjAccessRecordPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openRecordAccessPage();
@@ -61,6 +63,7 @@ public class SAHomepageController extends AbstractController
         
         saHomepageView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -78,6 +81,7 @@ public class SAHomepageController extends AbstractController
         
         saHomepageView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);

@@ -13,7 +13,7 @@ import se.project.presentation.views.AbstractView;
  */
 public class ViewMaintenanceActivityView extends AbstractView
 {
-    private DefaultTableModel defaultTableModel;
+    private final DefaultTableModel defaultTableModel;
 
     /**
      * Creates new form ViewMaintenanceActivityView.

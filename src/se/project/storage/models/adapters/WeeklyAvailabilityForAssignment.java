@@ -8,8 +8,8 @@ import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
  */
 public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvailability
 {
-    private RepresentableWeeklyAvailability adaptee;
-    private int maxSkills;
+    private final RepresentableWeeklyAvailability adaptee;
+    private final int maxSkills;
     
     /**
     * Instantiate the a adapter.

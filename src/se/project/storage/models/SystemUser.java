@@ -9,9 +9,9 @@ import java.util.Objects;
  */
 public class SystemUser 
 {
-    private Role role;
-    private String username;
-    private char[] password; 
+    private final Role role;
+    private final String username;
+    private final char[] password; 
     
     /**
     * An enumeration of all roles defined in the database
@@ -23,7 +23,7 @@ public class SystemUser
         PLANNER ("planner"),
         MAINTAINER ("maintainer");
         
-        private String role;
+        private final String role;
         
         /**
          * 
@@ -116,6 +116,16 @@ public class SystemUser
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.role);
+        hash = 97 * hash + Objects.hashCode(this.username);
+        hash = 97 * hash + Arrays.hashCode(this.password);
+        return hash;
     }
 
     

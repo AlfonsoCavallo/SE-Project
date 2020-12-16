@@ -24,9 +24,9 @@ public class MailSender implements MailSenderInterface
     private final String MAIL_TEXT_PATH = "/se/project/assets/files/MailText.txt";
     private final String SENDER_MAIL = "gruppo8se@gmail.com";
     private final String SENDER_PASSWORD = "equilocianc";
-    private MaintenanceActivity maintenanceActivity;
-    private String day;
-    private String time;
+    private final MaintenanceActivity maintenanceActivity;
+    private final String day;
+    private final String time;
 
     /**
      * Instantial a MailSender object.

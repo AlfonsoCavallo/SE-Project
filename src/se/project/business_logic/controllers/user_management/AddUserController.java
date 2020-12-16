@@ -61,6 +61,7 @@ public class AddUserController extends AbstractController
     {
         addUserView.getjAddPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 boolean clear = addUser();
@@ -73,6 +74,7 @@ public class AddUserController extends AbstractController
         
         addUserView.getjClearPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 clearFields();
@@ -81,6 +83,7 @@ public class AddUserController extends AbstractController
         
         addUserView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackUserInfoPage();
@@ -90,6 +93,7 @@ public class AddUserController extends AbstractController
         
         addUserView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -107,6 +111,7 @@ public class AddUserController extends AbstractController
         
         addUserView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -146,17 +151,17 @@ public class AddUserController extends AbstractController
             }
             else
             {
-                if(role.equals("system_administrator"))
+                switch (role)
                 {
-                    user = new SystemAdministrator(username, email, name, surname, password, role);
-                }
-                else if(role.equals("planner"))
-                {
-                    user = new Planner(username, email, name, surname, password, role);
-                }
-                else if(role.equals("maintainer"))
-                {
-                    user = new Maintainer(username, email, name, surname, password, role);
+                    case "system_administrator":
+                        user = new SystemAdministrator(username, email, name, surname, password, role);
+                        break;
+                    case "planner":
+                        user = new Planner(username, email, name, surname, password, role);
+                        break;
+                    case "maintainer":
+                        user = new Maintainer(username, email, name, surname, password, role);
+                        break;
                 }
                 userRepo.addUser(user);
                 String addedMessage = ADDED_MESSAGE.replaceAll("username_param", username);
@@ -179,7 +184,7 @@ public class AddUserController extends AbstractController
      * 
      * Clears all the fields in the page.
      */
-    public void clearFields()
+    private void clearFields()
     {
         addUserView.resetjUsernameTextField();
         addUserView.resetjEmailTextField();

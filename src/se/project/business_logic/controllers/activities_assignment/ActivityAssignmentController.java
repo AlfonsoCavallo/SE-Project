@@ -11,7 +11,6 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -81,10 +80,11 @@ public class ActivityAssignmentController extends AbstractController
      * 
      * Initializes the listeners of ActivityAssignmentView.
      */
-    public void initListeners()
+    private void initListeners()
     {
         activityAssignmentView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -102,6 +102,7 @@ public class ActivityAssignmentController extends AbstractController
 
         activityAssignmentView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -110,6 +111,7 @@ public class ActivityAssignmentController extends AbstractController
 
        activityAssignmentView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
        {
+           @Override
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
                goBackMaintenanceActivityInfoPage();
@@ -119,6 +121,7 @@ public class ActivityAssignmentController extends AbstractController
        
        activityAssignmentView.getjMaintainerAvailabilityTable().addMouseListener(new java.awt.event.MouseAdapter()        
        {
+           @Override
            public void mouseClicked(java.awt.event.MouseEvent evt)
            {
                try

@@ -9,9 +9,9 @@ import java.util.Objects;
  */
 public class ExtraActivity extends UnplannedActivity
 {
-    private String standardProcedure;
-    private String planned;
-    private String ewo;
+    final private String standardProcedure;
+    final private String planned;
+    final private String ewo;
     
     /**
      * 
@@ -143,6 +143,16 @@ public class ExtraActivity extends UnplannedActivity
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.standardProcedure);
+        hash = 83 * hash + Objects.hashCode(this.planned);
+        hash = 83 * hash + Objects.hashCode(this.ewo);
+        return hash;
     }
     
 }

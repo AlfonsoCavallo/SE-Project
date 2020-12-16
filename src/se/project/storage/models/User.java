@@ -8,11 +8,11 @@ import java.util.Objects;
  */
 public abstract class User
 {
-    private String username;
-    private String password;
-    private String email;
-    private String name;
-    private String surname;
+    private final String username;
+    private final String password;
+    private final String email;
+    private final String name;
+    private final String surname;
 
     /**
      * 
@@ -117,6 +117,18 @@ public abstract class User
         }
         final User other = (User) obj;
         return Objects.equals(this.username, other.username);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 7;
+        hash = 19 * hash + Objects.hashCode(this.username);
+        hash = 19 * hash + Objects.hashCode(this.password);
+        hash = 19 * hash + Objects.hashCode(this.email);
+        hash = 19 * hash + Objects.hashCode(this.name);
+        hash = 19 * hash + Objects.hashCode(this.surname);
+        return hash;
     }
     
     

@@ -34,9 +34,9 @@ public class UpdateUserController extends AbstractController
     private final String UNAVAILABLE_ROLE_MESSAGE = "The role you inserted is not valid.";
     
     private final UpdateUserView updateUserView;
-    private UserRepoInterface userRepo = new UserProxyRepo(getConnection());
-    private LinkedList<String> usernameList;
-    private int columnNumber;
+    private final UserRepoInterface userRepo = new UserProxyRepo(getConnection());
+    private final LinkedList<String> usernameList;
+    private final int columnNumber;
 
     /**
      * 
@@ -69,6 +69,7 @@ public class UpdateUserController extends AbstractController
     {
         updateUserView.getjUpdateUserPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 updateUser();
@@ -79,6 +80,7 @@ public class UpdateUserController extends AbstractController
         
         updateUserView.getjShowPasswordPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 showPassword();
@@ -87,6 +89,7 @@ public class UpdateUserController extends AbstractController
         
         updateUserView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackUserInfoPage();
@@ -96,6 +99,7 @@ public class UpdateUserController extends AbstractController
         
         updateUserView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -113,6 +117,7 @@ public class UpdateUserController extends AbstractController
         
         updateUserView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -164,7 +169,7 @@ public class UpdateUserController extends AbstractController
         User user = null;
         try
         {
-            switch (role)
+            switch(role)
             {
                 case "system_administrator":
                     user = new SystemAdministrator(username, email, name, surname, password, role);
@@ -199,7 +204,7 @@ public class UpdateUserController extends AbstractController
      * This method shows in a table the users in the database.
      * @param showPassword indicates if the passwords must be shown.
      */
-    public void viewUsers(boolean showPassword)
+    private void viewUsers(boolean showPassword)
     {
         DefaultTableModel tableModel = updateUserView.getTableModel();
         try

@@ -57,6 +57,7 @@ public class MaintenanceActivityInfoController extends AbstractController
     {
         maintenanceActivityInfoView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -74,6 +75,7 @@ public class MaintenanceActivityInfoController extends AbstractController
         
         maintenanceActivityInfoView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -91,6 +93,7 @@ public class MaintenanceActivityInfoController extends AbstractController
 
         maintenanceActivityInfoView.getjForwardPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openActivityAssignmentPage();

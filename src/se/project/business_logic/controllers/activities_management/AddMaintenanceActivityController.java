@@ -1,6 +1,7 @@
 package se.project.business_logic.controllers.activities_management;
 
 import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
@@ -34,7 +35,7 @@ public class AddMaintenanceActivityController extends AbstractController
     private final String NULL_FIELD_MESSAGE = "Please, fill all the fields.";
     
     private final AddMaintenanceActivityView addMaintenanceActivityView;
-    private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
+    private final MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
             
     /**
      * 
@@ -61,10 +62,11 @@ public class AddMaintenanceActivityController extends AbstractController
      * 
      *  Initializes the listeners of addMaintenanceActivityView.
      */
-    public void initListeners()
+    private void initListeners()
     {
         addMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -91,6 +93,7 @@ public class AddMaintenanceActivityController extends AbstractController
 
         addMaintenanceActivityView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -99,6 +102,7 @@ public class AddMaintenanceActivityController extends AbstractController
 
         addMaintenanceActivityView.getjAddPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 boolean clear = addMaintenanceActivity();
@@ -111,30 +115,28 @@ public class AddMaintenanceActivityController extends AbstractController
 
         addMaintenanceActivityView.getjClearPanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 clearFields();
             }        
         });        
         
-        addMaintenanceActivityView.getjPlannedComboBox().addItemListener(new java.awt.event.ItemListener()
+        addMaintenanceActivityView.getjPlannedComboBox().addItemListener((java.awt.event.ItemEvent evt) ->
         {
-            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            if (evt.getStateChange() == ItemEvent.SELECTED)
             {
-                if (evt.getStateChange() == ItemEvent.SELECTED)
+                if(addMaintenanceActivityView.getIsPlannedValue().equals("no"))
                 {
-                    if(addMaintenanceActivityView.getIsPlannedValue().equals("no"))
-                    {
-                        addMaintenanceActivityView.getjStandardProcedureTextField().setText("-");
-                        addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(false);
-                    }
-                    else
-                    {
-                        addMaintenanceActivityView.resetjStandardProcedureTextField();
-                        addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(true);
-                    }
+                    addMaintenanceActivityView.getjStandardProcedureTextField().setText("-");
+                    addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(false);
                 }
-            }              
+                else
+                {
+                    addMaintenanceActivityView.resetjStandardProcedureTextField();
+                    addMaintenanceActivityView.getjStandardProcedureTextField().setEnabled(true);
+                }
+            }
         });
 
     }
@@ -155,7 +157,7 @@ public class AddMaintenanceActivityController extends AbstractController
      */
     public boolean addMaintenanceActivity()
     {
-        MaintenanceActivity maintenanceActivity = null;
+        MaintenanceActivity maintenanceActivity;
         
         String activityName = addMaintenanceActivityView.getStringActivityName();
         String timeNeeded = addMaintenanceActivityView.getStringTimeNeeded();
@@ -215,7 +217,7 @@ public class AddMaintenanceActivityController extends AbstractController
      * 
      * Clears all the fields in the page.
      */
-    public void clearFields()
+    private void clearFields()
     {
         addMaintenanceActivityView.resetjDescriptionTextArea();
         addMaintenanceActivityView.resetjBranchOfficeComboBox();

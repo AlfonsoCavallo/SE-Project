@@ -13,7 +13,7 @@ import se.project.presentation.views.AbstractView;
  */
 public class MaintenanceActivityInfoView extends AbstractView
 {
-    private DefaultListModel defaultListModel;
+    private final DefaultListModel defaultListModel;
 
     /**
      * Creates new form MaintenanceActivityInfoView.

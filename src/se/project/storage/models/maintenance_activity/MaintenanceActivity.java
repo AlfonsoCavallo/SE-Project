@@ -10,13 +10,13 @@ import java.util.Objects;
 public abstract class MaintenanceActivity
 {
     private int IDActivity = -1;
-    private String activityName;
-    private int timeNeeded;
-    private int remainingTime;
-    private boolean interruptible;
-    private Typology typology;
-    private String activityDescription;
-    private int week;
+    final private String activityName;
+    final private int timeNeeded;
+    final private int remainingTime;
+    final private boolean interruptible;
+    final private Typology typology;
+    final private String activityDescription;
+    final private int week;
     private String brachOffice;
     private String department;
     private ArrayList<String> skills;
@@ -32,7 +32,7 @@ public abstract class MaintenanceActivity
         HYDRAULIC ("hydraulic"),
         MECHANICAL ("mechanical");
         
-        private String typology;
+        private final String typology;
         
         Typology(String typology)
         {
@@ -361,6 +361,24 @@ public abstract class MaintenanceActivity
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 3;
+        hash = 59 * hash + this.IDActivity;
+        hash = 59 * hash + Objects.hashCode(this.activityName);
+        hash = 59 * hash + this.timeNeeded;
+        hash = 59 * hash + this.remainingTime;
+        hash = 59 * hash + (this.interruptible ? 1 : 0);
+        hash = 59 * hash + Objects.hashCode(this.typology);
+        hash = 59 * hash + Objects.hashCode(this.activityDescription);
+        hash = 59 * hash + this.week;
+        hash = 59 * hash + Objects.hashCode(this.brachOffice);
+        hash = 59 * hash + Objects.hashCode(this.department);
+        hash = 59 * hash + Objects.hashCode(this.skills);
+        return hash;
     }
    
    

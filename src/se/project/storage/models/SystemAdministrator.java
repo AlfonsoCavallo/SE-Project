@@ -6,7 +6,7 @@ package se.project.storage.models;
  */
 public class SystemAdministrator extends User
 {
-    private String role;
+    private final String role;
     
     /**
      * 
@@ -28,6 +28,7 @@ public class SystemAdministrator extends User
      * 
      * @return a Stiring containing the user's role.
      */
+    @Override
     public String getRole()
     {
         return role;
@@ -37,6 +38,7 @@ public class SystemAdministrator extends User
      * 
      * @return the data model of a system administrator.
      */
+    @Override
     public Object[] getDataModel()
     {
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole()};
@@ -46,6 +48,7 @@ public class SystemAdministrator extends User
      * 
      * @return the data model of a system administrator including the password.
      */
+    @Override
     public Object[] getDataPasswordModel()
     {
         return new Object[]{getUsername(), getName(), getSurname(), getEmail(), getRole(), getPassword()};

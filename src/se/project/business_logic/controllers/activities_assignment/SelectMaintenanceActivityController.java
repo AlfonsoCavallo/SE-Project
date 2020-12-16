@@ -72,10 +72,11 @@ public class SelectMaintenanceActivityController extends AbstractController
      * 
      *  Initializes the listeners of selectMaintenanceActivityView.
      */
-    public void initListeners()
+    private void initListeners()
     {
         selectMaintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -93,6 +94,7 @@ public class SelectMaintenanceActivityController extends AbstractController
 
         selectMaintenanceActivityView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackPlannerHomepage();
@@ -102,6 +104,7 @@ public class SelectMaintenanceActivityController extends AbstractController
 
        selectMaintenanceActivityView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
        {
+           @Override
            public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -121,16 +124,13 @@ public class SelectMaintenanceActivityController extends AbstractController
            }        
        });
        
-       selectMaintenanceActivityView.getjComboBox().addItemListener(new java.awt.event.ItemListener()
-       {
-           public void itemStateChanged(java.awt.event.ItemEvent evt)
-           {
-               if (evt.getStateChange() == ItemEvent.SELECTED)
-               {
-                   viewActivities();
-               }
-           }
-       });
+       selectMaintenanceActivityView.getjComboBox().addItemListener((java.awt.event.ItemEvent evt) ->
+        {
+            if (evt.getStateChange() == ItemEvent.SELECTED)
+            {
+                viewActivities();
+            }
+        });
         
     }
     
@@ -156,7 +156,7 @@ public class SelectMaintenanceActivityController extends AbstractController
      * 
      * Updates the table in the page inserting the all the planned activities in a specific week.
      */
-    public void viewActivities()
+    private void viewActivities()
     {
         DefaultTableModel tableModel = selectMaintenanceActivityView.getDefaultTableModel();
         

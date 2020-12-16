@@ -44,6 +44,7 @@ public class MaintenanceActivityController extends AbstractController
     {
         maintenanceActivityView.getjCloseConnectionLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 try
@@ -61,6 +62,7 @@ public class MaintenanceActivityController extends AbstractController
 
         maintenanceActivityView.getjExitLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 System.exit(0);
@@ -69,6 +71,7 @@ public class MaintenanceActivityController extends AbstractController
         
         maintenanceActivityView.getjGoBackLabel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 goBackPlannerHomepage();
@@ -78,6 +81,7 @@ public class MaintenanceActivityController extends AbstractController
 
         maintenanceActivityView.getjAddMaintenancePanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openAddMaintenanceActivityPage();
@@ -88,6 +92,7 @@ public class MaintenanceActivityController extends AbstractController
         
         maintenanceActivityView.getjUpdateMaintenancePanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openUpdateMaintenanceActivityPage();
@@ -97,6 +102,7 @@ public class MaintenanceActivityController extends AbstractController
             
         maintenanceActivityView.getjViewMaintenancePanel().addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 openViewMaintenanceActivityPage();
