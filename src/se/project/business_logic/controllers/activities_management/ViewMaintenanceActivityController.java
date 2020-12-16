@@ -15,7 +15,6 @@ import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
-import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 

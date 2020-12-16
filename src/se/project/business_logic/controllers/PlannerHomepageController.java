@@ -3,8 +3,6 @@ package se.project.business_logic.controllers;
 import java.sql.SQLException;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
-import se.project.business_logic.controllers.activities_assignment.SelectMaintenanceActivityController;
-import se.project.business_logic.controllers.activities_management.MaintenanceActivityController;
 import se.project.presentation.views.PlannerHomepageView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 

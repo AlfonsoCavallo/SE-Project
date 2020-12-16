@@ -16,7 +16,6 @@ import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
 import se.project.storage.repo_proxy.UserProxyRepo;
-import se.project.storage.repos.UserRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
 

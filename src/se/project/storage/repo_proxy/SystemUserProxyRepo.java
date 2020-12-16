@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repo_proxy;
 
 import java.io.IOException;
@@ -13,6 +7,7 @@ import java.util.LinkedList;
 import se.project.storage.models.SystemUser;
 import se.project.storage.repos.SystemUserRepo;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
+
 
 /***
  * A proxy for SystemUserActivityRepoInterface that instatiate it only when necessary 

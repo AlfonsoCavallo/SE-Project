@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repo_proxy;
 
 import java.io.IOException;
@@ -14,6 +8,7 @@ import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.repos.WeeklyAvailabilityRepo;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
+
 
 /***
  * A proxy for WeeklyAvailabilityRepoInterface that instatiate it only when necessary 

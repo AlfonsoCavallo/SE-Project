@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package se.project.storage.repo_proxy;
 
 import java.io.IOException;
@@ -17,6 +11,7 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
+
 
 /***
  * A proxy for MaintenanceActivityRepoInterface that instatiate it only when necessary 

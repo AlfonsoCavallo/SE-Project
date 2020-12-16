@@ -3,8 +3,6 @@ package se.project.business_logic.controllers.activities_management;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
-import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -21,7 +19,6 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
-import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 
