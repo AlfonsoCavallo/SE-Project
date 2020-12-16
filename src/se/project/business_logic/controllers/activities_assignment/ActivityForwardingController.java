@@ -95,7 +95,17 @@ public class ActivityForwardingController extends AbstractController
     public ActivityForwardingView getView()
     {
         return activityForwardingView;
-    }    
+    }
+
+    /**
+     * Creates a new ActivityForwardingController (used for tests)
+     * @param activityForwardingView is the view to open 
+     */
+    public ActivityForwardingController(ActivityForwardingView activityForwardingView)
+    {
+        this.activityForwardingView = activityForwardingView;        
+        //initListeners();
+    }
     
     /**
      * Initializes the listeners of ActivityForwardingView
@@ -277,16 +287,6 @@ public class ActivityForwardingController extends AbstractController
         return false;
     } 
 
-    /**
-     * Getter used for tests
-     * @return the ActivityForwardingView
-     */
-    public ActivityForwardingView getActivityForwardingView()
-    {
-        this.activityForwardingView.dispose();
-        return activityForwardingView;
-    }
-    
     /**
      * 
      * Change the color of the cell in the table according to their values.

@@ -273,16 +273,6 @@ public class ActivityAssignmentController extends AbstractController
     }
 
     /**
-     * Getter used for tests
-     * @return the ActivityAssignmentView
-     */
-    public ActivityAssignmentView getActivityAssignmentView()
-    {
-        this.activityAssignmentView.dispose();
-        return activityAssignmentView;
-    }
-    
-    /**
      * 
      * Change the color of the cell in the table according to their values.
      * @param table is the table in the page.

@@ -11,7 +11,6 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
-import se.project.business_logic.controllers.PlannerHomepageController;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -34,7 +33,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Creates a new ViewMaintenanceActivityController
+     * Creates a new SelectMaintenanceActivityController
      */
     public SelectMaintenanceActivityController()
     {
@@ -55,7 +54,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Creates a new ViewMaintenanceActivityController (used for tests)
+     * Creates a new SelectMaintenanceActivityController (used for tests)
      * @param selectMaintenanceActivityView is the view to open
      */
     public SelectMaintenanceActivityController(SelectMaintenanceActivityView selectMaintenanceActivityView)
