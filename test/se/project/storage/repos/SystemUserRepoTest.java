@@ -1,7 +1,5 @@
 package se.project.storage.repos;
 
-import se.project.storage.repos.SystemUserRepo;
-import se.project.storage.models.SystemUser;
 import java.io.IOException;
 import java.sql.SQLException;
 import org.junit.After;
@@ -10,8 +8,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static se.project.storage.models.SystemUser.Role.*;
+import org.postgresql.util.PSQLException;
 import static se.project.storage.DatabaseConnection.*;
+import se.project.storage.models.SystemUser;
+import static se.project.storage.models.SystemUser.Role.*;
 import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 
 
@@ -99,7 +99,7 @@ public class SystemUserRepoTest
      * @throws SQLException
      * @throws IOException 
      */
-    @Test(expected = NullPointerException.class)
+    @Test(expected = PSQLException.class)
     public void testQueryWithClosedConnectionCurrentUser() throws ClassNotFoundException, SQLException, IOException
     {
         SystemUserRepo instance = new SystemUserRepo(getConnection());

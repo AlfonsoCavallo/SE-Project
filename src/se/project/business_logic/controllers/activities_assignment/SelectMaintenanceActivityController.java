@@ -11,6 +11,7 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -140,7 +141,7 @@ public class SelectMaintenanceActivityController extends AbstractController
      */
     public static void goBackPlannerHomepage()
     {
-        ControllerFactory.createController(ControllerType.PLANNER_HOMEPAGE);
+        SingletonControllerFactory.getInstance().createController(ControllerType.PLANNER_HOMEPAGE);
     }
     
     /**

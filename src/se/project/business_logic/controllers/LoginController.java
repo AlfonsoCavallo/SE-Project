@@ -12,6 +12,7 @@ import se.project.storage.repo_proxy.SystemUserProxyRepo;
 import se.project.storage.repo_proxy.UserAccessProxyRepo;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 
 /**
  * Manages the business logic behind a LoginView interaction.
@@ -133,11 +134,11 @@ public class LoginController extends AbstractController
             switch (role)
             {
                 case SYSTEM_ADMINISTRATOR:
-                    ControllerFactory.createController(ControllerType.SAHOMEPAGE);
+                    SingletonControllerFactory.getInstance().createController(ControllerType.SAHOMEPAGE);
                     loginView.dispose();
                     break;
                 case PLANNER:
-                    ControllerFactory.createController(ControllerType.PLANNER_HOMEPAGE);
+                    SingletonControllerFactory.getInstance().createController(ControllerType.PLANNER_HOMEPAGE);
                     loginView.dispose();
                     break;
                 default:

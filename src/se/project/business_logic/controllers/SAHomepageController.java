@@ -95,7 +95,7 @@ public class SAHomepageController extends AbstractController
      */
     public void openUserInfoPage()
     {
-        ControllerFactory.createController(ControllerType.USER_INFO);
+        SingletonControllerFactory.getInstance().createController(ControllerType.USER_INFO);
     }
     
     /**
@@ -104,7 +104,7 @@ public class SAHomepageController extends AbstractController
      */
     public void openRecordAccessPage()
     {
-        ControllerFactory.createController(ControllerType.USER_ACCESSES);
+        SingletonControllerFactory.getInstance().createController(ControllerType.USER_ACCESSES);
     }
     
 }

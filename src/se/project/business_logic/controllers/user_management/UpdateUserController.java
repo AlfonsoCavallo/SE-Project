@@ -10,6 +10,7 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.user_management.UpdateUserView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -131,7 +132,7 @@ public class UpdateUserController extends AbstractController
      */
     public static void goBackUserInfoPage()
     {
-       ControllerFactory.createController(ControllerType.USER_INFO);
+       SingletonControllerFactory.getInstance().createController(ControllerType.USER_INFO);
     }
     
     /**

@@ -93,7 +93,7 @@ public class PlannerHomepageController extends AbstractController
      */
     public static void openMaintenanceActivityPage()
     {
-        ControllerFactory.createController(ControllerType.MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.MAINTENANCE_ACTIVITY);
     }
 
     /**
@@ -102,6 +102,6 @@ public class PlannerHomepageController extends AbstractController
      */
     public static void openSelectMaintenanceActivityPage()
     {
-        ControllerFactory.createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
     }
 }

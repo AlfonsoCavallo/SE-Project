@@ -5,6 +5,7 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import static se.project.business_logic.controllers.MainController.openLoginPage;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
@@ -110,7 +111,7 @@ public class UserInfoController  extends AbstractController
      */
     public static void openAddUserPage()
     {
-        ControllerFactory.createController(ControllerType.ADD_USER);
+        SingletonControllerFactory.getInstance().createController(ControllerType.ADD_USER);
     }
     
     /**
@@ -119,7 +120,7 @@ public class UserInfoController  extends AbstractController
      */
     public static void openViewUserPage()
     {
-        ControllerFactory.createController(ControllerType.VIEW_USERS);
+        SingletonControllerFactory.getInstance().createController(ControllerType.VIEW_USERS);
     }
     
     /**
@@ -128,7 +129,7 @@ public class UserInfoController  extends AbstractController
      */
     public static void openUpdateUserPage()
     {
-        ControllerFactory.createController(ControllerType.UPDATE_USER);
+        SingletonControllerFactory.getInstance().createController(ControllerType.UPDATE_USER);
     }
     
     /**
@@ -137,6 +138,6 @@ public class UserInfoController  extends AbstractController
      */
     public static void goBackSystemAdministratorHomepage()
     {
-        ControllerFactory.createController(ControllerType.SAHOMEPAGE);
+        SingletonControllerFactory.getInstance().createController(ControllerType.SAHOMEPAGE);
     }
 }

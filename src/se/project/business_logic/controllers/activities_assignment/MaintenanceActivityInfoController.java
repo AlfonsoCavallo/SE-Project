@@ -6,6 +6,7 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.activities_assignment.MaintenanceActivityInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
@@ -117,7 +118,7 @@ public class MaintenanceActivityInfoController extends AbstractController
      */
     public static void goBackSelectMaintenanceActivityView()
     {
-        ControllerFactory.createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
     }
     
     /**

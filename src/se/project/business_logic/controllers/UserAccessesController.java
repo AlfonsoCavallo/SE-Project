@@ -148,6 +148,6 @@ public class UserAccessesController extends AbstractController
      */
     public void goBackSystemAdministratorHomepage()
     {
-        ControllerFactory.createController(ControllerType.SAHOMEPAGE);
+        SingletonControllerFactory.getInstance().createController(ControllerType.SAHOMEPAGE);
     }
 }

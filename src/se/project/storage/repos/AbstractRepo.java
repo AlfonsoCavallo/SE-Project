@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static se.project.storage.DatabaseConnection.*;
 import se.project.storage.repos.interfaces.RepoInterface;
 
 /**
@@ -33,18 +32,18 @@ public abstract class AbstractRepo implements RepoInterface
     @Override
     public ResultSet queryDatabase(String query) throws SQLException
     {
-        PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet;        
            
         try
         {           
             resultSet = preparedStatement.executeQuery();
-            getConnection().commit();
+            connection.commit();
         }
         catch(SQLException ex)
         {
             preparedStatement.cancel();
-            getConnection().rollback();
+            connection.rollback();
             throw ex;
         }
         
@@ -60,17 +59,17 @@ public abstract class AbstractRepo implements RepoInterface
     @Override
     public boolean executeStatement(String statement) throws SQLException
     {
-        PreparedStatement preparedStatement = getConnection().prepareStatement(statement);
+        PreparedStatement preparedStatement = connection.prepareStatement(statement);
         
         try
         {           
             preparedStatement.execute();
-            getConnection().commit();
+            connection.commit();
         }
         catch(SQLException ex)
         {
             preparedStatement.cancel();
-            getConnection().rollback();
+            connection.rollback();
             throw ex;
         }        
         return true;

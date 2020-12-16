@@ -5,6 +5,7 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.activities_management.MaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
@@ -118,7 +119,7 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void openAddMaintenanceActivityPage()
     {
-        ControllerFactory.createController(ControllerType.ADD_MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.ADD_MAINTENANCE_ACTIVITY);
     }
     
     /**
@@ -127,7 +128,7 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void openUpdateMaintenanceActivityPage()
     {
-        ControllerFactory.createController(ControllerType.UPDATE_MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.UPDATE_MAINTENANCE_ACTIVITY);
     }
     
     /**
@@ -136,7 +137,7 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void openViewMaintenanceActivityPage()
     {
-        ControllerFactory.createController(ControllerType.VIEW_MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.VIEW_MAINTENANCE_ACTIVITY);
     }
     
     /**
@@ -145,6 +146,6 @@ public class MaintenanceActivityController extends AbstractController
      */
     public static void goBackPlannerHomepage()
     {
-        ControllerFactory.createController(ControllerType.PLANNER_HOMEPAGE);
+        SingletonControllerFactory.getInstance().createController(ControllerType.PLANNER_HOMEPAGE);
     }
 }

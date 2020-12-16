@@ -12,6 +12,7 @@ import se.project.business_logic.controllers.AbstractController;
 import se.project.business_logic.controllers.ControllerFactory;
 import se.project.business_logic.controllers.ControllerFactory.ControllerType;
 import se.project.business_logic.controllers.MainController;
+import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.activities_management.AddMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
@@ -147,7 +148,7 @@ public class AddMaintenanceActivityController extends AbstractController
      */
     public static void goBackMaintenanceActivityPage()
     {
-        ControllerFactory.createController(ControllerType.MAINTENANCE_ACTIVITY);
+        SingletonControllerFactory.getInstance().createController(ControllerType.MAINTENANCE_ACTIVITY);
     }
     
     /**
