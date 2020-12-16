@@ -121,7 +121,7 @@ public class AddUserController extends AbstractController
     
     /**
      * 
-     * Opens the user info page using its controller.
+     * Opens the user info page instantiating its controller.
      */
     public static void goBackUserInfoPage()
     {

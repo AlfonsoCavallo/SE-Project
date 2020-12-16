@@ -104,7 +104,7 @@ public class MaintenanceActivityInfoController extends AbstractController
     
     /**
      * 
-     * Opens the Activity Assignment page using instantiating its controller.
+     * Opens the Activity Assignment page instantiating instantiating its controller.
      */
     public void openActivityAssignmentPage()
     {
