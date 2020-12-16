@@ -6,15 +6,18 @@ import java.util.List;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 
-
+/**
+* Is a DAO interface that provides method to manipulate Weekly Availability models.
+* 
+*/
 public interface WeeklyAvailabilityRepoInterface
 {
     /**
      * 
-     * Gets an instance with infos about the availability of a certain Maintainer
-     * @param username is the username of the Maintainer you want to search
-     * @param week is the week to check the availability
-     * @return an Availability object with all the informations about the Maintainer work
+     * Queries the database for an instance with infos about the availability of a certain Maintainer.
+     * @param username is the username of the Maintainer you want to search.
+     * @param week is the week to check the availability.
+     * @return an Availability object with all the informations about the Maintainer work.
      * @throws IOException
      * @throws SQLException 
      */
@@ -22,10 +25,10 @@ public interface WeeklyAvailabilityRepoInterface
     
     /**
      * 
-     * Gets an instance with infos about the availability of a certain Maintainer
-     * @param maintainer is the Maintainer you want to search
-     * @param week is the week to check the availability
-     * @return an Availability object with all the informations about the Maintainer work
+     * Queries the database for an instance with infos about the availability of a certain Maintainer.
+     * @param maintainer is the Maintainer you want to search.
+     * @param week is the week to check the availability.
+     * @return an Availability object with all the informations about the Maintainer work.
      * @throws IOException
      * @throws SQLException 
      */
@@ -33,9 +36,10 @@ public interface WeeklyAvailabilityRepoInterface
     
     /**
      *
-     * Get a list of availability for a certain list of required competencies
-     * @param competencies are the required competencies
-     * @return a list of availability of Maintainers
+     * Queries the database for a list of availability for a certain list of required competencies.
+     * @param competencies are the required competencies.
+     * @param week is the specific week of interest.
+     * @return a list of availability of Maintainers.
      * @throws IOException
      * @throws SQLException 
      */

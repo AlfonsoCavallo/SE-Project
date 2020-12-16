@@ -8,14 +8,17 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.user_management.UserInfoView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-
+/**
+ * Manages the business logic behind an UserInfoView.
+ * 
+ */
 public class UserInfoController  extends AbstractController
 {
     private final UserInfoView userInfoView;
     
     /**
      * 
-     * Creates a new UserInfoController
+     * Creates a new UserInfoController.
      */
     public UserInfoController()
     {
@@ -25,7 +28,7 @@ public class UserInfoController  extends AbstractController
     
     /***
      * 
-     * @return userInfoView
+     * @return userInfoView.
      */
     @Override
     public UserInfoView getView()
@@ -35,7 +38,7 @@ public class UserInfoController  extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of viewMaintenanceActivityView
+     *  Initializes the listeners of viewMaintenanceActivityView.
      */
     private void initListeners()
     {
@@ -103,7 +106,7 @@ public class UserInfoController  extends AbstractController
     
     /**
      * 
-     * Opens the add user page using its controller
+     * Opens the add user page instantiating its controller.
      */
     public static void openAddUserPage()
     {
@@ -112,7 +115,7 @@ public class UserInfoController  extends AbstractController
     
     /**
      * 
-     * Opens the view and delete user page using its controller
+     * Opens the view and delete user page instantiating its controller.
      */
     public static void openViewUserPage()
     {
@@ -121,7 +124,7 @@ public class UserInfoController  extends AbstractController
     
     /**
      * 
-     * Opens the update user page using its controller
+     * Opens the update user page instantiating its controller.
      */
     public static void openUpdateUserPage()
     {
@@ -130,7 +133,7 @@ public class UserInfoController  extends AbstractController
     
     /**
      * 
-     * Opens the system administrator homepage using its controller
+     * Opens the system administrator homepage instantiating its controller.
      */
     public static void goBackSystemAdministratorHomepage()
     {

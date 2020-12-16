@@ -18,7 +18,10 @@ import se.project.storage.models.User;
 import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-
+/**
+ * Manages the business logic behind an SAHomepageView.
+ * 
+ */
 public class AddUserController extends AbstractController
 {
     private final String QUERY_ADD_FAILED_MESSAGE = "Could not add user in database.";
@@ -31,7 +34,7 @@ public class AddUserController extends AbstractController
     
     /**
      * 
-     * Creates a new AddUserController
+     * Creates a new AddUserController.
      */
     public AddUserController()
     {
@@ -42,7 +45,7 @@ public class AddUserController extends AbstractController
     
     /***
      * 
-     * @return addUserView
+     * @return addUserView.
      */
     @Override
     public AddUserView getView()
@@ -52,7 +55,7 @@ public class AddUserController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of addUserView
+     *  Initializes the listeners of addUserView.
      */
     private void initListeners()
     {
@@ -113,7 +116,7 @@ public class AddUserController extends AbstractController
     
     /**
      * 
-     * Opens the user info page using its controller
+     * Opens the user info page using its controller.
      */
     public static void goBackUserInfoPage()
     {
@@ -122,8 +125,8 @@ public class AddUserController extends AbstractController
     
     /**
      * 
-     * Add a new user using data from the page and method from the repo
-     * @return true if the addition has been succesfull, false otherwise
+     * Add a new user using data from the page and method from the repo.
+     * @return true if the addition has been succesfull, false otherwise.
      */
     public boolean addUser()
     {
@@ -174,7 +177,7 @@ public class AddUserController extends AbstractController
     
     /**
      * 
-     * Clears aòò the fields in the page
+     * Clears all the fields in the page.
      */
     public void clearFields()
     {

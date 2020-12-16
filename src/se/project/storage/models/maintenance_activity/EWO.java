@@ -3,7 +3,10 @@ package se.project.storage.models.maintenance_activity;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+/**
+ * A model providing informations about an EWO.
+ * 
+ */
 public class EWO extends UnplannedActivity
 {
     private String standardProcedure;
@@ -12,15 +15,15 @@ public class EWO extends UnplannedActivity
     
     /**
      * 
-     * Creates a new EWO
-     * @param IDActivity is the IDActivity of the EWO
-     * @param activityName is the name of the EWO
-     * @param timeNeeded is the time needed for the EWO
-     * @param remainingTime is the time remained for the completition of the Activity
-     * @param interruptible is the type of the EWO
-     * @param typology is the typology of the EWO
-     * @param activityDescription is the activity description of the EWO
-     * @param week is the week dedicated to the EWO
+     * Creates a new EWO.
+     * @param IDActivity is the IDActivity of the EWO.
+     * @param activityName is the name of the EWO.
+     * @param timeNeeded is the time needed for the EWO.
+     * @param remainingTime is the time remained for the completition of the Activity.
+     * @param interruptible is the type of the EWO.
+     * @param typology is the typology of the EWO.
+     * @param activityDescription is the activity description of the EWO.
+     * @param week is the week dedicated to the EWO.
      */
     public EWO(int IDActivity, String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
@@ -33,14 +36,14 @@ public class EWO extends UnplannedActivity
     
     /**
      * 
-     * Creates a new EWO  without considering the ID
-     * @param activityName is the name of the EWO
-     * @param timeNeeded is the time needed for the EWO
-     * @param remainingTime is the time remained for the completition of the Activity
-     * @param interruptible is the type of the EWO
-     * @param typology is the typology of the EWO
-     * @param activityDescription is the activity description of the EWO
-     * @param week is the week dedicated to the EWO
+     * Creates a new EWO  without considering the ID.
+     * @param activityName is the name of the EWO.
+     * @param timeNeeded is the time needed for the EWO.
+     * @param remainingTime is the time remained for the completition of the Activity.
+     * @param interruptible is the type of the EWO.
+     * @param typology is the typology of the EWO.
+     * @param activityDescription is the activity description of the EWO.
+     * @param week is the week dedicated to the EWO.
      */
     public EWO(String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
@@ -53,18 +56,18 @@ public class EWO extends UnplannedActivity
 
     /**
      * 
-     * Creates a new EWO with with the skills needed and the afferent site
-     * @param IDActivity is the IDActivity of the Planned Activity
-     * @param activityName is the name of the Planned Activity
-     * @param timeNeeded is the time needed for the Planned Activity
-     * @param remainingTime is the time remained for the completition of the Activity
-     * @param interruptible is the type of the Planned Activity
-     * @param typology is the typology of the Planned Activity
-     * @param activityDescription is the activity description of the Planned Activity
-     * @param week is the week dedicated to the Planned Activity
-     * @param brachOffice is the brach office in which the acrivity must be done
-     * @param department is the department in which the acrivity must be done
-     * @param skills is an array of skills needed fot that activity
+     * Creates a new EWO with with the skills needed and the afferent site.
+     * @param IDActivity is the IDActivity of the Planned Activity.
+     * @param activityName is the name of the Planned Activity.
+     * @param timeNeeded is the time needed for the Planned Activity.
+     * @param remainingTime is the time remained for the completition of the Activity.
+     * @param interruptible is the type of the Planned Activity.
+     * @param typology is the typology of the Planned Activity.
+     * @param activityDescription is the activity description of the Planned Activity.
+     * @param week is the week dedicated to the Planned Activity.
+     * @param brachOffice is the brach office in which the acrivity must be done.
+     * @param department is the department in which the acrivity must be done.
+     * @param skills is an array of skills needed fot that activity.
      */
     public EWO(int IDActivity, String activityName, int timeNeeded, int remainingTime,
             boolean interruptible, Typology typology, String activityDescription, int week, 
@@ -78,7 +81,7 @@ public class EWO extends UnplannedActivity
     
     /**
      * 
-     * @return a String corresponding to the attribute planned
+     * @return a String corresponding to the attribute planned.
      */
     @Override
     public String isPlanned()
@@ -88,7 +91,7 @@ public class EWO extends UnplannedActivity
 
     /**
      * 
-     * @return a String corresponding to the attribute EWO
+     * @return a String corresponding to the attribute EWO.
      */
     @Override
     public String isEWO()
@@ -98,7 +101,7 @@ public class EWO extends UnplannedActivity
 
     /**
      * 
-     * @return a String containing the standard procedure
+     * @return a String containing the standard procedure.
      */
     @Override
     public String getStandardProcedure()
@@ -108,8 +111,8 @@ public class EWO extends UnplannedActivity
 
     /**
      * 
-     * @param obj is the object to compare
-     * @return true if the compared objects are equals, otherwise false
+     * @param obj is the object to compare.
+     * @return true if the compared objects are equals, otherwise false.
      */
     @Override
     public boolean equals(Object obj)

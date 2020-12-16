@@ -6,7 +6,7 @@ import se.project.business_logic.controllers.user_management.*;
 
 
 /**
- * An object capable of creating a selected controller.
+ * A factory object capable of creating a selected controller.
  */
 public interface ControllerFactory
 {

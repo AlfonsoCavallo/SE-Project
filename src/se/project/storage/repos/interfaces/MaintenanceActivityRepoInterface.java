@@ -9,12 +9,15 @@ import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 
-
+/**
+* Is a DAO interface that provides method to manipulate Maintenance Activity models.
+* 
+*/
 public interface MaintenanceActivityRepoInterface
 {
     /**
      * 
-     * @return a LinkedList of the MaintenanceActivity in the system
+     * @return a LinkedList of the MaintenanceActivity in the system.
      * @throws IOException
      * @throws SQLException 
      */
@@ -22,8 +25,8 @@ public interface MaintenanceActivityRepoInterface
     
     /**
      * 
-     * @param activityName is the name of the activity that has to be shown
-     * @return a LinkedList of MaintenanceActivity in which there is a specific maintenance activity
+     * @param activityName is the name of the activity that has to be shown.
+     * @return a LinkedList of MaintenanceActivity in which there is a specific maintenance activity.
      * @throws IOException
      * @throws SQLException 
      */
@@ -31,8 +34,8 @@ public interface MaintenanceActivityRepoInterface
 
     /**
      * 
-     * Delete a specific maintenance activity
-     * @param activityName is the name of the activity that has to be deleted
+     * Delete a specific maintenance activity.
+     * @param activityName is the name of the activity that has to be deleted.
      * @throws IOException
      * @throws SQLException 
      */
@@ -40,8 +43,8 @@ public interface MaintenanceActivityRepoInterface
     
     /**
      * 
-     * Add a new maintenance activity
-     * @param maintenanceActivity is the maintenance activity that has to be added
+     * Add a new maintenance activity.
+     * @param maintenanceActivity is the maintenance activity that has to be added.
      * @throws IOException
      * @throws SQLException 
      */
@@ -49,9 +52,9 @@ public interface MaintenanceActivityRepoInterface
     
     /**
      * 
-     * Update a specific maintenance activity
-     * @param maintenanceActivity is the maintenance activity that has to be updated
-     * @param activityToUpdate is the previous name of the activity that has to be updated
+     * Update a specific maintenance activity.
+     * @param maintenanceActivity is the maintenance activity that has to be updated.
+     * @param activityToUpdate is the previous name of the activity that has to be updated.
      * @throws IOException
      * @throws SQLException 
      */
@@ -59,19 +62,20 @@ public interface MaintenanceActivityRepoInterface
     
     /**
      * 
-     * @param weekSearched is the week in which to search activities
-     * @return a LinkedList of PlannedActivity containing the activities in a specific week
+     * @param weekSearched is the week in which to search activities.
+     * @return a LinkedList of PlannedActivity containing the activities in a specific week.
      * @throws IOException
      * @throws SQLException 
      */
     public LinkedList<PlannedActivity> queryMaintenanceActivityInWeek(int weekSearched) throws IOException, SQLException;
     
     /**
-     * Assign a Maintenance activity to a maintainer
-     * @param maintenanceActivity is the activity to be assigned
-     * @param maintainer is the maintainer who'll work on the activity
-     * @param day is the day in which the Maintainer will work on that task
-     * @param turn is the turn in which the Maintainer will work on that task
+     * Assign a Maintenance activity to a maintainer.
+     * @param maintenanceActivity is the activity to be assigned.
+     * @param maintainer is the maintainer who'll work on the activity.
+     * @param day is the day in which the Maintainer will work on that task.
+     * @param turn is the turn in which the Maintainer will work on that task.
+     * @param minutesAvailable are the minutes available for that maintainer.
      * @throws IOException
      * @throws SQLException
      */

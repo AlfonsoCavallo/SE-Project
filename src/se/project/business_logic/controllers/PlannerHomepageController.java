@@ -6,14 +6,16 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.PlannerHomepageView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-
+/**
+ * Manages the business logic behind a PlannerHomepageView.
+ */
 public class PlannerHomepageController extends AbstractController
 {
     private final PlannerHomepageView plannerHomepageView;
 
     /**
      * 
-     * Creates a new PlannerHomepageController
+     * Creates a new PlannerHomepageController.
      */
     public PlannerHomepageController()
     {
@@ -23,7 +25,7 @@ public class PlannerHomepageController extends AbstractController
     
     /***
      * 
-     * @return plannerHomepageView
+     * @return plannerHomepageView.
      */
     @Override
     public PlannerHomepageView getView()
@@ -33,7 +35,7 @@ public class PlannerHomepageController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of plannerHomepageView
+     *  Initializes the listeners of plannerHomepageView.
      */
     private void initListeners()
     {
@@ -83,7 +85,7 @@ public class PlannerHomepageController extends AbstractController
     
     /**
      * 
-     * Opens the maintenance activity page using its controller
+     * Opens the maintenance activity page instantiating its controller.
      */
     public static void openMaintenanceActivityPage()
     {
@@ -92,7 +94,7 @@ public class PlannerHomepageController extends AbstractController
 
     /**
      * 
-     * Opens the select maintenance activity page to assign it to a maintainer using its controller
+     * Opens the select maintenance activity page to assign it to a maintainer instantiating its controller.
      */
     public static void openSelectMaintenanceActivityPage()
     {

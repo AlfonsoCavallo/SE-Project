@@ -15,7 +15,10 @@ import se.project.business_logic.utilities.interfaces.MailSenderInterface;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 
-
+/**
+ * Provides utility static methods for notify and mail sending.
+ * 
+ */
 public class MailSender implements MailSenderInterface
 {
     private final String MAIL_TEXT_PATH = "/se/project/assets/files/MailText.txt";
@@ -26,7 +29,7 @@ public class MailSender implements MailSenderInterface
     private String time;
 
     /**
-     * 
+     * Instantial a MailSender object.
      * @param maintenanceActivity is the Maintenance Activity.
      * @param day is the day of the Maintenance Activity.
      * @param time is the time of the Maintenance Activity.
@@ -38,12 +41,7 @@ public class MailSender implements MailSenderInterface
         this.time = time;
     }
     
-    /**
-     * 
-     * Send an email using GA2 Protocol.
-     * @param maintainer is the recipient.
-     * @throws Exception
-     */
+
     @Override
     public void notifyMaintainerActivity(Maintainer maintainer) throws Exception
     {

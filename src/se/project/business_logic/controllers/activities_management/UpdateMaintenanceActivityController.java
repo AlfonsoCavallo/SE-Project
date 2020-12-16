@@ -24,7 +24,10 @@ import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-
+/**
+ * Manages the business logic behind an UpdateMaintenanceActivityView.
+ * 
+ */
 public class UpdateMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update maintenance activity in database.";
@@ -41,7 +44,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Creates a new UpdateMaintenanceActivityController
+     * Creates a new UpdateMaintenanceActivityController.
      */
     public UpdateMaintenanceActivityController()
     {
@@ -54,7 +57,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     
     /***
      * 
-     * @return updateMaintenanceActivityView
+     * @return updateMaintenanceActivityView.
      */
     @Override
     public UpdateMaintenanceActivityView getView()
@@ -64,7 +67,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of updateMaintenanceActivityView
+     *  Initializes the listeners of updateMaintenanceActivityView.
      */
     public void initListeners()
     {
@@ -115,7 +118,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the maintenance activity page using its controller
+     * Opens the maintenance activity page instantiating its controller.
      */
     public static void goBackMaintenanceActivityPage()
     {
@@ -124,7 +127,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Updates the selected maintenance activity 
+     * Updates the selected maintenance activity.
      */
     public void updateMaintenanceActivity()
     {
@@ -182,7 +185,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
                 return;
             }
             
-            // Change planned activity value
+            // Change planned activity value.
             switch (planned)
             {
                 case "yes":
@@ -215,7 +218,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Shows in the table all the maintenance activities
+     * Shows in the table all the maintenance activities.
      */
     public void viewMaintenanceActivity(){
         DefaultTableModel tableModel = updateMaintenanceActivityView.getDefaultTableModel();

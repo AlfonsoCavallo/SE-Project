@@ -11,20 +11,24 @@ import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
 
 /***
- * A proxy for WeeklyAvailabilityRepoInterface that instatiate it only when necessary 
+ * A proxy for WeeklyAvailabilityRepoInterface that instatiate it only when necessary.
  */
 public class WeeklyAvailabilityProxyRepo implements WeeklyAvailabilityRepoInterface
 {    
     private WeeklyAvailabilityRepoInterface repo;
     private final Connection connection;
 
+    /**
+    * Instantiates the proxy.
+    * @param connection is the connection established with the database.
+    */
     public WeeklyAvailabilityProxyRepo(Connection connection)
     {
         this.connection = connection;
     }
     
     /***
-     * Instatiates the repo only when a service is called
+     * Instatiates the repo only when a service is called.
      */
     private void instantiateRepo()
     {

@@ -14,20 +14,24 @@ import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
 
 /***
- * A proxy for MaintenanceActivityRepoInterface that instatiate it only when necessary 
+ * A proxy for MaintenanceActivityRepoInterface that instatiate it only when necessary .
  */
 public class MaintenanceActivityProxyRepo implements MaintenanceActivityRepoInterface
 {
     private MaintenanceActivityRepoInterface repo;
     private final Connection connection;
     
+    /**
+    * Instantiates the proxy.
+    * @param connection is the connection established with the database.
+    */
     public MaintenanceActivityProxyRepo(Connection connection)
     {
         this.connection = connection;
     }
     
     /***
-     * Instatiates the repo only when a service is called
+     * Instatiates the repo only when a service is called.
      */
     private void instantiateRepo()
     {

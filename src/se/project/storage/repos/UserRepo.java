@@ -12,7 +12,10 @@ import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-
+/**
+* Is a DAO that provides method to manipulate User models.
+* 
+*/
 public class UserRepo extends AbstractRepo implements UserRepoInterface
 {
     private final String QUERY_ALL_USERS_PATH = "/se/project/assets/query/QueryAllUsers.sql";
@@ -22,8 +25,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     private final String QUERY_UPDATE_USER_PATH = "/se/project/assets/query/QueryUpdateUser.sql";
 
     /**
-     * Creates a new UserRepo
-     * @param connection is the current connection
+     * Creates a new UserRepo.
+     * @param connection is the current connection.
      */
     public UserRepo(Connection connection)
     {
@@ -32,7 +35,7 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     
     /**
      * 
-     * @return a LinkedList of User containing all the users in the database
+     * @return a LinkedList of User containing all the users in the database.
      * @throws IOException
      * @throws SQLException 
      */
@@ -44,8 +47,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     
     /**
      * 
-     * @param username is the username of the searched user
-     * @return a LinkedList of User containing the user with username equals to username
+     * @param username is the username of the searched user.
+     * @return a LinkedList of User containing the user with username equals to username.
      * @throws IOException
      * @throws SQLException 
      */
@@ -57,8 +60,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * Execute the statement that delete user on database
-     * @param username is the username of the user that has to be deleted
+     * Execute the statement that delete user on database.
+     * @param username is the username of the user that has to be deleted.
      * @throws IOException
      * @throws SQLException 
      */
@@ -70,8 +73,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * Execute the statement that add a user on database
-     * @param user is the user that has to be added to the database
+     * Execute the statement that add a user on database.
+     * @param user is the user that has to be added to the database.
      * @throws IOException
      * @throws SQLException 
      */
@@ -94,9 +97,9 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * Execute the update of a user on the database
-     * @param user is the user that has to be updated in the database
-     * @param userToUpdate is the original username of user
+     * Execute the update of a user on the database.
+     * @param user is the user that has to be updated in the database.
+     * @param userToUpdate is the original username of user.
      * @throws IOException
      * @throws SQLException 
      */
@@ -121,8 +124,8 @@ public class UserRepo extends AbstractRepo implements UserRepoInterface
     }
     
     /**
-     * 
-     * @param query is the query from which to extract data to build the model
+     * Queries a user list.
+     * @param query is the query from which to extract data to build the model.
      * @return a LinkedList of User that are in the database
      * @throws SQLException 
      */

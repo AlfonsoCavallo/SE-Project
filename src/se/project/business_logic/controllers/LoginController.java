@@ -13,7 +13,10 @@ import se.project.storage.repo_proxy.UserAccessProxyRepo;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
-
+/**
+ * Manages the business logic behind a LoginView interaction.
+ *
+ */
 public class LoginController extends AbstractController
 {
 

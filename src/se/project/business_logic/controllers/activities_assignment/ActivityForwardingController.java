@@ -32,7 +32,10 @@ import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-
+/**
+ * Manages the business logic behind an ActivityForwardingView.
+ * 
+ */
 public class ActivityForwardingController extends AbstractController
 {
     private final String NOT_VALID_MESSAGE = "At this time the maintainer is not available for the current activity!";
@@ -52,7 +55,7 @@ public class ActivityForwardingController extends AbstractController
     
     /**
      * 
-     * Creates a new ActivityForwardingController
+     * Creates a new ActivityForwardingController.
      */ 
     public ActivityForwardingController()
     {
@@ -61,12 +64,12 @@ public class ActivityForwardingController extends AbstractController
     }
     
     /**
-     * Sets all the informations of models to display and on which work
-     * @param plannedActivity is the activity that has to be assigned
-     * @param weeklyAvailability is the weekly availability of a maintainer
-     * @param dayOfWeek is the day in the week in which the activity has to be assigned
-     * @param dayOfMonth is the day in the month in which the activity has to be assigned
-     * @param maintainerPercentage is the percentage of availability of the maintainer in the day in which the activity has to be assigned
+     * Sets all the informations of models to display and on which work.
+     * @param plannedActivity is the activity that has to be assigned.
+     * @param weeklyAvailability is the weekly availability of a maintainer.
+     * @param dayOfWeek is the day in the week in which the activity has to be assigned.
+     * @param dayOfMonth is the day in the month in which the activity has to be assigned.
+     * @param maintainerPercentage is the percentage of availability of the maintainer in the day in which the activity has to be assigned.
      */ 
     public void setAvailabilityModels(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability, String dayOfWeek, int dayOfMonth, String maintainerPercentage)
     {
@@ -89,7 +92,7 @@ public class ActivityForwardingController extends AbstractController
     
     /***
      * 
-     * @return activityForwardingView
+     * @return activityForwardingView.
      */
     @Override
     public ActivityForwardingView getView()
@@ -98,8 +101,8 @@ public class ActivityForwardingController extends AbstractController
     }
 
     /**
-     * Creates a new ActivityForwardingController (used for tests)
-     * @param activityForwardingView is the view to open 
+     * Creates a new ActivityForwardingController (used for tests).
+     * @param activityForwardingView is the view to open.
      */
     public ActivityForwardingController(ActivityForwardingView activityForwardingView)
     {
@@ -108,7 +111,7 @@ public class ActivityForwardingController extends AbstractController
     }
     
     /**
-     * Initializes the listeners of ActivityForwardingView
+     * Initializes the listeners of ActivityForwardingView.
      */
     public void initListeners()
     {
@@ -176,7 +179,7 @@ public class ActivityForwardingController extends AbstractController
     } 
     
     /**
-     * Opens the Activity Assignment view using its controller
+     * Opens the Activity Assignment view instantiating its controller.
      */
     public void goBackActivityAssignmentPage()
     {
@@ -184,7 +187,7 @@ public class ActivityForwardingController extends AbstractController
     }
     
     /**
-     * Opens the Planner Homepage view using its controller
+     * Opens the Planner Homepage view instantiating its controller.
      */
     public void goBackPlannerHomepage()
     {
@@ -192,9 +195,9 @@ public class ActivityForwardingController extends AbstractController
     }        
     
     /**
-     * Updates the table in the page inserting the time availability of the maintainer
-     * @param plannedActivity is the planned activity to assign
-     * @param weeklyAvailability is the weekly availability of the maintainer
+     * Updates the table in the page inserting the time availability of the maintainer.
+     * @param plannedActivity is the planned activity to assign.
+     * @param weeklyAvailability is the weekly availability of the maintainer.
      */
     public void viewTimeAvailability(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability)
     {
@@ -246,10 +249,10 @@ public class ActivityForwardingController extends AbstractController
     }
      
     /**
-     * Assigns and forwards the maintenance activity to the maintainer in the selected day and turn
-     * @param plannedActivity is the planned activity to assign
-     * @param weeklyAvailability is the weekly availability of the maintainer
-     * @return true if the maintainer is available in the specified turn, false otherwise
+     * Assigns and forwards the maintenance activity to the maintainer in the selected day and turn.
+     * @param plannedActivity is the planned activity to assign.
+     * @param weeklyAvailability is the weekly availability of the maintainer.
+     * @return true if the maintainer is available in the specified turn, false otherwise.
      */
     public boolean forwardActivity(PlannedActivity plannedActivity, WeeklyAvailability weeklyAvailability)
     {

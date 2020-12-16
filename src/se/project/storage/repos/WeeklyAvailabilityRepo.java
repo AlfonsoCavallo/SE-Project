@@ -12,7 +12,10 @@ import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
-
+/**
+* Is a DAO that provides method to manipulate Weekly Availability models.
+* 
+*/
 public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvailabilityRepoInterface
 {
     
@@ -21,23 +24,14 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
 
     /**
      * 
-     * Creates a new WeeklyAvailabilityRepo
-     * @param connection is the current connection
+     * Creates a new WeeklyAvailabilityRepo.
+     * @param connection is the current connection.
      */
     public WeeklyAvailabilityRepo(Connection connection)
     {
         super(connection);
     }
 
-    /**
-     * 
-     * Gets an instance with infos about the availability of a certain Maintainer
-     * @param username is the username of the Maintainer you want to search
-     * @param week is the week to check the availability
-     * @return an Availability object with all the informations about the Maintainer work (null if there are no infos)
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public WeeklyAvailability queryMaintainerAvailability(String username, int week) throws IOException, SQLException
     {
@@ -70,29 +64,12 @@ public class WeeklyAvailabilityRepo extends AbstractRepo implements WeeklyAvaila
         return weeklyAvailability;
     }
 
-    /**
-     * 
-     * Gets an instance with infos about the availability of a certain Maintainer
-     * @param maintainer is the Maintainer you want to search
-     * @param week is the week to check the availability
-     * @return an Availability object with all the informations about the Maintainer work (null if there are no infos)
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public WeeklyAvailability queryMaintainerAvailability(Maintainer maintainer, int week) throws IOException, SQLException
     {
         return queryMaintainerAvailability(maintainer.getUsername(), week); 
     }
 
-    /**
-     * 
-     * Get a list of availability for a certain list of required competencies
-     * @param competencies are the required competencies (can be null or empty)
-     * @return a list of availability of Maintainers
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public List<WeeklyAvailability> queryAllWeeklyAvailabilities(List<String> competencies, int week) throws IOException, SQLException
     {

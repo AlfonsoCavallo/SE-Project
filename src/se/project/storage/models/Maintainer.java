@@ -1,19 +1,22 @@
 package se.project.storage.models;
 
-
+/**
+ * A model with the informations about a Maintainer user.
+ * 
+ */
 public class Maintainer extends User
 {
     private String role;
     
     /**
      * 
-     * Creates a new Maintainer
-     * @param username is the username of the Maintainer
-     * @param email is the email of the Maintainer
-     * @param name is the name of the Maintainer
-     * @param surname is the surname of the Maintainer
-     * @param password is the password of the Maintainer
-     * @param role is the role
+     * Creates a new Maintainer.
+     * @param username is the username of the Maintainer.
+     * @param email is the email of the Maintainer.
+     * @param name is the name of the Maintainer.
+     * @param surname is the surname of the Maintainer.
+     * @param password is the password of the Maintainer.
+     * @param role is the role.
      */
     public Maintainer(String username, String email, String name, String surname, String password, String role)
     {
@@ -23,7 +26,7 @@ public class Maintainer extends User
 
     /**
      * 
-     * @return a String containing the role of this user
+     * @return a String containing the role of this user.
      */
     public String getRole()
     {
@@ -32,7 +35,7 @@ public class Maintainer extends User
 
     /**
      * 
-     * @return the data model of a maintainer
+     * @return the data model of a maintainer.
      */
     public Object[] getDataModel()
     {
@@ -41,7 +44,7 @@ public class Maintainer extends User
 
     /**
      * 
-     * @return the data model of a maintainer including the password
+     * @return the data model of a maintainer including the password.
      */
     public Object[] getDataPasswordModel()
     {

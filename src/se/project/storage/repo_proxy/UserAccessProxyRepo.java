@@ -10,20 +10,25 @@ import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
 
 /***
- * A proxy for UserAccessRepoInterface that instatiate it only when necessary 
+ * A proxy for UserAccessRepoInterface that instatiate it only when necessary.
  */
 public class UserAccessProxyRepo implements UserAccessRepoInterface
 {
     private UserAccessRepoInterface repo;
     private final Connection connection;
 
+    
+    /**
+    * Instantiates the proxy.
+    * @param connection is the connection established with the database.
+    */
     public UserAccessProxyRepo(Connection connection)
     {
         this.connection = connection;
     }
     
     /***
-     * Instatiates the repo only when a service is called
+     * Instatiates the repo only when a service is called.
      */
     private void instantiateRepo()
     {

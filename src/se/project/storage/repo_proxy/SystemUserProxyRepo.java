@@ -10,20 +10,24 @@ import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 
 
 /***
- * A proxy for SystemUserActivityRepoInterface that instatiate it only when necessary 
+ * A proxy for SystemUserActivityRepoInterface that instatiate it only when necessary.
  */
 public class SystemUserProxyRepo implements SystemUserRepoInterface
 {
     private SystemUserRepoInterface repo;
     private final Connection connection;
 
+    /**
+    * Instantiates the proxy.
+    * @param connection is the connection established with the database.
+    */
     public SystemUserProxyRepo(Connection connection)
     {
         this.connection = connection;
     }
     
     /***
-     * Instatiates the repo only when a service is called
+     * Instatiates the repo only when a service is called.
      */
     private void instantiateRepo()
     {

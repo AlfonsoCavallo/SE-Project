@@ -28,7 +28,10 @@ import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repo_proxy.WeeklyAvailabilityProxyRepo;
 import se.project.storage.repos.interfaces.WeeklyAvailabilityRepoInterface;
 
-
+/**
+ * Manages the business logic behind an ActivityAssignmentView.
+ * 
+ */
 public class ActivityAssignmentController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get weekly availabilities from database.";
@@ -45,7 +48,7 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * 
-     * Creates a new ActivityAssignmentController
+     * Creates a new ActivityAssignmentController.
      */
     public ActivityAssignmentController()
     {
@@ -54,8 +57,8 @@ public class ActivityAssignmentController extends AbstractController
     }
     
     /***
-     * Sets the model of PlannedActivity to display on the view
-     * @param plannedActivity is the activity with informations to display
+     * Sets the model of PlannedActivity to display on the view.
+     * @param plannedActivity is the activity with informations to display.
      */
     public void setPlannedActivityModel(PlannedActivity plannedActivity)
     {        
@@ -66,7 +69,7 @@ public class ActivityAssignmentController extends AbstractController
     
     /***
      * 
-     * @return activityAssignmentView
+     * @return activityAssignmentView.
      */
     @Override
     public ActivityAssignmentView getView()
@@ -76,7 +79,7 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * 
-     * Initializes the listeners of ActivityAssignmentView
+     * Initializes the listeners of ActivityAssignmentView.
      */
     public void initListeners()
     {
@@ -134,7 +137,7 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * 
-     * Opens the Maintenance Activity Info view using its controller
+     * Opens the Maintenance Activity Info view instantiating its controller.
      */
     public void goBackMaintenanceActivityInfoPage()
     {
@@ -142,13 +145,13 @@ public class ActivityAssignmentController extends AbstractController
     }
     
     /**
-     * Opens the Activity Forwarding view using its controller
-     * @param plannedActivity is the planned Acvitity
-     * @param selectedAvailability is the selected Availability
-     * @param selectedDayOfTheWeek is the day to check availability
-     * @param dayOfMonth is the number of the day to check
-     * @param maintainerPercentage is the percentage of availability
-     * @return true if the selected maintainer is confirmed in the "Confirm Message" window, false otherwise 
+     * Opens the Activity Forwarding view using its controller.
+     * @param plannedActivity is the planned Acvitity.
+     * @param selectedAvailability is the selected Availability.
+     * @param selectedDayOfTheWeek is the day to check availability.
+     * @param dayOfMonth is the number of the day to check.
+     * @param maintainerPercentage is the percentage of availability.
+     * @return true if the selected maintainer is confirmed in the "Confirm Message" window, false otherwise .
      */
     private boolean openActivityForwardingPage(PlannedActivity plannedActivity, 
             WeeklyAvailability selectedAvailability, String selectedDayOfWeek,
@@ -162,8 +165,8 @@ public class ActivityAssignmentController extends AbstractController
     }
     
     /***
-     * Prepares the transition for forwarding page
-     * @return true if the transition has correctly occurred
+     * Prepares the transition for forwarding page.
+     * @return true if the transition has correctly occurred.
      */
     private void executeTransitionToForwardingPage()
     {
@@ -193,8 +196,8 @@ public class ActivityAssignmentController extends AbstractController
     
     /**
      * 
-     * Updates the table in the page inserting all the availabilities in the specified week
-     * @param plannedActivity is the planned activity from which you obtain the informations to check the weekly availability
+     * Updates the table in the page inserting all the availabilities in the specified week.
+     * @param plannedActivity is the planned activity from which you obtain the informations to check the weekly availability.
      */
     public void viewAvailability(PlannedActivity plannedActivity)
     {

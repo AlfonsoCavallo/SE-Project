@@ -2,12 +2,20 @@ package se.project.storage.models.adapters;
 
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 
-
+/**
+ * An adapter for the rapresentation of MaintenanceActivity in MaintenanceAssignmentView.
+ * 
+ */
 public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvailability
 {
     private RepresentableWeeklyAvailability adaptee;
     private int maxSkills;
     
+    /**
+    * Instantiate the a adapter.
+    * @param representableWeeklyAvailabiliy is the model to adapt.
+    * @param maxSkills is the number of skills required for the activity.
+    */
     public WeeklyAvailabilityForAssignment(RepresentableWeeklyAvailability representableWeeklyAvailabiliy, int maxSkills)
     {
         this.adaptee = representableWeeklyAvailabiliy;

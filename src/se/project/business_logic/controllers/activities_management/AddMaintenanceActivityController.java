@@ -21,7 +21,10 @@ import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-
+/**
+ * Manages the business logic behind an AddMaintenanceActivityView.
+ * 
+ */
 public class AddMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not add maintenance activity in database.";
@@ -35,7 +38,7 @@ public class AddMaintenanceActivityController extends AbstractController
             
     /**
      * 
-     * Crates a new AddMaintenanceActivityController
+     * Crates a new AddMaintenanceActivityController.
      */
     public AddMaintenanceActivityController()
     {
@@ -46,7 +49,7 @@ public class AddMaintenanceActivityController extends AbstractController
     
     /***
      * 
-     * @return AddMaintenanceActivityView
+     * @return AddMaintenanceActivityView.
      */
     @Override
     public AddMaintenanceActivityView getView()
@@ -56,7 +59,7 @@ public class AddMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of addMaintenanceActivityView
+     *  Initializes the listeners of addMaintenanceActivityView.
      */
     public void initListeners()
     {
@@ -138,7 +141,7 @@ public class AddMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the maintenance activity page using its controller
+     * Opens the maintenance activity page instantiating its controller.
      */
     public static void goBackMaintenanceActivityPage()
     {
@@ -147,8 +150,8 @@ public class AddMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Add a new maintenanance activity using data from the page and method from the repo
-     * @return true if the addition has been succesfull, false otherwise
+     * Add a new maintenanance activity using data from the page and method from the repo.
+     * @return true if the addition has been succesfull, false otherwise.
      */
     public boolean addMaintenanceActivity()
     {
@@ -210,7 +213,7 @@ public class AddMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Clears all the fields in the page
+     * Clears all the fields in the page.
      */
     public void clearFields()
     {

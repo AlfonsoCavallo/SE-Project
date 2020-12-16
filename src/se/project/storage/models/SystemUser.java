@@ -3,23 +3,31 @@ package se.project.storage.models;
 import java.util.Arrays;
 import java.util.Objects;
 
-
+/**
+ * A model with the informations about credentials of a user.
+ * 
+ */
 public class SystemUser 
 {
     private Role role;
     private String username;
     private char[] password; 
     
+    /**
+    * An enumeration of all roles defined in the database
+    * 
+    */
     public enum Role
     {
         SYSTEM_ADMINISTRATOR ("system_administrator"),
-        PLANNER ("planner");
+        PLANNER ("planner"),
+        MAINTAINER ("maintainer");
         
         private String role;
         
         /**
          * 
-         * @param role is the role to assign to the system user
+         * @param role is the role to assign to the system user.
          */
         Role(String role)
         {
@@ -28,7 +36,7 @@ public class SystemUser
         
         /**
          * 
-         * @return role's value
+         * @return role's value.
          */
         public String getValue()
         {
@@ -38,10 +46,10 @@ public class SystemUser
     
     /**
      * 
-     * Creates a new system user
-     * @param role is the role of the system user
-     * @param username is the username of the system user
-     * @param password is the password of the system user
+     * Creates a new system user.
+     * @param role is the role of the system user.
+     * @param username is the username of the system user.
+     * @param password is the password of the system user.
      */
     public SystemUser(Role role, String username, char[] password)
     {
@@ -52,7 +60,7 @@ public class SystemUser
     
     /**
      * 
-     * @return the Role of the system user
+     * @return the Role of the system user.
      */
     public Role getRole()
     {
@@ -61,7 +69,7 @@ public class SystemUser
     
     /**
      * 
-     * @return a String representing the system user's username
+     * @return a String representing the system user's username.
      */
     public String getUsername()
     {
@@ -70,7 +78,7 @@ public class SystemUser
     
     /**
      * 
-     * @return a char vector representing the system user's password
+     * @return a char vector representing the system user's password.
      */
     public char[] getPassword()
     {
@@ -79,8 +87,8 @@ public class SystemUser
     
     /**
      * 
-     * @param obj is the object to compare
-     * @return true if the compared objects are equals, otherwise false
+     * @param obj is the object to compare.
+     * @return true if the compared objects are equals, otherwise false.
      */
     @Override
     public boolean equals(Object obj)

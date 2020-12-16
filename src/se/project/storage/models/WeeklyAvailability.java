@@ -9,7 +9,10 @@ import java.util.List;
 import java.util.Objects;
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 
-
+/**
+ * A model with the informations about the availability of a user during the week.
+ * 
+ */
 public class WeeklyAvailability implements RepresentableWeeklyAvailability
 {
     private List<int[]> availabilityPercentage = new ArrayList<>(7);
@@ -17,7 +20,8 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     private int numberOfCompetences = 0;
     
     /***
-     * HX - Work hour starting at X:00
+     * An enumeration about all the work turns.
+     * HX - Work hour starting at X:00.
      */
     public enum WorkTurn
     {
@@ -38,8 +42,8 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
         
         /**
          * 
-         * @param turn is the turn from which regain its corresponding string
-         * @return the string corresponding to the given turn
+         * @param turn is the turn from which regain its corresponding string.
+         * @return the string corresponding to the given turn.
          */
         public static String getValue(WorkTurn turn)
         {
@@ -57,9 +61,9 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
         }
         
         /**
-         * 
-         * @param string is the string from which regain the WorkTurn
-         * @return the WorkTurn corresponding to the given string
+         * Gets a workturn from a String value.
+         * @param string is the string from which regain the WorkTurn.
+         * @return the WorkTurn corresponding to the given string.
          */
         public static WorkTurn fromString(String string)
         {
@@ -77,7 +81,7 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     
     /**
      * Construct a WeeklyAvailability instance.
-     * @param username is the username of the Maintainer associated to the availability
+     * @param username is the username of the Maintainer associated to the availability.
      */
     public WeeklyAvailability(String username)
     {
@@ -91,7 +95,7 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
 
     /**
      * 
-     * @return the username of the Maintainer 
+     * @return the username of the Maintainer.
      */
     public String getUsername()
     {
@@ -100,7 +104,7 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
 
     /**
      * 
-     * @return the number of competences of the Maintainer among the desired ones
+     * @return the number of competences of the Maintainer among the desired ones.
      */
     public int getNumberOfCompetences()
     {
@@ -118,15 +122,15 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     
     /**
      * 
-     * Sets the minutes of availability in a specific day
-     * @param day is the day whose availability are going to be setted
-     * @param h8 are the minutes available between 8:00 and 9:00
-     * @param h9 are the minutes available between 9:00 and 10:00
-     * @param h10 are the minutes available between 10:00 and 10:00
-     * @param h11 are the minutes available between 11:00 and 12:00
-     * @param h14 are the minutes available between 14:00 and 15:00
-     * @param h15 are the minutes available between 15:00 and 16:00
-     * @param h16 are the minutes available between 16:00 and 17:00
+     * Sets the minutes of availability in a specific day.
+     * @param day is the day whose availability are going to be setted.
+     * @param h8 are the minutes available between 8:00 and 9:00.
+     * @param h9 are the minutes available between 9:00 and 10:00.
+     * @param h10 are the minutes available between 10:00 and 10:00.
+     * @param h11 are the minutes available between 11:00 and 12:00.
+     * @param h14 are the minutes available between 14:00 and 15:00.
+     * @param h15 are the minutes available between 15:00 and 16:00.
+     * @param h16 are the minutes available between 16:00 and 17:00.
      */
     public void setAvailabilities(DayOfWeek day, int h8, int h9, int h10, int h11, 
             int h14, int h15, int h16)
@@ -138,10 +142,10 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     
     /**
      * 
-     * Return the minutes available for one turn
-     * @param day is the day to check
-     * @param turn is the turn to check for availabile minutes
-     * @return the number of minutes available
+     * Return the minutes available for one turn.
+     * @param day is the day to check.
+     * @param turn is the turn to check for availabile minutes.
+     * @return the number of minutes available.
      */
     public int getMinutesAvailable(DayOfWeek day, WorkTurn turn)
     {
@@ -154,9 +158,9 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     
     /**
      * 
-     * Return the percentage of availability in a day of the week
-     * @param day is the day to check
-     * @return a percentage of how much availability proportioned to a full work day
+     * Return the percentage of availability in a day of the week.
+     * @param day is the day to check.
+     * @return a percentage of how much availability proportioned to a full work day.
      */
     public int getPercentageAvailability(DayOfWeek day)
     {
@@ -180,8 +184,8 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
 
     /**
      * 
-     * @param obj is the object to compare
-     * @return true if the compared objects are equals, otherwise false
+     * @param obj is the object to compare.
+     * @return true if the compared objects are equals, otherwise false.
      */
     @Override
     public boolean equals(Object obj)
@@ -231,7 +235,7 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     
     /**
      * 
-     * @return the data model to assign a WeeklyAvailability
+     * @return the data model to assign a WeeklyAvailability.
      */
     @Override
     public Object[] getPercentageDataModel()
@@ -250,8 +254,8 @@ public class WeeklyAvailability implements RepresentableWeeklyAvailability
     
     /**
      * 
-     * @param dayOfWeek is the day of the week in which the maintainer has to work to the assigned activity
-     * @return the data model to forward a WeeklyAvailability
+     * @param dayOfWeek is the day of the week in which the maintainer has to work to the assigned activity.
+     * @return the data model to forward a WeeklyAvailability.
      */
     @Override
     public Object[] getMinutesAvailableDataModel(String dayOfWeek)

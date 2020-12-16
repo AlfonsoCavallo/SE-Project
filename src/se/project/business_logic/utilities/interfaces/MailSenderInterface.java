@@ -2,7 +2,10 @@ package se.project.business_logic.utilities.interfaces;
 
 import se.project.storage.models.Maintainer;
 
-
+/**
+ * Provides utility method to notify task assignment to Maintainers.
+ * 
+ */
 public interface MailSenderInterface
 {
      /**

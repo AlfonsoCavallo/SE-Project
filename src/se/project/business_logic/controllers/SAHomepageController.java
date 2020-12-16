@@ -6,14 +6,17 @@ import static se.project.business_logic.controllers.MainController.openLoginPage
 import se.project.presentation.views.SAHomepageView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-
+/**
+ * Manages the business logic behind an SAHomepageView.
+ * 
+ */
 public class SAHomepageController extends AbstractController
 {
     private final SAHomepageView saHomepageView;
     
     /**
      * 
-     * Creates a new SAHomepageController
+     * Creates a new SAHomepageController.
      */
     public SAHomepageController()
     {
@@ -23,7 +26,7 @@ public class SAHomepageController extends AbstractController
     
     /***
      * 
-     * @return plannerHomepageView
+     * @return plannerHomepageView.
      */
     @Override
     public SAHomepageView getView()
@@ -33,7 +36,7 @@ public class SAHomepageController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of saHomepageView
+     *  Initializes the listeners of saHomepageView.
      */
     private void initListeners()
     {
@@ -84,7 +87,7 @@ public class SAHomepageController extends AbstractController
     
     /**
      * 
-     * Opens the user info page using its controller
+     * Opens the user info page instantiating its controller.
      */
     public void openUserInfoPage()
     {
@@ -93,7 +96,7 @@ public class SAHomepageController extends AbstractController
     
     /**
      * 
-     * Opens the user access records page using its controller
+     * Opens the user access records page instatiating its controller.
      */
     public void openRecordAccessPage()
     {

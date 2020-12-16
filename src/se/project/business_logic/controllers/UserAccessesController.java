@@ -13,7 +13,10 @@ import se.project.storage.models.UserAccess;
 import se.project.storage.repo_proxy.UserAccessProxyRepo;
 import se.project.storage.repos.interfaces.UserAccessRepoInterface;
 
-
+/**
+ * Manages the business logic behind an UserAccessesView.
+ * 
+ */
 public class UserAccessesController extends AbstractController
 {
 
@@ -25,7 +28,7 @@ public class UserAccessesController extends AbstractController
 
     /**
      * 
-     * Creates a new UserAccessesController
+     * Creates a new UserAccessesController.
      */
     public UserAccessesController()
     {
@@ -36,7 +39,7 @@ public class UserAccessesController extends AbstractController
     
     /***
      * 
-     * @return userAccessesView
+     * @return userAccessesView.
      */
     @Override
     public UserAccessesView getView()
@@ -46,7 +49,7 @@ public class UserAccessesController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of saHomepageView
+     *  Initializes the listeners of saHomepageView.
      */
     private void initListeners()
     {
@@ -94,7 +97,7 @@ public class UserAccessesController extends AbstractController
     }
 
     /**
-     * Update the table in the page inserting the accesses of all the users or those of a specific user
+     * Update the table in the page inserting the accesses of all the users or those of a specific user.
      */
     public void updateAccesses()
     {
@@ -137,7 +140,7 @@ public class UserAccessesController extends AbstractController
     
     /**
      * 
-     * Opens the system administrator page using its controller
+     * Opens the system administrator page instantiating its controller.
      */
     public void goBackSystemAdministratorHomepage()
     {

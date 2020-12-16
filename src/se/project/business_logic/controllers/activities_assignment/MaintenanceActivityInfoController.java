@@ -10,7 +10,10 @@ import se.project.presentation.views.activities_assignment.MaintenanceActivityIn
 import static se.project.storage.DatabaseConnection.closeConnection;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 
-
+/**
+ * Manages the business logic behind an MaintenanceActivityInfoView.
+ * 
+ */
 public class MaintenanceActivityInfoController extends AbstractController
 {
     private final MaintenanceActivityInfoView maintenanceActivityInfoView;
@@ -18,7 +21,7 @@ public class MaintenanceActivityInfoController extends AbstractController
 
     /**
      * 
-     * Creates a new MaintenanceActivityInfoController
+     * Creates a new MaintenanceActivityInfoController.
      */
     public MaintenanceActivityInfoController()
     {
@@ -27,8 +30,8 @@ public class MaintenanceActivityInfoController extends AbstractController
     }
     
     /***
-     * Sets the model of PlannedActivity to display on the view
-     * @param plannedActivity is the activity with informations to display
+     * Sets the model of PlannedActivity to display on the view.
+     * @param plannedActivity is the activity with informations to display.
      */
     public void setPlannedActivityModel(PlannedActivity plannedActivity)
     {        
@@ -38,7 +41,7 @@ public class MaintenanceActivityInfoController extends AbstractController
     
     /***
      * 
-     * @return maintenanceActivityInfoView
+     * @return maintenanceActivityInfoView.
      */
     @Override
     public MaintenanceActivityInfoView getView()
@@ -48,7 +51,7 @@ public class MaintenanceActivityInfoController extends AbstractController
     
     /**
      * 
-     * Initializes the listeners of MaintenanceActivityInfoView
+     * Initializes the listeners of MaintenanceActivityInfoView.
      */
     private void initListeners()
     {
@@ -98,7 +101,7 @@ public class MaintenanceActivityInfoController extends AbstractController
     
     /**
      * 
-     * Opens the Activity Assignment page using its controller
+     * Opens the Activity Assignment page using instantiating its controller.
      */
     public void openActivityAssignmentPage()
     {
@@ -107,13 +110,16 @@ public class MaintenanceActivityInfoController extends AbstractController
     
     /**
      * 
-     * Opens the Select Maintenance Activity View using its controller
+     * Opens the Select Maintenance Activity View instantiating its controller.
      */
     public static void goBackSelectMaintenanceActivityView()
     {
         ControllerFactory.createController(ControllerType.SELECT_MAINTENANCE_ACTIVITY);
     }
     
+    /**
+     * Reloads all the informations from the model and shows them on the view.
+     */
     public void viewInfo()
     {
         int week = this.plannedActivity.getWeek();

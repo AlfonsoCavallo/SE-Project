@@ -8,14 +8,17 @@ import se.project.business_logic.controllers.MainController;
 import se.project.presentation.views.activities_management.MaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 
-
+/**
+ * Manages the business logic behind an MaintenanceActivityView.
+ * 
+ */
 public class MaintenanceActivityController extends AbstractController
 {
     private final MaintenanceActivityView maintenanceActivityView;
     
     /**
      * 
-     * Creates a new MaintenanceActivityController
+     * Creates a new MaintenanceActivityController.
      */
     public MaintenanceActivityController()
     {
@@ -25,7 +28,7 @@ public class MaintenanceActivityController extends AbstractController
     
     /***
      * 
-     * @return maintenanceActivityView
+     * @return maintenanceActivityView.
      */
     @Override
     public MaintenanceActivityView getView()
@@ -35,7 +38,7 @@ public class MaintenanceActivityController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of addMaintenanceActivityView
+     *  Initializes the listeners of addMaintenanceActivityView.
      */
     private void initListeners()
     {
@@ -105,7 +108,7 @@ public class MaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the add maintenance activity page using its controller
+     * Opens the add maintenance activity page instantiating its controller.
      */
     public static void openAddMaintenanceActivityPage()
     {
@@ -114,7 +117,7 @@ public class MaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the update maintenance activity page using its controller
+     * Opens the update maintenance activity page instantiating its controller.
      */
     public static void openUpdateMaintenanceActivityPage()
     {
@@ -123,7 +126,7 @@ public class MaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the view and delete maintenance activity page using its controller
+     * Opens the view and delete maintenance activity page instantiating its controller.
      */
     public static void openViewMaintenanceActivityPage()
     {
@@ -132,7 +135,7 @@ public class MaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the planner homepage using its controller
+     * Opens the planner homepage instantiating its controller.
      */
     public static void goBackPlannerHomepage()
     {

@@ -6,12 +6,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import se.project.presentation.views.AbstractView;
 
-
+/**
+ * Manages the interaction with a Add Maintenance Activity page.
+ * 
+ */
 public class AddMaintenanceActivityView extends AbstractView
 {
 
     /**
-     * Creates new form AddMaintenanceActivityView
+     * Creates new form AddMaintenanceActivityView.
      */
     public AddMaintenanceActivityView()
     {
@@ -21,7 +24,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JPanel representing the add maintenance activity button
+     * @return a JPanel representing the add maintenance activity button.
      */
     public JPanel getjAddPanel()
     {
@@ -30,7 +33,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JPanel representing the clear button
+     * @return a JPanel representing the clear button.
      */
     public JPanel getjClearPanel()
     {
@@ -39,7 +42,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JLabel representing the close connection button
+     * @return a JLabel representing the close connection button.
      */
     public JLabel getjCloseConnectionLabel()
     {
@@ -48,7 +51,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JLabel representing the exit button
+     * @return a JLabel representing the exit button.
      */
     public JLabel getjExitLabel()
     {
@@ -57,7 +60,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a JLabel representing the go back button
+     * @return a JLabel representing the go back button.
      */
     public JLabel getjGoBackLabel()
     {
@@ -66,7 +69,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a String containing the text in the description text area
+     * @return a String containing the text in the description text area.
      */
     public String getStringActivityDescription()
     {
@@ -75,7 +78,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a String containing the selected value in the Branch Office Combo Box
+     * @return a String containing the selected value in the Branch Office Combo Box.
      */
     public String getBranchOffice()
     {
@@ -84,7 +87,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return the Branch Office Combo Box
+     * @return the Branch Office Combo Box.
      */
     public JComboBox<String> getjBranchOfficeComboBox()
     {
@@ -93,7 +96,7 @@ public class AddMaintenanceActivityView extends AbstractView
     
     /**
      * 
-     * @return a String containing the selected value in the Department Combo Box
+     * @return a String containing the selected value in the Department Combo Box.
      */
     public String getDepartment()
     {
@@ -102,7 +105,7 @@ public class AddMaintenanceActivityView extends AbstractView
     
     /**
      * 
-     * @return the Department Combo Box
+     * @return the Department Combo Box.
      */
     public JComboBox<String> getjDepartmentComboBox()
     {
@@ -111,7 +114,7 @@ public class AddMaintenanceActivityView extends AbstractView
     
     /**
      * 
-     * @return a String containing the selected value in the Interruptible Combo Box
+     * @return a String containing the selected value in the Interruptible Combo Box.
      */
     public String getIsInterruptibleValue()
     {
@@ -120,7 +123,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a String containing the text in the name text field
+     * @return a String containing the text in the name text field.
      */
     public String getStringActivityName()
     {
@@ -129,7 +132,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a String containing the selected value in the Planned Combo Box
+     * @return a String containing the selected value in the Planned Combo Box.
      */
     public String getIsPlannedValue()
     {
@@ -138,7 +141,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return the Planned Combo Box
+     * @return the Planned Combo Box.
      */
     public JComboBox<String> getjPlannedComboBox()
     {
@@ -147,7 +150,7 @@ public class AddMaintenanceActivityView extends AbstractView
     
     /**
      * 
-     * @return the String containing the text in the standard procedure text field
+     * @return the String containing the text in the standard procedure text field.
      */
     public String getStringStandardProcedure()
     {
@@ -156,7 +159,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return the JTextField containing the standard procedure
+     * @return the JTextField containing the standard procedure.
      */
     public JTextField getjStandardProcedureTextField()
     {
@@ -165,7 +168,7 @@ public class AddMaintenanceActivityView extends AbstractView
     
     /**
      * 
-     * @return a String containing the text in the time text field
+     * @return a String containing the text in the time text field.
      */
     public String getStringTimeNeeded()
     {
@@ -174,7 +177,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a String containing the selected valure in the typology combo box
+     * @return a String containing the selected valure in the typology combo box.
      */
     public String getStringTypology()
     {
@@ -183,7 +186,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
     /**
      * 
-     * @return a String containing the selected value in the week combo box
+     * @return a String containing the selected value in the week combo box.
      */
     public String getStringWeek()
     {
@@ -191,7 +194,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the description text area
+     *  resets the description text area.
      */
     public void resetjDescriptionTextArea()
     {
@@ -199,7 +202,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the name text field
+     *  resets the name text field.
      */
     public void resetjNameTextField()
     {
@@ -207,7 +210,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the standard procedure text field
+     *  resets the standard procedure text field.
      */
     public void resetjStandardProcedureTextField()
     {
@@ -215,7 +218,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the time text field
+     *  resets the time text field.
      */
     public void resetjTimeTextField()
     {
@@ -223,7 +226,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the Branch Office combo box
+     *  resets the Branch Office combo box.
      */
     public void resetjBranchOfficeComboBox()
     {
@@ -231,7 +234,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the Department combo box
+     *  resets the Department combo box.
      */
     public void resetjDepartmentComboBox()
     {
@@ -239,7 +242,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
     
     /**
-     *  resets the Interruptible combo box
+     *  resets the Interruptible combo box.
      */
     public void resetjInterruptibleComboBox()
     {
@@ -247,7 +250,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the planned combo box
+     *  resets the planned combo box.
      */
     public void resetjPlannedComboBox()
     {
@@ -255,7 +258,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the typology combo box
+     *  resets the typology combo box.
      */
     public void resetjTypologyComboBox()
     {
@@ -263,7 +266,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }
 
     /**
-     *  resets the week combo box
+     *  resets the week combo box.
      */
     public void resetjWeekComboBox()
     {
@@ -272,7 +275,7 @@ public class AddMaintenanceActivityView extends AbstractView
     
     /**
      * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
+     * WARNING: Do NOT modify this code. The content of this method is always.
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
@@ -632,7 +635,7 @@ public class AddMaintenanceActivityView extends AbstractView
     }//GEN-LAST:event_jInterruptibleComboBoxActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param args the command line arguments.
      */
     public static void main(String args[])
     {

@@ -3,7 +3,10 @@ package se.project.storage.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
+/**
+ * A model with the informations about an access to the system.
+ * 
+ */
 public class UserAccess
 {
     private int ID = -1; // null ID
@@ -12,10 +15,10 @@ public class UserAccess
 
     /**
      * 
-     * Create a new access
-     * @param ID is the ID of the access
-     * @param username is the username of the logged in user
-     * @param accessTime is the timestamp of the access
+     * Create a new access.
+     * @param ID is the ID of the access.
+     * @param username is the username of the logged in user.
+     * @param accessTime is the timestamp of the access.
      */
     public UserAccess(int ID, String username, LocalDateTime accessTime)
     {
@@ -26,9 +29,9 @@ public class UserAccess
     
     /**
      * 
-     * Create a new access without ID
-     * @param username is the username of the logged in user
-     * @param accessTime is the timestamp of the access 
+     * Create a new access without ID.
+     * @param username is the username of the logged in user.
+     * @param accessTime is the timestamp of the access.
      */
     public UserAccess(String username, LocalDateTime accessTime)
     {
@@ -38,7 +41,7 @@ public class UserAccess
 
     /**
      * 
-     * @return the ID of the access
+     * @return the ID of the access.
      */
     public int getID()
     {
@@ -47,7 +50,7 @@ public class UserAccess
 
     /**
      * 
-     * @return the username corresponding to the access
+     * @return the username corresponding to the access.
      */
     public String getUsername()
     {
@@ -56,7 +59,7 @@ public class UserAccess
 
     /**
      * 
-     * @return the timestamp of the access
+     * @return the timestamp of the access.
      */
     public LocalDateTime getAccessTime()
     {
@@ -65,7 +68,7 @@ public class UserAccess
     
     /**
      * 
-     * @return the data model of a user access 
+     * @return the data model of a user access.
      */
     public Object[] getDataModel()
     {
@@ -74,8 +77,8 @@ public class UserAccess
     
     /**
      * 
-     * @param obj is the object to compare
-     * @return true if the compared objects are equals, otherwise false
+     * @param obj is the object to compare.
+     * @return true if the compared objects are equals, otherwise false.
      */
     @Override
     public boolean equals(Object obj)

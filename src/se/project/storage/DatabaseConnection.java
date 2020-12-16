@@ -21,11 +21,14 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 import se.project.storage.models.SystemUser;
 
-
+/**
+ * A Singleton that provides a common instance of connection to the Database.
+ * 
+ */
 public class DatabaseConnection implements Connection
 {
     // Singleton
-    static DatabaseConnection dbConnection;
+    static private DatabaseConnection dbConnection;
     
     // Class attributes
     Connection connection;
@@ -35,7 +38,7 @@ public class DatabaseConnection implements Connection
     
     /**
      * 
-     * @return the singleton instance of connection established at the start of the session
+     * @return the singleton instance of connection established at the start of the session.
      */
     public synchronized static DatabaseConnection getConnection()
     {
@@ -46,15 +49,18 @@ public class DatabaseConnection implements Connection
         return dbConnection;
     }
     
+    /**
+     * Instantiate a Database Connection object.
+     */
     private DatabaseConnection()
     {
     }
     
     /**
-     * 
-     * @param username is the username of the System User trying to log in
-     * @param password is the password of the System User trying to log in
-     * @return the singleton instance of connection with database
+     * Establishes a connection with the Database for a specified user.
+     * @param username is the username of the System User trying to log in.
+     * @param password is the password of the System User trying to log in.
+     * @return the singleton instance of connection with database.
      * @throws ClassNotFoundException
      * @throws SQLException 
      */
@@ -78,9 +84,9 @@ public class DatabaseConnection implements Connection
     }
     
     /**
-     * 
-     * @param user is the SystemUser trying to connect with the database
-     * @return the singleton instance of connection with database
+     * Establishes a connection with the Database for a specified user.
+     * @param user is the SystemUser trying to connect with the database.
+     * @return the singleton instance of connection with database.
      * @throws ClassNotFoundException
      * @throws SQLException 
      */
@@ -91,7 +97,7 @@ public class DatabaseConnection implements Connection
     
     /**
      * 
-     * closes the singleton connection to the database
+     * closes the singleton connection to the database.
      * @throws SQLException 
      */
     static synchronized public void closeConnection() throws SQLException

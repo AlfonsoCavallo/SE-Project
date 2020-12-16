@@ -1,19 +1,22 @@
 package se.project.storage.models;
 
-
+/**
+ * A model with the informations about a System Administrator user.
+ * 
+ */
 public class SystemAdministrator extends User
 {
     private String role;
     
     /**
      * 
-     * Creates a new System Administrator
-     * @param username is the system administrator's username
-     * @param email is the system administrator's email
-     * @param name is the system administrator's name
-     * @param surname is the system administrator's surname
-     * @param password is the system administrator's password
-     * @param role is the user's role
+     * Creates a new System Administrator.
+     * @param username is the system administrator's username.
+     * @param email is the system administrator's email.
+     * @param name is the system administrator's name.
+     * @param surname is the system administrator's surname.
+     * @param password is the system administrator's password.
+     * @param role is the user's role.
      */
     public SystemAdministrator(String username, String email, String name, String surname, String password, String role)
     {
@@ -23,7 +26,7 @@ public class SystemAdministrator extends User
     
     /**
      * 
-     * @return a Stiring containing the user's role 
+     * @return a Stiring containing the user's role.
      */
     public String getRole()
     {
@@ -32,7 +35,7 @@ public class SystemAdministrator extends User
     
     /**
      * 
-     * @return the data model of a system administrator
+     * @return the data model of a system administrator.
      */
     public Object[] getDataModel()
     {
@@ -41,7 +44,7 @@ public class SystemAdministrator extends User
     
     /**
      * 
-     * @return the data model of a system administrator including the password
+     * @return the data model of a system administrator including the password.
      */
     public Object[] getDataPasswordModel()
     {

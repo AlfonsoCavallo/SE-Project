@@ -18,7 +18,10 @@ import static se.project.storage.models.maintenance_activity.MaintenanceActivity
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-
+/**
+* Is a DAO that provides method to manipulate Maintenance Activity models.
+* 
+*/
 public class MaintenanceActivityRepo extends AbstractRepo implements MaintenanceActivityRepoInterface     
 {
     private final String QUERY_ALL_MAINTENANCE_ACTIVITY_PATH = "/se/project/assets/query/QueryAllMaintenanceActivity.sql";
@@ -32,8 +35,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     
     /**
      * 
-     * Creates a new MaintenanceActivityRepo
-     * @param connection is the current connection
+     * Creates a new MaintenanceActivityRepo.
+     * @param connection is the current connection.
      */
     public MaintenanceActivityRepo(Connection connection)
     {
@@ -42,7 +45,7 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     
     /**
      * 
-     * @return a LinkedList of the MaintenanceActivity in the system
+     * @return a LinkedList of the MaintenanceActivity in the system.
      * @throws IOException
      * @throws SQLException 
      */
@@ -55,8 +58,8 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
 
     /**
      * 
-     * @param activityName is the name of the activity that has to be shown
-     * @return a LinkedList of the MaintenanceActivity in which there is a specific maintenance activity
+     * @param activityName is the name of the activity that has to be shown.
+     * @return a LinkedList of the MaintenanceActivity in which there is a specific maintenance activity.
      * @throws IOException
      * @throws SQLException 
      */
@@ -69,13 +72,6 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         return queryMaintenanceActivityList(query);
     }
     
-    /**
-     * 
-     * Delete a specific maintenance activity
-     * @param activityName is the name of the activity that has to be deleted
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public void deleteMaintenanceActivity(String activityName) throws IOException, SQLException
     {
@@ -84,13 +80,6 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         executeStatement(query);
     }
     
-    /**
-     * 
-     * Add a new maintenance activity
-     * @param maintenanceActivity is the maintenance activity that has to be added
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public void addMaintenanceActivity(MaintenanceActivity maintenanceActivity) throws IOException, SQLException
     {
@@ -122,14 +111,6 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         executeStatement(query);
     }
     
-    /**
-     * 
-     * Update a specific maintenance activity
-     * @param maintenanceActivity is the maintenance activity that has to be updated
-     * @param activityToUpdate is the previous name of the activity that has to be updated
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public void updateMaintenanceActivity(MaintenanceActivity maintenanceActivity, String activityToUpdate) throws IOException, SQLException
     {
@@ -164,9 +145,9 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     }
     
     /**
-     * Query a list of maintenance activities
-     * @param query is the statement from which to extract data to build the model
-     * @return a LinkedList of MaintenanceActivity that are in the database
+     * Query a list of maintenance activities.
+     * @param query is the statement from which to extract data to build the model.
+     * @return a LinkedList of MaintenanceActivity that are in the database.
      * @throws SQLException 
      */
     private LinkedList<MaintenanceActivity> queryMaintenanceActivityList(String query) throws SQLException, IOException
@@ -203,13 +184,6 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
         return output;
     } 
     
-    /**
-     * Query a maintenance activity to be assigned during the week
-     * @param weekSearched is the week in which to search activities
-     * @return a LinkedList of PlannedActivity containing the activities in a specific week
-     * @throws IOException
-     * @throws SQLException 
-     */
     @Override
     public LinkedList<PlannedActivity> queryMaintenanceActivityInWeek(int weekSearched) throws IOException, SQLException
     {
@@ -219,9 +193,9 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     }
     
     /**
-     * Query a planned activity list with site informations
-     * @param query is the statement from which to extract data to build the model
-     * @return a LinkedList of PlannedActivity that are in the database in a specific week
+     * Query a planned activity list with site informations.
+     * @param query is the statement from which to extract data to build the model.
+     * @return a LinkedList of PlannedActivity that are in the database in a specific week.
      * @throws SQLException
      * @throws IOException 
      */
@@ -256,9 +230,9 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     }
     
     /**
-     * Query the sills needed for an activity
-     * @param IDActivity is the id of the searched activity
-     * @return an ArrayList contining the skills needed fot that activity
+     * Query the sills needed for an activity.
+     * @param IDActivity is the id of the searched activity.
+     * @return an ArrayList contining the skills needed fot that activity.
      * @throws IOException
      * @throws SQLException
      * @throws NullPointerException 
@@ -277,12 +251,12 @@ public class MaintenanceActivityRepo extends AbstractRepo implements Maintenance
     }
     
     /**
-     * Assign a Maintenance activity to a maintainer
-     * @param maintenanceActivity is the activity to be assigned
-     * @param maintainer is the maintainer who'll work on the activity
-     * @param day is the day in which the Maintainer will work on that task
-     * @param turn is the turn in which the Maintainer will work on that task
-     * @param minutes are the number of minutes the maintainer is available
+     * Assign a Maintenance activity to a maintainer.
+     * @param maintenanceActivity is the activity to be assigned.
+     * @param maintainer is the maintainer who'll work on the activity.
+     * @param day is the day in which the Maintainer will work on that task.
+     * @param turn is the turn in which the Maintainer will work on that task.
+     * @param minutes are the number of minutes the maintainer is available.
      * @throws IOException
      * @throws SQLException
      */

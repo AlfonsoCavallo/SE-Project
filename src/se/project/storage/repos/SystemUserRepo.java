@@ -11,14 +11,17 @@ import static se.project.storage.models.SystemUser.Role.*;
 import se.project.storage.models.SystemUser.Role;
 import se.project.storage.repos.interfaces.SystemUserRepoInterface;
 
-
+/**
+* Is a DAO that provides method to manipulate System User models.
+* 
+*/
 public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterface
 {    
     private final String QUERY_CURRENT_USER_PATH = "/se/project/assets/query/QueryCurrentUser.sql";
 
     /**
-     * Creates a new SystemUserRepo
-     * @param connection is the current connection
+     * Creates a new SystemUserRepo.
+     * @param connection is the current connection.
      */
     public SystemUserRepo(Connection connection)
     {
@@ -27,7 +30,7 @@ public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterf
 
     /**
      * 
-     * @return a SystemUser (that's the model of the current user)
+     * @return a SystemUser (that's the model of the current user).
      * @throws SQLException
      * @throws IOException 
      */
@@ -50,11 +53,6 @@ public class SystemUserRepo extends AbstractRepo implements SystemUserRepoInterf
         return user;
     }
 
-    /**
-     * 
-     * @return a LinkedList of SystemUser that are in the system
-     * @throws IOException 
-     */
     @Override
     public LinkedList<SystemUser> queryAllUsers() throws IOException
     {

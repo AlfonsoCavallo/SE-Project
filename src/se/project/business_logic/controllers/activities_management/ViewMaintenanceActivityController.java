@@ -17,7 +17,10 @@ import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-
+/**
+ * Manages the business logic behind an ViewMaintenanceActivityView.
+ * 
+ */
 public class ViewMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get maintenance activities from database.";
@@ -30,7 +33,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Creates a new ViewMaintenanceActivityController
+     * Creates a new ViewMaintenanceActivityController.
      */
     public ViewMaintenanceActivityController()
     {
@@ -41,7 +44,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     
     /***
      * 
-     * @return viewMaintenanceActivityView
+     * @return viewMaintenanceActivityView.
      */
     @Override
     public ViewMaintenanceActivityView getView()
@@ -51,7 +54,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of viewMaintenanceActivityView
+     *  Initializes the listeners of viewMaintenanceActivityView.
      */
     public void initListeners()
     {
@@ -110,7 +113,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the maintenance activity page using its controller
+     * Opens the maintenance activity page instantiating its controller.
      */
     public static void goBackMaintenanceActivityPage()
     {
@@ -160,7 +163,7 @@ public class ViewMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Deletes the selected maintenance activity
+     * Deletes the selected maintenance activity.
      */
     public void deleteMaintenanceActivity()
     {

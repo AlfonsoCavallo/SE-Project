@@ -16,7 +16,10 @@ import se.project.storage.models.User;
 import se.project.storage.repo_proxy.UserProxyRepo;
 import se.project.storage.repos.interfaces.UserRepoInterface;
 
-
+/**
+ * Manages the business logic behind an ViewUserView.
+ * 
+ */
 public class ViewUsersController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get users from database.";
@@ -30,7 +33,7 @@ public class ViewUsersController extends AbstractController
     
     /**
      * 
-     * Creates a new ViewUsersController
+     * Creates a new ViewUsersController.
      */
     public ViewUsersController()
     {
@@ -41,7 +44,7 @@ public class ViewUsersController extends AbstractController
     
     /***
      * 
-     * @return viewUsersView
+     * @return viewUsersView.
      */
     @Override
     public ViewUsersView getView()
@@ -51,7 +54,7 @@ public class ViewUsersController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of viewMaintenanceActivityView
+     *  Initializes the listeners of viewMaintenanceActivityView.
      */
     private void initListeners()
     {
@@ -109,7 +112,7 @@ public class ViewUsersController extends AbstractController
     
     /**
      * 
-     * Opens the user info page using its controller
+     * Opens the user info page instantiating its controller.
      */
     public static void goBackUserInfoPage()
     {
@@ -117,7 +120,7 @@ public class ViewUsersController extends AbstractController
     }
     
     /**
-     * Updates the table in the page inserting the all the users or a specific one
+     * Updates the table in the page inserting the all the users or a specific one.
      */
     public void viewUsers()
     {
@@ -159,7 +162,7 @@ public class ViewUsersController extends AbstractController
     
     /**
      * 
-     * Deletes the selected user
+     * Deletes the selected user.
      */
     public void deleteUser()
     {

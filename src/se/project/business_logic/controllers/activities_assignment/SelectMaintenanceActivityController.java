@@ -19,7 +19,10 @@ import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.MaintenanceActivityRepo;
 import se.project.storage.repos.interfaces.MaintenanceActivityRepoInterface;
 
-
+/**
+ * Manages the business logic behind an SelectMaintenanceActivityView.
+ * 
+ */
 public class SelectMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not get activities from database.";
@@ -33,7 +36,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Creates a new SelectMaintenanceActivityController
+     * Creates a new SelectMaintenanceActivityController.
      */
     public SelectMaintenanceActivityController()
     {
@@ -44,7 +47,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /***
      * 
-     * @return selectMaintenanceActivityView
+     * @return selectMaintenanceActivityView.
      */
     @Override
     public SelectMaintenanceActivityView getView()
@@ -54,8 +57,8 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Creates a new SelectMaintenanceActivityController (used for tests)
-     * @param selectMaintenanceActivityView is the view to open
+     * Creates a new SelectMaintenanceActivityController (used for tests).
+     * @param selectMaintenanceActivityView is the view to open.
      */
     public SelectMaintenanceActivityController(SelectMaintenanceActivityView selectMaintenanceActivityView)
     {
@@ -67,7 +70,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     *  Initializes the listeners of selectMaintenanceActivityView
+     *  Initializes the listeners of selectMaintenanceActivityView.
      */
     public void initListeners()
     {
@@ -133,7 +136,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the planner homepage using its controller
+     * Opens the planner homepage instantiating its controller.
      */
     public static void goBackPlannerHomepage()
     {
@@ -142,7 +145,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Opens the maintenance activity info view using its controller
+     * Opens the maintenance activity info view instantiating its controller.
      */
     public void openMaintenanceActivityInfoView()
     {
@@ -151,7 +154,7 @@ public class SelectMaintenanceActivityController extends AbstractController
     
     /**
      * 
-     * Updates the table in the page inserting the all the planned activities in a specific week
+     * Updates the table in the page inserting the all the planned activities in a specific week.
      */
     public void viewActivities()
     {

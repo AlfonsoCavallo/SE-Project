@@ -2,7 +2,10 @@ package se.project.storage.models;
 
 import java.util.Objects;
 
-
+/**
+ * A model with the informations about a user.
+ * 
+ */
 public abstract class User
 {
     private String username;
@@ -13,12 +16,12 @@ public abstract class User
 
     /**
      * 
-     * Creates a new user 
-     * @param username is the user's username
-     * @param email is the user's email
-     * @param name is the user's name
-     * @param surname is the user's surname
-     * @param password is the user's password
+     * Creates a new user.
+     * @param username is the user's username.
+     * @param email is the user's email.
+     * @param name is the user's name.
+     * @param surname is the user's surname.
+     * @param password is the user's password.
      */
     public User(String username, String email, String name, String surname, String password)
     {
@@ -31,7 +34,7 @@ public abstract class User
 
     /**
      * 
-     * @return a String containing the user's username
+     * @return a String containing the user's username.
      */
     public String getUsername()
     {
@@ -40,7 +43,7 @@ public abstract class User
 
     /**
      * 
-     * @return a String containing the user's password
+     * @return a String containing the user's password.
      */
     public String getPassword()
     {
@@ -49,7 +52,7 @@ public abstract class User
 
     /**
      * 
-     * @return a String containing the user's email
+     * @return a String containing the user's email.
      */
     public String getEmail()
     {
@@ -58,7 +61,7 @@ public abstract class User
 
     /**
      * 
-     * @return a String containing the user's name
+     * @return a String containing the user's name.
      */
     public String getName()
     {
@@ -67,7 +70,7 @@ public abstract class User
 
     /**
      * 
-     * @return a String containing the user's surname
+     * @return a String containing the user's surname.
      */
     public String getSurname()
     {
@@ -76,26 +79,26 @@ public abstract class User
     
     /**
      * 
-     * @return a String containing the user's role (must be implemented in the sub-classes)
+     * @return a String containing the user's role (must be implemented in the sub-classes).
      */
     public abstract String getRole();
     
     /**
      * 
-     * @return the data model of a user (must be implemented in the sub-classes)
+     * @return the data model of a user (must be implemented in the sub-classes).
      */
     public abstract Object[] getDataModel();
     
     /**
      * 
-     * @return the data model of a user including the password (must be implemented in the sub-classes)
+     * @return the data model of a user including the password (must be implemented in the sub-classes).
      */
     public abstract Object[] getDataPasswordModel();
     
     /**
      * 
-     * @param obj is the object to compare
-     * @return true if the compared objects are equals, otherwise false
+     * @param obj is the object to compare.
+     * @return true if the compared objects are equals, otherwise false.
      */
     @Override
     public boolean equals(Object obj)

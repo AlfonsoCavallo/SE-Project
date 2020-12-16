@@ -3,7 +3,10 @@ package se.project.storage.models.maintenance_activity;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+/**
+ * A model providing informations about a Maintenance Activity.
+ * 
+ */
 public abstract class MaintenanceActivity
 {
     private int IDActivity = -1;
@@ -18,6 +21,10 @@ public abstract class MaintenanceActivity
     private String department;
     private ArrayList<String> skills;
     
+    /**
+    * An enum with all typologies of maintenance activity.
+    * 
+    */
     public enum Typology
     {
         ELECTRICAL ("electrical"),
@@ -34,7 +41,7 @@ public abstract class MaintenanceActivity
         
         /**
          * 
-         * @return a String containing the value of the typology
+         * @return a String containing the value of the typology.
          */
         public String getValue()
         {
@@ -43,8 +50,8 @@ public abstract class MaintenanceActivity
         
         /**
          * 
-         * @param string is the string from which regain the Typology
-         * @return the Typology corresponding to string
+         * @param string is the string from which regain the Typology.
+         * @return the Typology corresponding to string.
          */
         public static Typology fromString(String string)
         {
@@ -60,15 +67,15 @@ public abstract class MaintenanceActivity
 
     /**
      * 
-     * Creates a new MaintenanceActivity
-     * @param IDActivity is the ID of the Maintenance Activity
-     * @param activityName is the name of the Maintenance Activity
-     * @param timeNeeded is the time needed for the Maintenance Activity
-     * @param remainingTime is the time remained for the completition of the Activity
-     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
-     * @param typology is the typology of the Maintenance Activity
-     * @param activityDescription is the description of the Maintenance Activity
-     * @param week is the week in which the Maintenance Activity must be done
+     * Creates a new MaintenanceActivity.
+     * @param IDActivity is the ID of the Maintenance Activity.
+     * @param activityName is the name of the Maintenance Activity.
+     * @param timeNeeded is the time needed for the Maintenance Activity.
+     * @param remainingTime is the time remained for the completition of the Activity.
+     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise.
+     * @param typology is the typology of the Maintenance Activity.
+     * @param activityDescription is the description of the Maintenance Activity.
+     * @param week is the week in which the Maintenance Activity must be done.
      */
     public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
@@ -85,14 +92,14 @@ public abstract class MaintenanceActivity
     
     /**
      * 
-     * Creates a new MaintenanceActivity without considering the ID
-     * @param activityName is the name of the Maintenance Activity
-     * @param timeNeeded is the time needed for the Maintenance Activity
-     * @param remainingTime is the time remained for the completition of the Activity
-     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise
-     * @param typology is the typology of the Maintenance Activity
-     * @param activityDescription is the description of the Maintenance Activity
-     * @param week is the week in which the Maintenance Activity must be done
+     * Creates a new MaintenanceActivity without considering the ID.
+     * @param activityName is the name of the Maintenance Activity.
+     * @param timeNeeded is the time needed for the Maintenance Activity.
+     * @param remainingTime is the time remained for the completition of the Activity.
+     * @param interruptible is true if the Maintenance Activity is interruprible, false otherwise.
+     * @param typology is the typology of the Maintenance Activity.
+     * @param activityDescription is the description of the Maintenance Activity.
+     * @param week is the week in which the Maintenance Activity must be done.
      */
     public MaintenanceActivity(String activityName, int timeNeeded, int remainingTime, boolean interruptible, 
             Typology typology, String activityDescription, int week)
@@ -108,18 +115,18 @@ public abstract class MaintenanceActivity
 
     /**
      * 
-     * Creates a new MaintenanceActivity with the skills needed and the afferent site
-     * @param IDActivity is the IDActivity of the Planned Activity
-     * @param activityName is the name of the Planned Activity
-     * @param timeNeeded is the time needed for the Planned Activity
-     * @param remainingTime is the time remained for the completition of the Activity
-     * @param interruptible is the type of the Planned Activity
-     * @param typology is the typology of the Planned Activity
-     * @param activityDescription is the activity description of the Planned Activity
-     * @param week is the week dedicated to the Planned Activity
-     * @param brachOffice is the brach office in which the acrivity must be done
-     * @param department is the department in which the acrivity must be done
-     * @param skills is an array of skills needed fot that activity
+     * Creates a new MaintenanceActivity with the skills needed and the afferent site.
+     * @param IDActivity is the IDActivity of the Planned Activity.
+     * @param activityName is the name of the Planned Activity.
+     * @param timeNeeded is the time needed for the Planned Activity.
+     * @param remainingTime is the time remained for the completition of the Activity.
+     * @param interruptible is the type of the Planned Activity.
+     * @param typology is the typology of the Planned Activity.
+     * @param activityDescription is the activity description of the Planned Activity.
+     * @param week is the week dedicated to the Planned Activity.
+     * @param brachOffice is the brach office in which the acrivity must be done.
+     * @param department is the department in which the acrivity must be done.
+     * @param skills is an array of skills needed fot that activity.
      */
     public MaintenanceActivity(int IDActivity, String activityName, int timeNeeded, int remainingTime,
             boolean interruptible, Typology typology, String activityDescription, int week, 
@@ -140,7 +147,7 @@ public abstract class MaintenanceActivity
     
     /**
      * 
-     * @return an int representing the ID activity
+     * @return an int representing the ID activity.
      */
    public int getIdActivity()
    {
@@ -149,7 +156,7 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return a String representing the name of the maintenance activity
+    * @return a String representing the name of the maintenance activity.
     */
    public String getActivityName()
    {
@@ -158,7 +165,7 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return an int representing the time needed for the maintenance activity
+    * @return an int representing the time needed for the maintenance activity.
     */
    public int getTimeNeeded()
    {
@@ -167,7 +174,7 @@ public abstract class MaintenanceActivity
    
    /***
     * 
-    * @return an int representing the time remained for the maintenance activity completition
+    * @return an int representing the time remained for the maintenance activity completition.
     */
    public int getRemainingTime()
    {
@@ -177,7 +184,7 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return a String, it's "yes" if interruptible is true, "no" otherwise
+    * @return a String, it's "yes" if interruptible is true, "no" otherwise.
     */
    public String isInterruptible()
    {
@@ -192,7 +199,7 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return the Typology of the maintenance activity
+    * @return the Typology of the maintenance activity.
     */
    public Typology getTypology()
    {
@@ -201,7 +208,7 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return a String representing the description of the maintenance activity
+    * @return a String representing the description of the maintenance activity.
     */
    public String getActivityDescription()
    {
@@ -210,7 +217,7 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return an int corresponding to the week in which the maintenance activity must be done
+    * @return an int corresponding to the week in which the maintenance activity must be done.
     */
    public int getWeek()
    {
@@ -219,7 +226,7 @@ public abstract class MaintenanceActivity
 
    /**
     * 
-    * @return a String containing the branch office
+    * @return a String containing the branch office.
     */
     public String getBrachOffice()
     {
@@ -228,7 +235,7 @@ public abstract class MaintenanceActivity
 
     /**
      * 
-     * @return a String containing the department
+     * @return a String containing the department.
      */
     public String getDepartment()
     {
@@ -237,7 +244,7 @@ public abstract class MaintenanceActivity
 
     /**
      * 
-     * @return an ArrayList of String containing all the skills needed for a specific activity
+     * @return an ArrayList of String containing all the skills needed for a specific activity.
      */
     public ArrayList<String> getSkills()
     {
@@ -246,25 +253,25 @@ public abstract class MaintenanceActivity
    
    /**
     * 
-    * @return "yes" if the maintenance activity is planned, "no" otherwise (must be implemented in the sub-classes)
+    * @return "yes" if the maintenance activity is planned, "no" otherwise (must be implemented in the sub-classes).
     */
    public abstract String isPlanned();
    
    /**
     * 
-    * @return "yes" if the maintenance activity is an EWO, "no" otherwise (must be implemented in the sub-classes)
+    * @return "yes" if the maintenance activity is an EWO, "no" otherwise (must be implemented in the sub-classes).
     */
    public abstract String isEWO();
    
    /**
     * 
-    * @return a String representing the standard procedure of the maintenance activity (must be implemented in the sub-classes)
+    * @return a String representing the standard procedure of the maintenance activity (must be implemented in the sub-classes).
     */
    public abstract String getStandardProcedure();
    
    /**
     * 
-    * @return an Object array representing the data model of the maintenance activity (must be implemented in the sub-classes)
+    * @return an Object array representing the data model of the maintenance activity (must be implemented in the sub-classes).
     */
    public Object[] getDataModel()
    {
@@ -274,8 +281,8 @@ public abstract class MaintenanceActivity
            
    /**
     * 
-    * @param week is the week in which the maintenance activity must be done
-    * @return true if week is a valid week, false otherwise
+    * @param week is the week in which the maintenance activity must be done.
+    * @return true if week is a valid week, false otherwise.
     */
    public boolean isValidWeek(int week)
    {
@@ -284,8 +291,8 @@ public abstract class MaintenanceActivity
 
    /**
     * 
-    * @return an Object array representing the data model of the maintenance activity
-    * with util info for the assignment (must be implemented in the sub-classes) 
+    * @return an Object array representing the data model of the maintenance activity.
+    * with util info for the assignment (must be implemented in the sub-classes).
     */
    public Object[] getDataForAssignment()
    {
@@ -294,8 +301,8 @@ public abstract class MaintenanceActivity
    
     /**
      * 
-     * @param obj is the object to compare
-     * @return true if the compared objects are equals, otherwise false
+     * @param obj is the object to compare.
+     * @return true if the compared objects are equals, otherwise false.
      */
     @Override
     public boolean equals(Object obj)
