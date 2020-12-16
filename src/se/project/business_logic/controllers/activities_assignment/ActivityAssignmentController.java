@@ -20,7 +20,7 @@ import se.project.presentation.views.activities_assignment.ActivityAssignmentVie
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.WeeklyAvailability;
-import se.project.storage.models.adapters.WeeklyAvailabilityForAssignment;
+import se.project.storage.models.decorators.WeeklyAvailabilityForAssignment;
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;

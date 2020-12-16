@@ -23,7 +23,7 @@ import se.project.storage.models.Maintainer;
 import se.project.storage.models.User;
 import se.project.storage.models.WeeklyAvailability;
 import static se.project.storage.models.WeeklyAvailability.WorkTurn.fromString;
-import se.project.storage.models.adapters.WeeklyAvailabilityForAssignment;
+import se.project.storage.models.decorators.WeeklyAvailabilityForAssignment;
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
