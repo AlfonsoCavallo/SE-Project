@@ -1,5 +1,5 @@
 <div style="background-color:rgb(33,33,35);color:rgb(204,204,204); padding:20px; margin-right:50%;">
-    <h1 style="color:rgb(22,10,200)"> Notify a new Activity Assignement </h1>
+    <h1 style="color:rgb(150,160,223)"> Notify a new Activity Assignement </h1>
 
     <div> Dear username_param, <br/>
         you have been assigned to a new management activity! <br/>
