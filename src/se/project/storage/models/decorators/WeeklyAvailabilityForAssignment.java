@@ -1,12 +1,13 @@
 package se.project.storage.models.decorators;
 
+import se.project.storage.models.decorators.abstracts.AbstractWeeklyAvailabilityForAssignment;
 import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
 
 /**
  * A decorator for post-processing of WeeklyAvailability data model.
  * 
  */
-public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvailability
+public class WeeklyAvailabilityForAssignment extends AbstractWeeklyAvailabilityForAssignment
 {
     private final RepresentableWeeklyAvailability component;
     private final int maxSkills;

@@ -15,6 +15,7 @@ import se.project.business_logic.controllers.SingletonControllerFactory;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
+import se.project.storage.models.decorators.MaintenanceActivityForAssignment;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
 import se.project.storage.repos.MaintenanceActivityRepo;
@@ -175,7 +176,8 @@ public class SelectMaintenanceActivityController extends AbstractController
             // Iterates over maintenance activities
             for(PlannedActivity activity : plannedActivities)
             {
-                tableModel.addRow(activity.getDataForAssignment());
+                MaintenanceActivityForAssignment decorated = new MaintenanceActivityForAssignment(activity);
+                tableModel.addRow(decorated.getDataModel());
             }
         }
         catch (IOException ex)

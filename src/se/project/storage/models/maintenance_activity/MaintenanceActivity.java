@@ -2,12 +2,13 @@ package se.project.storage.models.maintenance_activity;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import se.project.storage.models.interfaces.RepresentableMaintenanceActivity;
 
 /**
  * A model providing informations about a Maintenance Activity.
  * 
  */
-public abstract class MaintenanceActivity
+public abstract class MaintenanceActivity implements RepresentableMaintenanceActivity
 {
     private int IDActivity = -1;
     final private String activityName;
@@ -269,10 +270,7 @@ public abstract class MaintenanceActivity
     */
    public abstract String getStandardProcedure();
    
-   /**
-    * 
-    * @return an Object array representing the data model of the maintenance activity (must be implemented in the sub-classes).
-    */
+   @Override
    public Object[] getDataModel()
    {
        return new Object[]{getIdActivity(), getActivityName(), getTimeNeeded(), getRemainingTime(),

@@ -1,12 +1,13 @@
 package se.project.storage.models.decorators;
 
+import se.project.storage.models.decorators.abstracts.AbstractMaintenanceActivityForAssignment;
 import se.project.storage.models.interfaces.RepresentableMaintenanceActivity;
 
 /**
  * A decorator for post-processing of MaintenanceActivity data model.
  * 
  */
-public class MaintenanceActivityForAssignment implements RepresentableMaintenanceActivity
+public class MaintenanceActivityForAssignment extends AbstractMaintenanceActivityForAssignment
 {
     private final RepresentableMaintenanceActivity component;
     
