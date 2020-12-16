@@ -13,8 +13,8 @@ import static org.mockito.Mockito.*;
 import se.project.presentation.views.activities_assignment.SelectMaintenanceActivityView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
-import static se.project.storage.DatabaseTesting.getTestUser;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.repos.DatabaseTesting.getTestUser;
+import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.HYDRAULIC;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
@@ -85,7 +85,7 @@ public class SelectMaintenanceActivityControllerTest
         
             SelectMaintenanceActivityController controller = new SelectMaintenanceActivityController(simulateView());
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             boolean open = controller.selectMaintenaceActivity();
             assertEquals(expectedActivity, controller.getPlannedActivity());
             assertTrue(open);

@@ -19,7 +19,14 @@ public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvail
     {
         Object[] dataModel = adaptee.getPercentageDataModel();
         
-        dataModel[1] = dataModel[1] + "/" + maxSkills;
+        if(maxSkills > 0)
+        {
+            dataModel[1] = dataModel[1] + "/" + maxSkills;
+        }
+        else
+        {
+            dataModel[1] = "N.S.R.";
+        }
         for(int i = 2; i < dataModel.length; i++)
         {
             dataModel[i] = dataModel[i] + "%";
@@ -32,8 +39,15 @@ public class WeeklyAvailabilityForAssignment implements RepresentableWeeklyAvail
     public Object[] getMinutesAvailableDataModel(String day)
     {
         Object[] dataModel = adaptee.getMinutesAvailableDataModel(day);
-         
-        dataModel[1] = dataModel[1] + "/" + maxSkills;
+        
+        if(maxSkills > 0)
+        {
+            dataModel[1] = dataModel[1] + "/" + maxSkills;
+        }
+        else
+        {
+            dataModel[1] = "N.S.R.";
+        }
         for(int i= 2; i < dataModel.length; i++)
         {
             dataModel[i] = dataModel[i] + " min";  

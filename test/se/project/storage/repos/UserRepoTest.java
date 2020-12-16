@@ -1,4 +1,4 @@
-package se.project.storage;
+package se.project.storage.repos;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,8 +12,8 @@ import org.junit.Test;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
 import static se.project.storage.DatabaseConnection.getConnection;
-import static se.project.storage.DatabaseTesting.getTestUser;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.repos.DatabaseTesting.getTestUser;
+import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 import se.project.storage.models.Planner;
 import se.project.storage.models.SystemAdministrator;
 import se.project.storage.models.User;

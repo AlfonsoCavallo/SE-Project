@@ -17,8 +17,8 @@ import se.project.business_logic.controllers.activities_assignment.ActivityForwa
 import se.project.presentation.views.activities_assignment.ActivityForwardingView;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
-import static se.project.storage.DatabaseTesting.getTestUser;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.repos.DatabaseTesting.getTestUser;
+import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 import se.project.storage.models.WeeklyAvailability;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.HYDRAULIC;
 import se.project.storage.models.maintenance_activity.PlannedActivity;

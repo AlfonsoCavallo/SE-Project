@@ -23,7 +23,11 @@ public class UpdateMaintenanceActivityView extends AbstractView
            @Override
            public boolean isCellEditable(int row, int column)
            {
-               return column == 0 || column == 11 ? false : true;
+               if(this.getValueAt(row, 11) == "no" && column == 10)
+               {
+                   return false;
+               }
+               return column == 0 || column == 11 || column == 3 ? false : true;
            }
         };
         

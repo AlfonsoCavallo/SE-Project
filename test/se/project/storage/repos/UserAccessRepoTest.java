@@ -1,4 +1,4 @@
-package se.project.storage;
+package se.project.storage.repos;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.DatabaseConnection.*;
-import static se.project.storage.DatabaseTesting.*;
+import static se.project.storage.repos.DatabaseTesting.*;
 import se.project.storage.models.UserAccess;
 import se.project.storage.repos.UserAccessRepo;
 

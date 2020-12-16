@@ -2,6 +2,7 @@ package se.project.business_logic.controllers.activities_management;
 
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.parseInt;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.getConnection;
 import se.project.storage.models.maintenance_activity.ExtraActivity;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
+import se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology;
 import static se.project.storage.models.maintenance_activity.MaintenanceActivity.Typology.fromString;
 import se.project.storage.models.maintenance_activity.PlannedActivity;
 import se.project.storage.repo_proxy.MaintenanceActivityProxyRepo;
@@ -27,9 +29,10 @@ public class UpdateMaintenanceActivityController extends AbstractController
 {
     private final String QUERY_ACCESSES_FAILED_MESSAGE = "Could not update maintenance activity in database.";
     private final String CANNOT_READ_FILE_MESSAGE = "Unable to access system query.";
-    private final String UPDATED_MESSAGE = "Maintenance activity \"activity_name_param\" has been updated successfully!";
-    private final String QUERY_NULL_POINTER_MESSAGE = "All the fields must be filled!";
-    private final String SELECT_ACTIVITY_MESSAGE = "Please, select an element before updating!";
+    private final String UPDATED_MESSAGE = "Maintenance activity \"activity_name_param\" has been updated successfully.";
+    private final String QUERY_NULL_POINTER_MESSAGE = "All the fields must be filled.";
+    private final String SELECT_ACTIVITY_MESSAGE = "Please, select an element before updating.";
+    private final String FIELD_NOT_PROPERLY_FILLED_MESSAGE = "Fill proprely the fields.";
     
     private final UpdateMaintenanceActivityView updateMaintenanceActivityView;
     private MaintenanceActivityRepoInterface maintenanceActivityRepo = new MaintenanceActivityProxyRepo(getConnection());
@@ -127,18 +130,18 @@ public class UpdateMaintenanceActivityController extends AbstractController
     {
         MaintenanceActivity maintenanceActivity = null;
         
-        int row = -1;
-        String activityName = null;
-        String timeNeeded = null;
-        String remainingTime = null;
-        String interruptibleString = null;
-        String typology = null;
-        String activityDescription = null;
-        String week = null;
-        String planned = null;
-        String branchOffice = null;
-        String department = null;
-        String standardProcedure = null;
+        int row;
+        String activityName;
+        String timeNeeded;
+        String remainingTime;
+        String interruptibleString;
+        String typology;
+        String activityDescription;
+        String week;
+        String planned;
+        String branchOffice;
+        String department;
+        String standardProcedure;
         
         try
         {
@@ -158,10 +161,12 @@ public class UpdateMaintenanceActivityController extends AbstractController
         catch (NullPointerException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), QUERY_NULL_POINTER_MESSAGE);
+            return;
         }
         catch (ArrayIndexOutOfBoundsException ex)
         {
             JOptionPane.showMessageDialog(new JFrame(), SELECT_ACTIVITY_MESSAGE);
+            return;
         }
         
         boolean interruptible;
@@ -170,20 +175,30 @@ public class UpdateMaintenanceActivityController extends AbstractController
         
         try
         {
-            if(planned.equals("yes"))
+            if(!checkFields(timeNeeded, remainingTime, interruptibleString, 
+                    typology, week, planned))
             {
-                maintenanceActivity = new PlannedActivity(-1, activityName, parseInt(timeNeeded), parseInt(remainingTime), interruptible, 
-                fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>(), standardProcedure);
+                JOptionPane.showMessageDialog(new JFrame(), FIELD_NOT_PROPERLY_FILLED_MESSAGE);
+                return;
             }
-            else
+            
+            // Change planned activity value
+            switch (planned)
             {
-                maintenanceActivity = new ExtraActivity(-1, activityName, parseInt(timeNeeded), parseInt(remainingTime), interruptible, 
-                fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>()); 
+                case "yes":
+                    maintenanceActivity = new PlannedActivity(-1, activityName, parseInt(timeNeeded), parseInt(remainingTime), interruptible,
+                            fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>(), standardProcedure);
+                    break;
+                case "no":
+                    maintenanceActivity = new ExtraActivity(-1, activityName, parseInt(timeNeeded), parseInt(remainingTime), interruptible,
+                            fromString(typology), activityDescription, parseInt(week), branchOffice, department, new ArrayList<>());
+                    break;
             }
-           String oldActivityName = this.activityNameList.get(row);
-           maintenanceActivityRepo.updateMaintenanceActivity(maintenanceActivity, oldActivityName);
-           String updatedMessage = UPDATED_MESSAGE.replaceAll("activity_name_param", activityName);
-           JOptionPane.showMessageDialog(null, updatedMessage);
+            
+            String oldActivityName = this.activityNameList.get(row);
+            maintenanceActivityRepo.updateMaintenanceActivity(maintenanceActivity, oldActivityName);
+            String updatedMessage = UPDATED_MESSAGE.replaceAll("activity_name_param", activityName);
+            JOptionPane.showMessageDialog(null, updatedMessage);
         }
         catch (IOException ex)
         {
@@ -195,7 +210,7 @@ public class UpdateMaintenanceActivityController extends AbstractController
         }
         catch (NullPointerException ex)
         {
-        }   
+        }
     }
     
     /**
@@ -231,4 +246,67 @@ public class UpdateMaintenanceActivityController extends AbstractController
             JOptionPane.showMessageDialog(new JFrame(), QUERY_ACCESSES_FAILED_MESSAGE);
         }
     }
+    
+    /***
+     * Checks if the field are properly filled.
+     * @param timeNeeded must be a number.
+     * @param remainingTime must be a number less than timeNeeded.
+     * @param interruptibleString must be "yes" or "no".
+     * @param typology must be a real typology.
+     * @param week must  be a number.
+     * @param planned must be "yes" or "no".
+     * @return true if all the fields are properly filled.
+     */
+    private boolean checkFields(String timeNeeded, String remainingTime, 
+            String interruptibleString, String typology, 
+        String week, String planned)
+        {
+            // Check planned
+            if(planned != "yes" && planned != "no")
+            {
+                return false;
+            }
+            
+            // Check interruptible
+            if(interruptibleString != "yes" && interruptibleString != "no")
+            {
+                return false;
+            }
+            
+            // Check typology
+            boolean correctTypology = false;
+            
+            for(Typology realTypology : Typology.values())
+            {
+                if(realTypology.getValue() == typology)
+                {
+                    correctTypology = true;
+                }
+            }
+            
+            if(!correctTypology)
+            {
+                return false;
+            }
+            
+            // Check type
+            try
+            {
+               parseInt(timeNeeded);
+               parseInt(remainingTime);
+               parseInt(week);
+            }
+            catch (NumberFormatException ex)
+            {
+                return false;
+            }
+            
+            // Check remainingTime is less than
+            if(parseInt(remainingTime) > parseInt(timeNeeded))
+            {
+                return false;
+            }
+            
+            return true;
+        }
 }

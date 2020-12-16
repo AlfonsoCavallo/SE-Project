@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.DatabaseConnection.*;
-import static se.project.storage.DatabaseTesting.getTestUser;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.repos.DatabaseTesting.getTestUser;
+import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 import se.project.storage.models.WeeklyAvailability;
 
 

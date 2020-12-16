@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.DatabaseConnection.*;
-import static se.project.storage.DatabaseTesting.*;
+import static se.project.storage.repos.DatabaseTesting.*;
 import se.project.storage.models.SystemUser;
 
 

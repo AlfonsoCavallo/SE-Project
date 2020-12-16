@@ -290,18 +290,18 @@ public class AddMaintenanceActivityView extends AbstractView
         jTimeTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jInterruptibleComboBox = new javax.swing.JComboBox<>();
+        jInterruptibleComboBox = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
-        jTypologyComboBox = new javax.swing.JComboBox<>();
+        jTypologyComboBox = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jDescriptionTextArea = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
-        jWeekComboBox = new javax.swing.JComboBox<>();
+        jWeekComboBox = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
-        jPlannedComboBox = new javax.swing.JComboBox<>();
+        jPlannedComboBox = new javax.swing.JComboBox<String>();
         jEWOLabel = new javax.swing.JLabel();
-        jBranchOfficeComboBox = new javax.swing.JComboBox<>();
+        jBranchOfficeComboBox = new javax.swing.JComboBox<String>();
         jStandardProcedureTextField = new javax.swing.JTextField();
         jStandardProcedureLabel = new javax.swing.JLabel();
         jAddPanel = new javax.swing.JPanel();
@@ -310,7 +310,7 @@ public class AddMaintenanceActivityView extends AbstractView
         jClearPanel = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jDepartmentComboBox = new javax.swing.JComboBox<>();
+        jDepartmentComboBox = new javax.swing.JComboBox<String>();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -352,7 +352,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jInterruptibleComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jInterruptibleComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jInterruptibleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
+        jInterruptibleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "yes", "no" }));
         jInterruptibleComboBox.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -367,7 +367,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jTypologyComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jTypologyComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jTypologyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "electrical", "electronic", "hydraulic", "mechanical" }));
+        jTypologyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "electrical", "electronic", "hydraulic", "mechanical" }));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
@@ -385,7 +385,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jWeekComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jWeekComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jWeekComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52" }));
+        jWeekComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52" }));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
@@ -393,7 +393,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jPlannedComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jPlannedComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jPlannedComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "yes", "no" }));
+        jPlannedComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "yes", "no" }));
 
         jEWOLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jEWOLabel.setForeground(new java.awt.Color(204, 204, 204));
@@ -401,7 +401,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jBranchOfficeComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jBranchOfficeComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jBranchOfficeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fisciano", "Lauria", "Montecorvino Rovella", "Montella", "Morra", "Nusco", "Torrione" }));
+        jBranchOfficeComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fisciano", "Lauria", "Montecorvino Rovella", "Montella", "Morra", "Nusco", "Torrione" }));
 
         jStandardProcedureTextField.setBackground(new java.awt.Color(188, 180, 169));
         jStandardProcedureTextField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -470,7 +470,7 @@ public class AddMaintenanceActivityView extends AbstractView
 
         jDepartmentComboBox.setBackground(new java.awt.Color(188, 180, 169));
         jDepartmentComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jDepartmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carpentry", "Cleaning", "Molding", "Painting", "Printing", " " }));
+        jDepartmentComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carpentry", "Cleaning", "Molding", "Painting", "Printing" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
@@ -619,7 +619,7 @@ public class AddMaintenanceActivityView extends AbstractView
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();

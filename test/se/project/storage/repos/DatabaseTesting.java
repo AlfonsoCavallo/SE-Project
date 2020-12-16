@@ -1,4 +1,4 @@
-package se.project.storage;
+package se.project.storage.repos;
 
 import java.io.IOException;
 import java.sql.Connection;

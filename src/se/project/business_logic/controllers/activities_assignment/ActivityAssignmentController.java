@@ -120,11 +120,8 @@ public class ActivityAssignmentController extends AbstractController
            {
                try
                {
-                   boolean open = executeTransitionToForwardingPage();
-                   if(open)
-                   {
-                       activityAssignmentView.dispose();
-                   } 
+                   executeTransitionToForwardingPage();
+                   activityAssignmentView.dispose();
                }
                catch (IllegalArgumentException ex)
                {
@@ -168,7 +165,7 @@ public class ActivityAssignmentController extends AbstractController
      * Prepares the transition for forwarding page
      * @return true if the transition has correctly occurred
      */
-    private boolean executeTransitionToForwardingPage()
+    private void executeTransitionToForwardingPage()
     {
         int row = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedRow();
         int column = activityAssignmentView.getjMaintainerAvailabilityTable().getSelectedColumn();
@@ -186,18 +183,12 @@ public class ActivityAssignmentController extends AbstractController
         if(maintainerPercentage.equals("0%"))
         {
             JOptionPane.showMessageDialog(null, NOT_VALID_MESSAGE);
-            return false;
-        }    
-
-        String confirmMessage = CONFIRM_ASSIGNMENT_MESSAGE.replaceAll("maintainer_name_param", maintainerName);
-        int input = JOptionPane.showConfirmDialog(null, confirmMessage, "Confirm Message", YES_NO_OPTION);
-        
-        if(input == 0)
-        {
-            openActivityForwardingPage(plannedActivity, selectedAvailability, selectedDayOfWeek,
-                    dayOfMonth, maintainerPercentage);
+            return;
         }
-        return false;
+        
+
+        openActivityForwardingPage(plannedActivity, selectedAvailability, selectedDayOfWeek,
+        dayOfMonth, maintainerPercentage);
     }
     
     /**

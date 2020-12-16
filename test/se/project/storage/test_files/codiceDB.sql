@@ -397,7 +397,15 @@ values (1, 'Electrical Maintenance'),
        (2, 'English Knowledge');
 	
 insert into maintenance_system.assignment (assignment_id_activity, assignment_username, assignment_day, assignment_time)
-values (2, 'phil', 'Friday', '11_12');
+values (2, 'phil', 'Friday', '14_15');
+
+update maintenance_system.maintenance_activity
+set remaining_time = 10
+where id_activity = 2;
+
+update maintenance_system.workshift
+set "14_15" = 0
+where week_workshift = 3 and day_of_week = 'Friday' and worker_username = 'phil';
 
 -- select * from maintenance_system.user_data;
 -- select * from maintenance_system.user_access;

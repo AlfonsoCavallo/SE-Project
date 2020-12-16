@@ -1,4 +1,4 @@
-package se.project.storage;
+package se.project.storage.repos;
 
 import se.project.storage.repos.SystemUserRepo;
 import se.project.storage.models.SystemUser;
@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static se.project.storage.models.SystemUser.Role.*;
 import static se.project.storage.DatabaseConnection.*;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 
 
 public class SystemUserRepoTest

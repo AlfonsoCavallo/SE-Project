@@ -1,4 +1,4 @@
-package se.project.storage;
+package se.project.storage.repos;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,8 +15,8 @@ import org.junit.Test;
 import static se.project.storage.DatabaseConnection.closeConnection;
 import static se.project.storage.DatabaseConnection.connect;
 import static se.project.storage.DatabaseConnection.getConnection;
-import static se.project.storage.DatabaseTesting.getTestUser;
-import static se.project.storage.DatabaseTesting.resetDatabase;
+import static se.project.storage.repos.DatabaseTesting.getTestUser;
+import static se.project.storage.repos.DatabaseTesting.resetDatabase;
 import se.project.storage.models.Maintainer;
 import se.project.storage.models.WeeklyAvailability;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
@@ -87,7 +87,7 @@ public class MaintenanceActivityRepoTest
             assertEquals(expectedFirstElement, maintenanceActivities.getFirst());
             
             ArrayList<String> expectedSkillsSecondElement = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedSecondElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkillsSecondElement, "4... 5... 6...");
+            MaintenanceActivity expectedSecondElement = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkillsSecondElement, "4... 5... 6...");
             assertEquals(expectedSecondElement, maintenanceActivities.get(1));
             
             closeConnection();
@@ -116,7 +116,7 @@ public class MaintenanceActivityRepoTest
             
             // Test expected elements
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             assertEquals(expectedElement, maintenanceActivities.getFirst());
             assertEquals(1, maintenanceActivities.size());
             
@@ -149,7 +149,7 @@ public class MaintenanceActivityRepoTest
             // Checks element was correctly deleted
             LinkedList<MaintenanceActivity> maintenanceActivities = instance.queryAllMaintenanceActivity();
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills,"4... 5... 6...");
+            MaintenanceActivity expectedElement = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills,"4... 5... 6...");
             
             assertEquals(1, maintenanceActivities.size());
             assertEquals(expectedElement, maintenanceActivities.getFirst());
@@ -205,7 +205,7 @@ public class MaintenanceActivityRepoTest
             assertEquals(1, maintenanceActivities.size());
             
             ArrayList<String> expectedSkills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
-            MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
+            MaintenanceActivity expectedFirstElement = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", expectedSkills, "4... 5... 6...");
             assertEquals(expectedFirstElement, maintenanceActivities.getFirst());
             
             closeConnection();
@@ -305,26 +305,26 @@ public class MaintenanceActivityRepoTest
             MaintenanceActivityRepo instance = new MaintenanceActivityRepo(getConnection());
             WeeklyAvailabilityRepoInterface weeklyAvailabiltiyRepo = new WeeklyAvailabilityRepo(getConnection());
             
-            // Definition of the activity
-            ArrayList<String> skills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 09", "Knowledge of Workstation 35", "English Knowledge"));
-            PlannedActivity activity = new PlannedActivity(2, "activity2", 30, 30, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", skills, "4... 5... 6...");
+            // Definition of the activity            
+            ArrayList<String> skills = new ArrayList<>(Arrays.asList("Electrical Maintenance", "Knowledge of Workstation 23", "Knowledge of Workstation 35", "English Knowledge"));
+            PlannedActivity activity = new PlannedActivity(1, "activity1", 45, 45, true, ELECTRICAL, "riparazione turbina 3", 2, "Fisciano", "Printing", skills,"1... 2... 3...");
             
             // Definition of the maintainer
-            Maintainer maintainer = new Maintainer("phil", "phil@phil.com", "phil", "phil", "lips", "maintainer");
-            instance.assignMaintenanceActivity(activity, maintainer, DayOfWeek.FRIDAY, WeeklyAvailability.WorkTurn.H14, 20);
+            Maintainer maintainer = new Maintainer("gio", "gruppo8se@gmail.com", "gio", "gio", "fal", "maintainer");
+            instance.assignMaintenanceActivity(activity, maintainer, DayOfWeek.MONDAY, WeeklyAvailability.WorkTurn.H8, 15);
             
             // Check if the activity is still in the list of the activities "to be assigned"
-            PlannedActivity expectedActivity = new PlannedActivity(2, "activity2", 30, 10, true, HYDRAULIC, "riparazione turbina 5", 3, "Lauria", "Molding", skills, "4... 5... 6...");
-            assertTrue(instance.queryMaintenanceActivityInWeek(3).contains(expectedActivity));
+            PlannedActivity expectedActivity = new PlannedActivity(1, "activity1", 45, 30, true, ELECTRICAL, "riparazione turbina 3", 2, "Fisciano", "Printing", skills,"1... 2... 3...");
+            assertTrue(instance.queryMaintenanceActivityInWeek(2).contains(expectedActivity));
             
             // Check remaining time is 10
-            assertEquals(10, instance.queryOneMaintenanceActivity("activity2").getFirst().getRemainingTime());
+            assertEquals(30, instance.queryOneMaintenanceActivity("activity1").getFirst().getRemainingTime());
             
             // Check maintainer's free time has been reduced
-            assertEquals(0, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 3).getMinutesAvailable(DayOfWeek.FRIDAY, WeeklyAvailability.WorkTurn.H14));
+            assertEquals(0, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 2).getMinutesAvailable(DayOfWeek.MONDAY, WeeklyAvailability.WorkTurn.H8));
             
             // Check if time reduction is valid only for that specific week
-            assertEquals(20, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 2).getMinutesAvailable(DayOfWeek.FRIDAY, WeeklyAvailability.WorkTurn.H14));
+            assertEquals(15, weeklyAvailabiltiyRepo.queryMaintainerAvailability(maintainer, 3).getMinutesAvailable(DayOfWeek.MONDAY, WeeklyAvailability.WorkTurn.H8));
         }
         catch(ClassNotFoundException | SQLException | IOException ex)
         {
