@@ -23,6 +23,6 @@ public class MaintenanceActivityForAssignment extends AbstractMaintenanceActivit
     public Object[] getDataModel()
     {
         Object[] dataModel = component.getDataModel();        
-        return new Object[]{dataModel[0], dataModel[9] + " - " + dataModel[10], dataModel[5], dataModel[2]};
+        return new Object[]{dataModel[0], dataModel[8] + " - " + dataModel[9], dataModel[5], dataModel[2]};
     }    
 }
