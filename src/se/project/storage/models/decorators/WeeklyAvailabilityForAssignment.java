@@ -9,7 +9,6 @@ import se.project.storage.models.interfaces.RepresentableWeeklyAvailability;
  */
 public class WeeklyAvailabilityForAssignment extends AbstractWeeklyAvailabilityForAssignment
 {
-    private final RepresentableWeeklyAvailability component;
     private final int maxSkills;
     
     /**
@@ -19,7 +18,7 @@ public class WeeklyAvailabilityForAssignment extends AbstractWeeklyAvailabilityF
     */
     public WeeklyAvailabilityForAssignment(RepresentableWeeklyAvailability representableWeeklyAvailabiliy, int maxSkills)
     {
-        this.component = representableWeeklyAvailabiliy;
+        super(representableWeeklyAvailabiliy);
         this.maxSkills = maxSkills;
     }
 

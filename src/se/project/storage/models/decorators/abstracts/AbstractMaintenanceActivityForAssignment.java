@@ -14,9 +14,21 @@ import se.project.storage.models.interfaces.RepresentableMaintenanceActivity;
  */
 public abstract class AbstractMaintenanceActivityForAssignment implements RepresentableMaintenanceActivity
 {
+    
+    protected final RepresentableMaintenanceActivity component;
+    
     /**
-     * Processes data model to be represented on assignment view
-     * @return the processed data model
+    * Instantiate the a adapter.
+    * @param component is the model to adapt
+    */
+    public AbstractMaintenanceActivityForAssignment(RepresentableMaintenanceActivity component)
+    {
+        this.component = component;
+    }
+    
+    /**
+     * Processes data model to be represented on assignment view.
+     * @return the processed data model.
      */
     public abstract Object[] getDataModel();
 }

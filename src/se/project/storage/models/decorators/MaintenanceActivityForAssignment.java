@@ -9,7 +9,6 @@ import se.project.storage.models.interfaces.RepresentableMaintenanceActivity;
  */
 public class MaintenanceActivityForAssignment extends AbstractMaintenanceActivityForAssignment
 {
-    private final RepresentableMaintenanceActivity component;
     
     /**
     * Instantiate the a adapter.
@@ -17,7 +16,7 @@ public class MaintenanceActivityForAssignment extends AbstractMaintenanceActivit
     */
     public MaintenanceActivityForAssignment(RepresentableMaintenanceActivity maintenanceActivity)
     {
-        this.component = maintenanceActivity;
+        super(maintenanceActivity);
     }
     
     @Override
