@@ -9,9 +9,9 @@ DATABASE INITIALIZATION
 
   To initialize the database with a test configuration:
 
-    You can run DatabaseConnectionTest. 
-    ALTERNATIVELY
-    You can manually execute the initialization code located at test/se/project/storage/test_files/codiceDB.sql
+  You can run DatabaseConnectionTest. 
+  ALTERNATIVELY
+  You can manually execute the initialization code located at test/se/project/storage/test_files/codiceDB.sql
   
 RUN
 
