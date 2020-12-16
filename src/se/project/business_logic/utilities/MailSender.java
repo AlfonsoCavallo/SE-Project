@@ -16,7 +16,7 @@ import se.project.storage.models.Maintainer;
 import se.project.storage.models.maintenance_activity.MaintenanceActivity;
 
 /**
- * Provides utility static methods for notify and mail sending.
+ * Provides utility methods for notify and mail sending.
  * 
  */
 public class MailSender implements MailSenderInterface
