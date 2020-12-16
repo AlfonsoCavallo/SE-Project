@@ -36,7 +36,12 @@ public class SelectMaintenanceActivityView extends AbstractView
         Object columns[] = {"ID", "AREA", "TYPE", "Estimated intervention time [min]"};
         this.defaultTableModel.setColumnIdentifiers(columns);
         this.jTable.setModel(this.defaultTableModel);
-        this.jComboBox.setSelectedItem(LocalDate.now().get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear()));
+        int currentWeek = LocalDate.now().get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
+        if(currentWeek > 52)
+        {
+            currentWeek = 52;
+        }
+        this.jComboBox.setSelectedItem(currentWeek);
         this.setVisible(true);
     }
 
