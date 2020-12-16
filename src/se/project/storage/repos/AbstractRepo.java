@@ -74,17 +74,4 @@ public abstract class AbstractRepo implements RepoInterface
         }        
         return true;
     }
-    
-    /**
-     * 
-     * @param query is the query that has to be execute during the transaction.
-     * @return a String containing the instructions for the transaction.
-     */
-    private String getTransaction(String query)
-    {
-        String output = "begin;\n" +
-                query + "\n" +
-                "commit;";
-        return output;
-    }
 }

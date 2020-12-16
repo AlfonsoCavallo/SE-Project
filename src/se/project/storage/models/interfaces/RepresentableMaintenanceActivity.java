@@ -6,7 +6,7 @@ package se.project.storage.models.interfaces;
 public interface RepresentableMaintenanceActivity
 {
     /***
-     * 
+     * Get the data model in percentages of availability.
      * @return an array of informations capable of being configured on a JTable
      */    
     Object[] getDataModel();
