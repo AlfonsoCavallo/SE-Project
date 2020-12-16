@@ -13,6 +13,8 @@ DATABASE INITIALIZATION
   ALTERNATIVELY
   You can manually execute the initialization code located at test/se/project/storage/test_files/codiceDB.sql
   
+  (Uncomment the first 2 rows of codiceDB.sql for the creation of a test user.)
+  
 RUN
 
   To run the program:
