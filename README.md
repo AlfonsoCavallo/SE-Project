@@ -4,13 +4,18 @@ CONFIGURATION
 
   To run the project it is necessary to configure a PostgreSQL database at this URL:
     "jdbc:postgresql://localhost/gruppo8_se"
+
+DATABASE INITIALIZATION 
+  To initialize the database: 
+    - Execute the file createUsersAndRole.sql in the folder SQLcode in this repository, uncommenting the first line (that create the database)
+    
+DATABASE POPULATION
+
+  To populate the database with a test configuration:
+   - You can run DatabaseConnectionTest.
   
-DATABASE INITIALIZATION
-
-  To initialize the database with a test configuration:
-
-  You can run DatabaseConnectionTest. 
   ALTERNATIVELY
+  
   You can manually execute the initialization code, located at test/se/project/storage/test_files/codiceDB.sql
   
   (Uncomment the first 2 rows of codiceDB.sql for the creation of a test user.)
