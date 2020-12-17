@@ -10,7 +10,7 @@ public interface MailSenderInterface
 {
      /**
      * 
-     * Send an email using GA2 Protocol.
+     * Send an email to a maintainer.
      * @param maintainer is the recipient.
      * @throws Exception
      */

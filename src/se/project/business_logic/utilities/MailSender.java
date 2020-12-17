@@ -54,7 +54,7 @@ public class MailSender implements MailSenderInterface
         properties.put("mail.smtp.starttls.enable", "true");
         //Host SMTP
         properties.put("mail.smtp.host", "smtp.gmail.com");
-        //Setting GA2 Protocol to port 587
+        //Setting mail Protocol to port 587
         properties.put("mail.smtp.port", "587");
         
         //Account that send the email
