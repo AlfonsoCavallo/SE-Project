@@ -127,7 +127,6 @@ public class ActivityAssignmentController extends AbstractController
                try
                {
                    executeTransitionToForwardingPage();
-                   activityAssignmentView.dispose();
                }
                catch (IllegalArgumentException ex)
                {
@@ -191,7 +190,10 @@ public class ActivityAssignmentController extends AbstractController
             JOptionPane.showMessageDialog(null, NOT_VALID_MESSAGE);
             return;
         }
-        
+        else
+        {            
+            activityAssignmentView.dispose();
+        }
 
         openActivityForwardingPage(plannedActivity, selectedAvailability, selectedDayOfWeek,
         dayOfMonth, maintainerPercentage);
